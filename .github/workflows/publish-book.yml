@@ -9,6 +9,8 @@ env:
   NMA_REPO: brainCodeCamp
   NMA_MAIN_BRANCH: main
 
+permissions:
+  contents: write
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
   build-and-deploy-book:
@@ -16,7 +18,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -35,17 +37,8 @@ jobs:
       - name: Build book
         run: |
           jupyter-book build .
-
-      - name: Commit book
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          ghp-import -n -m "update course book" _build/html
-          git checkout -f gh-pages
-
-      - name: Publish to gh-pages
-        uses: ad-m/github-push-action@v0.6.0
+      
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          force: true
+          folder: _build/html
