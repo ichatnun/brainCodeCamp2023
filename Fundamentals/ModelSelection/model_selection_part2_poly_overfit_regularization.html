@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Model Selection (Part 2: Polynomial regression, overfitting, and regularization) &#8212; My sample book</title>
+    <title>Model Selection (Part 2: Polynomial regression, overfitting, and regularization) &#8212; Brain Code Camp</title>
   
   
   
@@ -389,20 +389,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -443,7 +429,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c406b5aea2dae078c35da2be7e2481950187d0ee3e68029e922073da58aa875c.png" src="../../_images/c406b5aea2dae078c35da2be7e2481950187d0ee3e68029e922073da58aa875c.png" />
+<img alt="../../_images/04c1467ac791594f4f458065c00d4bd52be2dc5b70263fd61be4086cfe2088ed.png" src="../../_images/04c1467ac791594f4f458065c00d4bd52be2dc5b70263fd61be4086cfe2088ed.png" />
 </div>
 </div>
 <p>หากเรานำเอาสมการเส้นตรง <span class="math notranslate nohighlight">\( y = w_0 + w_1 x\)</span> มาอธิบายข้อมูลประเภทนี้ จะส่งผลให้เกิดความคาดเคลื่อนได้</p>
@@ -483,12 +469,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope 0.03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope -0.00
 
-Estimated intercept 8.19
+Estimated intercept 8.41
 </pre></div>
 </div>
-<img alt="../../_images/acdf43817c246dd7656dc19ccb68c8c429452979b0d47e84816eb82798e4b8aa.png" src="../../_images/acdf43817c246dd7656dc19ccb68c8c429452979b0d47e84816eb82798e4b8aa.png" />
+<img alt="../../_images/a187a1f05d98b32b7b620c934192669a958b00f500e3fe06e8f023251a2ace1f.png" src="../../_images/a187a1f05d98b32b7b620c934192669a958b00f500e3fe06e8f023251a2ace1f.png" />
 </div>
 </div>
 <p>จะพบว่าโมเดลเส้นตรงนั้นไม่สอดคล้องกับข้อมูลที่เรามีอยู่ สังเกตได้จาก</p>
@@ -592,8 +578,8 @@ Estimated intercept 8.19
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c9692537abbc30f021c13dd8e943b883a115f73f2e0c8ba8a7672ecb01a0871d.png" src="../../_images/c9692537abbc30f021c13dd8e943b883a115f73f2e0c8ba8a7672ecb01a0871d.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.         -0.08999084  1.16422251  0.00338864 -0.00625422]
+<img alt="../../_images/9ae2e0685a88bd0b622267d9ad661e94af760ffa5b53c57243fca8c04f704460.png" src="../../_images/9ae2e0685a88bd0b622267d9ad661e94af760ffa5b53c57243fca8c04f704460.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.          0.08142035  0.98223765 -0.00385392  0.00105504]
 </pre></div>
 </div>
 </div>
@@ -665,8 +651,8 @@ Estimated intercept 8.19
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1bd2db2437b050cfe53c0a8fbb84cefbf664ce3b609c333b568c1c92845ef6b9.png" src="../../_images/1bd2db2437b050cfe53c0a8fbb84cefbf664ce3b609c333b568c1c92845ef6b9.png" />
-<img alt="../../_images/2ef11ef19373d985eef8a1f7aed9e5308c80a931f2c5774976658220cacb98d9.png" src="../../_images/2ef11ef19373d985eef8a1f7aed9e5308c80a931f2c5774976658220cacb98d9.png" />
+<img alt="../../_images/663b90311a3d37096ddef880ebe2d8a76e8870f79b421b0e67a6c279abff055d.png" src="../../_images/663b90311a3d37096ddef880ebe2d8a76e8870f79b421b0e67a6c279abff055d.png" />
+<img alt="../../_images/f0139b1cb9a71ec3c1187e190856630deda1b41e15f6093d3cd488394fd8b4c3.png" src="../../_images/f0139b1cb9a71ec3c1187e190856630deda1b41e15f6093d3cd488394fd8b4c3.png" />
 </div>
 </div>
 <p>จากผลการทดสอบเปลี่ยนค่า polynomial order ของโมเดล จะพบว่าค่า MSE ที่ถูกทดสอบมีค่าน้อยลงเรื่อยๆ จนเหลือ 0 ที่ order = 15</p>
@@ -709,11 +695,11 @@ Estimated intercept 8.19
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/058dec66acdfc36d4f1210df7f63abe303471ebe03b172b656d775cbd67d194b.png" src="../../_images/058dec66acdfc36d4f1210df7f63abe303471ebe03b172b656d775cbd67d194b.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [-8.67252289e-08 -7.99843098e+00  7.84190909e-01  6.16106901e+00
-  3.70576420e+00  5.16553081e+00  1.57730122e+00  3.79211984e-01
- -3.21113932e+00 -3.10009837e+00 -1.50633746e+00  4.25863656e+00
- -1.30822912e+00 -1.87123588e-01  1.25138160e-01 -1.33756894e-02]
+<img alt="../../_images/422e22d43701666414b41b18afde6bbea64613582bb856d4723f6f2ebdb0b193.png" src="../../_images/422e22d43701666414b41b18afde6bbea64613582bb856d4723f6f2ebdb0b193.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [-1.39111792e-06 -2.83828348e+01  8.25412299e+00  1.21024271e+01
+  1.13056684e+01  7.73704360e+00  5.28904462e+00 -3.26478090e-03
+ -1.77119659e+00 -5.29379072e+00 -9.80087615e-01  3.44987447e+00
+ -4.78666521e-01 -4.93934225e-01  1.72497702e-01 -1.58833153e-02]
 </pre></div>
 </div>
 </div>
@@ -773,7 +759,7 @@ Estimated intercept 8.19
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/752384e06d3d13df4c67f8efbead173976531374ca7f40439b47434748cf2977.png" src="../../_images/752384e06d3d13df4c67f8efbead173976531374ca7f40439b47434748cf2977.png" />
+<img alt="../../_images/0c740245d86bf46cacd78c874a5ae9e59f5f3105e6a2e6a34ed004d2cad22e40.png" src="../../_images/0c740245d86bf46cacd78c874a5ae9e59f5f3105e6a2e6a34ed004d2cad22e40.png" />
 </div>
 </div>
 <p>ในกรณีที่เราเจอปัญหา underfitting วิธีแก้ปัญหาวิธีหนึ่งที่ได้รับความนิยมมากก็คือ การเลือกใช้โมเดลที่ซับซ้อนมากยิ่งขึ้น เช่น การเพิ่มจำนวนตัวแปรในโมเดล หรือในตัวอย่างนี้ก็คือการเพิ่ม order ของ polynomial</p>
@@ -950,7 +936,7 @@ Estimated intercept 8.19
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7500e50a56d2cc7643430a6231cef37c969b515ac079a112337bfe357a922ee0.png" src="../../_images/7500e50a56d2cc7643430a6231cef37c969b515ac079a112337bfe357a922ee0.png" />
+<img alt="../../_images/d32ebd26daba9894029cd6d1595098025a81ecf9d93857c2ff14a4256bd29169.png" src="../../_images/d32ebd26daba9894029cd6d1595098025a81ecf9d93857c2ff14a4256bd29169.png" />
 </div>
 </div>
 <p>จากการทดสอบด้านบน สังเกตได้ว่า</p>
@@ -1046,7 +1032,7 @@ Estimated intercept 8.19
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Brain Code Camp Community
 </p>
 
   </div>

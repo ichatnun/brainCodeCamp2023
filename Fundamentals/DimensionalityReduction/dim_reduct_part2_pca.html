@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Dimensionality Reduction (Part 2: Principal Component Analysis) &#8212; My sample book</title>
+    <title>Dimensionality Reduction (Part 2: Principal Component Analysis) &#8212; Brain Code Camp</title>
   
   
   
@@ -162,6 +162,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dim_reduct_part3.html">Dimensionality Reduction (Part 3: Nonlinear Methods)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part2_dft.html">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part3_STFT.html">Signal Processing (Part 3: Short Time Fourier Transform)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part4_application.html">Signal Processing (Part 4: Application)</a></li>
 </ul>
 
     </div>
@@ -373,19 +381,6 @@ document.write(`
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">multivariate_normal</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">multivariate_normal</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
 </pre></div>
 </div>
 </div>
@@ -605,10 +600,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0fee724b7309d1bac23d0c70de89736f433af78c9560c27512c1f01828043b0a.png" src="../../_images/0fee724b7309d1bac23d0c70de89736f433af78c9560c27512c1f01828043b0a.png" />
-<img alt="../../_images/b4efb7c7ad6be53829bc168e55d9bb4eb89497d46648aa913652fefa378cc833.png" src="../../_images/b4efb7c7ad6be53829bc168e55d9bb4eb89497d46648aa913652fefa378cc833.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  84.52
-% variance captured by PC2 =  15.48
+<img alt="../../_images/8b6ca1192cdab38178607840a086f763970194a409461d4da1468b26f690850c.png" src="../../_images/8b6ca1192cdab38178607840a086f763970194a409461d4da1468b26f690850c.png" />
+<img alt="../../_images/8c3277557c82dad8b15db9e67eca396f873d6728b2d808a332aaf291b23acf97.png" src="../../_images/8c3277557c82dad8b15db9e67eca396f873d6728b2d808a332aaf291b23acf97.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  87.78
+% variance captured by PC2 =  12.22
 </pre></div>
 </div>
 </div>
@@ -697,8 +692,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0cd14c2c2424fb75e668864b9b107218e5f89bb4a20fa7ec085aea93189225c8.png" src="../../_images/0cd14c2c2424fb75e668864b9b107218e5f89bb4a20fa7ec085aea93189225c8.png" />
-<img alt="../../_images/0bb9a2385854bc987c4a87dc3438b52b026d9f9dd2cc692cca6183d5146b93ca.png" src="../../_images/0bb9a2385854bc987c4a87dc3438b52b026d9f9dd2cc692cca6183d5146b93ca.png" />
+<img alt="../../_images/53117518d69f0eacfbb61e95ae1f41c7a5ee129563739815e059d23f7c17252d.png" src="../../_images/53117518d69f0eacfbb61e95ae1f41c7a5ee129563739815e059d23f7c17252d.png" />
+<img alt="../../_images/79a99bb72d14421541484977180dd442465794bf49682c566fb771ab0125f563.png" src="../../_images/79a99bb72d14421541484977180dd442465794bf49682c566fb771ab0125f563.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -709,8 +704,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  97.49
-% variance captured by PC2 =  2.51
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  98.10
+% variance captured by PC2 =  1.90
 </pre></div>
 </div>
 </div>
@@ -790,7 +785,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Brain Code Camp Community
 </p>
 
   </div>

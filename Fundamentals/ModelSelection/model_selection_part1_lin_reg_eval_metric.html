@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Model Selection (Part 1: Simple Linear Model and Evaluation Metric) &#8212; My sample book</title>
+    <title>Model Selection (Part 1: Simple Linear Model and Evaluation Metric) &#8212; Brain Code Camp</title>
   
   
   
@@ -387,18 +387,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <section id="linear-model">
 <h2>โมเดลเชิงเส้น (Linear Model)<a class="headerlink" href="#linear-model" title="Permalink to this heading">#</a></h2>
@@ -441,7 +429,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c2446a779255f4a88a17f28838c77fa3a5f640281abcaefb006ea8ae4240e1ab.png" src="../../_images/c2446a779255f4a88a17f28838c77fa3a5f640281abcaefb006ea8ae4240e1ab.png" />
+<img alt="../../_images/5d3f6d3b61c3c327daddadaac1ceeed6362f2f50d625a21f7d1030a32eab56b5.png" src="../../_images/5d3f6d3b61c3c327daddadaac1ceeed6362f2f50d625a21f7d1030a32eab56b5.png" />
 </div>
 </div>
 <p>กำหนดให้เรามีจำนวนข้อมูลทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
@@ -480,10 +468,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True slope 2.00
-Estimated slope 1.98
+Estimated slope 1.99
 
 True intercept 1.00
-Estimated intercept 1.03
+Estimated intercept 0.97
 </pre></div>
 </div>
 </div>
@@ -518,7 +506,7 @@ Estimated intercept 1.03
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/093ad13f2af454d042029b52268c9ae6b1742e3301828a6f11143eb254d46543.png" src="../../_images/093ad13f2af454d042029b52268c9ae6b1742e3301828a6f11143eb254d46543.png" />
+<img alt="../../_images/d955840d243960ed8a55de127e14fdb45fefe7923e97f298065f82f3bb73e4f1.png" src="../../_images/d955840d243960ed8a55de127e14fdb45fefe7923e97f298065f82f3bb73e4f1.png" />
 </div>
 </div>
 <p>จากการสังเกตด้วยตา จะเห็นว่าค่า y ที่โมเดลได้ทำนายออกมา (จุดสีแดง) มีความสอดคล้องกับความสัมพันธ์ระหว่าง x และ y ที่แท้จริง (เส้นประสีดำ) มากกว่าข้อมูลที่เราเก็บมาเสียอีก (จุดสีน้ำเงิน)</p>
@@ -620,7 +608,7 @@ MSE(y,\hat{y})=\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Brain Code Camp Community
 </p>
 
   </div>

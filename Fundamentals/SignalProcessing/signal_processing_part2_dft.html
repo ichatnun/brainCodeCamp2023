@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Signal Processing (Part 2: Discrete Fourier Transform (DFT)) &#8212; My sample book</title>
+    <title>Signal Processing (Part 2: Discrete Fourier Transform (DFT)) &#8212; Brain Code Camp</title>
   
   
   
@@ -387,19 +387,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span><span class="p">,</span> <span class="n">ifft</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">math</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>เตรียมฟังก์ชันไว้สำหรับใช้คำนวณ DFT (ผ่านการใช้ <code class="docutils literal notranslate"><span class="pre">fft</span></code> ของ <code class="docutils literal notranslate"><span class="pre">scipy</span></code>) และแสดงผลลัพธ์ที่เกิดขึ้น</p>
 <div class="cell docutils container">
@@ -479,7 +466,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e7b4bc67aa9d324f409a59eafdb48ac58f180b94087188568558ca78fb59207f.png" src="../../_images/e7b4bc67aa9d324f409a59eafdb48ac58f180b94087188568558ca78fb59207f.png" />
+<img alt="../../_images/21510eef7949a9e9bc8e3135e1133841d9331fa14000ab9c3dc06cfee3515332.png" src="../../_images/21510eef7949a9e9bc8e3135e1133841d9331fa14000ab9c3dc06cfee3515332.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบนจะเห็นได้ว่า DFT ของ signal ด้านบน <span class="math notranslate nohighlight">\(X[k]\)</span> มี peak อยู่ที่ 20 Hz (และ -20 Hz) พอดี โดยที่ไม่มีความถี่อื่นๆ เลย สอดคล้องกับ <span class="math notranslate nohighlight">\(x[n]\)</span> ซึ่งเป็นฟังก์ชัน sine ที่ความถี่ 20 Hz</p>
@@ -508,7 +495,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a45116f77afb49a714004ceca26fc9b9b79aaa53d7aa8de44f37a99eb958e4ce.png" src="../../_images/a45116f77afb49a714004ceca26fc9b9b79aaa53d7aa8de44f37a99eb958e4ce.png" />
+<img alt="../../_images/e890cc45d0041ae27d97d1dbad0db6d8852ff676f58c485ef751a2be070dba00.png" src="../../_images/e890cc45d0041ae27d97d1dbad0db6d8852ff676f58c485ef751a2be070dba00.png" />
 </div>
 </div>
 <p>จากกราฟด้านบนจะเห็นได้ว่า DFT ของ signal มีคุณสมบัติ ที่สอดคล้องกับ คุณสมบัติของ <span class="math notranslate nohighlight">\(x[n]\)</span> คือ signal ที่ถูกเก็บข้อมูลมาจาก <span class="math notranslate nohighlight">\(x(t)=sin(2π*20t) + 0.5 sin(2π*50t)\)</span> ดังนี้</p>
@@ -604,11 +591,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/dist-packages/matplotlib/collections.py:192: ComplexWarning: Casting complex values to real discards the imaginary part
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages/matplotlib/collections.py:192: ComplexWarning: Casting complex values to real discards the imaginary part
   offsets = np.asanyarray(offsets, float)
 </pre></div>
 </div>
-<img alt="../../_images/496920fac7c045737a9a9f0886a00955d7bfbcb4b478c206831cb984fc788cee.png" src="../../_images/496920fac7c045737a9a9f0886a00955d7bfbcb4b478c206831cb984fc788cee.png" />
+<img alt="../../_images/b745b82b556dcd921d96f6a5232d482e9907b1501c9a876a4ed4f7d5fe61a559.png" src="../../_images/b745b82b556dcd921d96f6a5232d482e9907b1501c9a876a4ed4f7d5fe61a559.png" />
 </div>
 </div>
 <p>จากการสำรวจผลในทั้ง time domain (ภาพซ้ายล่าง) และ ผลใน frequency domain (ภาพขวาล่าง) พบว่าข้อมูลค่าความถี่ 50 Hz ซึ่งเราสันนิษฐานว่าเป็นสัญญาณรบกวน ได้ถูกกำจัดออกไปได้</p>
@@ -684,7 +671,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Brain Code Camp Community
 </p>
 
   </div>
