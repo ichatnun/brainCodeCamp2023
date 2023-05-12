@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Signal Processing (Part 1: Sampling and Signal Averaging) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Signal Processing (Part 2: Discrete Fourier Transform (DFT))" href="signal_processing_part2_dft.html" />
+    <link rel="prev" title="Model Selection (Part 3: Training, validation and test data)" href="../ModelSelection/model_selection_part3_data_splitting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to Brain Code Camp
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3.html">Dimensionality Reduction (Part 3: Nonlinear Methods)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="signal_processing_part2_dft.html">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_processing_part3_STFT.html">Signal Processing (Part 3: Short Time Fourier Transform)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_processing_part4_application.html">Signal Processing (Part 4: Application)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FFundamentals/SignalProcessing/signal_processing_part1_sampling_averaging.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Signal Processing (Part 1: Sampling and Signal Averaging)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-averaging">Signal averaging</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="signal-processing-part-1-sampling-and-signal-averaging">
+<h1>Signal Processing (Part 1: Sampling and Signal Averaging)<a class="headerlink" href="#signal-processing-part-1-sampling-and-signal-averaging" title="Permalink to this heading">#</a></h1>
+<p>ใน module นี้ เราจะมาเรียนรู้เกี่ยวกับการประมวลผลสัญญาณ (signal processing)แบบพื้นฐานที่มีโอกาสพบเจอบ่อยๆ ในการประมวลผลและวิเคราะห์ข้อมูลทาง neuroscience เช่น electroencephalogram (EEG) โดยจะเน้นการเรียนรู้ผ่าน <code class="docutils literal notranslate"><span class="pre">SciPy</span></code></p>
+<p><strong>หมายเหตุ</strong> ใน module นี้ เราจะใช้คำว่า signal แทนคำว่า สัญญาณ</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">normal</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">normal</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">math</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>กำหนดให้ <span class="math notranslate nohighlight">\(x\)</span> เป็น signal ที่มีค่าเปลี่ยนไปขึ้นอยู่กับแกนเวลา (continuous time signal) และ กำหนดให้ <span class="math notranslate nohighlight">\(x(t)\)</span> คือค่าของ signal นั้นที่เวลา <span class="math notranslate nohighlight">\(t\)</span></p>
+<p>ในการเก็บข้อมูลจริง เราไม่สามารถเก็บค่าของ signal นี้ในทุกๆ ช่วงเวลา <span class="math notranslate nohighlight">\(t\)</span> ได้ เนื่องจากข้อจำกัดทางด้านทรัพยากร เราจึงพึ่งพาเก็บตัวอย่าง signal นี้แค่บางส่วน (sampling)
+วิธีที่ตรงไปตรงมาที่สุดที่สำหรับการเก็บตัวอย่างก็คือการเก็บค่าของ <span class="math notranslate nohighlight">\(x\)</span> ที่มีระยะห่างในแกนเวลาเท่าๆกัน ยกตัวอย่าง เช่น ถ้าเราเริ่มเก็บค่าของ <span class="math notranslate nohighlight">\(x\)</span> ที่เวลา <span class="math notranslate nohighlight">\(t=0\)</span> และเราเก็บค่าทุกๆ วินาที (sampling period <span class="math notranslate nohighlight">\(T\)</span> = 1s) เราจะได้ค่าของ signal <span class="math notranslate nohighlight">\(x\)</span> ที่ประกอบด้วย <span class="math notranslate nohighlight">\(x(0), x(1), x(2), x(3), ...\)</span></p>
+<p>อัตราการเก็บข้อมูล (เช่น จำนวนจุดที่เก็บมาต่อวินาที) มีชื่อเรียกทางเทคนิคว่า sampling rate <span class="math notranslate nohighlight">\(f_s = 1/T\)</span></p>
+<p>หากเรากำหนด sampling rate <span class="math notranslate nohighlight">\(f_s\)</span> เป็น <span class="math notranslate nohighlight">\(1/T\)</span> ข้อมูลที่เราเก็บมาจะประกอบด้วย <span class="math notranslate nohighlight">\(x(0), x(T), x(2T), x(3T), ..., x(nT)\)</span></p>
+<p>วิธีหนึ่งที่เป็นที่นิยมในการเขียนค่าที่เก็บมาไม่ให้ซับซ้อนจนเกินไปก็คือการเขียนแบบไม่ต้องมีค่า T เช่น</p>
+<ul class="simple">
+<li><p>เขียน <span class="math notranslate nohighlight">\(x[0]\)</span> แทน <span class="math notranslate nohighlight">\(x(0*T)\)</span></p></li>
+<li><p>เขียน <span class="math notranslate nohighlight">\(x[1]\)</span> แทน <span class="math notranslate nohighlight">\(x(1*T)\)</span></p></li>
+<li><p>เขียน <span class="math notranslate nohighlight">\(x[2]\)</span> แทน <span class="math notranslate nohighlight">\(x(2*T)\)</span></p></li>
+<li><p>เขียน <span class="math notranslate nohighlight">\(x[3]\)</span> แทน <span class="math notranslate nohighlight">\(x(3*T)\)</span></p></li>
+</ul>
+<p>สรุปเป็นสมการได้เป็น <span class="math notranslate nohighlight">\(x[n]=x(nT)\)</span></p>
+<hr class="docutils" />
+<p>ตัวอย่างด้านล่างแสดง continous time signal <span class="math notranslate nohighlight">\(x(t)=sin(2π20t)\)</span> ด้วยสีน้ำเงิน และ จุดข้อมูลที่เก็บมา (discrete time signal) ด้วยสีแดง</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับสร้าง time signal ซึ่งเป็นฟังก์ชัน sine ที่มีความถี่ freq, มี sampling period คือ f_s และมีระยะเวลาในแกนเวลาเท่ากับ duration</span>
+<span class="k">def</span> <span class="nf">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+
+  <span class="c1"># คำนวณค่า sampling period (ระยะห่างระหว่างจุดที่เก็บมาสองจุดในแกนเวลา)</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">f_s</span> 
+
+  <span class="c1"># คำนวณจำนวนจุดที่มีใน signal</span>
+  <span class="n">num_points</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">f_s</span><span class="o">*</span><span class="n">duration</span><span class="p">)</span>
+  
+  <span class="c1"># สร้างแกนเวลา</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">num_points</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">num_points</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+  <span class="c1"># สร้าง signal x(t) = sin(2*pi*freq*t)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span>
+
+
+<span class="n">freq_sine</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># ค่าความถี่ของฟังก์ชัน sine (Hz)</span>
+<span class="n">f_s</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># อัตราการเก็บข้อมูล หรือ sampling rate (samples/s หรือ Hz)</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># ระยะเวลาของ signal (s)</span>
+
+<span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่ 20 Hz โดยมีค่า sampling rate สูง เพื่อใช้เป็นตัวแทน continuous time signal</span>
+<span class="n">x_cont</span><span class="p">,</span> <span class="n">t_cont</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
+
+<span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่ 20 Hz เหมือนกันแต่ มีค่า sampling rate ต่ำลง แสดงถึง discrete time signal ที่เก็บมา</span>
+<span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
+
+<span class="c1"># Plot x(t)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_cont</span><span class="p">,</span> <span class="n">x_cont</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x(t)=sin(2*pi*20*t)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot x[n]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sampled</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x(t)=sin(2*pi*20*t) sampled with a sampling rate of </span><span class="si">{</span><span class="n">f_s</span><span class="si">}</span><span class="s2"> Hz&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot ทั้ง x(t) และ x[n] ทับกัน</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_cont</span><span class="p">,</span> <span class="n">x_cont</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sampled</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x[n]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x(t)=sin(2*pi*20*t) sampled with a sampling rate of </span><span class="si">{</span><span class="n">f_s</span><span class="si">}</span><span class="s2"> Hz&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:matplotlib.legend:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+</pre></div>
+</div>
+<img alt="../../_images/c31926aa323c3568e3a1e4019dfa0c6d6a930e786e665bdeae0a78c7c5e28b5b.png" src="../../_images/c31926aa323c3568e3a1e4019dfa0c6d6a930e786e665bdeae0a78c7c5e28b5b.png" />
+</div>
+</div>
+<p>ในตัวอย่างด้านบน เราใช้ sampling rate ที่มีค่าสูง (จุดที่เก็บมีระยะห่างในแกนเวลาน้อย) ทำให้ค่าที่เก็บมา (จุดสีแดง) มีหน้าตาเหมือน continous time signal (เส้นสีน้ำเงิน) เลย</p>
+<p>ด้วยค่า sampling rate ที่สูงเหมือนในกรณีนี้ ต่อให้เราไม่เคยเห็นเส้นสีน้ำเงินเลย เราก็ยังสามารถดูแค่ จุดสีแดง แล้วบอกได้เลยว่า signal นี้คือ sine wave ที่มีความถี่ 20 Hz</p>
+<p>ในตัวอย่างถัดไป เราจะมาลองดูว่าถ้าเราเก็บข้อมูลด้วย sampling rate ที่น้อยลง จะเกิดอะไรขึ้น (โดยที่ไม่เปลี่ยนค่าอื่นๆ เช่น ค่า duration = 0.5 s เหมือนเดิม)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่ 20 Hz โดยมีค่า sampling rate สูง เพื่อใช้เป็นตัวแทน continuous time signal</span>
+<span class="n">x_cont</span><span class="p">,</span> <span class="n">t_cont</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
+
+<span class="n">f_s_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span> <span class="c1"># สร้าง list ที่มีค่า sampling rate ที่ต้องการนำมาทดสอบ</span>
+<span class="n">num_sub_figs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f_s_list</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="o">*</span><span class="n">num_sub_figs</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">f_s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f_s_list</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+  <span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่ 20 Hz เหมือนกันแต่ มีค่า sampling rate สูง แสดงถึง discrete time signal ที่เก็บมา</span>
+  <span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
+
+  <span class="c1"># กราฟทั้ง x(t) และ x[n] ทับกัน</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">num_sub_figs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_cont</span><span class="p">,</span> <span class="n">x_cont</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x(t)&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sampled</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x[n]&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x(t)=sin(2*pi*20*t) sampled with a sampling rate of </span><span class="si">{</span><span class="n">f_s</span><span class="si">}</span><span class="s2"> Hz&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/31fe256376c28a430192ca6549cad640f95ed970533be08258450e29169c3e96.png" src="../../_images/31fe256376c28a430192ca6549cad640f95ed970533be08258450e29169c3e96.png" />
+</div>
+</div>
+<p>จากตัวอย่างนี้จะเห็นได้ว่า ยิ่งมี sampling rate ที่สูง discrete time signal ที่เราเก็บมา (จุดสีแดง) ก็จะยิ่งมีหน้าตาเหมือนกับ signal จริง (เส้นสีน้ำเงิน) มากขึ้นเรื่อยๆ แต่สิ่งที่เราต้องแลกมาในการใช้ sampling rate ที่สูงก็คือเราต้องใช้ทรัพยากรในการจัดเก็บข้อมูลมากขึ้น และถ้าหากเราต้องการวิเคราะห์ข้อมูล เราก็จะต้องใช้ทรัพยากรในการประมวลผลที่สูงขึ้นด้วยเช่นกัน</p>
+<p>ในทางปฏิบัติ เราเลือก sampling rate ที่มีค่าน้อย (จำนวนจุดสีแดงน้อย) ในขณะที่ยังมากพอที่จะอนุมานหน้าตาของเส้นสีน้ำเงินได้อยู่</p>
+<p><strong>หมายเหตุ</strong> สำหรับผู้ที่สนใจ วิธีที่สามารถใช้เป็นแนวทางในการเลือกค่า sampling rate สามารถเข้าไปศึกษา <a class="reference external" href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem">The Nyquist-Shannon sampling theorem</a> เพิ่มเติมได้ โดยทั่วไปแล้ว เรามักจะเลือก sampling rate <span class="math notranslate nohighlight">\(f_s\)</span> ให้มีค่าที่สูงกว่า 2 เท่าของความถี่ของ signal ที่เราสนใจ เช่น ถ้าเราต้องการศึกษาสัญญาณจากสมองที่มีชื่อว่าสัญญาณ alpha ซึ่งทางการแพทย์เราทราบว่ามีความถี่อยู่ระหว่าง 8 Hz ถึง 12 Hz เราก็ควรจะเก็บข้อมูลจากสมองที่มีค่า sampling rate อย่างน้อย 24 Hz (ในทางปฏิบัติ เครื่องมือสำหรับใช้วัดสัญญาณจากสมองจะมีค่า sampling rate ตั้งต้นที่สูงกว่านี้มากๆ เช่น เกิน 1000 ดังนั้น เราอาจจะไม่ต้องกังวลมากนัก)</p>
+</section>
+<section id="signal-averaging">
+<h1>Signal averaging<a class="headerlink" href="#signal-averaging" title="Permalink to this heading">#</a></h1>
+<p>ในส่วนนี้ กำหนดให้</p>
+<ul class="simple">
+<li><p>มีวัตถุปริศนาที่ปล่อยสัญญาณ <span class="math notranslate nohighlight">\(x(t)=sin(2π20t)\)</span> มาตลอดเวลา</p></li>
+<li><p>เรามีอุปกรณ์วัดข้อมูลชนิดหนึ่งที่เราจะใช้วัดค่าจากวัตถุปริศนานี้ เพียงแต่อุปกรณ์นี้ค่อนข้างเก่ามาก ทำให้เวลาเก็บข้อมูลทีไร จะมีสัญญาณรบกวนเกิดขึ้นอยู่เสมอ กล่าวคือข้อมูลที่เราเก็บมาจะเป็น <span class="math notranslate nohighlight">\(x(t)=sin(2π20t) + noise \)</span> เสมอ</p></li>
+<li><p>สัญญาณรบกวนเป็น Gaussian ที่มีค่าเฉลี่ย และ standard deviation คงที่</p></li>
+<li><p>การเก็บข้อมูลด้วยอุปกรณ์วัดข้อมูลชนิดนี้เสียค่าใช้จ่ายน้อยมาก และ เราสามารถเปิดอุปกรณ์นี้ได้ทั้งวันทั้งคืน</p></li>
+</ul>
+<p>โค้ดด้านล่าง จะเป็นโค้ดที่แสดงถึงการเก็บข้อมูลในแต่ละครั้ง</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collect_one_signal_from_device</span><span class="p">():</span>
+
+  <span class="c1"># สัญญาณจริงที่มาจากวัตถุปริศนา</span>
+  <span class="n">x_true</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
+
+  <span class="c1"># สร้างสัญญาณรบกวน (noise) แบบ Gaussian ที่มีค่าเฉลี่ยอยู่ที่ 0 และค่า standard deviation อยู่ที่ 0.5</span>
+  <span class="n">noise</span> <span class="o">=</span> <span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x_true</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+  <span class="c1"># สัญญาณที่เครื่องมือวัดของเราเก็บได้</span>
+  <span class="n">x_sampled_device</span> <span class="o">=</span> <span class="n">x_true</span> <span class="o">+</span> <span class="n">noise</span>
+
+  <span class="k">return</span> <span class="n">x_sampled_device</span><span class="p">,</span> <span class="n">x_true</span><span class="p">,</span> <span class="n">t_sampled</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_sampled_device</span><span class="p">,</span> <span class="n">x_true</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">collect_one_signal_from_device</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sampled_device</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Collected&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_true</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time(s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0c79bdce61e395e82b3fe189575219a86d843e35c002b8a86b329394b3f2181a.png" src="../../_images/0c79bdce61e395e82b3fe189575219a86d843e35c002b8a86b329394b3f2181a.png" />
+</div>
+</div>
+<p>จากตัวอย่างด้านบน จะเห็นว่า signal ที่เราเก็บมาจากอุปกรณ์ของเรา (สีแดง) มีค่าที่ค่อนข้างแตกต่างจากสัญญาณจริง (สีน้ำเงิน) ค่อนข้างมาก</p>
+<p>วิธีการนึงที่จะช่วยทำให้สัญญาณรบกวนเหล่านี้มีค่าลดลง ก็คือการนำเอา signal ที่เราเก็บมาจากอุปกรณ์ของเราหลายๆรอบ มาลองเฉลี่ยกัน</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># จำนวนครั้งที่เก็บข้อมูล</span>
+<span class="n">num_collect</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="c1"># ข้อมูลที่เกิดจากการเอา signal มาบวกกัน</span>
+<span class="n">x_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x_sampled_device</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num_collect</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+  
+  <span class="c1"># เก็บข้อมูลแต่ละครั้ง</span>
+  <span class="n">x_sampled_device</span><span class="p">,</span> <span class="n">x_true</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">collect_one_signal_from_device</span><span class="p">()</span>
+
+  <span class="c1"># นำเอา signal ที่เก็บมาได้ในแต่ละครั้งมาบวกกัน</span>
+  <span class="n">x_sum</span> <span class="o">+=</span> <span class="n">x_sampled_device</span>
+  
+  <span class="c1"># แสดงผลเป็นระยะๆ</span>
+  <span class="k">if</span> <span class="n">count</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">200</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sum</span><span class="o">/</span><span class="n">count</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Collected&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_true</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time(s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average signal (</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> times)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b0a7f474b4ef1dd30777ddc3de401f69b78f5f10e676f53fa0bb0259396eb65f.png" src="../../_images/b0a7f474b4ef1dd30777ddc3de401f69b78f5f10e676f53fa0bb0259396eb65f.png" />
+<img alt="../../_images/814b793f7390fb9967bec432677a95f636e2b10b9e8169092090b5161ff48389.png" src="../../_images/814b793f7390fb9967bec432677a95f636e2b10b9e8169092090b5161ff48389.png" />
+<img alt="../../_images/a5f10d6cc9259ffb4551a3737d048ec157ad291eb9fd8f12f3b5b01587caaf51.png" src="../../_images/a5f10d6cc9259ffb4551a3737d048ec157ad291eb9fd8f12f3b5b01587caaf51.png" />
+<img alt="../../_images/884b30d99d07e23da6d4323d55e4b0ff652bcf6dde33382a0487d5c645e7bebe.png" src="../../_images/884b30d99d07e23da6d4323d55e4b0ff652bcf6dde33382a0487d5c645e7bebe.png" />
+<img alt="../../_images/7cb2e77cc4ff0483734f86adf3ce4ed2625087bf7f1aaaee84f5252a94a29449.png" src="../../_images/7cb2e77cc4ff0483734f86adf3ce4ed2625087bf7f1aaaee84f5252a94a29449.png" />
+<img alt="../../_images/73a1a97ef13843e2deb0d96f0dd2efe9ec2978a9ea3117eabfe6cab81af57886.png" src="../../_images/73a1a97ef13843e2deb0d96f0dd2efe9ec2978a9ea3117eabfe6cab81af57886.png" />
+</div>
+</div>
+<p>จากตัวอย่างด้านบนจะเห็นได้ว่ายิ่งเราเก็บข้อมูลจากวัตถุปริศนานี้หลายๆรอบด้วยเครื่องมือเดิม และนำเอา signal ที่ได้นั้นมาเฉลี่ย (average) กัน จะพบว่าสัญญาณรบกวนจะค่อยๆ หายไป ยิ่ง average มากขึ้น ก็จะยิ่งส่งผลให้สัญญาณรบกวนลดลงเรื่อยๆ</p>
+<p>ข้อมูลทาง neuroscience หลายประเภท เช่น สัญญาณที่ได้จากเครื่อง electroencephalogram (EEG) เป็น signal ที่มีสัญญาณรบกวนมาก ดังนั้นการทำ signal averaging เป็นการประมวลผลแบบพื้นฐานของข้อมูลเหล่านี้ จึงได้รับความนิยมเป็นอย่างมาก</p>
+<p><strong>หมายเหตุ</strong> หากเราต้องการวัดคุณภาพของ signal เมื่อเปรียบเทียบกับปริมาณสัญญาณรบกวน ออกมาเป็นตัวเลข (quantitative metric) เราสามารถลอง metric แบบมาตรฐาน เช่น signal-to-noise ratio (SNR) หรือ Contrast-to-noise ratio (CNR) ได้</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Fundamentals/SignalProcessing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ModelSelection/model_selection_part3_data_splitting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Model Selection (Part 3: Training, validation and test data)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="signal_processing_part2_dft.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-averaging">Signal averaging</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
