@@ -23,17 +23,16 @@ jobs:
           ref: ${{ github.head_ref }}
           
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: '3.10' 
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install jupyter-book==0.10.2 ghp-import
-          pip install jupyter_client==7.3.5  # downgrade jupyter-client to fix hangs
+          pip install jupyter-book ghp-import
 
-      - name: Build student book
+      - name: Build book
         run: |
           jupyter-book build .
 
@@ -41,7 +40,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          ghp-import -n -m "Update course book" _build/html
+          ghp-import -n -m "update course book" _build/html
           git checkout -f gh-pages
 
       - name: Publish to gh-pages
