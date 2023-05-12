@@ -1,0 +1,16 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: Fundamentals/DimensionalityReduction/dim_reduct_part1_intro
+- file: Fundamentals/DimensionalityReduction/dim_reduct_part2_pca
+- file: Fundamentals/DimensionalityReduction/dim_reduct_part3
+- file: Fundamentals/ModelSelection/model_selection_part1_lin_reg_eval_metric
+- file: Fundamentals/ModelSelection/model_selection_part2_poly_overfit_regularization
+- file: Fundamentals/ModelSelection/model_selection_part3_data_splitting
+- file: Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging
+- file: Fundamentals/SignalProcessing/signal_processing_part2_dft
+- file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
+- file: Fundamentals/SignalProcessing/signal_processing_part4_application
