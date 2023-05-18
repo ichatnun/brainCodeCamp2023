@@ -158,9 +158,9 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Linear Model and Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Polynomial Regression and Regularization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Data Splitting</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="current nav bd-sidenav">
@@ -435,7 +435,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/07118a22f3c4da2c912acbe6a571f5c4e399b81bf3f4715257455156a95f464e.png" src="../../_images/07118a22f3c4da2c912acbe6a571f5c4e399b81bf3f4715257455156a95f464e.png" />
+<img alt="../../_images/1fa61099c1c702f3dcb40c6af3b9a30a428192a3beef34368e8b0d041572f2f1.png" src="../../_images/1fa61099c1c702f3dcb40c6af3b9a30a428192a3beef34368e8b0d041572f2f1.png" />
 </div>
 </div>
 <p>ต่อมาเราจะลองใช้เทคนิค PCA เพื่อลดจำนวนมิติของข้อมูลนี้กัน</p>
@@ -508,9 +508,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/54fe844d828e164f5c536a19ad3eb72c1a9d28031965d2b6c94ebe6d23edf1e6.png" src="../../_images/54fe844d828e164f5c536a19ad3eb72c1a9d28031965d2b6c94ebe6d23edf1e6.png" />
-<img alt="../../_images/fb0ffddf4e6ad51ea09ccbe25f68e58cf0ffc0a07fcbfe90b0d8380a507089a6.png" src="../../_images/fb0ffddf4e6ad51ea09ccbe25f68e58cf0ffc0a07fcbfe90b0d8380a507089a6.png" />
-<img alt="../../_images/f8dbce2fab21f63033824c4fd7e82008d48471b049512f77ff8b978c719d7a53.png" src="../../_images/f8dbce2fab21f63033824c4fd7e82008d48471b049512f77ff8b978c719d7a53.png" />
+<img alt="../../_images/091670f54f14769f2fd1bc2efb6f58ff744ae71aa0b45c42b7a688b19125b961.png" src="../../_images/091670f54f14769f2fd1bc2efb6f58ff744ae71aa0b45c42b7a688b19125b961.png" />
+<img alt="../../_images/3d2d7ad68ea1126e951f3e44f8c0b0b2be0fd78e47751eeb6ba64aa588ffff92.png" src="../../_images/3d2d7ad68ea1126e951f3e44f8c0b0b2be0fd78e47751eeb6ba64aa588ffff92.png" />
+<img alt="../../_images/2d7d69c8ebc68759d0f852662f3a1b404ace9e49cf5162d0f72337468f9d75bf.png" src="../../_images/2d7d69c8ebc68759d0f852662f3a1b404ace9e49cf5162d0f72337468f9d75bf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -521,8 +521,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  87.30
-% variance captured by PC2 =  12.70
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  87.57
+% variance captured by PC2 =  12.43
 </pre></div>
 </div>
 </div>
@@ -645,9 +645,7 @@ There are 10 classes.
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading umap-learn-0.5.3.tar.gz (88 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/88.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">88.2/88.2 kB</span> <span class=" -Color -Color-Red">2.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">88.2/88.2 kB</span> <span class=" -Color -Color-Red">2.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -655,9 +653,7 @@ There are 10 classes.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hRequirement already satisfied: numpy&gt;=1.17 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (1.24.3)
+?25hRequirement already satisfied: numpy&gt;=1.17 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (1.24.3)
 Requirement already satisfied: scikit-learn&gt;=0.22 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (1.2.2)
 Requirement already satisfied: scipy&gt;=1.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (1.10.1)
 Requirement already satisfied: numba&gt;=0.49 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (0.57.0)
@@ -666,14 +662,7 @@ Collecting pynndescent&gt;=0.5 (from umap-learn)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.3/1.1 MB</span> <span class=" -Color -Color-Red">8.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.6/1.1 MB</span> <span class=" -Color -Color-Red">9.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ <span class=" -Color -Color-Green">1.0/1.1 MB</span> <span class=" -Color -Color-Red">9.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">9.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">38.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -699,7 +688,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/hostedtoolcache/Python/3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25h  Created wheel for umap-learn: filename=umap_learn-0.5.3-py3-none-any.whl size=82816 sha256=29705372681d84cc0b2ef1e70e0f90fd7dceded174a0545827c1e4f22cdd3452
+?25h  Created wheel for umap-learn: filename=umap_learn-0.5.3-py3-none-any.whl size=82816 sha256=5509c01892a9e9ed542dff68632d8aa783a2d222cffb9ecb8744dc5e01294e52
   Stored in directory: /home/runner/.cache/pip/wheels/a0/e8/c6/a37ea663620bd5200ea1ba0907ab3c217042c1d035ef606acc
 </pre></div>
 </div>
@@ -710,7 +699,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/hostedtoolcache/Python/3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25h  Created wheel for pynndescent: filename=pynndescent-0.5.10-py3-none-any.whl size=55622 sha256=340b8db58b6737ffba967229e4732f9559e76409e825c71107f60651d3bd562b
+?25h  Created wheel for pynndescent: filename=pynndescent-0.5.10-py3-none-any.whl size=55622 sha256=d70a947613925254f4d251e9f424d445ffc75f463d72968bb3e4cc97fb9350ca
   Stored in directory: /home/runner/.cache/pip/wheels/4a/38/5d/f60a40a66a9512b7e5e83517ebc2d1b42d857be97d135f1096
 Successfully built umap-learn pynndescent
 </pre></div>
@@ -794,7 +783,7 @@ Successfully built umap-learn pynndescent
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7f45b989c674ffab91f72738fa243f323dc1f9c0b967cdc7387047e48dc8f1f8.png" src="../../_images/7f45b989c674ffab91f72738fa243f323dc1f9c0b967cdc7387047e48dc8f1f8.png" />
+<img alt="../../_images/c28be5ff00e581baf3d14efb9fa53bc0892aa0969c16021eeddcdd03982b5e68.png" src="../../_images/c28be5ff00e581baf3d14efb9fa53bc0892aa0969c16021eeddcdd03982b5e68.png" />
 </div>
 </div>
 <p>จะเห็นได้ว่าข้อมูลจากเทคนิค UMAP ส่งผลให้ข้อมูลจาก class เดียวกันเกาะกลุ่มกันได้ ในขณะที่ข้อมูลจากคนละ class (คนละสี) มีการกระจายตัวออกจากกันมากกว่าสิ่งที่ได้รับจาก PCA</p>

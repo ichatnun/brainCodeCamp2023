@@ -160,9 +160,9 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Linear Model and Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Polynomial Regression and Regularization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Data Splitting</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
@@ -558,7 +558,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/94bd068e0cd332b9c4660c543e9263dc6f395e58c5d9b298b63c8efedc5965f5.png" src="../../_images/94bd068e0cd332b9c4660c543e9263dc6f395e58c5d9b298b63c8efedc5965f5.png" />
+<img alt="../../_images/84ea73cbf9f6c986bb15b0c3b4a75ea95addb29b360dd9f1514603c8ce2a2d8f.png" src="../../_images/84ea73cbf9f6c986bb15b0c3b4a75ea95addb29b360dd9f1514603c8ce2a2d8f.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบน จะเห็นว่า signal ที่เราเก็บมาจากอุปกรณ์ของเรา (สีแดง) มีค่าที่ค่อนข้างแตกต่างจากสัญญาณจริง (สีน้ำเงิน) ค่อนข้างมาก</p>
@@ -593,12 +593,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c41e242d23ff82aa37c358bb71d4574a13d63852b0efaf3a1b71ad205b4e1162.png" src="../../_images/c41e242d23ff82aa37c358bb71d4574a13d63852b0efaf3a1b71ad205b4e1162.png" />
-<img alt="../../_images/3a85b94dd59379a05a8d52a87f5436e705c484210b42cf31e6c8d42f59e3c2f1.png" src="../../_images/3a85b94dd59379a05a8d52a87f5436e705c484210b42cf31e6c8d42f59e3c2f1.png" />
-<img alt="../../_images/3aea76f48d372f49ec38b2475eb05e2af99cb679316fdcb3f0fe5d81d4395f09.png" src="../../_images/3aea76f48d372f49ec38b2475eb05e2af99cb679316fdcb3f0fe5d81d4395f09.png" />
-<img alt="../../_images/2e19da094add95b3188ebb6c5348617c3ae3b0345944216c6784081b8655e2dc.png" src="../../_images/2e19da094add95b3188ebb6c5348617c3ae3b0345944216c6784081b8655e2dc.png" />
-<img alt="../../_images/123b9381fcfb1b66b5e894a7b1726006eac13eaef5e21d313380592c642d273a.png" src="../../_images/123b9381fcfb1b66b5e894a7b1726006eac13eaef5e21d313380592c642d273a.png" />
-<img alt="../../_images/d9011f369dc6c059895493689e2f0def40edf6ddd2bd0bf99ad74b8448c31255.png" src="../../_images/d9011f369dc6c059895493689e2f0def40edf6ddd2bd0bf99ad74b8448c31255.png" />
+<img alt="../../_images/0a8e3ff5f117e539ad525281abceef075b3821b9a8efcb94b0ca2b362708f56b.png" src="../../_images/0a8e3ff5f117e539ad525281abceef075b3821b9a8efcb94b0ca2b362708f56b.png" />
+<img alt="../../_images/917b10761ea820499b1d2b8295b81201ef500795a7a6059289d186229a1516d3.png" src="../../_images/917b10761ea820499b1d2b8295b81201ef500795a7a6059289d186229a1516d3.png" />
+<img alt="../../_images/8042e1d00d1dac1a283a7a56420a8408fe241b9d3d82a01177115af2f94f8a98.png" src="../../_images/8042e1d00d1dac1a283a7a56420a8408fe241b9d3d82a01177115af2f94f8a98.png" />
+<img alt="../../_images/53680af04387699b89261e6843d9b7d3031e803c705dc5dcdaa4cd8bbcb8f870.png" src="../../_images/53680af04387699b89261e6843d9b7d3031e803c705dc5dcdaa4cd8bbcb8f870.png" />
+<img alt="../../_images/5cabc4e3c3ae9acb3606ddfb8ce51bf040b544f8b4464c5d373afb29a465db15.png" src="../../_images/5cabc4e3c3ae9acb3606ddfb8ce51bf040b544f8b4464c5d373afb29a465db15.png" />
+<img alt="../../_images/edcf9638c52ef540b4d72d56566e66fdeacfca5a60a43c869581ba71fcd038eb.png" src="../../_images/edcf9638c52ef540b4d72d56566e66fdeacfca5a60a43c869581ba71fcd038eb.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบนจะเห็นได้ว่ายิ่งเราเก็บข้อมูลจากวัตถุปริศนานี้หลายๆรอบด้วยเครื่องมือเดิม และนำเอา signal ที่ได้นั้นมาเฉลี่ย (average) กัน จะพบว่าสัญญาณรบกวนจะค่อยๆ หายไป ยิ่ง average มากขึ้น ก็จะยิ่งส่งผลให้สัญญาณรบกวนลดลงเรื่อยๆ</p>
