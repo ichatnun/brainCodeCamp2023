@@ -5,27 +5,54 @@ format: jb-book
 root: intro
 
 parts:
+  - caption: Brain Building Blocks
+
+  - caption: Prerequisites
+    chapters:
+    - file: Fundamentals/01_Prereqs/00_basic_python
+      title: Python
+    - file: Fundamentals/01_Prereqs/01_numpy
+      title: 01_numpy
+    - file: Fundamentals/01_Prereqs/02_intro_pytorch
+      title: Pytorch
+
   - caption: Model Selection
     chapters:
     - file: Fundamentals/ModelSelection/model_selection_part1_lin_reg_eval_metric
-      title: Linear Model and Evaluation
+      title: Linear Model and Evaluation Metric
     - file: Fundamentals/ModelSelection/model_selection_part2_poly_overfit_regularization
       title: Polynomial Regression and Regularization
     - file: Fundamentals/ModelSelection/model_selection_part3_data_splitting
-      title: Data Splitting
+      title: Training, Validation and Test Data
   
   - caption: Dimensionality Reduction
     chapters:
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part1_intro
+      title: The Basics
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part2_pca
+      title: Principal Component Analysis (PCA)
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
+      title: PCA with clock drawing test images
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
+      title: Nonlinear methods
   
+  - caption: Deep Learning
+    - file: Fundamentals/DeepLearning/thai_food_classification_transformers
+      title: Image Classification
+    - file: Fundamentals/DeepLearning/object_detection_transformer
+      title: Object Detection
+    - file: Fundamentals/DeepLearning/breast_cancer_segmentation_transformers
+      title: Image Segmentation
+
   - caption: Signal Processing
     chapters: 
     - file: Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging
+      title: Signal Sampling and Averaging
     - file: Fundamentals/SignalProcessing/signal_processing_part2_dft
+      title: Discrete Fourier Transform (DFT)
     - file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
-    - file: Fundamentals/SignalProcessing/signal_processing_part4_application     
+      title: Short-Time Fourier Transform (STFT)
+    - file: Fundamentals/SignalProcessing/signal_processing_part4_application
+      title: Audio Example
 
 
