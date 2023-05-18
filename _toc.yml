@@ -5,7 +5,7 @@ format: jb-book
 root: intro
 
 parts:
-  - caption: Brain Building Blocks
+  # - caption: Brain Building Blocks
 
   - caption: Prerequisites
     chapters:
@@ -37,6 +37,7 @@ parts:
       title: Nonlinear methods
   
   - caption: Deep Learning
+    chapters: 
     - file: Fundamentals/DeepLearning/thai_food_classification_transformers
       title: Image Classification
     - file: Fundamentals/DeepLearning/object_detection_transformer
