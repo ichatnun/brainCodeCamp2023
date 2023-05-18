@@ -401,7 +401,7 @@ document.write(`
 <p>ตอนนั้นเราใช้การหมุนจุดข้อมูลตามเข็มนาฬิกาไป 45 องศา แต่ใน part นี้เราจะมองอีกมุม กล่าวคือ เราจะไม่หมุนจุดข้อมูล แต่เราจะหมุนแกนทั้งหมดใน space (แกน x และ แกน y) 45 องศาแบบทวนเข็มนาฬิกาแทน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">multivariate_normal</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -412,7 +412,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># จำนวนจุดข้อมูล</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># จำนวนจุดข้อมูล</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
 
@@ -479,7 +479,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง PCA สำหรับตัวอย่างนี้เราจะไม่ whiten ข้อมูลของเรา โดยการกำหนด whiten=False แต่ในการใช้งานจริง การทำ whitening เป็นสิ่งที่ค่อนข้างมีความสำคัญมาก</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง PCA สำหรับตัวอย่างนี้เราจะไม่ whiten ข้อมูลของเรา โดยการกำหนด whiten=False แต่ในการใช้งานจริง การทำ whitening เป็นสิ่งที่ค่อนข้างมีความสำคัญมาก</span>
 <span class="n">model_PCA</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">whiten</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">model_PCA</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
@@ -540,7 +540,7 @@ document.write(`
 <p>เราสามารถเรียกดู attribute ที่ชื่อว่า <code class="docutils literal notranslate"><span class="pre">explained_variance_ratio_</span></code> มาดูว่าแต่ละ PC ที่ PCA หามา มันอธิบาย variance ในข้อมูลเราได้กี่เปอร์เซนต์</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% variance captured by PC1 = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% variance captured by PC1 = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% variance captured by PC2 = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -557,7 +557,7 @@ document.write(`
 <p>ในตัวอย่างถัดไป เรามาลองใช้ PCA กับข้อมูลมีการกระจายตัวเป็นวงรีกัน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">200</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="c1"># สร้างจุดขึ้นมาเป็นจำนวน num_points จุด ซึ่งมาจาก multi-variate normal distribution</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_points</span><span class="p">)</span>
@@ -625,10 +625,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/98ef616362ea66e3d43858482e39f8f85f64a6642445d4d00c33b35369da06bb.png" src="../../_images/98ef616362ea66e3d43858482e39f8f85f64a6642445d4d00c33b35369da06bb.png" />
-<img alt="../../_images/9d50658a26a54e75861f8a0eb121f19b84bceb4792e4226b5af883785f1f13a5.png" src="../../_images/9d50658a26a54e75861f8a0eb121f19b84bceb4792e4226b5af883785f1f13a5.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  86.78
-% variance captured by PC2 =  13.22
+<img alt="../../_images/0fee724b7309d1bac23d0c70de89736f433af78c9560c27512c1f01828043b0a.png" src="../../_images/0fee724b7309d1bac23d0c70de89736f433af78c9560c27512c1f01828043b0a.png" />
+<img alt="../../_images/b4efb7c7ad6be53829bc168e55d9bb4eb89497d46648aa913652fefa378cc833.png" src="../../_images/b4efb7c7ad6be53829bc168e55d9bb4eb89497d46648aa913652fefa378cc833.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  84.52
+% variance captured by PC2 =  15.48
 </pre></div>
 </div>
 </div>
@@ -639,7 +639,7 @@ document.write(`
 <p>เรามาดูตัวอย่างสุดท้ายของ part นี้กัน ในตัวอย่างนี้เราจะลองใช้ PCA กับข้อมูลที่มาจากสอง class ตามโค้ดด้านล่าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="c1"># สร้างจุดขึ้นมาเป็นจำนวน num_points จุด ซึ่งมาจาก multi-variate normal distribution สำหรับ class 1</span>
 <span class="n">data_class1</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="p">[[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_points</span><span class="p">)</span>
@@ -717,20 +717,20 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fe01a308d3318591017b50cb5e172ec42259e46297f346622135371146bb66a1.png" src="../../_images/fe01a308d3318591017b50cb5e172ec42259e46297f346622135371146bb66a1.png" />
-<img alt="../../_images/1c22451af2a0948840f7178515de29a4a9d99b17055f5e7cf5f08f5c3cd2edf5.png" src="../../_images/1c22451af2a0948840f7178515de29a4a9d99b17055f5e7cf5f08f5c3cd2edf5.png" />
+<img alt="../../_images/0cd14c2c2424fb75e668864b9b107218e5f89bb4a20fa7ec085aea93189225c8.png" src="../../_images/0cd14c2c2424fb75e668864b9b107218e5f89bb4a20fa7ec085aea93189225c8.png" />
+<img alt="../../_images/0bb9a2385854bc987c4a87dc3438b52b026d9f9dd2cc692cca6183d5146b93ca.png" src="../../_images/0bb9a2385854bc987c4a87dc3438b52b026d9f9dd2cc692cca6183d5146b93ca.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% variance captured by PC1 = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% variance captured by PC1 = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;% variance captured by PC2 = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  98.16
-% variance captured by PC2 =  1.84
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  97.49
+% variance captured by PC2 =  2.51
 </pre></div>
 </div>
 </div>

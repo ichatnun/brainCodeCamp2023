@@ -406,7 +406,7 @@ document.write(`
 <p>ในบทเรียนนี้เราจะลองสร้างโมเดลทำนายชุดข้อมูลในรูปแบบต่างๆ และดูกันว่าโมเดลแบบใดจะเหมาะสมกับชุดข้อมูลตัวอย่างของเรา</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 </pre></div>
@@ -420,7 +420,7 @@ document.write(`
 <p>ในส่วนนี้เราจะลองทดลองเลียนแบบกระบวนการเก็บข้อมูลผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">generate_sample_linear</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
   <span class="c1"># สร้างสมการเส้นตรงโดยที่จำลองการใส่สัญญาณรบกวนเข้าไป</span>
   <span class="c1"># เลือก include_noise เป็น True เพื่อกำหนดให้มีค่า noise เพิ่มเข้าไปในสมการ</span>
   <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
@@ -454,7 +454,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2ad353fc84caf7c3eba0ea024c39cf9b3aaebaa2f71024de94ad06599291b260.png" src="../../_images/2ad353fc84caf7c3eba0ea024c39cf9b3aaebaa2f71024de94ad06599291b260.png" />
+<img alt="../../_images/c2446a779255f4a88a17f28838c77fa3a5f640281abcaefb006ea8ae4240e1ab.png" src="../../_images/c2446a779255f4a88a17f28838c77fa3a5f640281abcaefb006ea8ae4240e1ab.png" />
 </div>
 </div>
 <p>กำหนดให้เรามีจำนวนข้อมูลทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
@@ -476,7 +476,7 @@ document.write(`
 <p>ในหลายๆ ครั้ง เราจะแก้ปัญหา <span class="math notranslate nohighlight">\(\min_{\hat{w_{0}},\hat{w_{1}}} L(y_{i},\hat{y_i})\)</span> ซึ่งหมายถึงการหาค่าต่ำสุดของ <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> โดยการปรับค่า <span class="math notranslate nohighlight">\(\hat{w_{0}}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_{1}}\)</span> ไปจนกว่า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> จะมีค่าน้อยที่สุด เราจึงมักเรียก <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> ว่า loss function (หรือเราพยายามลดค่าความสูญเสีย หรือ loss นั่นเอง)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_linear</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_linear</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 
 <span class="c1"># ให้โมเดลหาค่า w_0 and w_1 จากข้อมูล (x,y) ทั้งหมดที่มี</span>
 <span class="n">model_linear</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -496,7 +496,7 @@ document.write(`
 Estimated slope 1.98
 
 True intercept 1.00
-Estimated intercept 0.92
+Estimated intercept 1.03
 </pre></div>
 </div>
 </div>
@@ -505,7 +505,7 @@ Estimated intercept 0.92
 <p>หลังจากที่เรา fit โมเดลแล้ว (โมเดลได้ทำการประมาณค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> เรียบร้อยแล้ว) เราสามารถทำนายค่า y จาก <span class="math notranslate nohighlight">\(x_i\)</span> ใดๆ ได้จากสมการ <span class="math notranslate nohighlight">\( \hat{y_i} = \hat{w_0} + \hat{w_1}x_i\)</span> ได้โดยตรง หรือผ่านการเรียกใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">predict</span></code> ได้เช่นกัน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ใช้โมเดลทำนายค่า y จากค่า x วิธีที่ 1</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ใช้โมเดลทำนายค่า y จากค่า x วิธีที่ 1</span>
 <span class="n">y_hat</span> <span class="o">=</span> <span class="n">w0_hat</span> <span class="o">+</span> <span class="n">w1_hat</span><span class="o">*</span><span class="n">x</span>
 
 <span class="c1"># ใช้โมเดลทำนายค่า y จากค่า x วิธีที่ 2</span>
@@ -531,7 +531,7 @@ Estimated intercept 0.92
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a45357b916cafdc4b701c266e3478a01b28cdd3f2fdf56841d062797bae1d567.png" src="../../_images/a45357b916cafdc4b701c266e3478a01b28cdd3f2fdf56841d062797bae1d567.png" />
+<img alt="../../_images/093ad13f2af454d042029b52268c9ae6b1742e3301828a6f11143eb254d46543.png" src="../../_images/093ad13f2af454d042029b52268c9ae6b1742e3301828a6f11143eb254d46543.png" />
 </div>
 </div>
 <p>จากการสังเกตด้วยตา จะเห็นว่าค่า y ที่โมเดลได้ทำนายออกมา (จุดสีแดง) มีความสอดคล้องกับความสัมพันธ์ระหว่าง x และ y ที่แท้จริง (เส้นประสีดำ) มากกว่าข้อมูลที่เราเก็บมาเสียอีก (จุดสีน้ำเงิน)</p>

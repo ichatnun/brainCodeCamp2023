@@ -405,7 +405,7 @@ document.write(`
 <p>ข้อมูลจำนวนมากที่พบเจอในการทำงานจริง มักมีความสัมพันธ์ที่ซับซ้อน ซึ่งเมื่อนำมา plot ดูแล้วอาจจะมีหน้าตาที่ไม่สอดคล้องกับโมเดลเชิงเส้น ดังตัวอย่างด้านล่าง ที่ <span class="math notranslate nohighlight">\(y\)</span> ถูกสร้างมาจากสมการ <span class="math notranslate nohighlight">\(y=x^2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pdb</span><span class="o">,</span> <span class="nn">sys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pdb</span><span class="o">,</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -417,7 +417,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_list</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noise_level</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_list</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noise_level</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
   
   <span class="c1"># จำลองการใส่สัญญาณรบกวนเข้าไป</span>
   <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
@@ -454,13 +454,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6a9229753fc1621981330a0fb026d18c5e5d5bc3e579c7f906182aa2de0798f6.png" src="../../_images/6a9229753fc1621981330a0fb026d18c5e5d5bc3e579c7f906182aa2de0798f6.png" />
+<img alt="../../_images/c406b5aea2dae078c35da2be7e2481950187d0ee3e68029e922073da58aa875c.png" src="../../_images/c406b5aea2dae078c35da2be7e2481950187d0ee3e68029e922073da58aa875c.png" />
 </div>
 </div>
 <p>หากเรานำเอาสมการเส้นตรง <span class="math notranslate nohighlight">\( y = w_0 + w_1 x\)</span> มาอธิบายข้อมูลประเภทนี้ จะส่งผลให้เกิดความคาดเคลื่อนได้</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_linear</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_linear</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 
 <span class="c1"># ให้โมเดลหาค่า w_0 and w_1 จากข้อมูล (x,y) ทั้งหมดที่มี</span>
 <span class="n">model_linear</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -494,12 +494,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope -0.37
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope 0.03
 
-Estimated intercept 7.37
+Estimated intercept 8.19
 </pre></div>
 </div>
-<img alt="../../_images/28b298131863c8b428c14612e09f84587dfe4b9583c86f948ba8702fe10e2474.png" src="../../_images/28b298131863c8b428c14612e09f84587dfe4b9583c86f948ba8702fe10e2474.png" />
+<img alt="../../_images/acdf43817c246dd7656dc19ccb68c8c429452979b0d47e84816eb82798e4b8aa.png" src="../../_images/acdf43817c246dd7656dc19ccb68c8c429452979b0d47e84816eb82798e4b8aa.png" />
 </div>
 </div>
 <p>จะพบว่าโมเดลเส้นตรงนั้นไม่สอดคล้องกับข้อมูลที่เรามีอยู่ สังเกตได้จาก</p>
@@ -524,7 +524,7 @@ Estimated intercept 7.37
 <p>ในส่วนถัดไป เราจะลองนำเอาโมเดล <span class="math notranslate nohighlight">\(y = w_0 + w_1z_1+ w_2z_2 + w_3 z_3 + w_4 z_4\)</span> มาใช้กับข้อมูลจากข้อก่อนหน้า</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับ fit โมเดล polynomial ที่มี order ที่กำหนด และ ทำนายผลของโมเดลหลังจากถูกสอนด้วย training data แล้ว</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับ fit โมเดล polynomial ที่มี order ที่กำหนด และ ทำนายผลของโมเดลหลังจากถูกสอนด้วย training data แล้ว</span>
 <span class="k">def</span> <span class="nf">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="c1"># ค่า x ที่ใช้เป็น input ของโมเดล (จาก training data)</span>
                                <span class="n">y_train</span><span class="p">,</span> <span class="c1"># ค่า y ที่ใช้เป็นเฉลยให้โมเดล (จาก training data)</span>
                                <span class="n">poly_order</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># ค่า order ของ polynomial ที่เราใช้</span>
@@ -603,9 +603,8 @@ Estimated intercept 7.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6bee351011779ed44d124243b296978f02d60bc6512abc4f7cc2a583926ff527.png" src="../../_images/6bee351011779ed44d124243b296978f02d60bc6512abc4f7cc2a583926ff527.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.00000000e+00 -5.12908464e-01  1.01204862e+00  4.04154177e-02
-  4.69451931e-04]
+<img alt="../../_images/c9692537abbc30f021c13dd8e943b883a115f73f2e0c8ba8a7672ecb01a0871d.png" src="../../_images/c9692537abbc30f021c13dd8e943b883a115f73f2e0c8ba8a7672ecb01a0871d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.         -0.08999084  1.16422251  0.00338864 -0.00625422]
 </pre></div>
 </div>
 </div>
@@ -618,7 +617,7 @@ Estimated intercept 7.37
 <p>ในส่วนถัดไป เราจะลองใช้วิธีการเดิม โดยที่ข้อมูลนั้นจะยังถูกสร้างจากสมการ <span class="math notranslate nohighlight">\(y=x^2\)</span> เหมือนเดิม แต่มีจำนวนจุดข้อมูลที่น้อยลงมาก (จาก 100 จุด เหลือเป็น 10 จุด) และเราจะลองเปลี่ยนค่า polynomial order ไปเรื่อยๆ</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># มีจำนวนข้อมูลแค่ 10 จุด</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># มีจำนวนข้อมูลแค่ 10 จุด</span>
 <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">x_train</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span>
@@ -677,8 +676,8 @@ Estimated intercept 7.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/583c96b19a98962b1f9eccfa3888314d00c2ad6f23111d970014193f35fb18af.png" src="../../_images/583c96b19a98962b1f9eccfa3888314d00c2ad6f23111d970014193f35fb18af.png" />
-<img alt="../../_images/88bbcda7d4b6c61a0943a308b67dc2791d91ec476b66f1f99f2581b1d211f8b0.png" src="../../_images/88bbcda7d4b6c61a0943a308b67dc2791d91ec476b66f1f99f2581b1d211f8b0.png" />
+<img alt="../../_images/1bd2db2437b050cfe53c0a8fbb84cefbf664ce3b609c333b568c1c92845ef6b9.png" src="../../_images/1bd2db2437b050cfe53c0a8fbb84cefbf664ce3b609c333b568c1c92845ef6b9.png" />
+<img alt="../../_images/2ef11ef19373d985eef8a1f7aed9e5308c80a931f2c5774976658220cacb98d9.png" src="../../_images/2ef11ef19373d985eef8a1f7aed9e5308c80a931f2c5774976658220cacb98d9.png" />
 </div>
 </div>
 <p>จากผลการทดสอบเปลี่ยนค่า polynomial order ของโมเดล จะพบว่าค่า MSE ที่ถูกทดสอบมีค่าน้อยลงเรื่อยๆ จนเหลือ 0 ที่ order = 15</p>
@@ -689,7 +688,7 @@ Estimated intercept 7.37
 <p>เราจะลองเขียนโปรแกรมเพื่อทดสอบดู</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลสำหรับใช้ทดสอบจำนวนมาก</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลสำหรับใช้ทดสอบจำนวนมาก</span>
 <span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -721,11 +720,11 @@ Estimated intercept 7.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ae9835094a2c5f27f4897d30dd13c6c4d640c9444ae11890b16a6fa97e6f38bd.png" src="../../_images/ae9835094a2c5f27f4897d30dd13c6c4d640c9444ae11890b16a6fa97e6f38bd.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 4.27602124e-04 -1.86982279e+01 -1.94793975e+01 -1.02282171e+01
-  2.20312871e+00  1.16482872e+01  1.32513351e+01  5.14326587e+00
- -6.95021685e+00 -1.29833154e+01  9.73850623e+00 -5.79606813e-01
- -8.23804014e-01  1.31768991e-01  1.78004209e-02 -3.60564224e-03]
+<img alt="../../_images/058dec66acdfc36d4f1210df7f63abe303471ebe03b172b656d775cbd67d194b.png" src="../../_images/058dec66acdfc36d4f1210df7f63abe303471ebe03b172b656d775cbd67d194b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [-8.67252289e-08 -7.99843098e+00  7.84190909e-01  6.16106901e+00
+  3.70576420e+00  5.16553081e+00  1.57730122e+00  3.79211984e-01
+ -3.21113932e+00 -3.10009837e+00 -1.50633746e+00  4.25863656e+00
+ -1.30822912e+00 -1.87123588e-01  1.25138160e-01 -1.33756894e-02]
 </pre></div>
 </div>
 </div>
@@ -735,7 +734,7 @@ Estimated intercept 7.37
 <p>นอกจากปัญหา overfitting แล้ว เราก็ยังมี underfitting ซึ่งเป็นปัญหาที่เราจะเจอในกรณีที่โมเดลอาจจะมีความซับซ้อนน้อยเกินไป จนไม่สามารถเรียนรู้ที่จะให้คำตอบที่ถูกต้องแม้กระทั่งกับ training data ซึ่งเป็นสิ่งที่ใช้สอนโมเดล</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลสำหรับใช้ทดสอบจำนวนมาก</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลสำหรับใช้ทดสอบจำนวนมาก</span>
 <span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -785,7 +784,7 @@ Estimated intercept 7.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dcc6ae4ac7797d09e28bd9ef5b0f54c79fc8c5185424d075c369146721d72665.png" src="../../_images/dcc6ae4ac7797d09e28bd9ef5b0f54c79fc8c5185424d075c369146721d72665.png" />
+<img alt="../../_images/752384e06d3d13df4c67f8efbead173976531374ca7f40439b47434748cf2977.png" src="../../_images/752384e06d3d13df4c67f8efbead173976531374ca7f40439b47434748cf2977.png" />
 </div>
 </div>
 <p>ในกรณีที่เราเจอปัญหา underfitting วิธีแก้ปัญหาวิธีหนึ่งที่ได้รับความนิยมมากก็คือ การเลือกใช้โมเดลที่ซับซ้อนมากยิ่งขึ้น เช่น การเพิ่มจำนวนตัวแปรในโมเดล หรือในตัวอย่างนี้ก็คือการเพิ่ม order ของ polynomial</p>
@@ -827,7 +826,7 @@ Estimated intercept 7.37
 <p>เรามาลองใช้เทคนิค regularization กัน โดยการคัดลอกฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">fit_and_predict_polynomial</span></code> มาปรับแก้แค่บรรทัดเดียว โดยการเปลี่ยนจะการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LinearRegression</span></code> ไปเป็น <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Ridge</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
 
 <span class="c1"># ฟังก์ชันสำหรับ fit โมเดล polynomial ที่มี order ที่กำหนด โดยใช้ L2 regularization และ ทำนายผลของโมเดลหลังจากถูกสอนด้วย training data แล้ว</span>
 <span class="k">def</span> <span class="nf">fit_and_predict_polynomial_ridge</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="c1"># ค่า x ที่ใช้เป็น input ของโมเดล (จาก training data)</span>
@@ -893,7 +892,7 @@ Estimated intercept 7.37
 <p>ทดลอง fit โมเดล polynomial ที่มี order = 15 (ซึ่งเป็นโมเดลที่มีปัญหา overfitting) โดยใช้ <span class="math notranslate nohighlight">\(λ\)</span> ค่าต่างๆ</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># มีจำนวนข้อมูลแค่ 25 จุด</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># มีจำนวนข้อมูลแค่ 25 จุด</span>
 <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">25</span>
 <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># กำหนดให้สมการที่ถูกต้องคือ y = x^2</span>
 
@@ -962,7 +961,7 @@ Estimated intercept 7.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/74f04eb2d6952ca4a7e412e374923bac0dcf4dd3271fb3c86d2a297e1a6d51a9.png" src="../../_images/74f04eb2d6952ca4a7e412e374923bac0dcf4dd3271fb3c86d2a297e1a6d51a9.png" />
+<img alt="../../_images/7500e50a56d2cc7643430a6231cef37c969b515ac079a112337bfe357a922ee0.png" src="../../_images/7500e50a56d2cc7643430a6231cef37c969b515ac079a112337bfe357a922ee0.png" />
 </div>
 </div>
 <p>จากการทดสอบด้านบน สังเกตได้ว่า</p>

@@ -407,7 +407,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
@@ -419,7 +419,7 @@ document.write(`
 <p>ฟังก์ชันจาก part ก่อนหน้า</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับวัด mean squared error ระหว่างค่าที่ทำนายได้ (y_hat) และค่าผลเฉลย y</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับวัด mean squared error ระหว่างค่าที่ทำนายได้ (y_hat) และค่าผลเฉลย y</span>
 <span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_hat</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">y_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -497,7 +497,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># จำนวนจุดที่มีทั้งหมด</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># จำนวนจุดที่มีทั้งหมด</span>
 <span class="n">num_point_observed</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># จำนวนจุดที่เราเก็บมาใช้สอนโมเดล (fit โมเดล)</span>
 <span class="n">mode2color_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">:</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span><span class="s1">&#39;g&#39;</span><span class="p">}</span> <span class="c1"># กำหนดสีสำหรับแต่ละ mode เช่น สีน้ำเงินสำหรับ training data สีเขียวสำหรับ test data</span>
 
@@ -543,12 +543,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b4f1995857f1bc545fed2b47343659ef360b78bcb9bf0f6855fee9931fdbb18a.png" src="../../_images/b4f1995857f1bc545fed2b47343659ef360b78bcb9bf0f6855fee9931fdbb18a.png" />
+<img alt="../../_images/908e9a9f50c7aa1337516b65d4f2b88f3c81a65630b303b6178c78aa7fe0b367.png" src="../../_images/908e9a9f50c7aa1337516b65d4f2b88f3c81a65630b303b6178c78aa7fe0b367.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง x_test_dict และ y_test_dict มาเก็บข้อมูลที่เราอยากจะให้โมเดลลองทำนายดู</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง x_test_dict และ y_test_dict มาเก็บข้อมูลที่เราอยากจะให้โมเดลลองทำนายดู</span>
 <span class="n">x_test_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;val&#39;</span><span class="p">:</span> <span class="n">x_val</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span> <span class="n">x_whole_line</span><span class="p">}</span>
 <span class="n">y_test_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;val&#39;</span><span class="p">:</span> <span class="n">y_val_noisy</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">y_test_noisy</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span> <span class="n">y_true_whole_line</span><span class="p">}</span>
 
@@ -621,13 +621,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/62f8bf331bdda4b28fd1306bb04540b948cf67ce163042e44d786adbb83574cf.png" src="../../_images/62f8bf331bdda4b28fd1306bb04540b948cf67ce163042e44d786adbb83574cf.png" />
-<img alt="../../_images/68ff59c91b52e65b00779d5f8bdb9c9651f6455cc1bb11e65639929dd821f049.png" src="../../_images/68ff59c91b52e65b00779d5f8bdb9c9651f6455cc1bb11e65639929dd821f049.png" />
+<img alt="../../_images/0c8e8b3dd98e4b3b0574f8c3247132b01944e72ebdd43699662c82eedbf34a12.png" src="../../_images/0c8e8b3dd98e4b3b0574f8c3247132b01944e72ebdd43699662c82eedbf34a12.png" />
+<img alt="../../_images/50314e9c326104e20bc0835cc0c8e2beece1d43559aebc3bbd55ffc874f7ba02.png" src="../../_images/50314e9c326104e20bc0835cc0c8e2beece1d43559aebc3bbd55ffc874f7ba02.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The lowest training MSE was achieved with the polynomial of order </span><span class="si">{</span><span class="n">poly_order_list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The lowest training MSE was achieved with the polynomial of order </span><span class="si">{</span><span class="n">poly_order_list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The lowest validation MSE was achieved with the polynomial of order </span><span class="si">{</span><span class="n">poly_order_list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">])]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The lowest test MSE was achieved with the polynomial of order </span><span class="si">{</span><span class="n">poly_order_list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">])]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>

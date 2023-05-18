@@ -415,7 +415,7 @@ document.write(`
 <p>ดังแสดงด้านล่าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
@@ -425,7 +425,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># # จำนวนจุดข้อมูล</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># # จำนวนจุดข้อมูล</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
 
@@ -464,7 +464,7 @@ document.write(`
 <p>จะเห็นว่าเราสามารถแบ่งจุดข้อมูลสองกลุ่มนี้ได้อย่างง่ายดาย โดยการดูแค่ค่า x อย่างเดียว โดยที่ไม่ต้องสนใจค่า y ซึ่งแปลว่าเราจริง ๆ แล้ว เราสามารถลดข้อมูลมิติของข้อมูลจากสองมิติ (x หนึ่งมิติ และ y เป็นอีกมิติ) ให้เหลือแค่มิติเดียว (ค่า x เพียงอย่างเดียว) ก็ยังสามารถ classify จุดเหล่านี้ได้เหมือนเดิม ดังแสดงในภาพด้านล่าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_disp</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span> <span class="c1"># ค่าต่ำสูงและสูงสุดของ x สำหรับแสดงผล</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_disp</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span> <span class="c1"># ค่าต่ำสูงและสูงสุดของ x สำหรับแสดงผล</span>
 <span class="n">y_disp</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span> <span class="c1"># ค่าต่ำสูงและสูงสุดของ y สำหรับแสดงผล</span>
 
 <span class="c1"># สร้างจุด (x,y) จำนวนมาก สำหรับเอามาใช้แสดงผล classification ที่จุดต่าง ๆ โดยใช้สีน้ำเงินแดง class 1 และสีแดงแสดง class 2</span>
@@ -516,7 +516,7 @@ document.write(`
 <p>ดังแสดงด้านล่าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">50</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -575,7 +575,7 @@ y\
 <p>เกิดเป็นพิกัด <span class="math notranslate nohighlight">\((x',y')\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rotate_counterclockwise</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rotate_counterclockwise</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
 
   <span class="c1"># สร้าง rotation matrix R ที่ทำหน้าที่ใช้หมุนพิกัดตามเข็มนาฬิกา</span>
   <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">degree</span><span class="p">)],</span>

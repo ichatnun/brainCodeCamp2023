@@ -409,280 +409,131 @@ document.write(`
 <p>อ่านเพิ่มเติม: <a class="reference external" href="https://huggingface.co/docs/datasets/image_load">huggingface datasets</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>datasets
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/huggingface/transformers
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>gradio
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install datasets
+!pip install git+https://github.com/huggingface/transformers
+!pip install gradio
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting datasets
-  Using cached datasets-2.12.0-py3-none-any.whl (474 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.17 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (1.24.3)
-Requirement already satisfied: pyarrow&gt;=8.0.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (12.0.0)
-Requirement already satisfied: dill&lt;0.3.7,&gt;=0.3.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (0.3.6)
-Requirement already satisfied: pandas in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (2.0.1)
-Requirement already satisfied: requests&gt;=2.19.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (2.30.0)
-Requirement already satisfied: tqdm&gt;=4.62.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (4.65.0)
-Requirement already satisfied: xxhash in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (3.2.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting multiprocess (from datasets)
-  Using cached multiprocess-0.70.14-py310-none-any.whl (134 kB)
-Requirement already satisfied: fsspec[http]&gt;=2021.11.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (2023.5.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiohttp (from datasets)
-  Using cached aiohttp-3.8.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.0 MB)
-Requirement already satisfied: huggingface-hub&lt;1.0.0,&gt;=0.11.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (0.14.1)
-Requirement already satisfied: packaging in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (23.1)
-Requirement already satisfied: responses&lt;0.19 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (0.18.0)
-Requirement already satisfied: pyyaml&gt;=5.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from datasets) (6.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: attrs&gt;=17.3.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from aiohttp-&gt;datasets) (23.1.0)
-Requirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from aiohttp-&gt;datasets) (3.1.0)
-Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from aiohttp-&gt;datasets) (6.0.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from aiohttp-&gt;datasets) (4.0.2)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from aiohttp-&gt;datasets) (1.9.2)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from aiohttp-&gt;datasets) (1.3.3)
-Collecting aiosignal&gt;=1.1.2 (from aiohttp-&gt;datasets)
-  Using cached aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: filelock in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (3.12.0)
-Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (4.5.0)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;datasets) (3.4)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;datasets) (2.0.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from requests&gt;=2.19.0-&gt;datasets) (2023.5.7)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from pandas-&gt;datasets) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from pandas-&gt;datasets) (2023.3)
-Requirement already satisfied: tzdata&gt;=2022.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from pandas-&gt;datasets) (2023.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;datasets) (1.16.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: multiprocess, aiosignal, aiohttp, datasets
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed aiohttp-3.8.4 aiosignal-1.3.1 datasets-2.12.0 multiprocess-0.70.14
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting git+https://github.com/huggingface/transformers
-  Cloning https://github.com/huggingface/transformers to /tmp/pip-req-build-tpy38llm
-  Running command git clone --filter=blob:none --quiet https://github.com/huggingface/transformers /tmp/pip-req-build-tpy38llm
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Resolved https://github.com/huggingface/transformers to commit a8732e09bb230848f1ab0f3cab9e533b412ca143
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Installing build dependencies ... ?25l-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25h  Getting requirements to build wheel ... ?25l-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25h  Preparing metadata (pyproject.toml) ... ?25l-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hRequirement already satisfied: filelock in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (3.12.0)
-Requirement already satisfied: huggingface-hub&lt;1.0,&gt;=0.14.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (0.14.1)
-Requirement already satisfied: numpy&gt;=1.17 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (1.24.3)
-Requirement already satisfied: packaging&gt;=20.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (23.1)
-Requirement already satisfied: pyyaml&gt;=5.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (6.0)
-Requirement already satisfied: regex!=2019.12.17 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (2023.5.5)
-Requirement already satisfied: requests in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (2.30.0)
-Requirement already satisfied: tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (0.13.3)
-Requirement already satisfied: tqdm&gt;=4.27 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from transformers==4.30.0.dev0) (4.65.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: fsspec in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from huggingface-hub&lt;1.0,&gt;=0.14.1-&gt;transformers==4.30.0.dev0) (2023.5.0)
-Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from huggingface-hub&lt;1.0,&gt;=0.14.1-&gt;transformers==4.30.0.dev0) (4.5.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from requests-&gt;transformers==4.30.0.dev0) (3.1.0)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from requests-&gt;transformers==4.30.0.dev0) (3.4)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from requests-&gt;transformers==4.30.0.dev0) (2.0.2)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from requests-&gt;transformers==4.30.0.dev0) (2023.5.7)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building wheels for collected packages: transformers
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for transformers (pyproject.toml) ... ?25l-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> \
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> |
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25h  Created wheel for transformers: filename=transformers-4.30.0.dev0-py3-none-any.whl size=7101701 sha256=0b5a9b781014d5dc86eb56b7fe6b28742e294a4f0890bfc89ca6769b1539159d
-  Stored in directory: /tmp/pip-ephem-wheel-cache-i82cv_q2/wheels/c0/14/d6/6c9a5582d2ac191ec0a483be151a4495fe1eb2a6706ca49f1b
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully built transformers
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: transformers
-  Attempting uninstall: transformers
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Found existing installation: transformers 4.29.2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling transformers-4.29.2:
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled transformers-4.29.2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
-<span class=" -Color -Color-Red">ERROR: Operation cancelled by user</span>
-
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -ransformers (/opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages)</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting gradio
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading gradio-3.31.0-py3-none-any.whl (17.4 MB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/17.4 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/17.4 MB</span> <span class=" -Color -Color-Red">2.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:07</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.3/17.4 MB</span> <span class=" -Color -Color-Red">19.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">5.0/17.4 MB</span> <span class=" -Color -Color-Red">48.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">8.7/17.4 MB</span> <span class=" -Color -Color-Red">61.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━ <span class=" -Color -Color-Green">12.5/17.4 MB</span> <span class=" -Color -Color-Red">105.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━ <span class=" -Color -Color-Green">16.7/17.4 MB</span> <span class=" -Color -Color-Red">111.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">17.4/17.4 MB</span> <span class=" -Color -Color-Red">109.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">17.4/17.4 MB</span> <span class=" -Color -Color-Red">109.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">17.4/17.4 MB</span> <span class=" -Color -Color-Red">63.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting aiofiles (from gradio)
-  Downloading aiofiles-23.1.0-py3-none-any.whl (14 kB)
-Requirement already satisfied: aiohttp in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from gradio) (3.8.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting altair&gt;=4.2.0 (from gradio)
-  Downloading altair-5.0.0-py3-none-any.whl (477 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/477.4 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">477.4/477.4 kB</span> <span class=" -Color -Color-Red">59.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting fastapi (from gradio)
-  Downloading fastapi-0.95.2-py3-none-any.whl (56 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/57.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">57.0/57.0 kB</span> <span class=" -Color -Color-Red">15.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting ffmpy (from gradio)
-  Downloading ffmpy-0.3.0.tar.gz (4.8 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: datasets in /usr/local/lib/python3.9/dist-packages (2.10.1)
+Requirement already satisfied: pyarrow&gt;=6.0.0 in /usr/local/lib/python3.9/dist-packages (from datasets) (9.0.0)
+Requirement already satisfied: dill&lt;0.3.7,&gt;=0.3.0 in /usr/local/lib/python3.9/dist-packages (from datasets) (0.3.6)
+Requirement already satisfied: huggingface-hub&lt;1.0.0,&gt;=0.2.0 in /usr/local/lib/python3.9/dist-packages (from datasets) (0.13.3)
+Requirement already satisfied: aiohttp in /usr/local/lib/python3.9/dist-packages (from datasets) (3.8.4)
+Requirement already satisfied: responses&lt;0.19 in /usr/local/lib/python3.9/dist-packages (from datasets) (0.18.0)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.9/dist-packages (from datasets) (1.22.4)
+Requirement already satisfied: fsspec[http]&gt;=2021.11.1 in /usr/local/lib/python3.9/dist-packages (from datasets) (2023.3.0)
+Requirement already satisfied: tqdm&gt;=4.62.1 in /usr/local/lib/python3.9/dist-packages (from datasets) (4.65.0)
+Requirement already satisfied: multiprocess in /usr/local/lib/python3.9/dist-packages (from datasets) (0.70.14)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.9/dist-packages (from datasets) (6.0)
+Requirement already satisfied: requests&gt;=2.19.0 in /usr/local/lib/python3.9/dist-packages (from datasets) (2.27.1)
+Requirement already satisfied: packaging in /usr/local/lib/python3.9/dist-packages (from datasets) (23.0)
+Requirement already satisfied: pandas in /usr/local/lib/python3.9/dist-packages (from datasets) (1.4.4)
+Requirement already satisfied: xxhash in /usr/local/lib/python3.9/dist-packages (from datasets) (3.2.0)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;datasets) (6.0.4)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;datasets) (1.8.2)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;datasets) (1.3.3)
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;datasets) (22.2.0)
+Requirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;datasets) (2.0.12)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;datasets) (1.3.1)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;datasets) (4.0.2)
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.9/dist-packages (from huggingface-hub&lt;1.0.0,&gt;=0.2.0-&gt;datasets) (4.5.0)
+Requirement already satisfied: filelock in /usr/local/lib/python3.9/dist-packages (from huggingface-hub&lt;1.0.0,&gt;=0.2.0-&gt;datasets) (3.10.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (2022.12.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (1.26.15)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.9/dist-packages (from pandas-&gt;datasets) (2022.7.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.9/dist-packages (from pandas-&gt;datasets) (2.8.2)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;datasets) (1.16.0)
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting git+https://github.com/huggingface/transformers
+  Cloning https://github.com/huggingface/transformers to /tmp/pip-req-build-sbzfbmls
+  Running command git clone --filter=blob:none --quiet https://github.com/huggingface/transformers /tmp/pip-req-build-sbzfbmls
+  Resolved https://github.com/huggingface/transformers to commit 48bef3a734d432ae058983b4448db1ce19f69565
+  Installing build dependencies ... ?25l?25hdone
+  Getting requirements to build wheel ... ?25l?25hdone
+  Preparing metadata (pyproject.toml) ... ?25l?25hdone
+Requirement already satisfied: requests in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (2.27.1)
+Requirement already satisfied: huggingface-hub&lt;1.0,&gt;=0.11.0 in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (0.13.3)
+Requirement already satisfied: tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1 in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (0.13.2)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (1.22.4)
+Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (2022.10.31)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (6.0)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (23.0)
+Requirement already satisfied: tqdm&gt;=4.27 in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (4.65.0)
+Requirement already satisfied: filelock in /usr/local/lib/python3.9/dist-packages (from transformers==4.28.0.dev0) (3.10.0)
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.9/dist-packages (from huggingface-hub&lt;1.0,&gt;=0.11.0-&gt;transformers==4.28.0.dev0) (4.5.0)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.9/dist-packages (from requests-&gt;transformers==4.28.0.dev0) (1.26.15)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.9/dist-packages (from requests-&gt;transformers==4.28.0.dev0) (2022.12.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.9/dist-packages (from requests-&gt;transformers==4.28.0.dev0) (3.4)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.9/dist-packages (from requests-&gt;transformers==4.28.0.dev0) (2.0.12)
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: gradio in /usr/local/lib/python3.9/dist-packages (3.23.0)
+Requirement already satisfied: pydub in /usr/local/lib/python3.9/dist-packages (from gradio) (0.25.1)
+Requirement already satisfied: altair&gt;=4.2.0 in /usr/local/lib/python3.9/dist-packages (from gradio) (4.2.2)
+Requirement already satisfied: pandas in /usr/local/lib/python3.9/dist-packages (from gradio) (1.4.4)
+Requirement already satisfied: markdown-it-py[linkify]&gt;=2.0.0 in /usr/local/lib/python3.9/dist-packages (from gradio) (2.2.0)
+Requirement already satisfied: fastapi in /usr/local/lib/python3.9/dist-packages (from gradio) (0.95.0)
+Requirement already satisfied: uvicorn in /usr/local/lib/python3.9/dist-packages (from gradio) (0.21.1)
+Requirement already satisfied: markupsafe in /usr/local/lib/python3.9/dist-packages (from gradio) (2.1.2)
+Requirement already satisfied: semantic-version in /usr/local/lib/python3.9/dist-packages (from gradio) (2.10.0)
+Requirement already satisfied: fsspec in /usr/local/lib/python3.9/dist-packages (from gradio) (2023.3.0)
+Requirement already satisfied: numpy in /usr/local/lib/python3.9/dist-packages (from gradio) (1.22.4)
+Requirement already satisfied: python-multipart in /usr/local/lib/python3.9/dist-packages (from gradio) (0.0.6)
+Requirement already satisfied: ffmpy in /usr/local/lib/python3.9/dist-packages (from gradio) (0.3.0)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.9/dist-packages (from gradio) (3.1.2)
+Requirement already satisfied: aiohttp in /usr/local/lib/python3.9/dist-packages (from gradio) (3.8.4)
+Requirement already satisfied: pyyaml in /usr/local/lib/python3.9/dist-packages (from gradio) (6.0)
+Requirement already satisfied: mdit-py-plugins&lt;=0.3.3 in /usr/local/lib/python3.9/dist-packages (from gradio) (0.3.3)
+Requirement already satisfied: websockets&gt;=10.0 in /usr/local/lib/python3.9/dist-packages (from gradio) (10.4)
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.9/dist-packages (from gradio) (3.7.1)
+Requirement already satisfied: huggingface-hub in /usr/local/lib/python3.9/dist-packages (from gradio) (0.13.3)
+Requirement already satisfied: pydantic in /usr/local/lib/python3.9/dist-packages (from gradio) (1.10.6)
+Requirement already satisfied: typing-extensions in /usr/local/lib/python3.9/dist-packages (from gradio) (4.5.0)
+Requirement already satisfied: orjson in /usr/local/lib/python3.9/dist-packages (from gradio) (3.8.8)
+Requirement already satisfied: httpx in /usr/local/lib/python3.9/dist-packages (from gradio) (0.23.3)
+Requirement already satisfied: requests in /usr/local/lib/python3.9/dist-packages (from gradio) (2.27.1)
+Requirement already satisfied: pillow in /usr/local/lib/python3.9/dist-packages (from gradio) (8.4.0)
+Requirement already satisfied: aiofiles in /usr/local/lib/python3.9/dist-packages (from gradio) (23.1.0)
+Requirement already satisfied: toolz in /usr/local/lib/python3.9/dist-packages (from altair&gt;=4.2.0-&gt;gradio) (0.12.0)
+Requirement already satisfied: entrypoints in /usr/local/lib/python3.9/dist-packages (from altair&gt;=4.2.0-&gt;gradio) (0.4)
+Requirement already satisfied: jsonschema&gt;=3.0 in /usr/local/lib/python3.9/dist-packages (from altair&gt;=4.2.0-&gt;gradio) (4.3.3)
+Requirement already satisfied: tqdm&gt;=4.42.1 in /usr/local/lib/python3.9/dist-packages (from huggingface-hub-&gt;gradio) (4.65.0)
+Requirement already satisfied: filelock in /usr/local/lib/python3.9/dist-packages (from huggingface-hub-&gt;gradio) (3.10.0)
+Requirement already satisfied: packaging&gt;=20.9 in /usr/local/lib/python3.9/dist-packages (from huggingface-hub-&gt;gradio) (23.0)
+Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.9/dist-packages (from markdown-it-py[linkify]&gt;=2.0.0-&gt;gradio) (0.1.2)
+Requirement already satisfied: linkify-it-py&lt;3,&gt;=1 in /usr/local/lib/python3.9/dist-packages (from markdown-it-py[linkify]&gt;=2.0.0-&gt;gradio) (2.0.0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.9/dist-packages (from pandas-&gt;gradio) (2022.7.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.9/dist-packages (from pandas-&gt;gradio) (2.8.2)
+Requirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;gradio) (2.0.12)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;gradio) (1.3.1)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;gradio) (4.0.2)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;gradio) (1.8.2)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;gradio) (1.3.3)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;gradio) (6.0.4)
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.9/dist-packages (from aiohttp-&gt;gradio) (22.2.0)
+Requirement already satisfied: starlette&lt;0.27.0,&gt;=0.26.1 in /usr/local/lib/python3.9/dist-packages (from fastapi-&gt;gradio) (0.26.1)
+Requirement already satisfied: sniffio in /usr/local/lib/python3.9/dist-packages (from httpx-&gt;gradio) (1.3.0)
+Requirement already satisfied: certifi in /usr/local/lib/python3.9/dist-packages (from httpx-&gt;gradio) (2022.12.7)
+Requirement already satisfied: httpcore&lt;0.17.0,&gt;=0.15.0 in /usr/local/lib/python3.9/dist-packages (from httpx-&gt;gradio) (0.16.3)
+Requirement already satisfied: rfc3986[idna2008]&lt;2,&gt;=1.3 in /usr/local/lib/python3.9/dist-packages (from httpx-&gt;gradio) (1.5.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.9/dist-packages (from matplotlib-&gt;gradio) (1.4.4)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.9/dist-packages (from matplotlib-&gt;gradio) (4.39.2)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.9/dist-packages (from matplotlib-&gt;gradio) (3.0.9)
+Requirement already satisfied: importlib-resources&gt;=3.2.0 in /usr/local/lib/python3.9/dist-packages (from matplotlib-&gt;gradio) (5.12.0)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.9/dist-packages (from matplotlib-&gt;gradio) (0.11.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.9/dist-packages (from matplotlib-&gt;gradio) (1.0.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.9/dist-packages (from requests-&gt;gradio) (1.26.15)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.9/dist-packages (from requests-&gt;gradio) (3.4)
+Requirement already satisfied: h11&gt;=0.8 in /usr/local/lib/python3.9/dist-packages (from uvicorn-&gt;gradio) (0.14.0)
+Requirement already satisfied: click&gt;=7.0 in /usr/local/lib/python3.9/dist-packages (from uvicorn-&gt;gradio) (8.1.3)
+Requirement already satisfied: anyio&lt;5.0,&gt;=3.0 in /usr/local/lib/python3.9/dist-packages (from httpcore&lt;0.17.0,&gt;=0.15.0-&gt;httpx-&gt;gradio) (3.6.2)
+Requirement already satisfied: zipp&gt;=3.1.0 in /usr/local/lib/python3.9/dist-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib-&gt;gradio) (3.15.0)
+Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,&gt;=0.14.0 in /usr/local/lib/python3.9/dist-packages (from jsonschema&gt;=3.0-&gt;altair&gt;=4.2.0-&gt;gradio) (0.19.3)
+Requirement already satisfied: uc-micro-py in /usr/local/lib/python3.9/dist-packages (from linkify-it-py&lt;3,&gt;=1-&gt;markdown-it-py[linkify]&gt;=2.0.0-&gt;gradio) (1.0.1)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;gradio) (1.16.0)
 </pre></div>
 </div>
 </div>
@@ -696,7 +547,7 @@ Requirement already satisfied: aiohttp in /opt/hostedtoolcache/Python/3.10.11/x6
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/GemmyTheGeek/FoodyDudy.git
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!git clone https://github.com/GemmyTheGeek/FoodyDudy.git
 </pre></div>
 </div>
 </div>
@@ -715,7 +566,7 @@ Updating files: 100% (14465/14465), done.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">food_list</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">food_list</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;green_curry&#39;</span><span class="p">,</span> <span class="s1">&#39;tepo_curry&#39;</span><span class="p">,</span> <span class="s1">&#39;liang_curry&#39;</span><span class="p">,</span> <span class="s1">&#39;taohoo_moosup&#39;</span><span class="p">,</span> <span class="s1">&#39;mara_yadsai&#39;</span><span class="p">,</span>
     <span class="s1">&#39;masaman&#39;</span><span class="p">,</span> <span class="s1">&#39;orange_curry&#39;</span><span class="p">,</span> <span class="s1">&#39;cashew_chicken&#39;</span><span class="p">,</span> <span class="s1">&#39;omelette&#39;</span><span class="p">,</span> <span class="s1">&#39;sunny_side_up&#39;</span><span class="p">,</span>
     <span class="s1">&#39;palo_egg&#39;</span><span class="p">,</span> <span class="s1">&#39;sil_egg&#39;</span><span class="p">,</span> <span class="s1">&#39;nun_banana&#39;</span><span class="p">,</span> <span class="s1">&#39;kua_gai&#39;</span><span class="p">,</span> <span class="s1">&#39;cabbage_fish_sauce&#39;</span><span class="p">,</span>
@@ -734,14 +585,14 @@ Updating files: 100% (14465/14465), done.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">load_metric</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">load_metric</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;imagefolder&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;FoodyDudy/images&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;imagefolder&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;FoodyDudy/images&quot;</span><span class="p">)</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">load_metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -761,7 +612,7 @@ Updating files: 100% (14465/14465), done.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span>
 </pre></div>
 </div>
 </div>
@@ -786,7 +637,7 @@ Updating files: 100% (14465/14465), done.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoFeatureExtractor</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoFeatureExtractor</span>
 
 <span class="n">model_checkpoint</span> <span class="o">=</span> <span class="s2">&quot;microsoft/swin-tiny-patch4-window7-224&quot;</span>
 <span class="n">feature_extractor</span> <span class="o">=</span> <span class="n">AutoFeatureExtractor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_checkpoint</span><span class="p">)</span>
@@ -830,7 +681,7 @@ Updating files: 100% (14465/14465), done.
 <p>จากนั้นสร้าง <code class="docutils literal notranslate"><span class="pre">preprocess_train</span></code> และ <code class="docutils literal notranslate"><span class="pre">preprocess_val</span></code> เพื่อ preprocess ข้อมูลภาพในแต่ละ batch ของเรา จะเห็นว่าภาพของเราอยู่ใน key ที่ชื่อว่า <code class="docutils literal notranslate"><span class="pre">image</span></code> และเมื่อเรา preprocess ภาพเรียบร้อยจะเก็บไว้ใน key ที่ชื่อว่า <code class="docutils literal notranslate"><span class="pre">pixel_values</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchvision.transforms</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchvision.transforms</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CenterCrop</span><span class="p">,</span>
     <span class="n">Compose</span><span class="p">,</span>
     <span class="n">Normalize</span><span class="p">,</span>
@@ -874,7 +725,7 @@ Updating files: 100% (14465/14465), done.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">preprocess_train</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">preprocess_train</span><span class="p">)</span>
 <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;validation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">preprocess_val</span><span class="p">)</span> 
 </pre></div>
 </div>
@@ -882,7 +733,7 @@ Updating files: 100% (14465/14465), done.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span>
 <span class="n">label2id</span><span class="p">,</span> <span class="n">id2label</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
     <span class="n">label2id</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
@@ -907,7 +758,7 @@ Updating files: 100% (14465/14465), done.
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForImageClassification</span><span class="p">,</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">Trainer</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForImageClassification</span><span class="p">,</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">Trainer</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForImageClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="n">model_checkpoint</span><span class="p">,</span> 
@@ -929,7 +780,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_checkpoint</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_checkpoint</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
 </pre></div>
 </div>
@@ -937,7 +788,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">-finetuned-eurosat&quot;</span><span class="p">,</span>
     <span class="n">remove_unused_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">evaluation_strategy</span> <span class="o">=</span> <span class="s2">&quot;epoch&quot;</span><span class="p">,</span>
@@ -959,7 +810,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">collate_fn</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
@@ -977,7 +828,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
     <span class="n">model</span><span class="p">,</span>
     <span class="n">args</span><span class="p">,</span>
     <span class="n">train_dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span>
@@ -992,7 +843,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1043,7 +894,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trained/</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trained/</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="c1"># alternatively use trainer.push_to_hub instead</span>
 </pre></div>
 </div>
@@ -1051,7 +902,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
 <span class="n">trainer</span><span class="o">.</span><span class="n">log_metrics</span><span class="p">(</span><span class="s2">&quot;eval&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1081,7 +932,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <p>จากนั้นสามารถอ่านภาพ <code class="docutils literal notranslate"><span class="pre">image</span></code> และแปลงให้เป็นฟีเจอร์ที่เหมาะสม ก่อนที่จะใส่เข้าไปในโมเดล โดย output ที่ได้จากโมเดลสามารถนำไปใช้ต่อได้เหมือนกับการเขียนโมเดล Pytorch ทั่วไปเลย</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForImageClassification</span><span class="p">,</span> <span class="n">AutoFeatureExtractor</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -1102,7 +953,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/GemmyTheGeek/FoodyDudy/raw/main/images/test/03/0289.jpg&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/GemmyTheGeek/FoodyDudy/raw/main/images/test/03/0289.jpg&quot;</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span>
 <span class="n">encoding</span> <span class="o">=</span> <span class="n">feature_extractor</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">),</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
 <span class="n">image</span>
@@ -1115,7 +966,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
     <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">encoding</span><span class="p">)</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span>
 </pre></div>
@@ -1124,7 +975,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_idx</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pred_idx</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted class:&quot;</span><span class="p">,</span> <span class="n">id2food</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span><span class="p">[</span><span class="n">pred_idx</span><span class="p">]])</span>
 </pre></div>
 </div>
@@ -1141,7 +992,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <p>นอกจากนั้น <code class="docutils literal notranslate"><span class="pre">transformers</span></code> ยังมี <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> ที่เราเลือกชนิดของ pipeline แบบต่างๆ เช่น <code class="docutils literal notranslate"><span class="pre">image-classification</span></code> ทำให้การทำนายทำได้สะดวกยิ่งขึ้น</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
 
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">,</span> <span class="n">model_name</span><span class="p">)</span>
 </pre></div>
@@ -1156,7 +1007,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1172,7 +1023,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">l</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">],</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">id2food</span><span class="p">[</span><span class="n">l</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]]}</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">pipe</span><span class="p">(</span><span class="n">image</span><span class="p">)]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">l</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">],</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">id2food</span><span class="p">[</span><span class="n">l</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]]}</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">pipe</span><span class="p">(</span><span class="n">image</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1198,7 +1049,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
 
 
 <span class="n">food_list</span> <span class="o">=</span> <span class="p">[</span>
@@ -1228,7 +1079,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
 <span class="n">outputs</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">num_top_classes</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="n">interface</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>

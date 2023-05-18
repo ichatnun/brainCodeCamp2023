@@ -405,7 +405,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span><span class="p">,</span> <span class="n">ifft</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -416,7 +416,7 @@ document.write(`
 <p>เตรียมฟังก์ชันไว้สำหรับใช้คำนวณ DFT (ผ่านการใช้ <code class="docutils literal notranslate"><span class="pre">fft</span></code> ของ <code class="docutils literal notranslate"><span class="pre">scipy</span></code>) และแสดงผลลัพธ์ที่เกิดขึ้น</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับสร้าง time signal ซึ่งเป็นฟังก์ชัน sine ที่มีความถี่ freq, มี sampling period คือ f_s และมีระยะเวลาในแกนเวลาเท่ากับ duration</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับสร้าง time signal ซึ่งเป็นฟังก์ชัน sine ที่มีความถี่ freq, มี sampling period คือ f_s และมีระยะเวลาในแกนเวลาเท่ากับ duration</span>
 <span class="k">def</span> <span class="nf">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
 
   <span class="c1"># คำนวณค่า sampling period (ระยะห่างระหว่างจุดที่เก็บมาสองจุดในแกนเวลา)</span>
@@ -475,7 +475,7 @@ document.write(`
 <p>ทดลองกับกรณีที่ signal เป็นฟังก์ชัน sine ที่มีค่าความถี่เดียว</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq_sine</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># ค่าความถี่ของฟังก์ชัน sine (Hz)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">freq_sine</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># ค่าความถี่ของฟังก์ชัน sine (Hz)</span>
 <span class="n">f_s</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># อัตราการเก็บข้อมูล หรือ sampling rate (samples/sj หรือ Hz)</span>
 <span class="n">duration</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># ระยะเวลาของ signal (s)</span>
 
@@ -491,7 +491,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/107d463fd6b26361d29a8de3f7b0a3ada59ab22070b1659ac5cb91dcaae0d32b.png" src="../../_images/107d463fd6b26361d29a8de3f7b0a3ada59ab22070b1659ac5cb91dcaae0d32b.png" />
+<img alt="../../_images/e7b4bc67aa9d324f409a59eafdb48ac58f180b94087188568558ca78fb59207f.png" src="../../_images/e7b4bc67aa9d324f409a59eafdb48ac58f180b94087188568558ca78fb59207f.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบนจะเห็นได้ว่า DFT ของ signal ด้านบน <span class="math notranslate nohighlight">\(X[k]\)</span> มี peak อยู่ที่ 20 Hz (และ -20 Hz) พอดี โดยที่ไม่มีความถี่อื่นๆ เลย สอดคล้องกับ <span class="math notranslate nohighlight">\(x[n]\)</span> ซึ่งเป็นฟังก์ชัน sine ที่ความถี่ 20 Hz</p>
@@ -502,7 +502,7 @@ document.write(`
 <p><span class="math notranslate nohighlight">\(x[n]\)</span> คือ signal ที่ถูกเก็บข้อมูลมาจาก <span class="math notranslate nohighlight">\(x(t)=sin(2π*20t) + 0.5 sin(2π*50t)\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_s</span> <span class="o">=</span> <span class="mi">500</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f_s</span> <span class="o">=</span> <span class="mi">500</span>
 
 <span class="c1"># สร้าง discrete time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่ 20 Hz</span>
 <span class="n">x_sampled_20Hz</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
@@ -520,7 +520,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8832c296c5d43bdebec1e45a1ec71135768cf830de12ac6e2d0bfeee25b64da9.png" src="../../_images/8832c296c5d43bdebec1e45a1ec71135768cf830de12ac6e2d0bfeee25b64da9.png" />
+<img alt="../../_images/a45116f77afb49a714004ceca26fc9b9b79aaa53d7aa8de44f37a99eb958e4ce.png" src="../../_images/a45116f77afb49a714004ceca26fc9b9b79aaa53d7aa8de44f37a99eb958e4ce.png" />
 </div>
 </div>
 <p>จากกราฟด้านบนจะเห็นได้ว่า DFT ของ signal มีคุณสมบัติ ที่สอดคล้องกับ คุณสมบัติของ <span class="math notranslate nohighlight">\(x[n]\)</span> คือ signal ที่ถูกเก็บข้อมูลมาจาก <span class="math notranslate nohighlight">\(x(t)=sin(2π*20t) + 0.5 sin(2π*50t)\)</span> ดังนี้</p>
@@ -543,7 +543,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_and_plot_filtered_signal</span><span class="p">(</span><span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_and_plot_filtered_signal</span><span class="p">(</span><span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
 
   <span class="c1"># Step 1: ใช้ DFT ในการแปลงข้อมูลเข้าสู่ frequency domain</span>
   <span class="n">X_fft</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">compute_DFT</span><span class="p">(</span><span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
@@ -605,22 +605,23 @@ document.write(`
   <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  
 
   <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compute_and_plot_filtered_signal</span><span class="p">(</span><span class="n">x_combined</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">compute_and_plot_filtered_signal</span><span class="p">(</span><span class="n">x_combined</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages/matplotlib/collections.py:192: ComplexWarning: Casting complex values to real discards the imaginary part
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/dist-packages/matplotlib/collections.py:192: ComplexWarning: Casting complex values to real discards the imaginary part
   offsets = np.asanyarray(offsets, float)
 </pre></div>
 </div>
-<img alt="../../_images/b745b82b556dcd921d96f6a5232d482e9907b1501c9a876a4ed4f7d5fe61a559.png" src="../../_images/b745b82b556dcd921d96f6a5232d482e9907b1501c9a876a4ed4f7d5fe61a559.png" />
+<img alt="../../_images/496920fac7c045737a9a9f0886a00955d7bfbcb4b478c206831cb984fc788cee.png" src="../../_images/496920fac7c045737a9a9f0886a00955d7bfbcb4b478c206831cb984fc788cee.png" />
 </div>
 </div>
 <p>จากการสำรวจผลในทั้ง time domain (ภาพซ้ายล่าง) และ ผลใน frequency domain (ภาพขวาล่าง) พบว่าข้อมูลค่าความถี่ 50 Hz ซึ่งเราสันนิษฐานว่าเป็นสัญญาณรบกวน ได้ถูกกำจัดออกไปได้</p>

@@ -399,7 +399,7 @@ document.write(`
 <p>ใน part นี้เราจะมาลองดู signal ที่มีหน้าตาซับซ้อนมากยิ่งขึ้น เช่น chirp signal ซึ่งเป็น signal ที่มีความถี่ในช่วงเวลาใดๆ เพียงค่าเดียว แต่เมื่อเวลาเปลี่ยนไป ค่าความถี่นั้นจะเปลี่ยนไป และมีค่าสูงขึ้นเรื่อยๆ ตามแกนเวลา</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">chirp</span><span class="p">,</span> <span class="n">stft</span><span class="p">,</span> <span class="n">spectrogram</span>
 <span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span><span class="p">,</span> <span class="n">ifft</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -411,7 +411,7 @@ document.write(`
 <p>ฟังก์ชันจาก part ก่อนหน้า</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_DFT</span><span class="p">(</span><span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_DFT</span><span class="p">(</span><span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
 
   <span class="c1"># คำนวณจำนวนจุดที่มีใน signal</span>
   <span class="n">num_points</span> <span class="o">=</span> <span class="n">x_sampled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -448,7 +448,7 @@ document.write(`
 <p>ทดลองสร้าง Chirp signal</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_s</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># อัตราการเก็บข้อมูล หรือ sampling rate (samples/sj หรือ Hz)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f_s</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># อัตราการเก็บข้อมูล หรือ sampling rate (samples/sj หรือ Hz)</span>
 <span class="n">duration</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># ระยะเวลาของ signal (s)</span>
 
 <span class="c1"># คำนวณค่า sampling period (ระยะห่างระหว่างจุดที่เก็บมาสองจุดในแกนเวลา)</span>
@@ -477,13 +477,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bd34d4fef3e78df3ca25b14e642fa7d241a2026b4e2dbf23f35d5ef058a163a5.png" src="../../_images/bd34d4fef3e78df3ca25b14e642fa7d241a2026b4e2dbf23f35d5ef058a163a5.png" />
+<img alt="../../_images/a96cbedee10864d8f0a569af9f37fef8c7f06bcc4e20a8ffce28f11a112b9905.png" src="../../_images/a96cbedee10864d8f0a569af9f37fef8c7f06bcc4e20a8ffce28f11a112b9905.png" />
 </div>
 </div>
 <p>ลองใช้ <code class="docutils literal notranslate"><span class="pre">fft</span></code> แปลง <span class="math notranslate nohighlight">\(x_{chirp}\)</span> จาก time domain ไปเป้น frequency domain ดู</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># คำนวณ DFT ของ x[n] และ แกน freq สำหรับใช้ plot</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># คำนวณ DFT ของ x[n] และ แกน freq สำหรับใช้ plot</span>
 <span class="n">X_fft</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">compute_DFT</span><span class="p">(</span><span class="n">x_chirp</span><span class="p">,</span> <span class="n">t_sampled</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
 
 <span class="c1"># Plot ผลที่ได้</span>
@@ -492,7 +492,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ef4cab7fe328a38a49a071ce7df15843c454f170c89256224f3dc61fa780d62b.png" src="../../_images/ef4cab7fe328a38a49a071ce7df15843c454f170c89256224f3dc61fa780d62b.png" />
+<img alt="../../_images/b162192c691f2aa8552b2808b11cc211ca2d71894e6a3849b51797dd4a5f2d43.png" src="../../_images/b162192c691f2aa8552b2808b11cc211ca2d71894e6a3849b51797dd4a5f2d43.png" />
 </div>
 </div>
 <p>จากการดู chirp signal ใน frequency domain เราพบว่า ข้อมูลของเรามีค่าสูงในบริเวณ ค่าความถี่ประมาณ 5 Hz ถึง 15 Hz ซึ่งสอดคล้องกับค่าความถี่ที่เราใช้ในการสร้าง chirp signal อันนี้</p>
@@ -505,7 +505,7 @@ document.write(`
 <p>จะมี magnitude ใน frequency domain เหมือนกันดังตัวอย่างด้านล่าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง chirp signal ที่มีค่าความถี่เริ่มต้นที่ 15 Hz และมีค่าความถี่ลดลงเรื่อยๆ จนไปถึงค่า 5 Hz ในระยะเวลา 5 วินาที</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง chirp signal ที่มีค่าความถี่เริ่มต้นที่ 15 Hz และมีค่าความถี่ลดลงเรื่อยๆ จนไปถึงค่า 5 Hz ในระยะเวลา 5 วินาที</span>
 <span class="n">x_chirp_reverse</span> <span class="o">=</span> <span class="n">chirp</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">f1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">t1</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
 
 <span class="c1"># คำนวณ DFT ของ x[n] และ แกน freq สำหรับใช้ plot</span>
@@ -517,7 +517,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/86cdaf3968101e90923ebe1d54ca3cb07e5ed2c7bdf9134e8168b37c936f9231.png" src="../../_images/86cdaf3968101e90923ebe1d54ca3cb07e5ed2c7bdf9134e8168b37c936f9231.png" />
+<img alt="../../_images/60213cdec8c5201e937a9284d2735825d58d82bc8818f08fe000e4525d1acb5e.png" src="../../_images/60213cdec8c5201e937a9284d2735825d58d82bc8818f08fe000e4525d1acb5e.png" />
 </div>
 </div>
 <p>หากเราต้องการจะรู้ว่า signal นี้มีค่าความถี่อะไรบ้าง โดยที่อยากจะทราบด้วยว่าค่าความถี่แต่ละอัน มันเกิดขึ้น ณ เวลาที่เท่าไหร่บ้าง เราจะสามารถนำเอา <code class="docutils literal notranslate"><span class="pre">fft</span></code> มาประยุกต์ใช้ได้อย่างไรบ้าง</p>
@@ -525,7 +525,7 @@ document.write(`
 <p>สมมติว่าเราแบ่ง signal ของเราออกเป็นสองส่วนเราก็จะได้ผลดังนี้</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง segment แรก โดยการดึงข้อมูลครึ่งแรกของ chirp</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง segment แรก โดยการดึงข้อมูลครึ่งแรกของ chirp</span>
 <span class="n">x_chirp_first</span> <span class="o">=</span> <span class="n">x_chirp</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">x_chirp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
 
 <span class="c1"># สร้าง segment ที่สอง โดยการดึงข้อมูลครึ่งหลังของ chirp</span>
@@ -562,7 +562,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7e5974048ba58fecb56b23933a6dc1739b3230685c90597eb86ec2d2c33ce0a1.png" src="../../_images/7e5974048ba58fecb56b23933a6dc1739b3230685c90597eb86ec2d2c33ce0a1.png" />
+<img alt="../../_images/13c3f12b321933df115d230f8db256c737404a1a7b570db97fa06bde18ae4abc.png" src="../../_images/13c3f12b321933df115d230f8db256c737404a1a7b570db97fa06bde18ae4abc.png" />
 </div>
 </div>
 <p>จากผลด้านบน เราสังเกตเห็น</p>
@@ -576,7 +576,7 @@ document.write(`
 <p>ในส่วนสุดท้ายของ part นี้ เราจะเรียกใช้ <code class="docutils literal notranslate"><span class="pre">scipy.signal.spectrogram</span></code> ในการคำนวณ STFT ได้อย่างง่ายดาย ซึ่ง spectrogram จะแสดงผลเป็นรูปภาพที่มีแกน x เป็นเวลา มีแกน y เป็นแกนความถี่ และ มีสีที่แสดงถึง magnitude ที่ค่าความถี่และเวลาใดเวลาหนึ่ง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># กำหนดขนาดของแต่ละ time segment</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># กำหนดขนาดของแต่ละ time segment</span>
 <span class="n">num_pts_per_segment</span> <span class="o">=</span> <span class="mi">256</span>
 
 <span class="c1"># คำนวณ spectrogram (อ้างอิงจาก https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.spectrogram.html)</span>
@@ -602,7 +602,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6f30dca6feaa5d0f09eec06c6066ceec43148f6ec9bf471066bda69eba20dbd2.png" src="../../_images/6f30dca6feaa5d0f09eec06c6066ceec43148f6ec9bf471066bda69eba20dbd2.png" />
+<img alt="../../_images/a62067740214634d544ae276b991506cc1346a2527218eba5038a8da43ffc9d4.png" src="../../_images/a62067740214634d544ae276b991506cc1346a2527218eba5038a8da43ffc9d4.png" />
 </div>
 </div>
 <ol class="arabic simple">
@@ -626,7 +626,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># กำหนดขนาดของแต่ละ time segment</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># กำหนดขนาดของแต่ละ time segment</span>
 <span class="n">num_pts_per_segment</span> <span class="o">=</span> <span class="mi">256</span>
 
 <span class="c1"># คำนวณ spectrogram (อ้างอิงจาก https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.spectrogram.html)</span>
@@ -670,7 +670,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/096fd669dfb05760a2f09e49adf752763069ee3cb753b83dab88ce0d7f14def6.png" src="../../_images/096fd669dfb05760a2f09e49adf752763069ee3cb753b83dab88ce0d7f14def6.png" />
+<img alt="../../_images/036e082f941d51d1af2cfe95462e942fa8657db3848636c9fa17acbe2c250fe5.png" src="../../_images/036e082f941d51d1af2cfe95462e942fa8657db3848636c9fa17acbe2c250fe5.png" />
 </div>
 </div>
 </section>

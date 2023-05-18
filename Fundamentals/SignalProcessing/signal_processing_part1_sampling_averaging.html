@@ -408,7 +408,7 @@ document.write(`
 <p><strong>หมายเหตุ</strong> ใน module นี้ เราจะใช้คำว่า signal แทนคำว่า สัญญาณ</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">normal</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -433,7 +433,7 @@ document.write(`
 <p>ตัวอย่างด้านล่างแสดง continous time signal <span class="math notranslate nohighlight">\(x(t)=sin(2π20t)\)</span> ด้วยสีน้ำเงิน และ จุดข้อมูลที่เก็บมา (discrete time signal) ด้วยสีแดง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับสร้าง time signal ซึ่งเป็นฟังก์ชัน sine ที่มีความถี่ freq, มี sampling period คือ f_s และมีระยะเวลาในแกนเวลาเท่ากับ duration</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับสร้าง time signal ซึ่งเป็นฟังก์ชัน sine ที่มีความถี่ freq, มี sampling period คือ f_s และมีระยะเวลาในแกนเวลาเท่ากับ duration</span>
 <span class="k">def</span> <span class="nf">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
 
   <span class="c1"># คำนวณค่า sampling period (ระยะห่างระหว่างจุดที่เก็บมาสองจุดในแกนเวลา)</span>
@@ -485,14 +485,15 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x(t)=sin(2*pi*20*t) sampled with a sampling rate of </span><span class="si">{</span><span class="n">f_s</span><span class="si">}</span><span class="s2"> Hz&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:matplotlib.legend:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 </pre></div>
 </div>
-<img alt="../../_images/aa631d19168bbc88f9695ed70bc32d076a60cade6e9bf3cdc1348e4b807b56ff.png" src="../../_images/aa631d19168bbc88f9695ed70bc32d076a60cade6e9bf3cdc1348e4b807b56ff.png" />
+<img alt="../../_images/c31926aa323c3568e3a1e4019dfa0c6d6a930e786e665bdeae0a78c7c5e28b5b.png" src="../../_images/c31926aa323c3568e3a1e4019dfa0c6d6a930e786e665bdeae0a78c7c5e28b5b.png" />
 </div>
 </div>
 <p>ในตัวอย่างด้านบน เราใช้ sampling rate ที่มีค่าสูง (จุดที่เก็บมีระยะห่างในแกนเวลาน้อย) ทำให้ค่าที่เก็บมา (จุดสีแดง) มีหน้าตาเหมือน continous time signal (เส้นสีน้ำเงิน) เลย</p>
@@ -500,7 +501,7 @@ document.write(`
 <p>ในตัวอย่างถัดไป เราจะมาลองดูว่าถ้าเราเก็บข้อมูลด้วย sampling rate ที่น้อยลง จะเกิดอะไรขึ้น (โดยที่ไม่เปลี่ยนค่าอื่นๆ เช่น ค่า duration = 0.5 s เหมือนเดิม)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่ 20 Hz โดยมีค่า sampling rate สูง เพื่อใช้เป็นตัวแทน continuous time signal</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่ 20 Hz โดยมีค่า sampling rate สูง เพื่อใช้เป็นตัวแทน continuous time signal</span>
 <span class="n">x_cont</span><span class="p">,</span> <span class="n">t_cont</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
 
 <span class="n">f_s_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span> <span class="c1"># สร้าง list ที่มีค่า sampling rate ที่ต้องการนำมาทดสอบ</span>
@@ -525,7 +526,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7b0697d95aeec2434f5e13c47401abe0e83592d50f06c2f310af8e3ccbd8f497.png" src="../../_images/7b0697d95aeec2434f5e13c47401abe0e83592d50f06c2f310af8e3ccbd8f497.png" />
+<img alt="../../_images/31fe256376c28a430192ca6549cad640f95ed970533be08258450e29169c3e96.png" src="../../_images/31fe256376c28a430192ca6549cad640f95ed970533be08258450e29169c3e96.png" />
 </div>
 </div>
 <p>จากตัวอย่างนี้จะเห็นได้ว่า ยิ่งมี sampling rate ที่สูง discrete time signal ที่เราเก็บมา (จุดสีแดง) ก็จะยิ่งมีหน้าตาเหมือนกับ signal จริง (เส้นสีน้ำเงิน) มากขึ้นเรื่อยๆ แต่สิ่งที่เราต้องแลกมาในการใช้ sampling rate ที่สูงก็คือเราต้องใช้ทรัพยากรในการจัดเก็บข้อมูลมากขึ้น และถ้าหากเราต้องการวิเคราะห์ข้อมูล เราก็จะต้องใช้ทรัพยากรในการประมวลผลที่สูงขึ้นด้วยเช่นกัน</p>
@@ -544,7 +545,7 @@ document.write(`
 <p>โค้ดด้านล่าง จะเป็นโค้ดที่แสดงถึงการเก็บข้อมูลในแต่ละครั้ง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collect_one_signal_from_device</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collect_one_signal_from_device</span><span class="p">():</span>
 
   <span class="c1"># สัญญาณจริงที่มาจากวัตถุปริศนา</span>
   <span class="n">x_true</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
@@ -562,7 +563,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_sampled_device</span><span class="p">,</span> <span class="n">x_true</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">collect_one_signal_from_device</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_sampled_device</span><span class="p">,</span> <span class="n">x_true</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">collect_one_signal_from_device</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sampled_device</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Collected&#39;</span><span class="p">)</span>
@@ -575,14 +576,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1e742f7f107eb75e749f24451f8290f5236f577864ca5c3ad1df2e179c67af12.png" src="../../_images/1e742f7f107eb75e749f24451f8290f5236f577864ca5c3ad1df2e179c67af12.png" />
+<img alt="../../_images/0c79bdce61e395e82b3fe189575219a86d843e35c002b8a86b329394b3f2181a.png" src="../../_images/0c79bdce61e395e82b3fe189575219a86d843e35c002b8a86b329394b3f2181a.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบน จะเห็นว่า signal ที่เราเก็บมาจากอุปกรณ์ของเรา (สีแดง) มีค่าที่ค่อนข้างแตกต่างจากสัญญาณจริง (สีน้ำเงิน) ค่อนข้างมาก</p>
 <p>วิธีการนึงที่จะช่วยทำให้สัญญาณรบกวนเหล่านี้มีค่าลดลง ก็คือการนำเอา signal ที่เราเก็บมาจากอุปกรณ์ของเราหลายๆรอบ มาลองเฉลี่ยกัน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># จำนวนครั้งที่เก็บข้อมูล</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># จำนวนครั้งที่เก็บข้อมูล</span>
 <span class="n">num_collect</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="c1"># ข้อมูลที่เกิดจากการเอา signal มาบวกกัน</span>
@@ -606,16 +607,17 @@ document.write(`
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0d10c611e2fef37abc0ce86732b66301fdf534558f9b343e1cd7fcf2647b2f69.png" src="../../_images/0d10c611e2fef37abc0ce86732b66301fdf534558f9b343e1cd7fcf2647b2f69.png" />
-<img alt="../../_images/00dede3decf1854d76af6888119cfe5928cc82e88872b2e5ac78d6767ed028e1.png" src="../../_images/00dede3decf1854d76af6888119cfe5928cc82e88872b2e5ac78d6767ed028e1.png" />
-<img alt="../../_images/a7305b07a11c36577d6e2881f4c789dc68a497c85c118f7ae8dbd4c9aec6e698.png" src="../../_images/a7305b07a11c36577d6e2881f4c789dc68a497c85c118f7ae8dbd4c9aec6e698.png" />
-<img alt="../../_images/c3c8ea5edf6b729e40beca186f931c6708f0ed507f465068c6f5baecf58dcdd7.png" src="../../_images/c3c8ea5edf6b729e40beca186f931c6708f0ed507f465068c6f5baecf58dcdd7.png" />
-<img alt="../../_images/be583fc92ae329b04c0503afa6e4c22be7fdf8d79f4dc37d50610f025667024f.png" src="../../_images/be583fc92ae329b04c0503afa6e4c22be7fdf8d79f4dc37d50610f025667024f.png" />
-<img alt="../../_images/628c15f185b08cf6c2fa3f532e5073fb4e85c5ff512761c41284a93f096d93fb.png" src="../../_images/628c15f185b08cf6c2fa3f532e5073fb4e85c5ff512761c41284a93f096d93fb.png" />
+<img alt="../../_images/b0a7f474b4ef1dd30777ddc3de401f69b78f5f10e676f53fa0bb0259396eb65f.png" src="../../_images/b0a7f474b4ef1dd30777ddc3de401f69b78f5f10e676f53fa0bb0259396eb65f.png" />
+<img alt="../../_images/814b793f7390fb9967bec432677a95f636e2b10b9e8169092090b5161ff48389.png" src="../../_images/814b793f7390fb9967bec432677a95f636e2b10b9e8169092090b5161ff48389.png" />
+<img alt="../../_images/a5f10d6cc9259ffb4551a3737d048ec157ad291eb9fd8f12f3b5b01587caaf51.png" src="../../_images/a5f10d6cc9259ffb4551a3737d048ec157ad291eb9fd8f12f3b5b01587caaf51.png" />
+<img alt="../../_images/884b30d99d07e23da6d4323d55e4b0ff652bcf6dde33382a0487d5c645e7bebe.png" src="../../_images/884b30d99d07e23da6d4323d55e4b0ff652bcf6dde33382a0487d5c645e7bebe.png" />
+<img alt="../../_images/7cb2e77cc4ff0483734f86adf3ce4ed2625087bf7f1aaaee84f5252a94a29449.png" src="../../_images/7cb2e77cc4ff0483734f86adf3ce4ed2625087bf7f1aaaee84f5252a94a29449.png" />
+<img alt="../../_images/73a1a97ef13843e2deb0d96f0dd2efe9ec2978a9ea3117eabfe6cab81af57886.png" src="../../_images/73a1a97ef13843e2deb0d96f0dd2efe9ec2978a9ea3117eabfe6cab81af57886.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบนจะเห็นได้ว่ายิ่งเราเก็บข้อมูลจากวัตถุปริศนานี้หลายๆรอบด้วยเครื่องมือเดิม และนำเอา signal ที่ได้นั้นมาเฉลี่ย (average) กัน จะพบว่าสัญญาณรบกวนจะค่อยๆ หายไป ยิ่ง average มากขึ้น ก็จะยิ่งส่งผลให้สัญญาณรบกวนลดลงเรื่อยๆ</p>
