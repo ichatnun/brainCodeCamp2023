@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Signal Processing (Part 2: Discrete Fourier Transform (DFT))" href="signal_processing_part2_dft.html" />
-    <link rel="prev" title="Dimensionality Reduction (Part 4: Nonlinear Methods)" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html" />
+    <link rel="prev" title="Breast Cancer Segmentation using Transformers" href="../DeepLearning/breast_cancer_segmentation_transformers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,26 +158,43 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisites</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Linear Model and Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Prereqs/00_basic_python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Prereqs/01_numpy.html">01_numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Prereqs/02_intro_pytorch.html">Pytorch</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Linear Model and Evaluation Metric</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Polynomial Regression and Regularization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Data Splitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Training, Validation and Test Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3_pca_CDT_images.html">Dimensionality Reduction (Part 3: Applying PCA to Clock Drawing Test (CDT) images)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html">Dimensionality Reduction (Part 4: Nonlinear Methods)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3_pca_CDT_images.html">PCA with clock drawing test images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html">Nonlinear methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/thai_food_classification_transformers.html">Image Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/object_detection_transformer.html">Oject Detection with transformer</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/breast_cancer_segmentation_transformers.html">Image Segmentation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Signal Processing</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="signal_processing_part2_dft.html">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
-<li class="toctree-l1"><a class="reference internal" href="signal_processing_part3_STFT.html">Signal Processing (Part 3: Short Time Fourier Transform)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="signal_processing_part4_application.html">Signal Processing (Part 4: Application)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_processing_part2_dft.html">Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_processing_part3_STFT.html">Short-Time Fourier Transform (STFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_processing_part4_application.html">Audio Example</a></li>
 </ul>
 
     </div>
@@ -232,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/ichatnun/brainCodeCamp" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -249,7 +266,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FFundamentals/SignalProcessing/signal_processing_part1_sampling_averaging.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ichatnun/brainCodeCamp/issues/new?title=Issue%20on%20page%20%2FFundamentals/SignalProcessing/signal_processing_part1_sampling_averaging.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -558,7 +575,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/84ea73cbf9f6c986bb15b0c3b4a75ea95addb29b360dd9f1514603c8ce2a2d8f.png" src="../../_images/84ea73cbf9f6c986bb15b0c3b4a75ea95addb29b360dd9f1514603c8ce2a2d8f.png" />
+<img alt="../../_images/1e742f7f107eb75e749f24451f8290f5236f577864ca5c3ad1df2e179c67af12.png" src="../../_images/1e742f7f107eb75e749f24451f8290f5236f577864ca5c3ad1df2e179c67af12.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบน จะเห็นว่า signal ที่เราเก็บมาจากอุปกรณ์ของเรา (สีแดง) มีค่าที่ค่อนข้างแตกต่างจากสัญญาณจริง (สีน้ำเงิน) ค่อนข้างมาก</p>
@@ -593,12 +610,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0a8e3ff5f117e539ad525281abceef075b3821b9a8efcb94b0ca2b362708f56b.png" src="../../_images/0a8e3ff5f117e539ad525281abceef075b3821b9a8efcb94b0ca2b362708f56b.png" />
-<img alt="../../_images/917b10761ea820499b1d2b8295b81201ef500795a7a6059289d186229a1516d3.png" src="../../_images/917b10761ea820499b1d2b8295b81201ef500795a7a6059289d186229a1516d3.png" />
-<img alt="../../_images/8042e1d00d1dac1a283a7a56420a8408fe241b9d3d82a01177115af2f94f8a98.png" src="../../_images/8042e1d00d1dac1a283a7a56420a8408fe241b9d3d82a01177115af2f94f8a98.png" />
-<img alt="../../_images/53680af04387699b89261e6843d9b7d3031e803c705dc5dcdaa4cd8bbcb8f870.png" src="../../_images/53680af04387699b89261e6843d9b7d3031e803c705dc5dcdaa4cd8bbcb8f870.png" />
-<img alt="../../_images/5cabc4e3c3ae9acb3606ddfb8ce51bf040b544f8b4464c5d373afb29a465db15.png" src="../../_images/5cabc4e3c3ae9acb3606ddfb8ce51bf040b544f8b4464c5d373afb29a465db15.png" />
-<img alt="../../_images/edcf9638c52ef540b4d72d56566e66fdeacfca5a60a43c869581ba71fcd038eb.png" src="../../_images/edcf9638c52ef540b4d72d56566e66fdeacfca5a60a43c869581ba71fcd038eb.png" />
+<img alt="../../_images/0d10c611e2fef37abc0ce86732b66301fdf534558f9b343e1cd7fcf2647b2f69.png" src="../../_images/0d10c611e2fef37abc0ce86732b66301fdf534558f9b343e1cd7fcf2647b2f69.png" />
+<img alt="../../_images/00dede3decf1854d76af6888119cfe5928cc82e88872b2e5ac78d6767ed028e1.png" src="../../_images/00dede3decf1854d76af6888119cfe5928cc82e88872b2e5ac78d6767ed028e1.png" />
+<img alt="../../_images/a7305b07a11c36577d6e2881f4c789dc68a497c85c118f7ae8dbd4c9aec6e698.png" src="../../_images/a7305b07a11c36577d6e2881f4c789dc68a497c85c118f7ae8dbd4c9aec6e698.png" />
+<img alt="../../_images/c3c8ea5edf6b729e40beca186f931c6708f0ed507f465068c6f5baecf58dcdd7.png" src="../../_images/c3c8ea5edf6b729e40beca186f931c6708f0ed507f465068c6f5baecf58dcdd7.png" />
+<img alt="../../_images/be583fc92ae329b04c0503afa6e4c22be7fdf8d79f4dc37d50610f025667024f.png" src="../../_images/be583fc92ae329b04c0503afa6e4c22be7fdf8d79f4dc37d50610f025667024f.png" />
+<img alt="../../_images/628c15f185b08cf6c2fa3f532e5073fb4e85c5ff512761c41284a93f096d93fb.png" src="../../_images/628c15f185b08cf6c2fa3f532e5073fb4e85c5ff512761c41284a93f096d93fb.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบนจะเห็นได้ว่ายิ่งเราเก็บข้อมูลจากวัตถุปริศนานี้หลายๆรอบด้วยเครื่องมือเดิม และนำเอา signal ที่ได้นั้นมาเฉลี่ย (average) กัน จะพบว่าสัญญาณรบกวนจะค่อยๆ หายไป ยิ่ง average มากขึ้น ก็จะยิ่งส่งผลให้สัญญาณรบกวนลดลงเรื่อยๆ</p>
@@ -638,12 +655,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html"
+       href="../DeepLearning/breast_cancer_segmentation_transformers.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dimensionality Reduction (Part 4: Nonlinear Methods)</p>
+        <p class="prev-next-title">Breast Cancer Segmentation using Transformers</p>
       </div>
     </a>
     <a class="right-next"

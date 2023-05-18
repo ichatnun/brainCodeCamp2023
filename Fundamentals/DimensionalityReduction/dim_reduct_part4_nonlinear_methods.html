@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Signal Processing (Part 1: Sampling and Signal Averaging)" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html" />
+    <link rel="next" title="Thai Food Classification with Huggingface’s transformers" href="../DeepLearning/thai_food_classification_transformers.html" />
     <link rel="prev" title="Dimensionality Reduction (Part 3: Applying PCA to Clock Drawing Test (CDT) images)" href="dim_reduct_part3_pca_CDT_images.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -156,26 +156,43 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisites</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Linear Model and Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Prereqs/00_basic_python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Prereqs/01_numpy.html">01_numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Prereqs/02_intro_pytorch.html">Pytorch</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Linear Model and Evaluation Metric</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Polynomial Regression and Regularization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Data Splitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Training, Validation and Test Data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dim_reduct_part3_pca_CDT_images.html">Dimensionality Reduction (Part 3: Applying PCA to Clock Drawing Test (CDT) images)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dimensionality Reduction (Part 4: Nonlinear Methods)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dim_reduct_part1_intro.html">The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dim_reduct_part2_pca.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dim_reduct_part3_pca_CDT_images.html">PCA with clock drawing test images</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nonlinear methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/thai_food_classification_transformers.html">Image Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/object_detection_transformer.html">Oject Detection with transformer</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/breast_cancer_segmentation_transformers.html">Image Segmentation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Signal Processing</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part2_dft.html">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part3_STFT.html">Signal Processing (Part 3: Short Time Fourier Transform)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part4_application.html">Signal Processing (Part 4: Application)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part2_dft.html">Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part3_STFT.html">Short-Time Fourier Transform (STFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part4_application.html">Audio Example</a></li>
 </ul>
 
     </div>
@@ -230,7 +247,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/ichatnun/brainCodeCamp" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -247,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FFundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ichatnun/brainCodeCamp/issues/new?title=Issue%20on%20page%20%2FFundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -435,7 +452,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1fa61099c1c702f3dcb40c6af3b9a30a428192a3beef34368e8b0d041572f2f1.png" src="../../_images/1fa61099c1c702f3dcb40c6af3b9a30a428192a3beef34368e8b0d041572f2f1.png" />
+<img alt="../../_images/7ec494a6f43db7f34de146e7369458e89b78660d26fd33bb4e865a297adc42a2.png" src="../../_images/7ec494a6f43db7f34de146e7369458e89b78660d26fd33bb4e865a297adc42a2.png" />
 </div>
 </div>
 <p>ต่อมาเราจะลองใช้เทคนิค PCA เพื่อลดจำนวนมิติของข้อมูลนี้กัน</p>
@@ -508,9 +525,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/091670f54f14769f2fd1bc2efb6f58ff744ae71aa0b45c42b7a688b19125b961.png" src="../../_images/091670f54f14769f2fd1bc2efb6f58ff744ae71aa0b45c42b7a688b19125b961.png" />
-<img alt="../../_images/3d2d7ad68ea1126e951f3e44f8c0b0b2be0fd78e47751eeb6ba64aa588ffff92.png" src="../../_images/3d2d7ad68ea1126e951f3e44f8c0b0b2be0fd78e47751eeb6ba64aa588ffff92.png" />
-<img alt="../../_images/2d7d69c8ebc68759d0f852662f3a1b404ace9e49cf5162d0f72337468f9d75bf.png" src="../../_images/2d7d69c8ebc68759d0f852662f3a1b404ace9e49cf5162d0f72337468f9d75bf.png" />
+<img alt="../../_images/ed43588a7ad5936009bbc5d9f03d0d17cfdb520ee75e4cf83f919c3a020cadc5.png" src="../../_images/ed43588a7ad5936009bbc5d9f03d0d17cfdb520ee75e4cf83f919c3a020cadc5.png" />
+<img alt="../../_images/d9dc0ff9f79f91d83877786889b8a31018bbbd5335f92c25a5ebc12b10630fb2.png" src="../../_images/d9dc0ff9f79f91d83877786889b8a31018bbbd5335f92c25a5ebc12b10630fb2.png" />
+<img alt="../../_images/052a141a2aed7d8b3087414a6289395ded35f6e2b77e64f3e9e1213cd4e1574f.png" src="../../_images/052a141a2aed7d8b3087414a6289395ded35f6e2b77e64f3e9e1213cd4e1574f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -521,8 +538,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  87.57
-% variance captured by PC2 =  12.43
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  83.93
+% variance captured by PC2 =  16.07
 </pre></div>
 </div>
 </div>
@@ -640,12 +657,19 @@ There are 10 classes.
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -ransformers (/opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages)</span>
+
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting umap-learn
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading umap-learn-0.5.3.tar.gz (88 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/88.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">88.2/88.2 kB</span> <span class=" -Color -Color-Red">2.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━ <span class=" -Color -Color-Green">81.9/88.2 kB</span> <span class=" -Color -Color-Red">2.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">88.2/88.2 kB</span> <span class=" -Color -Color-Red">2.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -657,12 +681,15 @@ There are 10 classes.
 Requirement already satisfied: scikit-learn&gt;=0.22 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (1.2.2)
 Requirement already satisfied: scipy&gt;=1.0 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (1.10.1)
 Requirement already satisfied: numba&gt;=0.49 in /opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages (from umap-learn) (0.57.0)
-Collecting pynndescent&gt;=0.5 (from umap-learn)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pynndescent&gt;=0.5 (from umap-learn)
   Downloading pynndescent-0.5.10.tar.gz (1.1 MB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/1.1 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">38.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">40.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/1.1 MB</span> <span class=" -Color -Color-Red">31.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -688,7 +715,7 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/hostedtoolcache/Python/3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25h  Created wheel for umap-learn: filename=umap_learn-0.5.3-py3-none-any.whl size=82816 sha256=5509c01892a9e9ed542dff68632d8aa783a2d222cffb9ecb8744dc5e01294e52
+?25h  Created wheel for umap-learn: filename=umap_learn-0.5.3-py3-none-any.whl size=82816 sha256=37a715527181871403eea367789ec43c176ab416217d2db85490bd0982483b4d
   Stored in directory: /home/runner/.cache/pip/wheels/a0/e8/c6/a37ea663620bd5200ea1ba0907ab3c217042c1d035ef606acc
 </pre></div>
 </div>
@@ -699,9 +726,15 @@ Requirement already satisfied: joblib&gt;=0.11 in /opt/hostedtoolcache/Python/3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> done
-?25h  Created wheel for pynndescent: filename=pynndescent-0.5.10-py3-none-any.whl size=55622 sha256=d70a947613925254f4d251e9f424d445ffc75f463d72968bb3e4cc97fb9350ca
+?25h  Created wheel for pynndescent: filename=pynndescent-0.5.10-py3-none-any.whl size=55622 sha256=d3638d321e2bf96576b6063b5a7cbde53d7d2d5b36903c12ab870a7b4213d929
   Stored in directory: /home/runner/.cache/pip/wheels/4a/38/5d/f60a40a66a9512b7e5e83517ebc2d1b42d857be97d135f1096
-Successfully built umap-learn pynndescent
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully built umap-learn pynndescent
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -ransformers (/opt/hostedtoolcache/Python/3.10.11/x64/lib/python3.10/site-packages)</span>
+
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pynndescent, umap-learn
@@ -783,7 +816,7 @@ Successfully built umap-learn pynndescent
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c28be5ff00e581baf3d14efb9fa53bc0892aa0969c16021eeddcdd03982b5e68.png" src="../../_images/c28be5ff00e581baf3d14efb9fa53bc0892aa0969c16021eeddcdd03982b5e68.png" />
+<img alt="../../_images/7f45b989c674ffab91f72738fa243f323dc1f9c0b967cdc7387047e48dc8f1f8.png" src="../../_images/7f45b989c674ffab91f72738fa243f323dc1f9c0b967cdc7387047e48dc8f1f8.png" />
 </div>
 </div>
 <p>จะเห็นได้ว่าข้อมูลจากเทคนิค UMAP ส่งผลให้ข้อมูลจาก class เดียวกันเกาะกลุ่มกันได้ ในขณะที่ข้อมูลจากคนละ class (คนละสี) มีการกระจายตัวออกจากกันมากกว่าสิ่งที่ได้รับจาก PCA</p>
@@ -839,11 +872,11 @@ Successfully built umap-learn pynndescent
       </div>
     </a>
     <a class="right-next"
-       href="../SignalProcessing/signal_processing_part1_sampling_averaging.html"
+       href="../DeepLearning/thai_food_classification_transformers.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Signal Processing (Part 1: Sampling and Signal Averaging)</p>
+        <p class="prev-next-title">Thai Food Classification with Huggingface’s transformers</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
