@@ -8,8 +8,11 @@ parts:
   - caption: Model Selection
     chapters:
     - file: Fundamentals/ModelSelection/model_selection_part1_lin_reg_eval_metric
+      title: Linear Model and Evaluation
     - file: Fundamentals/ModelSelection/model_selection_part2_poly_overfit_regularization
+      title: Polynomial Regression and Regularization
     - file: Fundamentals/ModelSelection/model_selection_part3_data_splitting
+      title: Data Splitting
   
   - caption: Dimensionality Reduction
     chapters:
