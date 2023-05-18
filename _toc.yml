@@ -7,9 +7,9 @@ root: intro
 parts:
   - caption: Brain Building Blocks
     chapters:
-    - file: BrainBuildingBlocks/S1L1_HelloBrain
+    - file: Fundamentals/BrainBuildingBlocks/S1L1_HelloBrain
       title: Hello, Brain!
-    - file: BrainBuildingBlocks/S1L1_EssentialNeuroanatomy
+    - file: Fundamentals/BrainBuildingBlocks/S1L1_EssentialNeuroanatomy
       title: Essential Neuroanatomy
 
   - caption: Prerequisites
