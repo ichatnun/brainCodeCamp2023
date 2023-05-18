@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Model Selection (Part 2: Polynomial regression, overfitting, and regularization)" href="model_selection_part2_poly_overfit_regularization.html" />
-    <link rel="prev" title="Dimensionality Reduction (Part 3: Nonlinear Methods)" href="../DimensionalityReduction/dim_reduct_part3.html" />
+    <link rel="prev" title="Dimensionality Reduction (Part 2: Principal Component Analysis)" href="../DimensionalityReduction/dim_reduct_part2_pca.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,7 +161,6 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3.html">Dimensionality Reduction (Part 3: Nonlinear Methods)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
@@ -429,7 +428,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5d3f6d3b61c3c327daddadaac1ceeed6362f2f50d625a21f7d1030a32eab56b5.png" src="../../_images/5d3f6d3b61c3c327daddadaac1ceeed6362f2f50d625a21f7d1030a32eab56b5.png" />
+<img alt="../../_images/b7308e1bcf63ed88bdf9997a04462c9b96e67622cf1cf9b55c107ae083265161.png" src="../../_images/b7308e1bcf63ed88bdf9997a04462c9b96e67622cf1cf9b55c107ae083265161.png" />
 </div>
 </div>
 <p>กำหนดให้เรามีจำนวนข้อมูลทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
@@ -468,10 +467,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True slope 2.00
-Estimated slope 1.99
+Estimated slope 2.02
 
 True intercept 1.00
-Estimated intercept 0.97
+Estimated intercept 1.04
 </pre></div>
 </div>
 </div>
@@ -506,7 +505,7 @@ Estimated intercept 0.97
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d955840d243960ed8a55de127e14fdb45fefe7923e97f298065f82f3bb73e4f1.png" src="../../_images/d955840d243960ed8a55de127e14fdb45fefe7923e97f298065f82f3bb73e4f1.png" />
+<img alt="../../_images/c4d9070c96714f4d7b975fe2535b590b7ed9cbb76820d0f9d8c652d332b7ec18.png" src="../../_images/c4d9070c96714f4d7b975fe2535b590b7ed9cbb76820d0f9d8c652d332b7ec18.png" />
 </div>
 </div>
 <p>จากการสังเกตด้วยตา จะเห็นว่าค่า y ที่โมเดลได้ทำนายออกมา (จุดสีแดง) มีความสอดคล้องกับความสัมพันธ์ระหว่าง x และ y ที่แท้จริง (เส้นประสีดำ) มากกว่าข้อมูลที่เราเก็บมาเสียอีก (จุดสีน้ำเงิน)</p>
@@ -558,12 +557,12 @@ MSE(y,\hat{y})=\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../DimensionalityReduction/dim_reduct_part3.html"
+       href="../DimensionalityReduction/dim_reduct_part2_pca.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dimensionality Reduction (Part 3: Nonlinear Methods)</p>
+        <p class="prev-next-title">Dimensionality Reduction (Part 2: Principal Component Analysis)</p>
       </div>
     </a>
     <a class="right-next"

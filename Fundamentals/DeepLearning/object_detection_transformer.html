@@ -1,0 +1,910 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Oject Detection with transformer &#8212; Brain Code Camp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/DeepLearning/object_detection_transformer';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to Brain Code Camp
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part2_dft.html">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part3_STFT.html">Signal Processing (Part 3: Short Time Fourier Transform)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part4_application.html">Signal Processing (Part 4: Application)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FFundamentals/DeepLearning/object_detection_transformer.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Fundamentals/DeepLearning/object_detection_transformer.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Oject Detection with transformer</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Oject Detection with transformer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-data">Preparing data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#train-model">Train model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="oject-detection-with-transformer">
+<h1>Oject Detection with transformer<a class="headerlink" href="#oject-detection-with-transformer" title="Permalink to this heading">#</a></h1>
+<p>Tutorial from : <a class="reference external" href="https://huggingface.co/docs/transformers/tasks/object_detection">https://huggingface.co/docs/transformers/tasks/object_detection</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># install related libraries</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>datasets<span class="w"> </span>transformers<span class="w"> </span>evaluate<span class="w"> </span>timm<span class="w"> </span>albumentations
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+<span class=" -Color -Color-Red">ERROR: Operation cancelled by user</span>
+
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="import-libraries">
+<h1>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h1>
+<p>ที่ใช้ในการทำงาน เราจะใช้ <code class="docutils literal notranslate"><span class="pre">transformers</span></code> และ <code class="docutils literal notranslate"><span class="pre">datasets</span></code> มาช่วยในการทำงาน จาก huggingface hub</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForObjectDetection</span> 
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoImageProcessor</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">Trainer</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">import</span> <span class="nn">evaluate</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">albumentations</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="preparing-data">
+<h1>Preparing data<a class="headerlink" href="#preparing-data" title="Permalink to this heading">#</a></h1>
+<p>Download <code class="docutils literal notranslate"><span class="pre">cppe-5</span></code> dataset เพื่อใช้ในการ train model และ test model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cppe5</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;cppe-5&quot;</span><span class="p">)</span>
+<span class="n">cppe5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>สร้าง <code class="docutils literal notranslate"><span class="pre">id2label</span></code> และ <code class="docutils literal notranslate"><span class="pre">label2id</span></code> ของ dataset ที่ใช้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categories</span> <span class="o">=</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;objects&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span> 
+<span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">)}</span> 
+<span class="n">label2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">id2label</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove images with no objects</span>
+<span class="n">remove_idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">590</span><span class="p">,</span> <span class="mi">821</span><span class="p">,</span> <span class="mi">822</span><span class="p">,</span> <span class="mi">875</span><span class="p">,</span> <span class="mi">876</span><span class="p">,</span> <span class="mi">878</span><span class="p">,</span> <span class="mi">879</span><span class="p">]</span> 
+<span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">remove_idx</span><span class="p">]</span>
+<span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">keep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Transform data</p>
+<p><code class="docutils literal notranslate"><span class="pre">trasnfrom</span></code> data ก่อนที่จะเข้าไปใช้ใน model โดยใช้ <code class="docutils literal notranslate"><span class="pre">albumentations</span></code> ในการทำ data augmentation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transform</span> <span class="o">=</span> <span class="n">albumentations</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">albumentations</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="c1"># resize to 480x480</span>
+        <span class="n">albumentations</span><span class="o">.</span><span class="n">HorizontalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="c1"># horizontal flip</span>
+        <span class="n">albumentations</span><span class="o">.</span><span class="n">RandomBrightnessContrast</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="c1"># random brightness and contrast</span>
+    <span class="p">],</span>
+    <span class="n">bbox_params</span><span class="o">=</span><span class="n">albumentations</span><span class="o">.</span><span class="n">BboxParams</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;coco&quot;</span><span class="p">,</span> <span class="n">label_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>define function สำหรับการ train model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># formatted annotations</span>
+<span class="k">def</span> <span class="nf">formatted_anns</span><span class="p">(</span><span class="n">image_id</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">bbox</span><span class="p">):</span> 
+    <span class="n">annotations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">category</span><span class="p">)):</span>
+        <span class="n">new_ann</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">image_id</span><span class="p">,</span>
+            <span class="s2">&quot;category_id&quot;</span><span class="p">:</span> <span class="n">category</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="s2">&quot;isCrowd&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">area</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">bbox</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+        <span class="p">}</span>
+        <span class="n">annotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_ann</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">annotations</span>
+
+<span class="c1"># transforming a batch</span>
+<span class="k">def</span> <span class="nf">transform_aug_ann</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+    <span class="n">image_ids</span> <span class="o">=</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">]</span>
+    <span class="n">images</span><span class="p">,</span> <span class="n">bboxes</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">categories</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">objects</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">],</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;objects&quot;</span><span class="p">]):</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">))[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">bboxes</span><span class="o">=</span><span class="n">objects</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">],</span> <span class="n">category</span><span class="o">=</span><span class="n">objects</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">])</span>
+
+        <span class="n">area</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">objects</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">])</span>
+        <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>
+        <span class="n">bboxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;bboxes&quot;</span><span class="p">])</span>
+        <span class="n">categories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">])</span>
+
+    <span class="n">targets</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">id_</span><span class="p">,</span> <span class="s2">&quot;annotations&quot;</span><span class="p">:</span> <span class="n">formatted_anns</span><span class="p">(</span><span class="n">id_</span><span class="p">,</span> <span class="n">cat_</span><span class="p">,</span> <span class="n">ar_</span><span class="p">,</span> <span class="n">box_</span><span class="p">)}</span>
+        <span class="k">for</span> <span class="n">id_</span><span class="p">,</span> <span class="n">cat_</span><span class="p">,</span> <span class="n">ar_</span><span class="p">,</span> <span class="n">box_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">image_ids</span><span class="p">,</span> <span class="n">categories</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">bboxes</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">images</span><span class="p">,</span> <span class="n">annotations</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">collate_fn</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
+    <span class="n">pixel_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">]</span>
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">image_processor</span><span class="o">.</span><span class="n">pad_and_create_pixel_mask</span><span class="p">(</span><span class="n">pixel_values</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">]</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">]</span>
+    <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;pixel_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">[</span><span class="s2">&quot;pixel_mask&quot;</span><span class="p">]</span>
+    <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+    <span class="k">return</span> <span class="n">batch</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># trainfrom cppe5 model with augmentation</span>
+<span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">with_transform</span><span class="p">(</span><span class="n">transform_aug_ann</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="train-model">
+<h1>Train model<a class="headerlink" href="#train-model" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># เลือก pretrain_model และ image processor ที่จะใช้</span>
+<span class="n">checkpoint</span> <span class="o">=</span> <span class="s2">&quot;facebook/detr-resnet-50&quot;</span> 
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">AutoImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง model จาก pretrain_model ที่เลือก</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForObjectDetection</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">checkpoint</span><span class="p">,</span>
+    <span class="n">id2label</span><span class="o">=</span><span class="n">id2label</span><span class="p">,</span>
+    <span class="n">label2id</span><span class="o">=</span><span class="n">label2id</span><span class="p">,</span>
+    <span class="n">ignore_mismatched_sizes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>กำหนด <code class="docutils literal notranslate"><span class="pre">training_args</span></code> และ <code class="docutils literal notranslate"><span class="pre">trainer</span></code> สำหรับการเทรนโมเดล</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [optional] disable wandb ที่ใช้ในการ log ข้อมูล</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;WANDB_DISABLED&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{directory_name}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="c1"># ชื่อโฟลเดอร์ที่เราจะเก็บ model ที่ train ได้</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="c1"># จำนวน batch size </span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># จำนวน epoch ที่เราต้องการให้โมเดล train</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># ใช้ mixed precision หรือไม่</span>
+    <span class="n">save_steps</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="c1"># จำนวน step ที่เราต้องการให้โมเดล save</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> 
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="c1"># ค่า learning rate</span>
+    <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="c1"># ค่า weight decay</span>
+    <span class="n">save_total_limit</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="c1"># จำนวน model ที่เราต้องการให้โมเดล save</span>
+    <span class="n">remove_unused_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+    <span class="n">push_to_hub</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง trainer จาก model ที่เราสร้างไว้</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">data_collator</span><span class="o">=</span><span class="n">collate_fn</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">image_processor</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span> <span class="c1"># train model</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="evaluation">
+<h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h1>
+<p>ทดสอบ model หรือ <code class="docutils literal notranslate"><span class="pre">evaluation</span></code> เพื่อเช็คผลลัพธ์ของโมเดล</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CocoDetection</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">CocoDetection</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_folder</span><span class="p">,</span> <span class="n">feature_extractor</span><span class="p">,</span> <span class="n">ann_file</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">img_folder</span><span class="p">,</span> <span class="n">ann_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_extractor</span> <span class="o">=</span> <span class="n">feature_extractor</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="c1"># read in PIL image and target in COCO format</span>
+        <span class="n">img</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CocoDetection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+
+        <span class="c1"># preprocess image and target: converting target to DETR format,</span>
+        <span class="c1"># resizing + normalization of both image and target</span>
+        <span class="n">image_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ids</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">image_id</span><span class="p">,</span> <span class="s2">&quot;annotations&quot;</span><span class="p">:</span> <span class="n">target</span><span class="p">}</span>
+        <span class="n">encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_extractor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">img</span><span class="p">,</span> <span class="n">annotations</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+        <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>  <span class="c1"># remove batch dimension</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># remove batch dimension</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">:</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">target</span><span class="p">}</span>
+
+
+<span class="c1"># format annotations the same as for training, no need for data augmentation</span>
+<span class="k">def</span> <span class="nf">val_formatted_anns</span><span class="p">(</span><span class="n">image_id</span><span class="p">,</span> <span class="n">objects</span><span class="p">):</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])):</span>
+        <span class="n">new_ann</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">objects</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+            <span class="s2">&quot;category_id&quot;</span><span class="p">:</span> <span class="n">objects</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+            <span class="s2">&quot;iscrowd&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">image_id</span><span class="p">,</span>
+            <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">objects</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+            <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="n">objects</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+        <span class="p">}</span>
+        <span class="n">annotations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_ann</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">annotations</span>
+
+
+<span class="c1"># Save images and annotations into the files torchvision.datasets.CocoDetection expects</span>
+<span class="k">def</span> <span class="nf">save_cppe5_annotation_file_images</span><span class="p">(</span><span class="n">cppe5</span><span class="p">):</span>
+    <span class="n">output_json</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">path_output_cppe5</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="si">}</span><span class="s2">/cppe5/&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path_output_cppe5</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path_output_cppe5</span><span class="p">)</span>
+
+    <span class="n">path_anno</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_output_cppe5</span><span class="p">,</span> <span class="s2">&quot;cppe5_ann.json&quot;</span><span class="p">)</span>
+    <span class="n">categories_json</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;supercategory&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">id2label</span><span class="p">[</span><span class="nb">id</span><span class="p">]}</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">id2label</span><span class="p">]</span>
+    <span class="n">output_json</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">output_json</span><span class="p">[</span><span class="s2">&quot;annotations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">cppe5</span><span class="p">:</span>
+        <span class="n">ann</span> <span class="o">=</span> <span class="n">val_formatted_anns</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">],</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;objects&quot;</span><span class="p">])</span>
+        <span class="n">output_json</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+                <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">example</span><span class="p">[</span><span class="s1">&#39;image_id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">output_json</span><span class="p">[</span><span class="s2">&quot;annotations&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ann</span><span class="p">)</span>
+    <span class="n">output_json</span><span class="p">[</span><span class="s2">&quot;categories&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">categories_json</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_anno</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">output_json</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">im</span><span class="p">,</span> <span class="n">img_id</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">],</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">]):</span>
+        <span class="n">path_img</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_output_cppe5</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">img_id</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+        <span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path_img</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">path_output_cppe5</span><span class="p">,</span> <span class="n">path_anno</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>เลือก <code class="docutils literal notranslate"><span class="pre">model</span></code> ที่เราใช้ในการ evaluate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{directory_name}</span><span class="s2">/</span><span class="si">{model}</span><span class="s2">&quot;</span> <span class="c1"># ใส่ directory ของ model ที่เราเทรนไว้</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># เลือก processor จาก model ที่เรา train ไว้</span>
+<span class="n">im_processor</span> <span class="o">=</span> <span class="n">AutoImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">/preprocessor_config.json&quot;</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">path_output_cppe5</span><span class="p">,</span> <span class="n">path_anno</span> <span class="o">=</span> <span class="n">save_cppe5_annotation_file_images</span><span class="p">(</span><span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">])</span>
+<span class="n">test_ds_coco_format</span> <span class="o">=</span> <span class="n">CocoDetection</span><span class="p">(</span><span class="n">path_output_cppe5</span><span class="p">,</span> <span class="n">im_processor</span><span class="p">,</span> <span class="n">path_anno</span><span class="p">)</span>
+
+<span class="c1"># เลือก model ที่เรา train ไว้</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForObjectDetection</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">module</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;ybelkada/cocoevaluate&quot;</span><span class="p">,</span> <span class="n">coco</span><span class="o">=</span><span class="n">test_ds_coco_format</span><span class="o">.</span><span class="n">coco</span><span class="p">)</span>
+<span class="n">val_dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">test_ds_coco_format</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">collate_fn</span><span class="o">=</span><span class="n">collate_fn</span>
+<span class="p">)</span>
+
+<span class="c1"># prediction และ evaluation</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)):</span>
+        <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">]</span>
+        <span class="n">pixel_mask</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;pixel_mask&quot;</span><span class="p">]</span>
+
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span>
+        <span class="p">]</span>  <span class="c1"># these are in DETR format, resized + normalized</span>
+
+        <span class="c1"># forward pass</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">pixel_values</span><span class="o">=</span><span class="n">pixel_values</span><span class="p">,</span> <span class="n">pixel_mask</span><span class="o">=</span><span class="n">pixel_mask</span><span class="p">)</span>
+
+        <span class="n">orig_target_sizes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;orig_size&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">im_processor</span><span class="o">.</span><span class="n">post_process</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">orig_target_sizes</span><span class="p">)</span>  <span class="c1"># convert outputs of model to COCO api</span>
+
+        <span class="n">module</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">batch</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+<span class="c1"># แสดงผล evaluation</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="inference">
+<h1>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">#</a></h1>
+<p>Prediction <code class="docutils literal notranslate"><span class="pre">inference</span></code> โดยใช้ <code class="docutils literal notranslate"><span class="pre">model</span></code> ที่เรา train ไว้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># เลือกรูปที่ต้องการ predict จาก url</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://i.imgur.com/2lnWoly.jpg&quot;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{directory_name}</span><span class="s2">/</span><span class="si">{model}</span><span class="s2">&quot;</span> <span class="c1"># ใส่ directory ของ model ที่เราเทรนไว้</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_processor</span> <span class="o">=</span> <span class="n">AutoImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">/preprocessor_config.json&quot;</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># processor </span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForObjectDetection</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># model </span>
+
+<span class="c1"># predict image</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">target_sizes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">image_processor</span><span class="o">.</span><span class="n">post_process_object_detection</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">target_sizes</span><span class="o">=</span><span class="n">target_sizes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># ใส่ threshold ที่เหมาะสม </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">thesold</span></code> เราสามารถเปลี่ยนค่าได้ตามความเหมาะสม เนื่องจากในบาง model ที่เราเทรนไว้ จะมีค่า confidence ของการ <code class="docutils literal notranslate"><span class="pre">prediction</span></code> ที่ต่างกัน</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize results</span>
+<span class="k">for</span> <span class="n">score</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">box</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;boxes&quot;</span><span class="p">]):</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">box</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span><span class="p">[</span><span class="n">label</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span><span class="si">}</span><span class="s2"> with confidence &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">score</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> at location </span><span class="si">{</span><span class="n">box</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualize prediction โดยใช้ <code class="docutils literal notranslate"><span class="pre">ImageDraw</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">score</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">box</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;boxes&quot;</span><span class="p">]):</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">box</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="n">outline</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span><span class="p">[</span><span class="n">label</span><span class="o">.</span><span class="n">item</span><span class="p">()],</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+
+<span class="n">image</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Fundamentals/DeepLearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Oject Detection with transformer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-data">Preparing data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#train-model">Train model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Brain Code Camp Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

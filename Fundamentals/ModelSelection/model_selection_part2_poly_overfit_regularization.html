@@ -161,7 +161,6 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3.html">Dimensionality Reduction (Part 3: Nonlinear Methods)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
@@ -429,7 +428,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04c1467ac791594f4f458065c00d4bd52be2dc5b70263fd61be4086cfe2088ed.png" src="../../_images/04c1467ac791594f4f458065c00d4bd52be2dc5b70263fd61be4086cfe2088ed.png" />
+<img alt="../../_images/a5516197dabef1470ca5af64b2289a2aa0867e062cf612d293c660368a168cbe.png" src="../../_images/a5516197dabef1470ca5af64b2289a2aa0867e062cf612d293c660368a168cbe.png" />
 </div>
 </div>
 <p>หากเรานำเอาสมการเส้นตรง <span class="math notranslate nohighlight">\( y = w_0 + w_1 x\)</span> มาอธิบายข้อมูลประเภทนี้ จะส่งผลให้เกิดความคาดเคลื่อนได้</p>
@@ -469,12 +468,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope -0.00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope 0.57
 
-Estimated intercept 8.41
+Estimated intercept 9.65
 </pre></div>
 </div>
-<img alt="../../_images/a187a1f05d98b32b7b620c934192669a958b00f500e3fe06e8f023251a2ace1f.png" src="../../_images/a187a1f05d98b32b7b620c934192669a958b00f500e3fe06e8f023251a2ace1f.png" />
+<img alt="../../_images/02f8eb09a554a8dda4ebf9150610399ffe81351d9ad124637002ebb695481f87.png" src="../../_images/02f8eb09a554a8dda4ebf9150610399ffe81351d9ad124637002ebb695481f87.png" />
 </div>
 </div>
 <p>จะพบว่าโมเดลเส้นตรงนั้นไม่สอดคล้องกับข้อมูลที่เรามีอยู่ สังเกตได้จาก</p>
@@ -578,8 +577,8 @@ Estimated intercept 8.41
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9ae2e0685a88bd0b622267d9ad661e94af760ffa5b53c57243fca8c04f704460.png" src="../../_images/9ae2e0685a88bd0b622267d9ad661e94af760ffa5b53c57243fca8c04f704460.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.          0.08142035  0.98223765 -0.00385392  0.00105504]
+<img alt="../../_images/3af33414d5d76dc7a647fcebd7b20b99a3e14faf06cbf6e948b7890c1969e8da.png" src="../../_images/3af33414d5d76dc7a647fcebd7b20b99a3e14faf06cbf6e948b7890c1969e8da.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.         -0.08920114  1.13334295  0.00212221 -0.00439548]
 </pre></div>
 </div>
 </div>
@@ -651,8 +650,8 @@ Estimated intercept 8.41
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/663b90311a3d37096ddef880ebe2d8a76e8870f79b421b0e67a6c279abff055d.png" src="../../_images/663b90311a3d37096ddef880ebe2d8a76e8870f79b421b0e67a6c279abff055d.png" />
-<img alt="../../_images/f0139b1cb9a71ec3c1187e190856630deda1b41e15f6093d3cd488394fd8b4c3.png" src="../../_images/f0139b1cb9a71ec3c1187e190856630deda1b41e15f6093d3cd488394fd8b4c3.png" />
+<img alt="../../_images/9cbcbd077930b90bcd7b1ee1dc41359eb763d5fbbcab51afde9a554680dde7d7.png" src="../../_images/9cbcbd077930b90bcd7b1ee1dc41359eb763d5fbbcab51afde9a554680dde7d7.png" />
+<img alt="../../_images/608a480c02b6844d121295f04dff04ca32c8522c791e2d9cefebba75658cc075.png" src="../../_images/608a480c02b6844d121295f04dff04ca32c8522c791e2d9cefebba75658cc075.png" />
 </div>
 </div>
 <p>จากผลการทดสอบเปลี่ยนค่า polynomial order ของโมเดล จะพบว่าค่า MSE ที่ถูกทดสอบมีค่าน้อยลงเรื่อยๆ จนเหลือ 0 ที่ order = 15</p>
@@ -695,11 +694,11 @@ Estimated intercept 8.41
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/422e22d43701666414b41b18afde6bbea64613582bb856d4723f6f2ebdb0b193.png" src="../../_images/422e22d43701666414b41b18afde6bbea64613582bb856d4723f6f2ebdb0b193.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [-1.39111792e-06 -2.83828348e+01  8.25412299e+00  1.21024271e+01
-  1.13056684e+01  7.73704360e+00  5.28904462e+00 -3.26478090e-03
- -1.77119659e+00 -5.29379072e+00 -9.80087615e-01  3.44987447e+00
- -4.78666521e-01 -4.93934225e-01  1.72497702e-01 -1.58833153e-02]
+<img alt="../../_images/be055c169b258aeeb41e7dde67fb75caf40559bcbf26f4e2adab5ce9feaff8ec.png" src="../../_images/be055c169b258aeeb41e7dde67fb75caf40559bcbf26f4e2adab5ce9feaff8ec.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 1.91997285e-08 -1.50733129e-01  1.76944262e-01 -1.71347984e-01
+  1.46485894e-01 -1.10580871e-01  4.96904499e-02 -1.18750410e-02
+ -5.40957454e-02 -2.46933358e-02  1.22912385e-02  8.37371567e-03
+ -1.09652471e-03 -7.96925812e-04  3.57188746e-05  2.32085429e-05]
 </pre></div>
 </div>
 </div>
@@ -759,7 +758,7 @@ Estimated intercept 8.41
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0c740245d86bf46cacd78c874a5ae9e59f5f3105e6a2e6a34ed004d2cad22e40.png" src="../../_images/0c740245d86bf46cacd78c874a5ae9e59f5f3105e6a2e6a34ed004d2cad22e40.png" />
+<img alt="../../_images/7ff3fa6a2355c64c5f09aede4c5e69f49013845382fed82b8085352d71c3c076.png" src="../../_images/7ff3fa6a2355c64c5f09aede4c5e69f49013845382fed82b8085352d71c3c076.png" />
 </div>
 </div>
 <p>ในกรณีที่เราเจอปัญหา underfitting วิธีแก้ปัญหาวิธีหนึ่งที่ได้รับความนิยมมากก็คือ การเลือกใช้โมเดลที่ซับซ้อนมากยิ่งขึ้น เช่น การเพิ่มจำนวนตัวแปรในโมเดล หรือในตัวอย่างนี้ก็คือการเพิ่ม order ของ polynomial</p>
@@ -936,7 +935,7 @@ Estimated intercept 8.41
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d32ebd26daba9894029cd6d1595098025a81ecf9d93857c2ff14a4256bd29169.png" src="../../_images/d32ebd26daba9894029cd6d1595098025a81ecf9d93857c2ff14a4256bd29169.png" />
+<img alt="../../_images/5c9936030fe81cb99d918a43091083a0b33c0c9ee7b83e5beb55233b17048a7e.png" src="../../_images/5c9936030fe81cb99d918a43091083a0b33c0c9ee7b83e5beb55233b17048a7e.png" />
 </div>
 </div>
 <p>จากการทดสอบด้านบน สังเกตได้ว่า</p>
