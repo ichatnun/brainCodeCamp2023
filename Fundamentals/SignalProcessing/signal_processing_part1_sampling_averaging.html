@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Signal Processing (Part 2: Discrete Fourier Transform (DFT))" href="signal_processing_part2_dft.html" />
-    <link rel="prev" title="Model Selection (Part 3: Training, validation and test data)" href="../ModelSelection/model_selection_part3_data_splitting.html" />
+    <link rel="prev" title="Dimensionality Reduction (Part 4: Nonlinear Methods)" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,12 +158,21 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3_pca_CDT_images.html">Dimensionality Reduction (Part 3: Applying PCA to Clock Drawing Test (CDT) images)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html">Dimensionality Reduction (Part 4: Nonlinear Methods)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Signal Processing</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="signal_processing_part2_dft.html">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
@@ -549,7 +558,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/40a2bd1c7f8fcf38baf2f3f64da7dd7fb5d7ea9c0c245bc25e7a253824041d6b.png" src="../../_images/40a2bd1c7f8fcf38baf2f3f64da7dd7fb5d7ea9c0c245bc25e7a253824041d6b.png" />
+<img alt="../../_images/94bd068e0cd332b9c4660c543e9263dc6f395e58c5d9b298b63c8efedc5965f5.png" src="../../_images/94bd068e0cd332b9c4660c543e9263dc6f395e58c5d9b298b63c8efedc5965f5.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบน จะเห็นว่า signal ที่เราเก็บมาจากอุปกรณ์ของเรา (สีแดง) มีค่าที่ค่อนข้างแตกต่างจากสัญญาณจริง (สีน้ำเงิน) ค่อนข้างมาก</p>
@@ -584,12 +593,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e94f38a6f69940ac9c0b421f1bf2a1fc1af90f06b1abc602c1e50e240728713e.png" src="../../_images/e94f38a6f69940ac9c0b421f1bf2a1fc1af90f06b1abc602c1e50e240728713e.png" />
-<img alt="../../_images/09994df51a423280145ec59a7c6366fb6599d6a2319cefc4abb27702c4a33db8.png" src="../../_images/09994df51a423280145ec59a7c6366fb6599d6a2319cefc4abb27702c4a33db8.png" />
-<img alt="../../_images/6db192d9459ffc81ac274cc606c2197097c1083bd02f5941cf1a57bfa2cba6e4.png" src="../../_images/6db192d9459ffc81ac274cc606c2197097c1083bd02f5941cf1a57bfa2cba6e4.png" />
-<img alt="../../_images/89b8bb7a59f40b3854e744a4eb6fe91eeeecb7c12d9a19fac96e991cba8e50f4.png" src="../../_images/89b8bb7a59f40b3854e744a4eb6fe91eeeecb7c12d9a19fac96e991cba8e50f4.png" />
-<img alt="../../_images/7e8d16f77be99f38950462046b1f2450f079ba5d09341940d3e1ed37773b2394.png" src="../../_images/7e8d16f77be99f38950462046b1f2450f079ba5d09341940d3e1ed37773b2394.png" />
-<img alt="../../_images/9e12624b10afa7155ffd10711ef858450fe97f2abf58d8db81a7b6ca4b916b08.png" src="../../_images/9e12624b10afa7155ffd10711ef858450fe97f2abf58d8db81a7b6ca4b916b08.png" />
+<img alt="../../_images/c41e242d23ff82aa37c358bb71d4574a13d63852b0efaf3a1b71ad205b4e1162.png" src="../../_images/c41e242d23ff82aa37c358bb71d4574a13d63852b0efaf3a1b71ad205b4e1162.png" />
+<img alt="../../_images/3a85b94dd59379a05a8d52a87f5436e705c484210b42cf31e6c8d42f59e3c2f1.png" src="../../_images/3a85b94dd59379a05a8d52a87f5436e705c484210b42cf31e6c8d42f59e3c2f1.png" />
+<img alt="../../_images/3aea76f48d372f49ec38b2475eb05e2af99cb679316fdcb3f0fe5d81d4395f09.png" src="../../_images/3aea76f48d372f49ec38b2475eb05e2af99cb679316fdcb3f0fe5d81d4395f09.png" />
+<img alt="../../_images/2e19da094add95b3188ebb6c5348617c3ae3b0345944216c6784081b8655e2dc.png" src="../../_images/2e19da094add95b3188ebb6c5348617c3ae3b0345944216c6784081b8655e2dc.png" />
+<img alt="../../_images/123b9381fcfb1b66b5e894a7b1726006eac13eaef5e21d313380592c642d273a.png" src="../../_images/123b9381fcfb1b66b5e894a7b1726006eac13eaef5e21d313380592c642d273a.png" />
+<img alt="../../_images/d9011f369dc6c059895493689e2f0def40edf6ddd2bd0bf99ad74b8448c31255.png" src="../../_images/d9011f369dc6c059895493689e2f0def40edf6ddd2bd0bf99ad74b8448c31255.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบนจะเห็นได้ว่ายิ่งเราเก็บข้อมูลจากวัตถุปริศนานี้หลายๆรอบด้วยเครื่องมือเดิม และนำเอา signal ที่ได้นั้นมาเฉลี่ย (average) กัน จะพบว่าสัญญาณรบกวนจะค่อยๆ หายไป ยิ่ง average มากขึ้น ก็จะยิ่งส่งผลให้สัญญาณรบกวนลดลงเรื่อยๆ</p>
@@ -629,12 +638,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../ModelSelection/model_selection_part3_data_splitting.html"
+       href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Model Selection (Part 3: Training, validation and test data)</p>
+        <p class="prev-next-title">Dimensionality Reduction (Part 4: Nonlinear Methods)</p>
       </div>
     </a>
     <a class="right-next"

@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/ModelSelection/model_selection_part3_data_splitting';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Signal Processing (Part 1: Sampling and Signal Averaging)" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html" />
+    <link rel="next" title="Dimensionality Reduction (Part 1: Introduction)" href="../DimensionalityReduction/dim_reduct_part1_intro.html" />
     <link rel="prev" title="Model Selection (Part 2: Polynomial regression, overfitting, and regularization)" href="model_selection_part2_poly_overfit_regularization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -158,12 +158,21 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Model Selection (Part 3: Training, validation and test data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3_pca_CDT_images.html">Dimensionality Reduction (Part 3: Applying PCA to Clock Drawing Test (CDT) images)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html">Dimensionality Reduction (Part 4: Nonlinear Methods)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Signal Processing</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part2_dft.html">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
@@ -517,7 +526,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d0b56ccdbac9edc8cfb13e94b27980efaa4b02e64b4b0fbe74f7c7c9b3746f32.png" src="../../_images/d0b56ccdbac9edc8cfb13e94b27980efaa4b02e64b4b0fbe74f7c7c9b3746f32.png" />
+<img alt="../../_images/9ff12f396bcaadc8c1523502cb5c32e6f2a030af45ac3bf3c40a2e988776242a.png" src="../../_images/9ff12f396bcaadc8c1523502cb5c32e6f2a030af45ac3bf3c40a2e988776242a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -595,8 +604,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ef9d5900f53cd4fb205e214323cec74e21b2701f00291b6807d22cfa2edcfdb2.png" src="../../_images/ef9d5900f53cd4fb205e214323cec74e21b2701f00291b6807d22cfa2edcfdb2.png" />
-<img alt="../../_images/1cc3494affc2c2b12c63452ddb170cf00639e3dabe42b1ddc648fec84b0663d3.png" src="../../_images/1cc3494affc2c2b12c63452ddb170cf00639e3dabe42b1ddc648fec84b0663d3.png" />
+<img alt="../../_images/3b5911aef5fc634e6e0aee0a3fc0d9c8cbb13f8122f516e706f3372aa5cd9d1e.png" src="../../_images/3b5911aef5fc634e6e0aee0a3fc0d9c8cbb13f8122f516e706f3372aa5cd9d1e.png" />
+<img alt="../../_images/85f5d785b79ad40e228aae791c56756fa906c5bdbdccf4e80b8193bb13fe2604.png" src="../../_images/85f5d785b79ad40e228aae791c56756fa906c5bdbdccf4e80b8193bb13fe2604.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -676,11 +685,11 @@ The lowest test MSE was achieved with the polynomial of order 4
       </div>
     </a>
     <a class="right-next"
-       href="../SignalProcessing/signal_processing_part1_sampling_averaging.html"
+       href="../DimensionalityReduction/dim_reduct_part1_intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Signal Processing (Part 1: Sampling and Signal Averaging)</p>
+        <p class="prev-next-title">Dimensionality Reduction (Part 1: Introduction)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

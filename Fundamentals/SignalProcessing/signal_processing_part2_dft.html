@@ -158,12 +158,21 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part1_lin_reg_eval_metric.html">Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part2_poly_overfit_regularization.html">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ModelSelection/model_selection_part3_data_splitting.html">Model Selection (Part 3: Training, validation and test data)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">Dimensionality Reduction (Part 1: Introduction)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Dimensionality Reduction (Part 2: Principal Component Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3_pca_CDT_images.html">Dimensionality Reduction (Part 3: Applying PCA to Clock Drawing Test (CDT) images)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html">Dimensionality Reduction (Part 4: Nonlinear Methods)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Signal Processing</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="signal_processing_part1_sampling_averaging.html">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Signal Processing (Part 2: Discrete Fourier Transform (DFT))</a></li>
@@ -465,7 +474,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/21510eef7949a9e9bc8e3135e1133841d9331fa14000ab9c3dc06cfee3515332.png" src="../../_images/21510eef7949a9e9bc8e3135e1133841d9331fa14000ab9c3dc06cfee3515332.png" />
+<img alt="../../_images/107d463fd6b26361d29a8de3f7b0a3ada59ab22070b1659ac5cb91dcaae0d32b.png" src="../../_images/107d463fd6b26361d29a8de3f7b0a3ada59ab22070b1659ac5cb91dcaae0d32b.png" />
 </div>
 </div>
 <p>จากตัวอย่างด้านบนจะเห็นได้ว่า DFT ของ signal ด้านบน <span class="math notranslate nohighlight">\(X[k]\)</span> มี peak อยู่ที่ 20 Hz (และ -20 Hz) พอดี โดยที่ไม่มีความถี่อื่นๆ เลย สอดคล้องกับ <span class="math notranslate nohighlight">\(x[n]\)</span> ซึ่งเป็นฟังก์ชัน sine ที่ความถี่ 20 Hz</p>
@@ -494,7 +503,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e890cc45d0041ae27d97d1dbad0db6d8852ff676f58c485ef751a2be070dba00.png" src="../../_images/e890cc45d0041ae27d97d1dbad0db6d8852ff676f58c485ef751a2be070dba00.png" />
+<img alt="../../_images/8832c296c5d43bdebec1e45a1ec71135768cf830de12ac6e2d0bfeee25b64da9.png" src="../../_images/8832c296c5d43bdebec1e45a1ec71135768cf830de12ac6e2d0bfeee25b64da9.png" />
 </div>
 </div>
 <p>จากกราฟด้านบนจะเห็นได้ว่า DFT ของ signal มีคุณสมบัติ ที่สอดคล้องกับ คุณสมบัติของ <span class="math notranslate nohighlight">\(x[n]\)</span> คือ signal ที่ถูกเก็บข้อมูลมาจาก <span class="math notranslate nohighlight">\(x(t)=sin(2π*20t) + 0.5 sin(2π*50t)\)</span> ดังนี้</p>
