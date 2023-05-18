@@ -9,7 +9,7 @@ parts:
     chapters:
     - file: Fundamentals/BrainBuildingBlocks/S1L1_HelloBrain
       title: Hello, Brain!
-    - file: Fundamentals/BrainBuildingBlocks/S1L1_EssentialNeuroanatomy
+    - file: Fundamentals/BrainBuildingBlocks/S1L2_EssentialNeuroanatomy
       title: Essential Neuroanatomy
 
   - caption: Prerequisites
