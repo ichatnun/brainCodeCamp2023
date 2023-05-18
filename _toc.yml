@@ -5,7 +5,10 @@ format: jb-book
 root: intro
 
 parts:
-  # - caption: Brain Building Blocks
+  - caption: Brain Building Blocks
+    chapters:
+    - file: BrainBuildingBlocks/S1L1_CourseOverview
+      title: Hello, Brain!
 
   - caption: Prerequisites
     chapters:
