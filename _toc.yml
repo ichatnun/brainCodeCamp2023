@@ -7,12 +7,10 @@ root: intro
 parts:
   - caption: Brain Building Blocks
     chapters:
-    - file: Fundamentals/BrainBuildingBlocks/S1L1_HelloBrain
+    - file: Fundamentals/BrainBuildingBlocks/Session1/S1L1_HelloBrain
       title: Hello, Brain!
-    - file: Fundamentals/BrainBuildingBlocks/S1L2_EssentialNeuroanatomy
+    - file: Fundamentals/BrainBuildingBlocks/Session1/S1L2_EssentialNeuroanatomy
       title: Essential Neuroanatomy
-    - file: Fundamentals/BrainBuildingBlocks/S1L1_test
-      title: markdown
 
   - caption: Prerequisites
     chapters:
@@ -25,6 +23,8 @@ parts:
 
   - caption: Model Selection
     chapters:
+    - file: Fundamentals/ModelSelection/model_selection_intro
+      title: Intro
     - file: Fundamentals/ModelSelection/model_selection_part1_lin_reg_eval_metric
       title: Linear Model and Evaluation Metric
     - file: Fundamentals/ModelSelection/model_selection_part2_poly_overfit_regularization
