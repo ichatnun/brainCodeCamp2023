@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Model Selection (Part 1: Simple Linear Model and Evaluation Metric) &#8212; Brain Code Camp</title>
+    <title>Simple Linear Model and Evaluation Metric &#8212; Brain Code Camp</title>
   
   
   
@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/ModelSelection/model_selection_part1_lin_reg_eval_metric';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Model Selection (Part 2: Polynomial regression, overfitting, and regularization)" href="model_selection_part2_poly_overfit_regularization.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="model_selection_intro.html" />
+    <link rel="next" title="Polynomial Regression, Overfitting, and Regularization" href="model_selection_part2_poly_overfit_regularization.html" />
+    <link rel="prev" title="Introduction" href="model_selection_intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -160,8 +160,19 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Brain Building Blocks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session1/S1L1_HelloBrain.html">Hello, Brain!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session1/S1L2_EssentialNeuroanatomy.html">Essential Neuroanatomy</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../BrainBuildingBlocks/Session1/S1_Intro.html">Welcome to the Brain!</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session1/S1L1_HelloBrain.html">Hello, Brain!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session1/S1L2_EssentialNeuroanatomy.html">Essential Neuroanatomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session1/S1L3_FunctionalAreaAndNetwork.html">Functional Area &amp; Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session1/S1L4_LanguageOfTheBrain.html">Language of the Brain</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session2/S2_Intro.html">Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session3/S3_Intro.html">Brain &amp; Behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session4/S4_Intro.html">Brain Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session5/S5_Intro.html">Models of the Mind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session6/S6_Intro.html">Data Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BrainBuildingBlocks/Session7/S7_Intro.html">Neuro &amp; AI</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisites</span></p>
 <ul class="nav bd-sidenav">
@@ -171,21 +182,22 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Model and Evaluation Metric</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_selection_part2_poly_overfit_regularization.html">Polynomial Regression and Regularization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_selection_part3_data_splitting.html">Training, Validation and Test Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_selection_intro.html">Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple Linear Model and Evaluation Metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_selection_part2_poly_overfit_regularization.html">Polynomial Regression, Overfitting, and Regularization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_selection_part3_data_splitting.html">Training, Validation and Test data</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part1_intro.html">The Basics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part2_pca.html">Principal Component Analysis (PCA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3_pca_CDT_images.html">PCA with clock drawing test images</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html">Nonlinear methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part3_pca_CDT_images.html">Applying PCA to CDT Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DimensionalityReduction/dim_reduct_part4_nonlinear_methods.html">Nonlinear Methods</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/thai_food_classification_transformers.html">Image Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/object_detection_transformer.html">Oject Detection with transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/object_detection_transformer.html">Object Detection with transformer</a></li>
 
 
 
@@ -195,10 +207,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Signal Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html">Signal Processing (Part 1: Sampling and Signal Averaging)</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part1_sampling_averaging.html">Sampling and Signal Averaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part2_dft.html">Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part3_STFT.html">Short-Time Fourier Transform (STFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part3_STFT.html">Short Time Fourier Transform (STFT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part4_application.html">Audio Example</a></li>
 </ul>
 
@@ -383,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Model Selection (Part 1: Simple Linear Model and Evaluation Metric)</h1>
+    <h1>Simple Linear Model and Evaluation Metric</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -405,8 +416,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="model-selection-part-1-simple-linear-model-and-evaluation-metric">
-<h1>Model Selection (Part 1: Simple Linear Model and Evaluation Metric)<a class="headerlink" href="#model-selection-part-1-simple-linear-model-and-evaluation-metric" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="simple-linear-model-and-evaluation-metric">
+<h1>Simple Linear Model and Evaluation Metric<a class="headerlink" href="#simple-linear-model-and-evaluation-metric" title="Permalink to this heading">#</a></h1>
 <p>ถ้าลองนึกภาพตามง่ายๆในมุมมองของผู้สร้างโมเดล เราอาจจะสร้างโมเดลที่มีความซับซ้อนมากๆและทำนายชุดข้อมูลที่เรามีได้ดีมาก หรืออาจจะสร้างโมเดลที่ซับซ้อนน้อยลงมาหน่อยแต่ก็ยังทำนายชุดข้อมูลที่เรามีได้ดีรองลงมาก็ได้ ตัวเลือกในการสร้างโมเดลมีหลากหลายรูปแบบ แต่ว่าเราจะเลือกโมเดลที่เหมาะสมได้อย่างไร?</p>
 <p>ในบทเรียนนี้เราจะลองสร้างโมเดลทำนายชุดข้อมูลในรูปแบบต่างๆ และดูกันว่าโมเดลแบบใดจะเหมาะสมกับชุดข้อมูลตัวอย่างของเรา</p>
 <div class="cell docutils container">
@@ -593,7 +604,7 @@ MSE(y,\hat{y})=\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Introduction</p>
       </div>
     </a>
     <a class="right-next"
@@ -601,7 +612,7 @@ MSE(y,\hat{y})=\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Model Selection (Part 2: Polynomial regression, overfitting, and regularization)</p>
+        <p class="prev-next-title">Polynomial Regression, Overfitting, and Regularization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
