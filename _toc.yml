@@ -11,6 +11,8 @@ parts:
       title: Hello, Brain!
     - file: Fundamentals/BrainBuildingBlocks/S1L2_EssentialNeuroanatomy
       title: Essential Neuroanatomy
+    - file: Fundamentals/BrainBuildingBlocks/S1L1_test
+      title: markdown
 
   - caption: Prerequisites
     chapters:
