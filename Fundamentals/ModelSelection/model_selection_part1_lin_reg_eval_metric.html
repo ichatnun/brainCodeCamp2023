@@ -457,11 +457,12 @@ document.write(`
 <p>กำหนดให้เรามีจำนวนข้อมูลทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
 <p>หากเราพิจารณาภาพความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> กับ <span class="math notranslate nohighlight">\(y\)</span> จากการรันโค้ดด้านบน จะพบว่ามีลักษณะเป็นเส้นตรง ดังนั้นเราจะทดลองใช้โมเดลที่เป็นสมการเชิงเส้น <span class="math notranslate nohighlight">\(\hat{y_i}=\hat{w_0} + \hat{w_1} x_i\)</span></p>
 <p>เราสามารถหาค่า <span class="math notranslate nohighlight">\(\hat{w_0},\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1},\)</span> ของโมเดลจากข้อมูล x และ y ที่เรามีอยู่ได้โดยการแก้สมการต่อไปนี้</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \min_{\hat{w_{0}},\hat{w_{1}}}L(y_{i},\hat{y_i})
-=\min_{\hat{w_{0}},\hat{w_{1}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
+=\min_{\hat{w_{0}},\hat{w_{1}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2} 
 = \min_{\hat{w_{0}},\hat{w_{1}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_{0}}+\hat{w_{1}}x_{i})\right)^{2}
-\end{equation}</p>
+\]</div>
 <p>ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <hr class="docutils" />
 <p>โดยทั่วไปแล้ว เรามักใช้ฟังก์ชัน <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> สำหรับวัดความเหมือนหรือความต่างระหว่าง <span class="math notranslate nohighlight">\(y_{i}\)</span> และ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> ออกมาเป็นตัวเลข 1 ตัว</p>
@@ -538,9 +539,10 @@ Estimated intercept 1.03
 และ
 (2) <span class="math notranslate nohighlight">\(\hat{y_1}, \hat{y_2}, ..., \hat{y_n}\)</span></p>
 <p>เราสามารถคำนวณค่า MSE ระหว่างข้อมูลสองชุดนี้ผ่านสมการด้านล่าง</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 MSE(y,\hat{y})=\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
-\end{equation}</p>
+\]</div>
 <p>โดยถ้า <span class="math notranslate nohighlight">\(y_i\)</span> มีค่าใกล้เคียงกับ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> สำหรับทุกค่า <span class="math notranslate nohighlight">\(i\)</span> จะมีค่า MSE น้อย
 ในทางกลับกัน ถ้า <span class="math notranslate nohighlight">\(y_i\)</span> มีค่าแตกต่างจาก <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มาก สำหรับทุกค่า <span class="math notranslate nohighlight">\(i\)</span> จะส่งผลให้มี MSE ที่สูง</p>
 <p>MSE เป็นแค่หนึ่งในวิธีสำหรับวัดผล (evaluation metric) เท่านั้น ยังมีอีกหลายวิธีที่ใช้วัดผลออกมาเป็นตัวเลข เช่น mean absolution error (MAE), accuracy, F-score ฯลฯ ซึ่ง evaluation metric แต่ละอัน วัดค่าความเหมือนหรือความแตกต่างด้วยการใช้มาตรวัดคนละตัว ซึ่งมีเหมาะกับสถานการณ์ที่แตกต่างกัน</p>

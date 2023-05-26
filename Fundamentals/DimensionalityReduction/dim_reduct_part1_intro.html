@@ -544,31 +544,33 @@ document.write(`
 </div>
 <p>เราสามารถสังเกตได้ว่าถ้าเรานำเอาข้อมูลด้านบนมาหมุนตามเข็มนาฬิกาไป 45 องศา เราจะสามารถแปลงโจทย์ข้อนี้ให้กลายเป็นโจทย์ข้อมูลที่เรามีอยู่ก็จะมีหน้าตาคล้ายกับข้อมูลในตัวอย่างก่อนหน้า</p>
 <p>การหมุนจุดข้อมูลทวนเข็มนาฬิกา สามารถใช้ rotation matrix ได้</p>
-<p>\begin{equation}
-R(θ) =
-\begin{bmatrix}
-cos θ        &amp; -sin θ  \
-sin θ       &amp; cos θ \
-\end{bmatrix}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  R(θ) = 
+  \begin{bmatrix}
+      cos θ        &amp; -sin θ  \\
+      sin θ       &amp; cos θ \\
+  \end{bmatrix}
+\end{split}\]</div>
 <p>หากเรา represent พิกัด <span class="math notranslate nohighlight">\((x,y)\)</span> ด้วย vector
-\begin{equation}
-\begin{bmatrix}
-x \
-y\
-\end{bmatrix}
-\end{equation}</p>
+$<span class="math notranslate nohighlight">\(
+  \begin{bmatrix}
+      x \\
+      y\\
+  \end{bmatrix} 
+\)</span>$</p>
 <p>เราจะสามารถหมุนจุดข้อมูลนั้นทวนเข็มนาฬิกา 45 องศา ด้วยการคำนวณ</p>
-<p>\begin{equation}
-\begin{bmatrix}
-x’ \
-y’\
-\end{bmatrix} =
-R(-45°)  \begin{bmatrix}
-x \
-y\
-\end{bmatrix}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{bmatrix}
+      x' \\
+      y'\\
+  \end{bmatrix} = 
+  R(-45°)  \begin{bmatrix}
+      x \\
+      y\\
+  \end{bmatrix}
+\end{split}\]</div>
 <p>เกิดเป็นพิกัด <span class="math notranslate nohighlight">\((x',y')\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -533,7 +533,7 @@ document.write(`
 <p>ในตัวอย่างถัดไป ให้ทดลองลบสัญญาณที่ 50 Hz นี้ โดยการ
 ไป</p>
 <ol class="arabic simple">
-<li><p>แปลงข้อมูลให้ไปอยู่ใน frequency domain โดยการใช้ <code class="docutils literal notranslate"><span class="pre">fft</span></code> (<span class="math notranslate nohighlight">\(X[k]\)</span> = FFT{x[n]}$)</p></li>
+<li><p>แปลงข้อมูลให้ไปอยู่ใน frequency domain โดยการใช้ <code class="docutils literal notranslate"><span class="pre">fft</span></code> (<span class="math notranslate nohighlight">\(X[k] = FFT{x[n]}\)</span>)</p></li>
 <li><p>สร้างฟังก์ชัน <span class="math notranslate nohighlight">\(W[k]\)</span> ที่มีค่าเป็น 0 ตรงค่าความถี่ <span class="math notranslate nohighlight">\(k\)</span> ที่เราต้องการกำจัด และมีค่าเป็น 1 ตรงค่าความถี่ k ที่เราต้องการเก็บไว้ ในที่นี่เราจะเรียก <span class="math notranslate nohighlight">\(W\)</span> ว่าเป็น window หรือ filter</p></li>
 <li><p>คำนวนผลลัพธ์ที่โดยการใช้สมการ <span class="math notranslate nohighlight">\(X_{filtered}[k] = X[k]*W[k]\)</span> สำหรับทุกค่า <span class="math notranslate nohighlight">\(k\)</span> เพื่อลบ peak ของ <span class="math notranslate nohighlight">\(X[k]\)</span> ที่ 50 Hz ออกใน frequency domain (ในทางเทคนิค จะเรียกว่า filter ข้อมูลที่ 50 Hz ทิ้งไป)</p></li>
 <li><p>แปลง <span class="math notranslate nohighlight">\(X_{filtered}[k]\)</span> ซึ่งเป็นข้อมูลที่ถูก filter แล้วใน frequency domain กลับมาสู่ time domain โดยการคำนวณ Inverse Discrete Fourier Transform (IDFT) ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">ifft</span></code> ของ <code class="docutils literal notranslate"><span class="pre">scipy</span></code></p></li>
