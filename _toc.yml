@@ -10,15 +10,20 @@ parts:
     - file: Fundamentals/BrainBuildingBlocks/Session1/S1_Intro
       sections:
         - file: Fundamentals/BrainBuildingBlocks/Session1/S1L1_HelloBrain
-          title: Hello, Brain!
         - file: Fundamentals/BrainBuildingBlocks/Session1/S1L2_EssentialNeuroanatomy
-          title: Essential Neuroanatomy
         - file: Fundamentals/BrainBuildingBlocks/Session1/S1L3_FunctionalAreaAndNetwork
-          title: Functional Area & Network
         - file: Fundamentals/BrainBuildingBlocks/Session1/S1L4_LanguageOfTheBrain
-          title: Language of the Brain
     - file: Fundamentals/BrainBuildingBlocks/Session2/S2_Intro
+      sections:
+        - file: Fundamentals/BrainBuildingBlocks/Session2/S2L1_IntroBrainScienceToolbox
+        - file: Fundamentals/BrainBuildingBlocks/Session2/S2L2_EraOfLocalization
+        - file: Fundamentals/BrainBuildingBlocks/Session2/S2L3_MeasuringImmeasurable
+        - file: Fundamentals/BrainBuildingBlocks/Session2/S2L4_SneakPeekInsideTheBlackBox
+        - file: Fundamentals/BrainBuildingBlocks/Session2/S2L5_JourneyIntoTheBrain
     - file: Fundamentals/BrainBuildingBlocks/Session3/S3_Intro
+      sections:
+        - file: Fundamentals/BrainBuildingBlocks/Session3/S3L1_ConnectingBrainAndBehavior
+        - file: Fundamentals/BrainBuildingBlocks/Session3/S3L2_fMRIStudies
     - file: Fundamentals/BrainBuildingBlocks/Session4/S4_Intro
     - file: Fundamentals/BrainBuildingBlocks/Session5/S5_Intro
     - file: Fundamentals/BrainBuildingBlocks/Session6/S6_Intro

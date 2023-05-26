@@ -1,1 +1,1 @@
-# Method
+# Neuroscience Methods
