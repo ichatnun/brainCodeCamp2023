@@ -157,14 +157,25 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Brain Building Blocks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session1/S1_Intro.html">Welcome to the Brain!</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session1/S1L1_HelloBrain.html">Hello, Brain!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session1/S1L1_HelloBrain.html">Hello, Brains!</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session1/S1L2_EssentialNeuroanatomy.html">Essential Neuroanatomy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session1/S1L3_FunctionalAreaAndNetwork.html">Functional Area &amp; Network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session1/S1L4_LanguageOfTheBrain.html">Language of the Brain</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session2/S2_Intro.html">Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session3/S3_Intro.html">Brain &amp; Behavior</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session2/S2_Intro.html">Neuroscience Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session2/S2L1_IntroBrainScienceToolbox.html">Introduction to Brain Science Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session2/S2L2_EraOfLocalization.html">The Era of Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session2/S2L3_MeasuringImmeasurable.html">Measuring the Immeasurable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session2/S2L4_SneakPeekInsideTheBlackBox.html">Sneak Peek Inside the Blackbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session2/S2L5_JourneyIntoTheBrain.html">Journey Into the Brain</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session3/S3_Intro.html">Brain &amp; Behavior</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session3/S3L1_ConnectingBrainAndBehavior.html">Connecting Brain &amp; Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session3/S3L2_fMRIStudies.html">fMRI Studies</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session4/S4_Intro.html">Brain Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session5/S5_Intro.html">Models of the Mind</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Fundamentals/BrainBuildingBlocks/Session6/S6_Intro.html">Data Modeling</a></li>
@@ -388,6 +399,7 @@ document.write(`
 <h2>Build Instructions<a class="headerlink" href="#build-instructions" title="Permalink to this heading">#</a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># using python &gt;=3.10
 pip install jupyter-book
+jupyter-book clean .
 jupyter-book build .
 </pre></div>
 </div>
