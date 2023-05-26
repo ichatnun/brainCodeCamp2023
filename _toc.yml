@@ -52,6 +52,47 @@ parts:
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
   
+  - caption: Machine Learning
+    chapters: 
+    - file: Fundamentals/MachineLearning/intro.ipynb
+      title: Introduction to Machine Learning
+    - file: Fundamentals/MachineLearning/linear_model.ipynb
+      title: Linear Models
+    - file: Fundamentals/MachineLearning/logistic_regression.ipynb
+      title: Logistic Regression
+    - file: Fundamentals/MachineLearning/decision_tree.ipynb
+      title: Decision Trees
+    - file: Fundamentals/MachineLearning/random_forest.ipynb
+      title: Random Forests
+    - file: Fundamentals/MachineLearning/multivariate.ipynb
+      title: Multivariate Pattern Analysis
+    - file: Fundamentals/MachineLearning/gradient_boosting.ipynb
+      title: Gradient Boosting
+    - file: Fundamentals/MachineLearning/svm.ipynb
+      title: Support Vector Machines
+    - file: Fundamentals/MachineLearning/knn.ipynb
+      title: K-Nearest Neighbors
+    - file: Fundamentals/MachineLearning/naive_bayes.ipynb
+      title: Naive Bayes
+    - file: Fundamentals/MachineLearning/clustering.ipynb
+      title: Clustering
+    - file: Fundamentals/MachineLearning/ensemble.ipynb
+      title: Ensemble Methods
+    - file: Fundamentals/MachineLearning/evaluation.ipynb
+      title: Evaluation
+    - file: Fundamentals/MachineLearning/feature_selection.ipynb
+      title: Feature Selection
+    - file: Fundamentals/MachineLearning/feature_engineering.ipynb
+      title: Feature Engineering
+    - file: Fundamentals/MachineLearning/feature_importance.ipynb
+      title: Feature Importance
+    - file: Fundamentals/MachineLearning/missing_data.ipynb
+      title: Missing Data
+    - file: Fundamentals/MachineLearning/imbalance.ipynb
+      title: Imbalanced Data
+    - file: Fundamentals/MachineLearning/interpretation.ipynb
+      title: Interpretation
+
   - caption: Deep Learning
     chapters: 
     - file: Fundamentals/DeepLearning/thai_food_classification_transformers
