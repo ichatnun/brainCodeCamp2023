@@ -27,6 +27,11 @@ parts:
     - file: Fundamentals/BrainBuildingBlocks/Session4/S4_Intro
     - file: Fundamentals/BrainBuildingBlocks/Session5/S5_Intro
     - file: Fundamentals/BrainBuildingBlocks/Session6/S6_Intro
+      sections:
+        - file: Fundamentals/BrainBuildingBlocks/Session6/S6L1_DataHandlingAndExploration
+        - file: Fundamentals/BrainBuildingBlocks/Session6/S6L2_GoalsOfModeling
+        - file: Fundamentals/BrainBuildingBlocks/Session6/S6L3_TypesOfModeling
+        - file: Fundamentals/BrainBuildingBlocks/Session6/S6L4_ModelEvaluation
     - file: Fundamentals/BrainBuildingBlocks/Session7/S7_Intro
 
   - caption: Prerequisites
