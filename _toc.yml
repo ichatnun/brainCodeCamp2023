@@ -42,6 +42,8 @@ parts:
       title: 01_numpy
     - file: Fundamentals/01_Prereqs/02_intro_pytorch
       title: Pytorch
+    - file: Fundamentals/01_Prereqs/03_intro_to_convolutional_nn
+      title: CNN
 
   - caption: Model Selection
     chapters:
@@ -113,5 +115,12 @@ parts:
     - file: Fundamentals/SignalProcessing/signal_processing_part2_dft
     - file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
     - file: Fundamentals/SignalProcessing/signal_processing_part4_application
+
+  - caption: Applications
+    chapters: 
+    - file: Applications/EEG/EEG_Intro
+      sections:
+      - file: Applications/EEG/motor_imagery_part1
+      - file: Applications/EEG/motor_imagery_part2
 
 
