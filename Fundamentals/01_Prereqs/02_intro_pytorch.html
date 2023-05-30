@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/01_Prereqs/02_intro_pytorch';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introduction" href="../ModelSelection/model_selection_intro.html" />
+    <link rel="next" title="Classification with Convolutional Neural Network using PyTorch" href="03_intro_to_convolutional_nn.html" />
     <link rel="prev" title="NumPy" href="01_numpy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -196,6 +196,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="00_basic_python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_numpy.html">01_numpy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Pytorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_intro_to_convolutional_nn.html">CNN</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Selection</span></p>
 <ul class="nav bd-sidenav">
@@ -245,6 +246,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part2_dft.html">Discrete Fourier Transform (DFT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part3_STFT.html">Short Time Fourier Transform (STFT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../SignalProcessing/signal_processing_part4_application.html">Audio Example</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Applications/EEG/EEG_Intro.html">EEG</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Applications/EEG/motor_imagery_part1.html">Data Exploration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Applications/EEG/motor_imagery_part2.html">Data Analysis</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -393,6 +402,9 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-torch">Basic torch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd"><strong>Autograd</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-layers"><strong>Neural Network Layers</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-it-all-together"><strong>Put it all together</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -418,6 +430,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
 </div>
 <section id="basic-torch">
 <h2>Basic torch<a class="headerlink" href="#basic-torch" title="Permalink to this heading">#</a></h2>
@@ -432,6 +449,13 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1., 2., 3.])
+3
+torch.Size([3])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -443,6 +467,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0., 0., 0.],
+        [0., 0., 0.],
+        [0., 0., 0.]])
+tensor([[1., 1., 1., 1.],
+        [1., 1., 1., 1.],
+        [1., 1., 1., 1.]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -450,6 +484,12 @@ document.write(`
 
 <span class="nb">print</span><span class="p">(</span><span class="n">a_r</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_r</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.0000, 0.2000, 0.4000, 0.6000, 0.8000])
+5
 </pre></div>
 </div>
 </div>
@@ -470,6 +510,18 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 3., 10.],
+        [ 0., -6.]])
+tensor([[-1., -4.],
+        [ 8., -2.]])
+tensor([[  2.,  21.],
+        [-16.,   8.]])
+tensor([[ 0.5000,  0.4286],
+        [-1.0000,  2.0000]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -477,7 +529,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-10.,   1.],
+        [ 24.,  36.]])
+</pre></div>
 </div>
+</div>
+</div>
+</section>
+<section id="autograd">
+<h2><strong>Autograd</strong><a class="headerlink" href="#autograd" title="Permalink to this heading">#</a></h2>
 <p>นอกจากนั้น <code class="docutils literal notranslate"><span class="pre">torch</span></code> ยังมี engine ที่ชื่อว่า Autograd ที่สามารถทำให้เราหา gradient ของฟังก์ชันจากตัวแปรที่กำหนดได้ ยกตัวอย่างเช่นถ้าเรามี <span class="math notranslate nohighlight">\(x = 1\)</span> แล้วต้องการหา <span class="math notranslate nohighlight">\(df / dx\)</span> ของฟังก์ชั่น <span class="math notranslate nohighlight">\(f(x) = x^2 - 10 x + 5\)</span> จะสามารถเขียนด้วย Pytorch ได้ดังนี้:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -488,7 +549,118 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(-8.)
+</pre></div>
 </div>
+</div>
+</div>
+</section>
+<section id="neural-network-layers">
+<h2><strong>Neural Network Layers</strong><a class="headerlink" href="#neural-network-layers" title="Permalink to this heading">#</a></h2>
+<p>Pytorch มี Neural network layer แบบต่างๆที่เราสามารถดึงมาใช้และประกอบร่างให้เป็น Neural network ได้ นึกภาพตามง่ายๆคือ neural network layer เสมือนเป็น building block ของ Neural Network ก็ได้ โดยเราสามารถดึงเลเยอร์ต่างๆมาใช้ได้หลากหลายประเภท เช่น <code class="docutils literal notranslate"><span class="pre">nn.Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code>, … ในการสร้าง layer ขึ้นมาพารามิเตอร์จะถูกสุ่มในตอนที่สร้าง แต่เมื่องเราเทรนโมเดลด้วยชุดข้อมูลที่ป้อนให้ neural network และทำการอัพเดทพารามิเตอร์ ค่าเหล่านี้จะถูกปรับให้ถูกใช้งาน</p>
+<p>โดยทั่วไป Pytorch จะให้ input dimension แรกของ layer เป็น batch size และขนาดของ input และ output เมื่อผ่าน layer จะขึ้นอยู่กับเลเยอร์ที่เราเลือก ยกตัวอย่างเช่น <code class="docutils literal notranslate"><span class="pre">nn.Linear(5,</span> <span class="pre">3)</span></code> จะรับ input ที่มีขนาด 5 และ output ขนาด 3 ดังนั้น ถ้าเรามีข้อมูลตารางที่มี 10 แถว (batch size = 10) 5 features (columns) หรือขนาด 10 x 5 เมื่อผ่าน Linear layer ก็จะได้ขนาดออกมาเป็น 10 x 3 ตัวอย่างด้านล่างเราจะลองสร้างข้อมูลตามที่อธิบายเพื่อป้อนให้ Linear layer ที่เราสร้างขึ้น</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of input = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">x_out</span> <span class="o">=</span> <span class="n">fc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_out</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of output = &quot;</span><span class="p">,</span> <span class="n">x_out</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 0.5322, -0.3053,  0.1043, -0.4919, -1.1238],
+        [ 1.0170,  0.0496, -0.2312, -0.9472, -2.2531],
+        [ 0.5595,  0.5000,  0.2074, -1.9459, -0.5302],
+        [-0.6784,  0.8662,  0.4673, -0.2919,  0.3568],
+        [-1.3785,  1.5481,  1.6534,  1.2843,  0.9978],
+        [-0.6092,  0.5994,  0.3895,  0.2247,  1.0194],
+        [ 1.1571, -0.0898, -0.6605,  1.0379,  0.9274],
+        [ 0.8768,  0.9874, -0.1047,  1.3554,  0.2071],
+        [ 0.5120, -0.5372,  1.0576,  1.5728,  0.5447],
+        [ 0.5920, -0.3496, -2.1315,  1.0193,  0.9318]])
+Shape of input =  torch.Size([10, 5])
+tensor([[-0.0368, -0.2593,  0.5598],
+        [-0.5351, -0.4155,  0.7522],
+        [-0.5084,  0.5320,  0.6902],
+        [-0.3991,  0.4646,  0.3325],
+        [-0.4004, -0.0218, -0.3860],
+        [ 0.1429,  0.5252,  0.1787],
+        [ 1.3860,  0.2824,  0.0411],
+        [ 0.5697, -0.0696, -0.1828],
+        [ 1.1702, -0.6703, -0.3447],
+        [ 1.3835,  0.8544,  0.6054]], grad_fn=&lt;AddmmBackward0&gt;)
+Shape of output =  torch.Size([10, 3])
+</pre></div>
+</div>
+</div>
+</div>
+<p>เราสามารถนำ layer ต่างๆมาประกอบร่างกันด้วยการสร้าง class <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> ได้ ยกตัวอย่างถ้าเราต้องการสร้าง neural network ที่มี 2 layer ที่ประกอบด้วย layer แรกที่รับฟีเจอร์ขนาด 5 และได้ผลออกมาเป็นฟีเจอร์ขนาด 3 ถัดมาคือการนำฟีเจอร์ขนาด 3 และได้ผลออกมาเป็นฟีเจอร์ขนาด 1 เพื่อนำไปใช้ต่อ จะเขียนได้ดังนี้</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>จากนั่นเราจะสามารถสร้างชุดข้อมูลเล่นๆ เช่น x ที่มีขนาด 4 x 5 หรือ batch size = 4 และมี 5 ฟีเจอร์ เพื่อทดลองป้อนเข้าไปในโมเดลได้ โดยดังที่กล่าวไปข้างต้น การสร้างโมเดลนี้ยังไม่ได้รวมการเทรนพารามิเตอร์ของโมเดล สำหรับผู้ที่เริ่มต้น สามารถทดลองสร้างโมเดลและป้อนชุดข้อมูลสุ่มเพื่อทดลองว่ามิติของข้อมูลที่เราเตรียมสามารถใส่เข้าไปใน neural network ที่เราสร้างขึ้นได้หรือไม่</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">x_out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input x: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input shape = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output from network x_out: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">x_out</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output shape = &quot;</span><span class="p">,</span> <span class="n">x_out</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Input x: 
+ tensor([[-1.6471,  1.7493, -0.0529,  0.5742, -2.1234],
+        [-1.5412, -0.7041, -1.1932, -0.1249,  0.6539],
+        [-0.0605, -0.3132, -0.3388,  0.3613, -0.4370],
+        [ 0.3344, -0.4876, -0.8606, -0.3700, -1.5940]])
+Input shape =  torch.Size([4, 5])
+Output from network x_out: 
+ tensor([[-0.1010],
+        [ 0.2171],
+        [ 0.3244],
+        [ 0.3286]], grad_fn=&lt;AddmmBackward0&gt;)
+Output shape =  torch.Size([4, 1])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="put-it-all-together">
+<h2><strong>Put it all together</strong><a class="headerlink" href="#put-it-all-together" title="Permalink to this heading">#</a></h2>
+<p>หลังจากที่เราได้ทดลองสร้างโมเดลเป็นที่เรียบร้อย ขั้นตอนถัดไปประกอบด้วย</p>
+<ul class="simple">
+<li><p>การเตรียมชุดข้อมูล เตรียมชุดข้อมูลเพื่อป้อนให้ neural network</p></li>
+<li><p>การเทรนโมเดล ทำการป้อนข้อมูลให้ neural network สำหรับใช้ในการเรียนพารามิเตอร์ของโมเดล</p></li>
+</ul>
+<p>ซึ่งเราจะไปทดลองเขียน Convolutional neural network (CNN) ในบทเรียนถัดไป</p>
 </section>
 </section>
 
@@ -533,11 +705,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../ModelSelection/model_selection_intro.html"
+       href="03_intro_to_convolutional_nn.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">Classification with Convolutional Neural Network using PyTorch</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -561,6 +733,9 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-torch">Basic torch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd"><strong>Autograd</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-layers"><strong>Neural Network Layers</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-it-all-together"><strong>Put it all together</strong></a></li>
 </ul>
   </nav></div>
 
