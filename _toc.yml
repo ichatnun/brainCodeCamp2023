@@ -37,7 +37,7 @@ parts:
       sections:
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L1_TopographicOrganization
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L2_BiologicalNeuron
-        - file: Fundamentals/BrainBuildingBlocks/Session5/S3L3_NeuralPopulationTuning
+        - file: Fundamentals/BrainBuildingBlocks/Session5/S5L3_NeuralPopulationTuning
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L4_NeuralRepresentation
     - file: Fundamentals/BrainBuildingBlocks/Session6/S6_Intro
       sections:
@@ -88,8 +88,6 @@ parts:
     chapters: 
     - file: Fundamentals/MachineLearning/intro_to_machine_learning
       title: Introduction to Machine Learning
-  #   - file: Fundamentals/MachineLearning/linear_model.ipynb
-  #     title: Linear Models
     - file: Fundamentals/MachineLearning/knn
       title: K-Nearest Neighbors
     - file: Fundamentals/MachineLearning/logistic_regression
