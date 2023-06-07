@@ -192,6 +192,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../BrainBuildingBlocks/Session5/S5_Intro.html">Models of the Mind</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session5/S5L1_TopographicOrganization.html">Topographic Organization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session5/S5L2_BiologicalNeuron.html">Biological Neuron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session5/S5L3_NeuralPopulationTuning.html">Neural and Population Tuning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../BrainBuildingBlocks/Session5/S5L4_NeuralRepresentation.html">Neural Representation</a></li>
 </ul>
 </li>
@@ -446,7 +447,7 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="linear-model">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NCF1cqLCW84" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><section id="linear-model">
 <h2>โมเดลเชิงเส้น (Linear Model)<a class="headerlink" href="#linear-model" title="Permalink to this heading">#</a></h2>
 <p>กำหนดให้สมการความสัมพันธ์ระหว่าง x และ y ที่แท้จริง เป็นสมการเชิงเส้น <span class="math notranslate nohighlight">\(y = w_0 + w_1x\)</span> โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> คือค่าจุดตัดแกน y และ <span class="math notranslate nohighlight">\(w_1\)</span> คือค่าความชันของเส้นตรง</p>
 <p>ในการเก็บข้อมูลจริงมักมีสัญญาณรบกวน (noise) ที่มาจากหลายปัจจัย เช่น ความไม่เสถียรของเครื่องมือเก็บข้อมูล คลื่นไฟฟ้ากระแสสลับที่ใช้ในประเทศ ในกรณีที่เก็บข้อมูลผ่านอุปกรณ์อิเล็กทรอนิคส์ ปัจจัยเหล่านี้ส่งผลให้ข้อมูลที่เก็บมานั้นมีค่าที่แตกต่างไปจากความสัมพันธ์ที่แท้จริง ซึ่งสามารถเขียนอธิบายได้ด้วยสมการ <span class="math notranslate nohighlight">\(y = w_0 + w_1x + noise\)</span></p>
