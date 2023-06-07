@@ -23,9 +23,22 @@ parts:
     - file: Fundamentals/BrainBuildingBlocks/Session3/S3_Intro
       sections:
         - file: Fundamentals/BrainBuildingBlocks/Session3/S3L1_ConnectingBrainAndBehavior
-        - file: Fundamentals/BrainBuildingBlocks/Session3/S3L2_fMRIStudies
+        - file: Fundamentals/BrainBuildingBlocks/Session3/S3L2_SingleNeuronStudies
+        - file: Fundamentals/BrainBuildingBlocks/Session3/S3L3_EEGStudies
+        - file: Fundamentals/BrainBuildingBlocks/Session3/S3L4_fMRIStudies
     - file: Fundamentals/BrainBuildingBlocks/Session4/S4_Intro
+      sections:
+        - file: Fundamentals/BrainBuildingBlocks/Session4/S4L1_SolveTheBrainSignal
+        - file: Fundamentals/BrainBuildingBlocks/Session4/S4L2_NeuralFiring
+        - file: Fundamentals/BrainBuildingBlocks/Session4/S4L3_EEGSignal
+        - file: Fundamentals/BrainBuildingBlocks/Session4/S4L4_fMRISignal
+
     - file: Fundamentals/BrainBuildingBlocks/Session5/S5_Intro
+      sections:
+        - file: Fundamentals/BrainBuildingBlocks/Session5/S5L1_TopographicOrganization
+        - file: Fundamentals/BrainBuildingBlocks/Session5/S5L2_BiologicalNeuron
+        - file: Fundamentals/BrainBuildingBlocks/Session5/S3L3_NeuralPopulationTuning
+        - file: Fundamentals/BrainBuildingBlocks/Session5/S5L4_NeuralRepresentation
     - file: Fundamentals/BrainBuildingBlocks/Session6/S6_Intro
       sections:
         - file: Fundamentals/BrainBuildingBlocks/Session6/S6L1_DataHandlingAndExploration
@@ -33,7 +46,19 @@ parts:
         - file: Fundamentals/BrainBuildingBlocks/Session6/S6L3_TypesOfModeling
         - file: Fundamentals/BrainBuildingBlocks/Session6/S6L4_ModelEvaluation
     - file: Fundamentals/BrainBuildingBlocks/Session7/S7_Intro
-
+      sections:
+        - file: Fundamentals/BrainBuildingBlocks/Session7/S7L1_AIAndBI
+        - file: Fundamentals/BrainBuildingBlocks/Session7/S7L2_AIAndBI2
+        - file: Fundamentals/BrainBuildingBlocks/Session7/S7L3_SupervisedDeepLearning
+        - file: Fundamentals/BrainBuildingBlocks/Session7/S7L4_ReinforcementLearning
+        - file: Fundamentals/BrainBuildingBlocks/Session7/S7L5_UnsupervisedLearning
+        - file: Fundamentals/BrainBuildingBlocks/Session7/S7L6_LanguageModels
+    - file: Fundamentals/BrainBuildingBlocks/Session8/S8_Intro
+      sections:
+      - file: Fundamentals/BrainBuildingBlocks/Session8/S8L4_ComputationalNeuropsychiatry
+    - file: Fundamentals/BrainBuildingBlocks/Session9/S9_Intro
+      sections:
+      - file: Fundamentals/BrainBuildingBlocks/Session9/S9L2_BrainComputerInterface
   - caption: Prerequisites
     chapters:
     - file: Fundamentals/01_Prereqs/00_basic_python
@@ -61,44 +86,45 @@ parts:
   
   - caption: Machine Learning
     chapters: 
-    - file: Fundamentals/MachineLearning/intro.ipynb
+    - file: Fundamentals/MachineLearning/intro_to_machine_learning
       title: Introduction to Machine Learning
-    - file: Fundamentals/MachineLearning/linear_model.ipynb
-      title: Linear Models
-    - file: Fundamentals/MachineLearning/logistic_regression.ipynb
-      title: Logistic Regression
-    - file: Fundamentals/MachineLearning/decision_tree.ipynb
-      title: Decision Trees
-    - file: Fundamentals/MachineLearning/random_forest.ipynb
-      title: Random Forests
-    - file: Fundamentals/MachineLearning/multivariate.ipynb
-      title: Multivariate Pattern Analysis
-    - file: Fundamentals/MachineLearning/gradient_boosting.ipynb
-      title: Gradient Boosting
-    - file: Fundamentals/MachineLearning/svm.ipynb
-      title: Support Vector Machines
-    - file: Fundamentals/MachineLearning/knn.ipynb
+  #   - file: Fundamentals/MachineLearning/linear_model.ipynb
+  #     title: Linear Models
+    - file: Fundamentals/MachineLearning/knn
       title: K-Nearest Neighbors
-    - file: Fundamentals/MachineLearning/naive_bayes.ipynb
-      title: Naive Bayes
-    - file: Fundamentals/MachineLearning/clustering.ipynb
-      title: Clustering
-    - file: Fundamentals/MachineLearning/ensemble.ipynb
-      title: Ensemble Methods
-    - file: Fundamentals/MachineLearning/evaluation.ipynb
-      title: Evaluation
-    - file: Fundamentals/MachineLearning/feature_selection.ipynb
-      title: Feature Selection
-    - file: Fundamentals/MachineLearning/feature_engineering.ipynb
-      title: Feature Engineering
-    - file: Fundamentals/MachineLearning/feature_importance.ipynb
-      title: Feature Importance
-    - file: Fundamentals/MachineLearning/missing_data.ipynb
-      title: Missing Data
-    - file: Fundamentals/MachineLearning/imbalance.ipynb
-      title: Imbalanced Data
-    - file: Fundamentals/MachineLearning/interpretation.ipynb
-      title: Interpretation
+    - file: Fundamentals/MachineLearning/logistic_regression
+      title: Logistic Regression
+    - file: Fundamentals/MachineLearning/svm
+      title: Support Vector Machines
+    - file: Fundamentals/MachineLearning/decision_tree_random_forest
+      title: Decision Trees and Random Forest
+    - file: Fundamentals/MachineLearning/eeg_supervised_learning
+  #   - file: Fundamentals/MachineLearning/random_forest.ipynb
+  #     title: Random Forests
+  #   - file: Fundamentals/MachineLearning/multivariate.ipynb
+  #     title: Multivariate Pattern Analysis
+  #   - file: Fundamentals/MachineLearning/gradient_boosting.ipynb
+  #     title: Gradient Boosting
+  #   - file: Fundamentals/MachineLearning/naive_bayes.ipynb
+  #     title: Naive Bayes
+  #   - file: Fundamentals/MachineLearning/clustering.ipynb
+  #     title: Clustering
+  #   - file: Fundamentals/MachineLearning/ensemble.ipynb
+  #     title: Ensemble Methods
+  #   - file: Fundamentals/MachineLearning/evaluation.ipynb
+  #     title: Evaluation
+  #   - file: Fundamentals/MachineLearning/feature_selection.ipynb
+  #     title: Feature Selection
+  #   - file: Fundamentals/MachineLearning/feature_engineering.ipynb
+  #     title: Feature Engineering
+  #   - file: Fundamentals/MachineLearning/feature_importance.ipynb
+  #     title: Feature Importance
+  #   - file: Fundamentals/MachineLearning/missing_data.ipynb
+  #     title: Missing Data
+  #   - file: Fundamentals/MachineLearning/imbalance.ipynb
+  #     title: Imbalanced Data
+  #   - file: Fundamentals/MachineLearning/interpretation.ipynb
+  #     title: Interpretation
 
   - caption: Deep Learning
     chapters: 
