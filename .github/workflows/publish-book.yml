@@ -33,7 +33,11 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install jupyter-book ghp-import
-
+          
+      - name: Clean book
+        run: |
+          jupyter-book clean .
+          
       - name: Build book
         run: |
           jupyter-book build .
