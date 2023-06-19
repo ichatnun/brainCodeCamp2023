@@ -78,12 +78,12 @@ parts:
     chapters:
     - file: Fundamentals/ComputationalNeuroscience/Intro
 
-  - caption: Model Selection (Week 3)
+  - caption: Introduction to Modeling (Week 3)
     chapters:
-    - file: Fundamentals/ModelSelection/model_selection_intro
-    - file: Fundamentals/ModelSelection/model_selection_part1_lin_reg_eval_metric
-    - file: Fundamentals/ModelSelection/model_selection_part2_poly_overfit_regularization
-    - file: Fundamentals/ModelSelection/model_selection_part3_data_splitting
+    - file: Fundamentals/IntroToModeling/modeling_intro
+    - file: Fundamentals/IntroToModeling/modeling_part1_lin_reg_eval_metric
+    - file: Fundamentals/IntroToModeling/modeling_part2_poly_overfit_regularization
+    - file: Fundamentals/IntroToModeling/modeling_part3_data_splitting
   
   - caption: Machine Learning (Week 4)
     chapters: 
