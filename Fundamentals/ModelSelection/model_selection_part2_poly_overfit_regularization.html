@@ -840,15 +840,18 @@ Estimated intercept 8.19
 <p>จากตัวอย่างที่เรากำหนดให้ <span class="math notranslate nohighlight">\(p=15\)</span> ซึ่งเป็น polynomial ที่มี order = 15 หรือมีตัวแปรทั้งหมด 16 ตัว (<span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_{15}}\)</span>) เราพบปัญหา overfitting</p>
 <p>ในตัวอย่างนี้เราจะลองใช้เทคนิค regularization ทดลองดูว่าเราจะสามารถบรรเทาปัญหา overfitting ที่พบเจอได้หรือไม่</p>
 <p>ในรูปแบบมาตรฐานของการใช้เทคนิค regularization เราจะเปลี่ยนหน้าตาของ loss function ไปจากเดิม โดยการเพิ่มพจน์ (term) เข้าไป เช่น การเปลี่ยน loss function ไปเป็น <span class="math notranslate nohighlight">\(L(y, \hat{y}) =\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_p})\right)^{2} +λ R(w)\)</span></p>
-<p>เราเรียก <span class="math notranslate nohighlight">\(R(w)\)</span> ว่าเป็น regularization term ซึ่ง regularization ที่เราจะเห็นได้บ่อยๆ ประกอบด้วย</p>
+<p>เราเรียก <span class="math notranslate nohighlight">\(R(w)\)</span> ว่าเป็น regularization term ซึ่ง regularization ที่เราจะเห็นได้บ่อยที่สุด ประกอบด้วย</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(R(w)=\|w\|^2_2 = \hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2\)</span> หรือ L2 regularization</p></li>
+<li><p><span class="math notranslate nohighlight">\(R(w)=\|w\|^2_2 = \hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2\)</span> ซึ่งมีชื่อเรียกว่า L2 regularization หรือ Tikhonov regularization</p></li>
 <li><p><span class="math notranslate nohighlight">\(R(w)=\|w\|_1 = |\hat{w_0}| + |\hat{w_1}| + ... + |\hat{w_{15}}|\)</span> หรือ L1 regularization</p></li>
 </ul>
-<p>การเพิ่ม regularization term เข้าไป จะส่งผลให้โจทย์ที่เราต้องแก้เปลี่ยนหน้าตาไปเป็น</p>
+<p>ถ้าหากเราเพิ่ม L2 regularization term เข้าไป จะส่งผลให้โจทย์ที่เราต้องแก้เปลี่ยนหน้าตาไปเป็น</p>
 <p><span class="math notranslate nohighlight">\(\min_{\hat{w}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_p})\right)^{2} +λ  (\hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2)\)</span></p>
-<p>ในการหาค่าต่ำสุดของฟังก์ชันอันใหม่นี้ เราต้องการให้ทั้ง term ที่ 1 และ term ที่ 2 มีค่าที่ต่ำ</p>
+<p>ซึ่งเราเรียกว่า Ridge regression ในการหาค่าต่ำสุดของฟังก์ชันอันใหม่นี้ เราต้องการให้ทั้ง term ที่ 1 และ term ที่ 2 มีค่าที่ต่ำ</p>
 <p>โดยที่มี <span class="math notranslate nohighlight">\(λ\ge0\)</span> เป็นตัวเลขที่ใช้ balance ว่า เราจะให้ความสำคัญกับ  term ที่ 1 หรือ term ที่ 2 มากกว่ากัน</p>
+<p>ถ้าหากเราเพิ่ม L1 regularization term เข้าไป โจทย์ของเราจะเปลี่ยนไปเป็น</p>
+<p><span class="math notranslate nohighlight">\(\min_{\hat{w}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_p})\right)^{2} +λ  (\hat{|w_0|} + \hat{|w_1|} + ... + \hat{|w_{15}}|)\)</span></p>
+<p>ซึ่งเราจะเรียกว่า Least Absolute Shrinkage and Selection Operator (LASSO) โดยเราสามารถใช้ <span class="math notranslate nohighlight">\(λ\ge0\)</span> เป็นตัวกำหนดความสำคัญของแต่ละ term ได้เช่นกัน</p>
 <hr class="docutils" />
 <p><strong>ตัวอย่าง</strong>
 สมมติเราใช้ L2 regularization โจทย์ของเราก็คือ</p>
