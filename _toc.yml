@@ -81,7 +81,7 @@ parts:
   - caption: Introduction to Modeling (Week 3)
     chapters:
     - file: Fundamentals/IntroToModeling/modeling_intro
-    - file: Fundamentals/IntroToModeling/modeling_part1_lin_reg_eval_metric
+    - file: Fundamentals/IntroToModeling/modeling_part1_simple_linear_model
     - file: Fundamentals/IntroToModeling/modeling_part2_poly_overfit_regularization
     - file: Fundamentals/IntroToModeling/modeling_part3_data_splitting
   
