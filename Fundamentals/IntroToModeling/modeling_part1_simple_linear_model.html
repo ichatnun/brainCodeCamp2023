@@ -449,7 +449,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="simple-linear-model">
 <h1>Simple Linear Model<a class="headerlink" href="#simple-linear-model" title="Permalink to this heading">#</a></h1>
 <p>ถ้าลองนึกภาพตามง่ายๆในมุมมองของผู้สร้างโมเดล เราอาจจะสร้างโมเดลที่มีความซับซ้อนมากๆและทำนายชุดข้อมูลที่เรามีได้ดีมาก หรืออาจจะสร้างโมเดลที่ซับซ้อนน้อยลงมาหน่อยแต่ก็ยังทำนายชุดข้อมูลที่เรามีได้ดีรองลงมาก็ได้ ตัวเลือกในการสร้างโมเดลมีหลากหลายรูปแบบ แต่ว่าเราจะเลือกโมเดลที่เหมาะสมได้อย่างไร?</p>
-<p>ในบทเรียนนี้เราจะลองสร้างโมเดลทำนายชุดข้อมูลในรูปแบบต่างๆ และดูกันว่าโมเดลแบบใดจะเหมาะสมกับชุดข้อมูลตัวอย่างของเรา</p>
+<p>ในบทเรียนนี้เราจะลองสร้างโมเดลทำนายชุดข้อมูลในรูปแบบต่าง ๆ และดูกันว่าโมเดลแบบใดจะเหมาะสมกับชุดข้อมูลตัวอย่างของเรา</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -467,16 +467,20 @@ document.write(`
 <p>กำหนดให้สมการความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง เป็นสมการเชิงเส้น</p>
 <div class="math notranslate nohighlight">
 \[y = w_0 + w_1x\]</div>
-<p>โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> คือค่าจุดตัดแกน y และ <span class="math notranslate nohighlight">\(w_1\)</span> คือค่าความชันของเส้นตรง แต่ในการเก็บข้อมูลจริงมักมีสัญญาณรบกวน (noise) ที่มาจากหลายปัจจัย เช่น ความไม่เสถียรของเครื่องมือเก็บข้อมูล คลื่นไฟฟ้ากระแสสลับที่ใช้ในประเทศ  ในกรณีที่เก็บข้อมูลผ่านอุปกรณ์อิเล็กทรอนิคส์ หรืออาจจะมี noise ที่เราไม่รู้ว่ามาจากกระบวนการไหนก็ตาม ปัจจัยเหล่านี้ส่งผลให้ข้อมูลที่เก็บมานั้นมีค่าที่แตกต่างไปจากความสัมพันธ์ที่แท้จริง ซึ่งสามารถเขียนอธิบายได้ด้วยสมการ</p>
-<p>$<span class="math notranslate nohighlight">\(y = w_0 + w_1x + noise\)</span>$ แทน</p>
+<p>โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> คือค่าจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> คือค่าความชันของเส้นตรง แต่ในการเก็บข้อมูลจริงมักมีสัญญาณรบกวน (noise) ที่มาจากหลายปัจจัย เช่น ความไม่เสถียรของเครื่องมือเก็บข้อมูล คลื่นไฟฟ้ากระแสสลับที่ใช้ในประเทศ ในกรณีที่เก็บข้อมูลผ่านอุปกรณ์อิเล็กทรอนิคส์ หรืออาจจะมี noise ที่เราไม่รู้ว่ามาจากกระบวนการไหนก็ตาม ปัจจัยเหล่านี้ส่งผลให้ข้อมูลที่เก็บมานั้นมีค่าที่แตกต่างไปจากความสัมพันธ์ที่แท้จริง ซึ่งสามารถเขียนอธิบายได้ด้วยสมการ</p>
+<div class="math notranslate nohighlight">
+\[y = w_0 + w_1x + noise\]</div>
+<p>แทน</p>
 <p><br><br>
 ในส่วนนี้เราจะลองทดลองเลียนแบบกระบวนการเก็บข้อมูลผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">generate_sample_linear</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
   <span class="c1"># สร้างสมการเส้นตรงโดยที่จำลองการใส่สัญญาณรบกวนเข้าไป</span>
   <span class="c1"># เลือก include_noise เป็น True เพื่อกำหนดให้มีค่า noise เพิ่มเข้าไปในสมการ</span>
   <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
+    <span class="c1"># สร้าง Gaussian noise</span>
     <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
   <span class="k">else</span><span class="p">:</span>
     <span class="n">noise</span> <span class="o">=</span> <span class="mi">0</span>
@@ -485,14 +489,14 @@ document.write(`
 
 <span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_sample_linear</span>
 <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># กำหนดค่า w0 และ w1 ที่แท้จริง สำหรับสร้างข้อมูล</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.5</span> <span class="c1"># สุ่มค่า x จากพิสัย -2.5 ถึง 2.5</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">generate_sample_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># สร้างข้อมูลที่ไม่มีสัญญาณรบกวนมาเปรียบเทียบ ซึ่งเป็นข้อมูลที่เรามักไม่มีโอกาสเข้าถึงในชีวิตจริง</span>
+<span class="c1"># สร้างข้อมูลที่ไม่มีสัญญาณรบกวนมาเปรียบเทียบ ซึ่งเป็นข้อมูลที่เรามักไม่มีโอกาสเข้าถึงในชีวิตจริง (จะใช้ในภายหลัง)</span>
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">generate_sample_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># สร้างข้อมูลที่ไม่มีสัญญาณรบกวนมาแบบละเอียด เพื่อใช้ในการวาดกราฟ (เส้นประสีดำ)</span>
+<span class="c1"># สร้างข้อมูลที่ไม่มีสัญญาณรบกวนมาแบบละเอียดสำหรับค่า x จำนวนมาก เพื่อใช้ในการวาดกราฟ (เส้นประสีดำ)</span>
 <span class="n">x_whole_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y_true_whole_line</span> <span class="o">=</span> <span class="n">generate_sample_linear</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -507,13 +511,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a063bc7075903470005b9523a4d3007eb2551c74650a1770ed1111714b7b3762.png" src="../../_images/a063bc7075903470005b9523a4d3007eb2551c74650a1770ed1111714b7b3762.png" />
+<img alt="../../_images/9d2e20cebe15e12d9a32ee3bf73baca5d190a6ab93dd98bb4a8cf2d68491373d.png" src="../../_images/9d2e20cebe15e12d9a32ee3bf73baca5d190a6ab93dd98bb4a8cf2d68491373d.png" />
 </div>
 </div>
 <p>กำหนดให้เรามีจำนวนจุดข้อมูลในรูปด้านบนทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span> แสดงด้วยสีน้ำเงิน หากเราพิจารณาภาพความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> กับ <span class="math notranslate nohighlight">\(y\)</span> จากการรันโค้ดด้านบน จะพบว่ามีลักษณะคล้ายกับเส้นตรง</p>
-<p><strong>หมายเหตุ</strong> ถึงแม้ว่าในรูปด้านบน เราจะ plot เส้นประสีดำ ซึ่งแสดงความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง (ปราศจากสัญญาณรบกวน) แต่ในชีวิตจริง เรามักจะไม่มีโอกาสเข้าถึงข้อมูลตรงนี้ได้เลย</p>
+<p><strong>หมายเหตุ</strong> ถึงแม้ว่าในรูปด้านบน เราจะ plot เส้นประสีดำ ซึ่งแสดงความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง (ปราศจากสัญญาณรบกวน) ได้ แต่ในชีวิตจริง เรามักจะไม่มีโอกาสเข้าถึงข้อมูลตรงนี้ได้เลย</p>
 <p><br><br></p>
-<p>สมมติว่ามีคนเดินมาถามเราว่า ถ้าค่า <span class="math notranslate nohighlight">\(x\)</span> มีค่าเป็น 0.8 แล้ว <span class="math notranslate nohighlight">\(y\)</span> ควรจะมีค่าเป็นเท่าไหร่ เราจะตอบเค้าว่าอย่างไรดี</p>
+<p>สมมติว่ามีคนเดินมาถามเราว่า ถ้า <span class="math notranslate nohighlight">\(x\)</span> มีค่าเป็น <span class="math notranslate nohighlight">\(0.8\)</span> แล้ว <span class="math notranslate nohighlight">\(y\)</span> ควรจะมีค่าเป็นเท่าไหร่ เราจะตอบเค้าว่าอย่างไรดี</p>
 <p>ในการให้คำตอบตรงนี้ เราสามารถทำได้หลายวิธีมาก ๆ เช่น</p>
 <ul class="simple">
 <li><p>ถ้าเกิดว่าเราไปไล่ดูจุดข้อมูลทั้ง <span class="math notranslate nohighlight">\(n\)</span> จุดในชุดข้อมูลของเรา พบว่ามีจุด <span class="math notranslate nohighlight">\((0.8, 2.6)\)</span> อยู่ เราก็อาจจะตอบได้ว่า <span class="math notranslate nohighlight">\(y\)</span> น่าจะมีค่าเป็น <span class="math notranslate nohighlight">\(2.6\)</span></p></li>
@@ -527,7 +531,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\hat{w_1}\)</span> เป็นค่าความชันของเส้นตรง</p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{y}\)</span> เป็นค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายมาจากสมการเส้นตรงของเรา สำหรับค่า <span class="math notranslate nohighlight">\(x\)</span> ใด ๆ</p></li>
 </ul>
-<p>ถ้าเกิดว่าเราสามารถหาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> ที่เหมาะสมออกมาได้ เราสามารถทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> เป็น <span class="math notranslate nohighlight">\(\hat{w_0} + \hat{w_1} x\)</span> จากค่า <span class="math notranslate nohighlight">\(x\)</span> ใด ๆ ได้ทันที โดยที่ไม่ต้องไปนั่งไล่ดูจุดข้อมูลทั้ง <span class="math notranslate nohighlight">\(n\)</span> จุดในชุดข้อมูลเลย</p>
+<p>ถ้าเกิดว่าเราสามารถหาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> ที่เหมาะสมออกมาได้ (ซึ่งเราก็หวังว่ามันจะเป็นค่าเดียวกับ <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> ของความสัมพันธ์จริง) เราจะสามารถทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> เป็น <span class="math notranslate nohighlight">\(\hat{w_0} + \hat{w_1} x\)</span> จากค่า <span class="math notranslate nohighlight">\(x\)</span> ใด ๆ ได้ทันที โดยที่ไม่ต้องไปนั่งไล่ดูจุดข้อมูลทั้ง <span class="math notranslate nohighlight">\(n\)</span> จุดในชุดข้อมูลเลย</p>
 <p>ใน code ด้านล่าง เรามาลองปรับค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> กัน เพื่อหาดูว่าค่าที่เหมาะสมมีค่าเป็นเท่าไหร่</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -563,11 +567,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ac79472fcdcc4f609aae88bb8e95e7c6"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "56f613dd21764f538b5f8ed3e5262eea"}</script></div>
 </div>
 <p>จะเห็นได้ว่าเราสามารถลองปรับค่าความชันและจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> ของเส้นตรงไปเรื่อย ๆ จนมีความสอดคล้องกับชุดข้อมูลที่เราเก็บมา (สีน้ำเงิน)</p>
 <p>หากเรากำหนดให้ค่า <span class="math notranslate nohighlight">\(\hat{w_0}=1\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}=2\)</span> จะพบว่าเส้นตรงสีแดงมีความสอดคล้องกับจุดสีน้ำเงินค่อนข้างดี โดยเส้นตรงนั้นมีสมการคือ <span class="math notranslate nohighlight">\(y = 2x + 1\)</span> ซึ่งเป็นเส้นตรงที่มีความชันเป็น <span class="math notranslate nohighlight">\(2\)</span> และมีจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> คือ <span class="math notranslate nohighlight">\((0,1)\)</span></p>
-<p>อีกวิธีหนึ่งที่อาจจะช่วยให้เราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ด้วยตาได้ง่ายขึ้น คือการ plot โชว์ความแตกต่างระหว่างจุดที่ observed มา (สีน้ำเงิน) และสิ่งที่โมเดลทำนายออกมา ดังตัวอย่างโค้ดด้านล่าง โดยเราจะพยายามเลือกเอาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ที่ทำให้เส้นสีส้ม ๆ ในรูปมีขนาดรวมกันสั้นที่สุด ซึ่งเส้นสีส้มแต่ละเส้นมีชื่อเรียกว่า residual</p>
+<p>อีกวิธีหนึ่งที่อาจจะช่วยให้เราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ด้วยตาได้ง่ายขึ้น คือการ plot โชว์ความแตกต่างระหว่างจุดที่ observed มา (สีน้ำเงิน) และสิ่งที่โมเดลทำนายออกมา (สีแดง) ดังตัวอย่างโค้ดด้านล่าง โดยเราจะพยายามเลือกเอาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ที่ทำให้เส้นสีส้ม ๆ ในรูปมีขนาดรวมกันสั้นที่สุด ซึ่งเส้นสีส้มแต่ละเส้นมีชื่อเรียกว่า residual</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># เพิ่มแถบสำหรับปรับค่า w1_hat และ w2_hat</span>
@@ -610,26 +614,28 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9240b0bcf66044cbba2f078b9982aa04"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a8fbb0bf96d54203a72fc26184fe5ac0"}</script></div>
 </div>
-<p>ที่ผ่านมาเราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> โดยการดูว่าเส้นตรงสีแดงที่เกิดขึ้นมานั้น ดูสอดคล้องกับจุดข้อมูลสีน้ำเงินมากน้อยแค่ไหน ซึ่งนับว่าเป็นจากวัดความเหมือนหรือความแตกต่างเชิงคุณภาพ (qualitative) ในลำดับถัดไป เราจะมาลองดูวิธีการวัดความเหมือนหรือความแตกต่างเชิงปริมาณกันบ้าง (quantitative)</p>
+<p>ที่ผ่านมาเราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> โดยการดูด้วยตาว่าเส้นตรงสีแดงที่เกิดขึ้นมานั้น ดูสอดคล้องกับจุดข้อมูลสีน้ำเงินมากน้อยแค่ไหน ซึ่งนับว่าเป็นจากวัดความเหมือนหรือความแตกต่างเชิงคุณภาพ (qualitative)</p>
+<p>ในลำดับถัดไป เราจะมาลองดูวิธีการวัดความเหมือนหรือความแตกต่างเชิงปริมาณกันบ้าง (quantitative)</p>
 <p>เรามาลองใช้ฟังก์ชัน <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> สำหรับวัดความต่างระหว่าง <span class="math notranslate nohighlight">\(y_{i}\)</span> และ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> ออกมาเป็นตัวเลข 1 ตัว โดยการนำเอาค่าทั้งสองมาลบกันแล้วยกกำลังสอง</p>
 <div class="math notranslate nohighlight">
 \[L(y_{i},\hat{y_i}) = (y_{i} - \hat{y_i})^2\]</div>
 <ul class="simple">
-<li><p>ถ้า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> มีค่าน้อย แสดงว่า <span class="math notranslate nohighlight">\(y_{i}\)</span> กับ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มีความแตกต่างกันน้อย</p></li>
-<li><p>ถ้า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> มีค่ามาก แสดงว่า <span class="math notranslate nohighlight">\(y_{i}\)</span> และ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มีความแตกต่างกันมาก</p></li>
-<li><p>ถ้าหากเราสังเกตดูดี ๆ เราจะเห็นว่าค่า <span class="math notranslate nohighlight">\(y_{i} - \hat{y_i}\)</span> แสดงถึง”ความยาว”ของเส้นสีส้มแต่ละเส้น ในโค้ด cell ก่อนหน้า ซึ่งแปลว่าค่า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> นี้ ก็คือค่าความยาวของเส้นสีส้มยกกำลังสองนั่นเอง</p></li>
+<li><p>ถ้าหากเราพยายามนำเอาสมการนี้ไปตีความทางเรขาคณิต เราจะเห็นว่าค่า <span class="math notranslate nohighlight">\(y_{i} - \hat{y_i}\)</span> แสดงถึง”ความยาว”ของเส้นสีส้มแต่ละเส้นในโค้ดของ cell ก่อนหน้า ซึ่งแปลว่าค่า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> นี้ ก็คือค่าความยาวของเส้นสีส้มยกกำลังสองนั่นเอง</p></li>
+<li><p>ถ้า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> มีค่าน้อย แสดงว่า <span class="math notranslate nohighlight">\(y_{i}\)</span> กับ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มีความแตกต่างกันน้อย (เส้นสีส้มจะสั้น)</p></li>
+<li><p>ถ้า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> มีค่ามาก แสดงว่า <span class="math notranslate nohighlight">\(y_{i}\)</span> และ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มีความแตกต่างกันมาก (เส้นสีส้มจะยาว)</p></li>
 </ul>
 <p>ชุดข้อมูลของเรามีทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด ซึ่งหากเราต้องการวัดความแตกต่างในระดับชุดข้อมูล เราก็สามารถเอาค่า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> จากแต่ละจุดข้อมูลมาเฉลี่ยกันได้ เกิดเป็นสมการ</p>
 <div class="math notranslate nohighlight">
 \[L(Y,\hat{Y}) =\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}\]</div>
-<p>โดยในที่นี้เราใช้สัญลักษณ์</p>
+<p>ที่มีชื่อเรียกอีกว่า mean squared error (MSE) โดยในที่นี้เราใช้สัญลักษณ์</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Y\)</span> เพื่อแสดงถึง <span class="math notranslate nohighlight">\(y_1, y_2, ..., y_i, ..., y_n\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> เพื่ออ้างอิงถึง <span class="math notranslate nohighlight">\(y_1, y_2, ..., y_i, ..., y_n\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{Y}\)</span> เพื่ออ้างอิงถึง <span class="math notranslate nohighlight">\(\hat{y_1}, \hat{y_2}, ..., \hat{y_i}, ..., \hat{y_n}\)</span></p></li>
 </ul>
-<p>หากเราย้อนกลับไปที่ตัวอย่างด้านบนที่เราพยายามปรับค่า <span class="math notranslate nohighlight">\(\hat{w_0} และ \hat{w_1}\)</span> (จุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> และค่าความชัน ตามลำดับ) แทนที่เราจะวัดผลด้วยตา เราสามารถลองใช้ <span class="math notranslate nohighlight">\(L\)</span> สำหรับช่วยในการวัดผล โดยสุดท้ายแล้ว เราจะเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0} และ \hat{w_1}\)</span> ที่ทำให้ <span class="math notranslate nohighlight">\(L\)</span> มีค่าน้อยที่สุด อย่างไรก็ตาม การทดลองสุ่มค่าไปเรื่อย ๆ ในลักษณะนี้ เป็นวิธีการที่ใช้เวลานานมาก และไม่มีประสิทธิภาพ</p>
+<p>หากเราย้อนกลับไปที่ตัวอย่างด้านบนที่เราพยายามปรับค่า <span class="math notranslate nohighlight">\(\hat{w_0} และ \hat{w_1}\)</span> (จุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> และค่าความชัน ตามลำดับ) แทนที่เราจะวัดผลด้วยตา เราสามารถลองใช้ <span class="math notranslate nohighlight">\(L\)</span> สำหรับช่วยในการวัดผล โดยสุดท้ายแล้ว เราจะเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0} และ \hat{w_1}\)</span> ที่ทำให้ <span class="math notranslate nohighlight">\(L\)</span> มีค่าน้อยที่สุด</p>
+<p>อย่างไรก็ตาม การทดลองสุ่มค่าไปเรื่อย ๆ ในลักษณะนี้ เป็นวิธีการที่ใช้เวลานานมาก และไม่ค่อยมีประสิทธิภาพ</p>
 <p><br><br></p>
 <p>หากเรามองออกว่าโจทย์ที่เราพยายามแก้อยู่ เป็นโจทย์การหาค่าต่ำสุดของฟังก์ชัน <span class="math notranslate nohighlight">\(L\)</span> ซึ่งสามารถเขียนในทางคณิตศาสตร์ได้ว่า</p>
 <div class="math notranslate nohighlight">
@@ -638,7 +644,7 @@ document.write(`
 =\min_{\hat{w_{0}},\hat{w_{1}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
 = \min_{\hat{w_{0}},\hat{w_{1}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_{0}}+\hat{w_{1}}x_{i})\right)^{2}
 \]</div>
-<p>เราก็สามารถเอาเครื่องมือทางคณิตศาสตร์ (เช่น calculus, สถิติ และ linear algebra) มาแก้โจทย์ข้อนี้ได้ ซึ่งคำตอบที่ <span class="math notranslate nohighlight">\(\hat{w_{0}}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_{1}}\)</span> ที่ได้รับจากการแก้โจทย์ข้อนี้ ก็คือคำตอบที่ทำให้เส้นตรงของเรามีความแตกต่างจากข้อมูลที่เราเก็บมาน้อยที่สุด หรือพูดอีกอย่างว่ามีความเหมือนที่สุดนั่นเอง</p>
+<p>เราก็สามารถเอาเครื่องมือทางคณิตศาสตร์ (เช่น calculus, สถิติ และ linear algebra) มาแก้โจทย์ข้อนี้ได้ ซึ่งคำตอบที่ <span class="math notranslate nohighlight">\(\hat{w_{0}}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_{1}}\)</span> ที่ได้รับจากการแก้โจทย์ข้อนี้ ก็คือคำตอบที่ทำให้เส้นตรงของเรามีความแตกต่างจากข้อมูลที่เราเก็บมาน้อยที่สุดภายใต้มาตรวัดประเภทนี้ หรือพูดอีกอย่างว่ามีความเหมือนที่สุดนั่นเอง</p>
 <p><strong>หมายเหตุ</strong> เนื่องจาก <span class="math notranslate nohighlight">\(L\)</span> ในที่นี้แสดงถึงความแตกต่าง ซึ่งเราต้องการหาคำตอบที่ทำให้มันมีค่าน้อย (ความสูญเสียน้อย) เรามักจะเรียก <span class="math notranslate nohighlight">\(L\)</span> ในบริบทนี้ว่า loss function</p>
 <hr class="docutils" />
 <p>เนื่องจากมีผู้เรียนจำนวนหนึ่งยังไม่มีโอกาสได้เรียนเนื้อหาทางคณิตศาสตร์ที่จำเป็นต่อการแก้โจทย์ข้อนี้ (เช่น การใช้ calculus และ linear algebra) เราจะแก้โจทย์ข้อนี้ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> เลย</p>
@@ -648,7 +654,6 @@ document.write(`
 
 <span class="c1"># ให้โมเดลหาค่า w_0 and w_1 จากข้อมูล (x,y) ทั้งหมดที่มี</span>
 <span class="n">model_linear</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
 <span class="n">w0_hat</span> <span class="o">=</span> <span class="n">model_linear</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">w1_hat</span> <span class="o">=</span> <span class="n">model_linear</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
@@ -661,16 +666,16 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True slope 2.00
-Estimated slope 1.99
+Estimated slope 1.97
 
 True intercept 1.00
-Estimated intercept 1.08
+Estimated intercept 0.93
 </pre></div>
 </div>
 </div>
 </div>
-<p>จะเห็นว่าความชันและจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> ที่ประมาณจากโมเดล linear regression มีค่าใกล้กับค่าที่เรากำหนดมาตอนสุ่มชุดข้อมูล</p>
-<p>หลังจากที่เรา fit โมเดลแล้ว (โมเดลได้ทำการประมาณค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> เรียบร้อยแล้ว) เราสามารถทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> จาก <span class="math notranslate nohighlight">\(x_i\)</span> ใดๆ ได้จากสมการ <span class="math notranslate nohighlight">\( \hat{y_i} = \hat{w_0} + \hat{w_1}x_i\)</span> ได้โดยตรง หรือผ่านการเรียกใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">predict</span></code> ได้เช่นกัน</p>
+<p>จะเห็นว่าความชันและจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> ที่ประมาณจากโมเดล linear regression มีค่าใกล้กับค่าที่เรากำหนดมาตอนสร้างชุดข้อมูล</p>
+<p>หลังจากที่เรา fit โมเดลแล้ว (โมเดลได้ทำการประมาณค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> เรียบร้อยแล้ว) เราสามารถทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> จาก <span class="math notranslate nohighlight">\(x\)</span> ใดๆ ได้จากสมการ <span class="math notranslate nohighlight">\( \hat{y} = \hat{w_0} + \hat{w_1}x\)</span> ได้โดยตรง หรือผ่านการเรียกใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">predict</span></code> ได้เช่นกัน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ใช้โมเดลทำนายค่า y จากค่า x วิธีที่ 1</span>
@@ -699,24 +704,18 @@ Estimated intercept 1.08
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/19fcc96b5f51123098945d3665f4b2b2e0e3223b6385e62ff5aa71254153e25e.png" src="../../_images/19fcc96b5f51123098945d3665f4b2b2e0e3223b6385e62ff5aa71254153e25e.png" />
+<img alt="../../_images/54ec0db3af92fc7da8e6de412cad2cb9325f02fe7fa107638605b84acceb3407.png" src="../../_images/54ec0db3af92fc7da8e6de412cad2cb9325f02fe7fa107638605b84acceb3407.png" />
 </div>
 </div>
 <p>จากการสังเกตด้วยตา จะเห็นว่าค่า <span class="math notranslate nohighlight">\(y\)</span> ที่โมเดลได้ทำนายออกมา (จุดสีแดง) มีความสอดคล้องกับความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง (เส้นประสีดำ) มากกว่าข้อมูลที่เราเก็บมาเสียอีก (จุดสีน้ำเงิน)</p>
-<p>นอกจากการสังเกตด้วยตาแล้ว ในหลายสถานการณ์ การสรุปความเหมือนหรือความแตกต่างออกมาเป็นตัวเลข 1 ตัว ก็มีประโยชน์ต่อการสื่อสารกับผู้อื่นเช่นกัน</p>
-<p>ตัวอย่างด้านบนใช้การวัดความแตกต่างโดยใช้ฟังก์ชันที่มีชื่อว่า mean squared error (MSE) หากเรามีข้อมูลอยู่สองชุด
-(1) <span class="math notranslate nohighlight">\(y_1, y_2, ..., y_n\)</span>
-และ
-(2) <span class="math notranslate nohighlight">\(\hat{y_1}, \hat{y_2}, ..., \hat{y_n}\)</span></p>
-<p>เราสามารถคำนวณค่า MSE ระหว่างข้อมูลสองชุดนี้ผ่านสมการด้านล่าง</p>
+<p>นอกจากนั้น เราก็ได้ใช้ loss function ตัวเดิม</p>
 <div class="math notranslate nohighlight">
-\[
-MSE(Y,\hat{Y})=\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}
-\]</div>
-<p>โดยถ้า <span class="math notranslate nohighlight">\(y_i\)</span> มีค่าใกล้เคียงกับ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> สำหรับทุกค่า <span class="math notranslate nohighlight">\(i\)</span> จะมีค่า MSE น้อย
-ในทางกลับกัน ถ้า <span class="math notranslate nohighlight">\(y_i\)</span> มีค่าแตกต่างจาก <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มาก สำหรับทุกค่า <span class="math notranslate nohighlight">\(i\)</span> จะส่งผลให้มี MSE ที่สูง</p>
-<p>MSE เป็นแค่หนึ่งในวิธีสำหรับวัดผล (evaluation metric) เท่านั้น ยังมีอีกหลายวิธีที่ใช้วัดผลออกมาเป็นตัวเลข เช่น mean absolution error (MAE), accuracy, F-score ฯลฯ ซึ่ง evaluation metric แต่ละอัน วัดค่าความเหมือนหรือความแตกต่างด้วยการใช้มาตรวัดคนละตัว ซึ่งมีเหมาะกับสถานการณ์ที่แตกต่างกัน</p>
-<p>ใน module นี้ เราจะใช้ MSE เป็น evaluation metric ไปก่อน แต่ใน module ถัดๆ ไป เราจะได้เห็น evaluation metric ที่หลากหลายมากยิ่งขึ้น</p>
+\[MSE(Y,\hat{Y}) = L(Y,\hat{Y}) =\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-\hat{y_i}\right)^{2}\]</div>
+<p>มาเป็นมาตรวัดความเหมือน/ความคล้ายระหว่างชุดข้อมูลเชิงปริมาณ และพบว่า MSE ระหว่างค่า <span class="math notranslate nohighlight">\(y\)</span> ของจุดสีแดงกับค่า <span class="math notranslate nohighlight">\(y\)</span> ที่มาจากความสัมพันธ์ที่แท้จริง (สีดำ) มีค่าต่ำกว่า MSE ระหว่างค่า <span class="math notranslate nohighlight">\(y\)</span> ที่เราเก็บมาซึ่งมีสัญญาณรบกวน​ (สีน้ำเงิน) กับ ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่มาจากความสัมพันธ์ที่แท้จริง (สีดำ)</p>
+<p>จะเห็นได้ว่าการเปรียบเทียบทั้งแบบเชิงคุณภาพและเชิงปริมาณมีความสอดคล้องกันในระดับหนึ่ง</p>
+<p><br><br>
+MSE เป็นแค่หนึ่งในวิธีสำหรับวัดผล (evaluation metric) เท่านั้น ยังมีอีกหลายวิธีที่ใช้วัดผลออกมาเป็นตัวเลข เช่น mean absolution error (MAE), accuracy, F-score ฯลฯ ซึ่ง evaluation metric แต่ละอัน วัดค่าความเหมือนหรือความแตกต่างด้วยการใช้มาตรวัดคนละตัว ซึ่งมีเหมาะกับสถานการณ์ที่แตกต่างกัน</p>
+<p>ใน module นี้ เราจะใช้ MSE เป็น evaluation metric ไปก่อน แต่ใน module ถัด ๆ ไป หรือการทำงานจริง เราจะได้เห็น evaluation metric ที่หลากหลายมากยิ่งขึ้น</p>
 </section>
 </section>
 
