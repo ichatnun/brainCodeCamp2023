@@ -447,9 +447,9 @@ document.write(`
 <p>นอกจากนี้ เรายังได้ทดลองใช้เทคนิค regularization มาบรรเทาปัญหา overfitting และได้เห็นถึงความสำคัญในการเลือกค่า <span class="math notranslate nohighlight">\(λ\)</span> ที่เหมาะสม</p>
 <p>ใน part นี้ เราจะมาลองเรียนรู้วิธีการเลือก order ของ polynomial โดยการใช้การแบ่งข้อมูลของเราออกเป็น 3 ส่วน ประกอบด้วย</p>
 <ol class="arabic simple">
-<li><p>Training data - ข้อมูลสำหรับ fit เพื่อหาค่าตัวแปรของโมเดล เช่น <span class="math notranslate nohighlight">\(w\)</span> ใน linear regression และ polynomial regression</p></li>
+<li><p>Training data - ข้อมูลสำหรับ fit เพื่อหาค่าตัวแปรของโมเดล เช่น <span class="math notranslate nohighlight">\(\hat{W}\)</span> ใน linear regression และ polynomial regression</p></li>
 <li><p>Validation data - ข้อมูลสำหรับเลือก hyper-parameter เช่น order ของ polynomial</p></li>
-<li><p>Test data - ข้อมูลสำหรับให้ทดสอบวัดความแม่นยำของโมเดลเท่านั้น กล่าวคือ ข้อมูลชุดนี้จะไม่ถูกนำไป fit เพื่อหาค่าของตัวแปรใดๆ ในโมเดล (เหมือน training data) และข้อมูลนี้ก็ไม่ถูกใช้สำหรับเลือก order ของ polynomial (เหมือน validation data) อีกด้วย</p></li>
+<li><p>Test data - ข้อมูลสำหรับใช้ทดสอบวัดความแม่นยำของโมเดลเท่านั้น กล่าวคือ ข้อมูลชุดนี้จะไม่ถูกนำไป fit เพื่อหาค่าของตัวแปรใดๆ ในโมเดล (เหมือน training data) และข้อมูลนี้ก็ไม่ถูกใช้สำหรับเลือก order ของ polynomial (เหมือน validation data) อีกด้วย</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -475,7 +475,7 @@ document.write(`
                                <span class="n">poly_order</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># ค่า order ของ polynomial ที่เราใช้</span>
                                <span class="n">x_test_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># Python dictionary ที่ใช้เก็บชุดข้อมูลที่เราอยากจะนำมาทดสอบ โดยสามารถเลือกชุดข้อมูลผ่าน key ของ dictionary นี้</span>
                                <span class="n">y_test_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># Python dictionary ที่ใช้เก็บชุดข้อมูลที่ค่า y ที่เป็นเฉลยของข้อมูลที่นำมาทดสอบ โดยสามารถเลือกชุดข้อมูลผ่าน key ของ dictionary นี้</span>
-  
+
   <span class="c1"># สร้างตัวแปรประเภท Python dictionary สำหรับเก็บค่า output ของฟังก์ชันนี้</span>
   <span class="n">mse_dict</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า mse</span>
   <span class="n">out_x</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า x ที่ใช้เป็น input ของโมเดล</span>
@@ -504,7 +504,7 @@ document.write(`
 
   <span class="c1"># เพิ่ม training data เข้าไปใน test_dict เพื่อที่จะใช้เป็นหนึ่งในข้อมูลสำหรับที่จะให้โมเดลลองทำนาย</span>
   <span class="n">x_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_train</span>
-  <span class="n">y_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>  
+  <span class="n">y_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>
 
   <span class="c1"># ทดสอบโมเดลบนข้อมูลแต่ละชุดข้อมูล (แต่ละชุดข้อมูลถูกเลือกจาก key ของ dictionary)</span>
   <span class="k">for</span> <span class="n">curr_mode</span> <span class="ow">in</span> <span class="n">x_test_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -522,25 +522,30 @@ document.write(`
     <span class="n">out_x</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า x ที่นำมาทดสอบ</span>
     <span class="n">out_y_hat</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hat_test</span> <span class="c1"># เก็บค่า y ที่โมเดลทำนายออกมา</span>
     <span class="n">out_y</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า y ที่เป็นผลเฉลย</span>
-  
+
   <span class="k">return</span> <span class="n">out_x</span><span class="p">,</span> <span class="n">out_y_hat</span><span class="p">,</span> <span class="n">out_y</span><span class="p">,</span> <span class="n">mse_dict</span><span class="p">,</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>กำหนดให้ข้อมูลที่เราเก็บมานั้นเป็นข้อมูลที่มาจากสมการ <span class="math notranslate nohighlight">\(y=sin((x+π/2))^2\)</span> โดยที่ <span class="math notranslate nohighlight">\(0&lt;x&lt; \frac{π}{2}\)</span></p>
-<p>ถ้าหากว่าเราต้องการประมาณค่าฟังก์ชันนี้ด้วย โมเดลที่เราใช้ใน part ที่แล้ว <span class="math notranslate nohighlight">\(y = w_0 + w_1x+ w_2x^2+ ...+ w_p x^p\)</span> เราจะมีวิธีการเลือก order <span class="math notranslate nohighlight">\(p\)</span> ของโมเดลนี้อย่างไร</p>
+<p>ถ้าหากว่าเราต้องการประมาณค่าฟังก์ชันนี้ด้วย โมเดลที่เราใช้ใน part ที่แล้ว</p>
+<div class="math notranslate nohighlight">
+\[y = \hat{w_0} + \hat{w_1} x+ \hat{w_2} x^2+ ...+ \hat{w_p} x^p\]</div>
+<p>เราจะมีวิธีการเลือก order <span class="math notranslate nohighlight">\(p\)</span> ของโมเดลนี้อย่างไร</p>
 <hr class="docutils" />
-<p>สมมติว่าเรามีโอกาสเก็บข้อมูลมาใช้สำหรับ fit โมเดลเพียงแค่ 50 จุด เราสามารถทดลองใช้ขั้นตอนเหล่านี้ในการเลือก order <span class="math notranslate nohighlight">\(p\)</span> ของโมเดล</p>
+<p>สมมติว่าเรามีโอกาสเก็บข้อมูลมาใช้สำหรับ fit โมเดลเพียงแค่ <span class="math notranslate nohighlight">\(50\)</span> จุด เราสามารถทดลองใช้ขั้นตอนเหล่านี้ในการเลือก order <span class="math notranslate nohighlight">\(p\)</span> ของโมเดล</p>
 <ol class="arabic simple">
-<li><p>สุ่ม 30% ของข้อมูลที่เก็บมา (30% ของ 50 จุด) มาใช้เป็น validation data <span class="math notranslate nohighlight">\(x_{val}\)</span> และ ใช้ที่เหลือ (70% ของ 50 จุด) มาใช้เป็น training data <span class="math notranslate nohighlight">\((x_{train}, y_{train})\)</span></p></li>
-<li><p>ทดลองสร้าง polynomial ที่มีค่า order <span class="math notranslate nohighlight">\(p\)</span> สักค่าหนึ่งมา และใข้ <span class="math notranslate nohighlight">\(x_{train}\)</span> ในการ fit โมเดล หรือ การหาค่า <span class="math notranslate nohighlight">\(w\)</span> นั่นเอง</p></li>
+<li><p>อาจจะสุ่ม <span class="math notranslate nohighlight">\(30%\)</span> ของข้อมูลที่เก็บมา (<span class="math notranslate nohighlight">\(30%\)</span> ของ <span class="math notranslate nohighlight">\(50\)</span> จุด) มาใช้เป็น validation data <span class="math notranslate nohighlight">\(x_{val}\)</span> และ ใช้ที่เหลือ (<span class="math notranslate nohighlight">\(70%\)</span> ของ <span class="math notranslate nohighlight">\(50\)</span> จุด) มาใช้เป็น training data <span class="math notranslate nohighlight">\((x_{train}, y_{train})\)</span></p></li>
+<li><p>ทดลองสร้าง polynomial ที่มีค่า order <span class="math notranslate nohighlight">\(p\)</span> สักค่าหนึ่งมา และใช้ <span class="math notranslate nohighlight">\(x_{train}\)</span> ในการ fit โมเดล หรือ การหาค่า <span class="math notranslate nohighlight">\(\hat{W}\)</span> นั่นเอง</p></li>
 <li><p>หลังจากที่ fit โมเดลเรียบร้อยแล้ว เราจะนำเอาโมเดลมาทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> สำหรับทุก ๆ ค่า <span class="math notranslate nohighlight">\(x\)</span> ใน <span class="math notranslate nohighlight">\(x_{val}\)</span> โดยเราจะเรียกค่าที่โมเดลทำนายออกมาว่า <span class="math notranslate nohighlight">\(\hat{y}_{val}\)</span></p></li>
 <li><p>ใช้ evaluation metric เช่น <span class="math notranslate nohighlight">\(MSE(y_{val}, \hat{y}_{val})\)</span> มาคำนวณดูความสามารถของโมเดลในการทำนายค่า</p></li>
 <li><p>ทำซ้ำขั้นตอนที่ 2, 3 และ 4 แต่ใช้ค่า order <span class="math notranslate nohighlight">\(p\)</span> ที่เปลี่ยนไปเรื่อยๆ</p></li>
 <li><p>ใช้ <span class="math notranslate nohighlight">\(p\)</span> ที่ทำให้โมเดลมีความสามารถในการทำนายค่าบน validation data <span class="math notranslate nohighlight">\((x_{val}, y_{val})\)</span> มากที่สุด เป็นค่า <span class="math notranslate nohighlight">\(p\)</span> ที่จะใช้งานจริง</p></li>
 <li><p>นำเอาโมเดล polynomial ที่ใช้ค่า order <span class="math notranslate nohighlight">\(p\)</span> จากขั้นตอนที่ 6 มาทดสอบกับ test data</p></li>
 </ol>
+<hr class="docutils" />
+<p>เรามาลองดูข้อมูลชุดนี้กัน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># จำนวนจุดที่มีทั้งหมด</span>
@@ -589,9 +594,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/908e9a9f50c7aa1337516b65d4f2b88f3c81a65630b303b6178c78aa7fe0b367.png" src="../../_images/908e9a9f50c7aa1337516b65d4f2b88f3c81a65630b303b6178c78aa7fe0b367.png" />
+<img alt="../../_images/c6f0b491e4996d37ee5cac865735a2dce8ebdf1e0740c733449e833a953c6a7a.png" src="../../_images/c6f0b491e4996d37ee5cac865735a2dce8ebdf1e0740c733449e833a953c6a7a.png" />
 </div>
 </div>
+<p>ลองทำตามขั้นตอน 7 ขั้นตอนที่เพิ่งได้อธิบายไป เพื่อเลือก polynomial order ที่เหมาะสม</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง x_test_dict และ y_test_dict มาเก็บข้อมูลที่เราอยากจะให้โมเดลลองทำนายดู</span>
@@ -611,16 +617,16 @@ document.write(`
 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">curr_poly_order</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">poly_order_list</span><span class="p">):</span>
 
   <span class="c1"># fit โมเดล และให้โมเดลทำนายค่า y ออกมา</span>
-  <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> 
-                                            <span class="n">y_train_noisy</span><span class="p">,</span> 
-                                            <span class="n">poly_order</span> <span class="o">=</span> <span class="n">poly_order_list</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> 
-                                            <span class="n">x_test_dict</span> <span class="o">=</span> <span class="n">x_test_dict</span><span class="p">,</span> 
+  <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span>
+                                            <span class="n">y_train_noisy</span><span class="p">,</span>
+                                            <span class="n">poly_order</span> <span class="o">=</span> <span class="n">poly_order_list</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span>
+                                            <span class="n">x_test_dict</span> <span class="o">=</span> <span class="n">x_test_dict</span><span class="p">,</span>
                                             <span class="n">y_test_dict</span> <span class="o">=</span> <span class="n">y_test_dict</span><span class="p">)</span>
 
   <span class="n">out_x</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># ค่า x ที่ถูกใช้ทดสอบโมเดล</span>
   <span class="n">out_y_hat</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># ค่า y ที่โมเดลทำนายออกมา</span>
   <span class="n">out_y</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># ค่า y ที่เป็นผลเฉลย</span>
-  
+
   <span class="c1"># เก็บค่า mse ของแต่ละชุดข้อมูลที่นำมาทดสอบที่มีค่า order ของ polynomial ที่แตกต่างกัน</span>
   <span class="k">for</span> <span class="n">curr_mode</span> <span class="ow">in</span> <span class="n">out_x</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -642,7 +648,7 @@ document.write(`
       <span class="c1"># Plot ข้อมูล &quot;ผลเฉลย&quot; (ในที่นี้เราใช้ข้อมูลที่มีสัญญาณรบกวนเป็นผลเฉลยสำหรับสอน/วัดผลโมเดล เนื่องจากในสถานการณ์จริง บ่อยครั้ง เราไม่สามารถเข้าถึงข้อมูลที่ไม่มีสัญญาณรบกวนได้)</span>
       <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_x</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">],</span> <span class="n">out_y</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">mode2color_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">curr_mode</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
-  <span class="c1"># Plot ข้อมูลที่ไม่มี noise สำหรับเป็น reference ไว้ดู  </span>
+  <span class="c1"># Plot ข้อมูลที่ไม่มี noise สำหรับเป็น reference ไว้ดู</span>
   <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
   <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
   <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order = </span><span class="si">{</span><span class="n">curr_poly_order</span><span class="si">}</span><span class="s2">, MSE(train,val,test) = (</span><span class="si">{</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
@@ -667,8 +673,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0c8e8b3dd98e4b3b0574f8c3247132b01944e72ebdd43699662c82eedbf34a12.png" src="../../_images/0c8e8b3dd98e4b3b0574f8c3247132b01944e72ebdd43699662c82eedbf34a12.png" />
-<img alt="../../_images/50314e9c326104e20bc0835cc0c8e2beece1d43559aebc3bbd55ffc874f7ba02.png" src="../../_images/50314e9c326104e20bc0835cc0c8e2beece1d43559aebc3bbd55ffc874f7ba02.png" />
+<img alt="../../_images/9f8e3dbf6e2e166e7d4fad14f648d78294ddb4ea792f9d94d11b03380616a5bc.png" src="../../_images/9f8e3dbf6e2e166e7d4fad14f648d78294ddb4ea792f9d94d11b03380616a5bc.png" />
+<img alt="../../_images/e9bbf680319c1df4535e672a2190d82f775f16e3e8531642e2e6879b1924eb46.png" src="../../_images/e9bbf680319c1df4535e672a2190d82f775f16e3e8531642e2e6879b1924eb46.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -690,21 +696,21 @@ The lowest test MSE was achieved with the polynomial of order 4
 <p>จากตัวอย่างด้านบน เราสังเกตเห็นว่า</p>
 <ul class="simple">
 <li><p>order <span class="math notranslate nohighlight">\(p\)</span> ที่ให้ค่า MSE บน validation data ต่ำที่สุด ให้ค่าทำนายบน test data  ที่ใกล้เคียงกับค่าที่ถูกต้องมากกว่าค่า <span class="math notranslate nohighlight">\(p\)</span> อื่นๆ ที่เราลองทดสอบทั้งหมด</p></li>
-<li><p>order <span class="math notranslate nohighlight">\(p\)</span> ที่ต่ำกว่าค่าที่เราเลือกมากๆ จะมีปัญหา underfitting อย่างชัดเจน</p></li>
-<li><p>order <span class="math notranslate nohighlight">\(p\)</span> ที่สูงกว่าค่าที่เราเลือกมากๆ จะมีปัญหา overfitting อย่างชัดเจน</p></li>
+<li><p>order <span class="math notranslate nohighlight">\(p\)</span> ที่ต่ำกว่าค่าที่เราเลือกมาก ๆ จะมีปัญหา underfitting อย่างชัดเจน</p></li>
+<li><p>order <span class="math notranslate nohighlight">\(p\)</span> ที่สูงกว่าค่าที่เราเลือกมาก ๆ จะมีปัญหา overfitting อย่างชัดเจน</p></li>
 </ul>
 <hr class="docutils" />
-<p>นอกจากการแบ่งข้อมูลเป็นส่วน ๆ โดนการเขียนดโค้ดเอง เราสามารถแบ่งข้อมูลผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> ของ <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code> ได้เช่นกัน</p>
+<p>นอกจากการแบ่งข้อมูลเป็นส่วน ๆ โดยการเขียนโค้ดเอง เราสามารถแบ่งข้อมูลผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> ของ <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code> ได้เช่นกัน ซึ่งสัดส่วนของการแบ่งข้อมูลออกเป็นแต่ละประเภท (training, validation หรือ test) ไม่มีกฎที่ตายตัว ขึ้นอยู่กับสถานการณ์</p>
 <p>นอกจากการแบ่งแบบสุ่มที่เราได้ลองใช้ในตัวอย่างด้านบนแล้ว ยังมีอีกหลายวิธี โดยหนึ่งในวิธีที่ได้รับความนิยมมาก คือ การทำ k-fold cross-validation ซึ่งมีขั้นตอนโดยสังเขปดังนี้</p>
 <ol class="arabic simple">
 <li><p>แบ่งชุดข้อมูลออกเป็น k ส่วน (เรียกว่า fold)</p></li>
 <li><p>นำเอา 1 fold มาเป็นตัวสำหรับทดสอบโมเดล และนำเอา fold ที่เหลือ (ซึ่งมีทั้งหมด k-1 folds) มาใช้ fit โมเดล และเก็บค่า evaluation metric ไว้</p></li>
-<li><p>ทำขั้นตอนที่ 2 ซ้ำ แต่จะเลือก fold สำหรับทดสอบที่ไม่เคยนำมาใช้ทดสอบ</p></li>
+<li><p>ทำขั้นตอนที่ 2 ซ้ำ แต่จะเลือก fold ใหม่มาใช้สำหรับทดสอบโมเดล (และจะใช้อีก k-1 folds ที่เหลือสำหรับสอนโมเดล)</p></li>
 </ol>
 <p>ด้วยวิธีนี้ เราจะทำขั้นตอนที่ 2 ทั้งหมด k รอบ (ทุก fold ถูกนำเอามาใช้เป็น fold สำหรับทดสอบ 1 ครั้ง) และเราสามารถนำเอาค่า evaluation metric จากทุก fold มารวมกันเป็นตัวเลขหนึ่งตัว ซึ่งสามารถนำเอาไปใช้ในการเลือก hyperparameter เช่น order ของ polynomial ได้เช่นกัน</p>
 <p>ถ้าหากเราเลือก k ที่มีค่าเท่ากับจำนวนจุดข้อมูลที่เรามี เราจะเรียกว่าเราใช้ Leave One Out Cross Validation (LOOCV)</p>
 <p>เราสามารถใช้เทคนิค cross validation ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score</span></code> ได้อย่างง่ายดาย</p>
-<p>นอกจาก cross validation แล้ว ยังมี bootstrapping ซึ่งเป็นเทคนิคที่คนนิยมใช้เช่นกัน</p>
+<p>นอกจาก cross validation แล้ว ยังมีเทคนิคอีกหลายแบบที่ถูกใช้งานอย่างแพร่หลาย เช่น bootstrapping</p>
 </section>
 
     <script type="text/x-thebe-config">

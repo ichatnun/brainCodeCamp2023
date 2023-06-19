@@ -511,7 +511,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9d2e20cebe15e12d9a32ee3bf73baca5d190a6ab93dd98bb4a8cf2d68491373d.png" src="../../_images/9d2e20cebe15e12d9a32ee3bf73baca5d190a6ab93dd98bb4a8cf2d68491373d.png" />
+<img alt="../../_images/2c4ac67a938d6e39f27ab34d3d7403eb9d6d91eb962030f4e90e1b60dc34d87a.png" src="../../_images/2c4ac67a938d6e39f27ab34d3d7403eb9d6d91eb962030f4e90e1b60dc34d87a.png" />
 </div>
 </div>
 <p>กำหนดให้เรามีจำนวนจุดข้อมูลในรูปด้านบนทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span> แสดงด้วยสีน้ำเงิน หากเราพิจารณาภาพความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> กับ <span class="math notranslate nohighlight">\(y\)</span> จากการรันโค้ดด้านบน จะพบว่ามีลักษณะคล้ายกับเส้นตรง</p>
@@ -535,7 +535,7 @@ document.write(`
 <p>ใน code ด้านล่าง เรามาลองปรับค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> กัน เพื่อหาดูว่าค่าที่เหมาะสมมีค่าเป็นเท่าไหร่</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># เพิ่มแถบสำหรับปรับค่า w1_hat และ w2_hat</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ใส่แถบสำหรับปรับค่า w1_hat และ w2_hat รวมถึงช่องสำหรับให้เลือกว่าจะโขว์เส้นความสัมพันธ์ระหว่าง x และ y ที่แท้จริงหรือไม่</span>
 <span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">w0_hat</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
                   <span class="n">w1_hat</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
                   <span class="n">show_true_line</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Show true data&#39;</span><span class="p">))</span>
@@ -567,14 +567,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "56f613dd21764f538b5f8ed3e5262eea"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2b6fc0bbaee74bfba655f5a600079a23"}</script></div>
 </div>
 <p>จะเห็นได้ว่าเราสามารถลองปรับค่าความชันและจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> ของเส้นตรงไปเรื่อย ๆ จนมีความสอดคล้องกับชุดข้อมูลที่เราเก็บมา (สีน้ำเงิน)</p>
 <p>หากเรากำหนดให้ค่า <span class="math notranslate nohighlight">\(\hat{w_0}=1\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}=2\)</span> จะพบว่าเส้นตรงสีแดงมีความสอดคล้องกับจุดสีน้ำเงินค่อนข้างดี โดยเส้นตรงนั้นมีสมการคือ <span class="math notranslate nohighlight">\(y = 2x + 1\)</span> ซึ่งเป็นเส้นตรงที่มีความชันเป็น <span class="math notranslate nohighlight">\(2\)</span> และมีจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> คือ <span class="math notranslate nohighlight">\((0,1)\)</span></p>
 <p>อีกวิธีหนึ่งที่อาจจะช่วยให้เราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ด้วยตาได้ง่ายขึ้น คือการ plot โชว์ความแตกต่างระหว่างจุดที่ observed มา (สีน้ำเงิน) และสิ่งที่โมเดลทำนายออกมา (สีแดง) ดังตัวอย่างโค้ดด้านล่าง โดยเราจะพยายามเลือกเอาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ที่ทำให้เส้นสีส้ม ๆ ในรูปมีขนาดรวมกันสั้นที่สุด ซึ่งเส้นสีส้มแต่ละเส้นมีชื่อเรียกว่า residual</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># เพิ่มแถบสำหรับปรับค่า w1_hat และ w2_hat</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># เหมือน cell ก่อนหน้า แต่เพิ่มช่องสำหรับเลือกว่าจะโชว์ residual หรือไม่</span>
 <span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">w0_hat</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
                   <span class="n">w1_hat</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
                   <span class="n">show_true_line</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Show true data&#39;</span><span class="p">),</span>
@@ -614,7 +614,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a8fbb0bf96d54203a72fc26184fe5ac0"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e0a162e77d63484bb096a6b976c4a1bf"}</script></div>
 </div>
 <p>ที่ผ่านมาเราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> โดยการดูด้วยตาว่าเส้นตรงสีแดงที่เกิดขึ้นมานั้น ดูสอดคล้องกับจุดข้อมูลสีน้ำเงินมากน้อยแค่ไหน ซึ่งนับว่าเป็นจากวัดความเหมือนหรือความแตกต่างเชิงคุณภาพ (qualitative)</p>
 <p>ในลำดับถัดไป เราจะมาลองดูวิธีการวัดความเหมือนหรือความแตกต่างเชิงปริมาณกันบ้าง (quantitative)</p>
@@ -666,10 +666,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True slope 2.00
-Estimated slope 1.97
+Estimated slope 2.00
 
 True intercept 1.00
-Estimated intercept 0.93
+Estimated intercept 1.04
 </pre></div>
 </div>
 </div>
@@ -704,7 +704,7 @@ Estimated intercept 0.93
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/54ec0db3af92fc7da8e6de412cad2cb9325f02fe7fa107638605b84acceb3407.png" src="../../_images/54ec0db3af92fc7da8e6de412cad2cb9325f02fe7fa107638605b84acceb3407.png" />
+<img alt="../../_images/26afb5c710291436a9936200fda8d37e57e588fba8f10103ec69ca3daa697139.png" src="../../_images/26afb5c710291436a9936200fda8d37e57e588fba8f10103ec69ca3daa697139.png" />
 </div>
 </div>
 <p>จากการสังเกตด้วยตา จะเห็นว่าค่า <span class="math notranslate nohighlight">\(y\)</span> ที่โมเดลได้ทำนายออกมา (จุดสีแดง) มีความสอดคล้องกับความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง (เส้นประสีดำ) มากกว่าข้อมูลที่เราเก็บมาเสียอีก (จุดสีน้ำเงิน)</p>
