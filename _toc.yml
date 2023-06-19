@@ -97,32 +97,6 @@ parts:
     - file: Fundamentals/MachineLearning/decision_tree_random_forest
       title: Decision Trees and Random Forest
     - file: Fundamentals/MachineLearning/eeg_supervised_learning
-  #   - file: Fundamentals/MachineLearning/random_forest.ipynb
-  #     title: Random Forests
-  #   - file: Fundamentals/MachineLearning/multivariate.ipynb
-  #     title: Multivariate Pattern Analysis
-  #   - file: Fundamentals/MachineLearning/gradient_boosting.ipynb
-  #     title: Gradient Boosting
-  #   - file: Fundamentals/MachineLearning/naive_bayes.ipynb
-  #     title: Naive Bayes
-  #   - file: Fundamentals/MachineLearning/clustering.ipynb
-  #     title: Clustering
-  #   - file: Fundamentals/MachineLearning/ensemble.ipynb
-  #     title: Ensemble Methods
-  #   - file: Fundamentals/MachineLearning/evaluation.ipynb
-  #     title: Evaluation
-  #   - file: Fundamentals/MachineLearning/feature_selection.ipynb
-  #     title: Feature Selection
-  #   - file: Fundamentals/MachineLearning/feature_engineering.ipynb
-  #     title: Feature Engineering
-  #   - file: Fundamentals/MachineLearning/feature_importance.ipynb
-  #     title: Feature Importance
-  #   - file: Fundamentals/MachineLearning/missing_data.ipynb
-  #     title: Missing Data
-  #   - file: Fundamentals/MachineLearning/imbalance.ipynb
-  #     title: Imbalanced Data
-  #   - file: Fundamentals/MachineLearning/interpretation.ipynb
-  #     title: Interpretation
 
   - caption: Deep Learning
     chapters: 
