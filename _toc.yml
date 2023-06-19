@@ -122,17 +122,15 @@ parts:
     - file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
     - file: Fundamentals/SignalProcessing/signal_processing_part4_application
 
-  - caption: Applications
+  - caption: Applications (Weeks 8-10)
     chapters: 
     - file: Applications/EEG/EEG_Intro
-    title: EEG (Week 8)
+      title: EEG (Week 8)
       sections:
       - file: Applications/EEG/motor_imagery_part1
-      - file: Applications/EEG/motor_imagery_part2
-
+      - file: Applications/EEG/motor_imagery_part2   
     - file: Applications/NeuralSpiking/Intro
-    title: Neural Spiking (Week 9)
-
+      title: Neural Spiking (Week 9)
     - file: Applications/fMRI/Intro
-    title: fMRI (Week 10)
+      title: fMRI (Week 10)
 
