@@ -569,10 +569,14 @@ Estimated intercept 8.12
 <p>หากเราสนใจประมาณค่า <span class="math notranslate nohighlight">\(\hat{w}\)</span> โมเดลนี้จะถือว่าเป็นโมเดลเชิงเส้น (ในโมเดลไม่มีพจน์ประเภทที่เลขชี้กำลังของ <span class="math notranslate nohighlight">\(\hat{w}\)</span> มีค่าไม่ใช่ <span class="math notranslate nohighlight">\(0\)</span> หรือ <span class="math notranslate nohighlight">\(1\)</span> เลย เช่น ไม่มี <span class="math notranslate nohighlight">\(\hat{w^2}, \hat{w^3}, ..., \hat{w^p}\)</span> เลย) ทำให้เราสามารถใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> ในการแก้ปัญหาได้เหมือนเดิม เพียงแต่เราต้องมีการปรับแก้ input ก่อน</p>
 <hr class="docutils" />
 <p>ข้อมูลทางเทคนิคเพิ่มเติม</p>
-<p>หากกำหนดให้ <span class="math notranslate nohighlight">\(z_{(i)} = x^i\)</span> จะส่งผลให้เราสามารถเขียนโมเดลใหม่ได้เป็น
-<span class="math notranslate nohighlight">\(y = \hat{w_0} + \hat{w_1} z_{(1)}+ \hat{w_2} z_{(2)} + ...+ \hat{w_p} z_{(p)}\)</span> ซึ่งเป็นโมเดลเชิงเส้นนั่นเอง</p>
+<p>ใน part ที่แล้วเราได้เห็นแล้วว่า multiple linear regression มีสมการเป็น</p>
+<div class="math notranslate nohighlight">
+\[ y = \hat{w_0} + \hat{w_1} x_1+ \hat{w_2} x_2 + ...+ \hat{w_p} x_p\]</div>
+<p>หากกำหนดให้ <span class="math notranslate nohighlight">\(z_i = x^i\)</span> จะส่งผลให้เราสามารถเขียนโมเดลใหม่ได้เป็น
+$<span class="math notranslate nohighlight">\(y = \hat{w_0} + \hat{w_1} z_1+ \hat{w_2} z_2 + ...+ \hat{w_p} z_p\)</span>$</p>
+<p>เราเห็นว่าทั้งสองสมการหน้าตาคล้ายกันมาก และเรารู้วิธีใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> มาหาค่า <span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_p}\)</span> ของสมการแรกได้ เราก็ควรจะใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> มาหาค่า <span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_p}\)</span> ของสมการที่ 2 ได้เช่นกัน</p>
 <hr class="docutils" />
-<p>ในส่วนถัดไป เราจะลองนำเอาโมเดล <span class="math notranslate nohighlight">\(y = \hat{w_0} + \hat{w_1} z_{(1)}+ \hat{w_2} z_{(2)} + \hat{w_3} z_{(3)} + \hat{w_4} z_{(4)}\)</span> มาใช้กับข้อมูลจากข้อก่อนหน้า</p>
+<p>ในส่วนถัดไป เราจะลองนำเอาโมเดล <span class="math notranslate nohighlight">\(y = \hat{w_0} + \hat{w_1} z_1+ \hat{w_2} z_2 + \hat{w_3} z_3 + \hat{w_4} z_4\)</span> มาใช้กับข้อมูลจากข้อก่อนหน้า</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ฟังก์ชันสำหรับ fit โมเดล polynomial ที่มี order ที่กำหนด และ ทำนายผลของโมเดลหลังจากถูกสอนด้วย training data แล้ว</span>
