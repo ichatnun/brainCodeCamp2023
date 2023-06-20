@@ -85,7 +85,14 @@ parts:
     - file: Fundamentals/IntroToModeling/modeling_part2_poly_overfit_regularization
     - file: Fundamentals/IntroToModeling/modeling_part3_data_splitting
   
-  - caption: Machine Learning (Week 4)
+  - caption: Dimensionality Reduction (Week 4)
+    chapters:
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part1_intro
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part2_pca
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
+
+  - caption: Machine Learning (Week 5)
     chapters: 
     - file: Fundamentals/MachineLearning/intro_to_machine_learning
       title: Introduction to Machine Learning
@@ -98,13 +105,6 @@ parts:
     - file: Fundamentals/MachineLearning/decision_tree_random_forest
       title: Decision Trees and Random Forest
     - file: Fundamentals/MachineLearning/eeg_supervised_learning
-
-  - caption: Dimensionality Reduction (Week 5)
-    chapters:
-    - file: Fundamentals/DimensionalityReduction/dim_reduct_part1_intro
-    - file: Fundamentals/DimensionalityReduction/dim_reduct_part2_pca
-    - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
-    - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
 
   - caption: Deep Learning (Week 6)
     chapters: 
