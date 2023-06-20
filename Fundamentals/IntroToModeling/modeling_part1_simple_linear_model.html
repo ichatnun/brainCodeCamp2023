@@ -467,7 +467,8 @@ document.write(`
 <p>กำหนดให้สมการความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง เป็นสมการเชิงเส้น</p>
 <div class="math notranslate nohighlight">
 \[y = w_0 + w_1x\]</div>
-<p>โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> คือค่าจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> คือค่าความชันของเส้นตรง แต่ในการเก็บข้อมูลจริงมักมีสัญญาณรบกวน (noise) ที่มาจากหลายปัจจัย เช่น ความไม่เสถียรของเครื่องมือเก็บข้อมูล คลื่นไฟฟ้ากระแสสลับที่ใช้ในประเทศ ในกรณีที่เก็บข้อมูลผ่านอุปกรณ์อิเล็กทรอนิคส์ หรืออาจจะมี noise ที่เราไม่รู้ว่ามาจากกระบวนการไหนก็ตาม ปัจจัยเหล่านี้ส่งผลให้ข้อมูลที่เก็บมานั้นมีค่าที่แตกต่างไปจากความสัมพันธ์ที่แท้จริง ซึ่งสามารถเขียนอธิบายได้ด้วยสมการ</p>
+<p>โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> คือค่าจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> คือค่าความชันของเส้นตรง</p>
+<p>ในการเก็บข้อมูลจริงมักมีสัญญาณรบกวน (noise) ที่มาจากหลายปัจจัย เช่น ความไม่เสถียรของเครื่องมือเก็บข้อมูล คลื่นไฟฟ้ากระแสสลับที่ใช้ในประเทศ ในกรณีที่เก็บข้อมูลผ่านอุปกรณ์อิเล็กทรอนิคส์ หรืออาจจะมี noise ที่เราไม่รู้ว่ามาจากกระบวนการไหนก็ตาม ปัจจัยเหล่านี้ส่งผลให้ข้อมูลที่เก็บมานั้นมีค่าที่แตกต่างไปจากความสัมพันธ์ที่แท้จริง ซึ่งสามารถเขียนอธิบายได้ด้วยสมการ</p>
 <div class="math notranslate nohighlight">
 \[y = w_0 + w_1x + noise\]</div>
 <p>แทน</p>
@@ -511,7 +512,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2c4ac67a938d6e39f27ab34d3d7403eb9d6d91eb962030f4e90e1b60dc34d87a.png" src="../../_images/2c4ac67a938d6e39f27ab34d3d7403eb9d6d91eb962030f4e90e1b60dc34d87a.png" />
+<img alt="../../_images/129c7d658ca55886a89339fdd63704b1e20de8772e08a350987d32e7db9a6f13.png" src="../../_images/129c7d658ca55886a89339fdd63704b1e20de8772e08a350987d32e7db9a6f13.png" />
 </div>
 </div>
 <p>กำหนดให้เรามีจำนวนจุดข้อมูลในรูปด้านบนทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span> แสดงด้วยสีน้ำเงิน หากเราพิจารณาภาพความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> กับ <span class="math notranslate nohighlight">\(y\)</span> จากการรันโค้ดด้านบน จะพบว่ามีลักษณะคล้ายกับเส้นตรง</p>
@@ -567,11 +568,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2b6fc0bbaee74bfba655f5a600079a23"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "50b1db1e87614a68a410d77810f3b4cf"}</script></div>
 </div>
 <p>จะเห็นได้ว่าเราสามารถลองปรับค่าความชันและจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> ของเส้นตรงไปเรื่อย ๆ จนมีความสอดคล้องกับชุดข้อมูลที่เราเก็บมา (สีน้ำเงิน)</p>
 <p>หากเรากำหนดให้ค่า <span class="math notranslate nohighlight">\(\hat{w_0}=1\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}=2\)</span> จะพบว่าเส้นตรงสีแดงมีความสอดคล้องกับจุดสีน้ำเงินค่อนข้างดี โดยเส้นตรงนั้นมีสมการคือ <span class="math notranslate nohighlight">\(y = 2x + 1\)</span> ซึ่งเป็นเส้นตรงที่มีความชันเป็น <span class="math notranslate nohighlight">\(2\)</span> และมีจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> คือ <span class="math notranslate nohighlight">\((0,1)\)</span></p>
-<p>อีกวิธีหนึ่งที่อาจจะช่วยให้เราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ด้วยตาได้ง่ายขึ้น คือการ plot โชว์ความแตกต่างระหว่างจุดที่ observed มา (สีน้ำเงิน) และสิ่งที่โมเดลทำนายออกมา (สีแดง) ดังตัวอย่างโค้ดด้านล่าง โดยเราจะพยายามเลือกเอาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ที่ทำให้เส้นสีส้ม ๆ ในรูปมีขนาดรวมกันสั้นที่สุด ซึ่งเส้นสีส้มแต่ละเส้นมีชื่อเรียกว่า residual</p>
+<p>อีกวิธีหนึ่งที่อาจจะช่วยให้เราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ด้วยตาได้ง่ายขึ้น คือการ plot โชว์ความแตกต่างระหว่างจุดที่ observed มา (สีน้ำเงิน) และสิ่งที่โมเดลทำนายออกมา (สีแดง) ดังตัวอย่างโค้ดด้านล่าง โดยเราจะพยายามเลือกเอาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> ที่ทำให้เส้นสีส้ม ๆ ในรูปมีขนาดรวมกันสั้นที่สุด</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># เหมือน cell ก่อนหน้า แต่เพิ่มช่องสำหรับเลือกว่าจะโชว์ residual หรือไม่</span>
@@ -614,7 +615,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e0a162e77d63484bb096a6b976c4a1bf"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3025c44d93f74da7b430be53ecbed7d8"}</script></div>
 </div>
 <p>ที่ผ่านมาเราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> โดยการดูด้วยตาว่าเส้นตรงสีแดงที่เกิดขึ้นมานั้น ดูสอดคล้องกับจุดข้อมูลสีน้ำเงินมากน้อยแค่ไหน ซึ่งนับว่าเป็นจากวัดความเหมือนหรือความแตกต่างเชิงคุณภาพ (qualitative)</p>
 <p>ในลำดับถัดไป เราจะมาลองดูวิธีการวัดความเหมือนหรือความแตกต่างเชิงปริมาณกันบ้าง (quantitative)</p>
@@ -622,7 +623,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[L(y_{i},\hat{y_i}) = (y_{i} - \hat{y_i})^2\]</div>
 <ul class="simple">
-<li><p>ถ้าหากเราพยายามนำเอาสมการนี้ไปตีความทางเรขาคณิต เราจะเห็นว่าค่า <span class="math notranslate nohighlight">\(y_{i} - \hat{y_i}\)</span> แสดงถึง”ความยาว”ของเส้นสีส้มแต่ละเส้นในโค้ดของ cell ก่อนหน้า ซึ่งแปลว่าค่า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> นี้ ก็คือค่าความยาวของเส้นสีส้มยกกำลังสองนั่นเอง</p></li>
+<li><p>ถ้าหากเราพยายามนำเอาสมการนี้ไปตีความทางเรขาคณิต เราจะเห็นว่าค่า <span class="math notranslate nohighlight">\(y_{i} - \hat{y_i}\)</span> แสดงถึง”ความยาว”ของเส้นสีส้มแต่ละเส้นในโค้ดของ cell ก่อนหน้า (อาจะมีค่าเป็นลบหรือบวกก็ได้) ซึ่งแปลว่าค่า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> นี้ ก็คือค่าความยาวของเส้นสีส้มยกกำลังสองนั่นเอง</p></li>
 <li><p>ถ้า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> มีค่าน้อย แสดงว่า <span class="math notranslate nohighlight">\(y_{i}\)</span> กับ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มีความแตกต่างกันน้อย (เส้นสีส้มจะสั้น)</p></li>
 <li><p>ถ้า <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> มีค่ามาก แสดงว่า <span class="math notranslate nohighlight">\(y_{i}\)</span> และ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> มีความแตกต่างกันมาก (เส้นสีส้มจะยาว)</p></li>
 </ul>
@@ -666,10 +667,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True slope 2.00
-Estimated slope 2.00
+Estimated slope 2.01
 
 True intercept 1.00
-Estimated intercept 1.04
+Estimated intercept 1.02
 </pre></div>
 </div>
 </div>
@@ -704,7 +705,7 @@ Estimated intercept 1.04
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/26afb5c710291436a9936200fda8d37e57e588fba8f10103ec69ca3daa697139.png" src="../../_images/26afb5c710291436a9936200fda8d37e57e588fba8f10103ec69ca3daa697139.png" />
+<img alt="../../_images/76840d92286c19aff2e351966f1c292e6b91832ec6bfa31cd4ef486753b68660.png" src="../../_images/76840d92286c19aff2e351966f1c292e6b91832ec6bfa31cd4ef486753b68660.png" />
 </div>
 </div>
 <p>จากการสังเกตด้วยตา จะเห็นว่าค่า <span class="math notranslate nohighlight">\(y\)</span> ที่โมเดลได้ทำนายออกมา (จุดสีแดง) มีความสอดคล้องกับความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง (เส้นประสีดำ) มากกว่าข้อมูลที่เราเก็บมาเสียอีก (จุดสีน้ำเงิน)</p>
@@ -716,6 +717,7 @@ Estimated intercept 1.04
 <p><br><br>
 MSE เป็นแค่หนึ่งในวิธีสำหรับวัดผล (evaluation metric) เท่านั้น ยังมีอีกหลายวิธีที่ใช้วัดผลออกมาเป็นตัวเลข เช่น mean absolution error (MAE), accuracy, F-score ฯลฯ ซึ่ง evaluation metric แต่ละอัน วัดค่าความเหมือนหรือความแตกต่างด้วยการใช้มาตรวัดคนละตัว ซึ่งมีเหมาะกับสถานการณ์ที่แตกต่างกัน</p>
 <p>ใน module นี้ เราจะใช้ MSE เป็น evaluation metric ไปก่อน แต่ใน module ถัด ๆ ไป หรือการทำงานจริง เราจะได้เห็น evaluation metric ที่หลากหลายมากยิ่งขึ้น</p>
+<p>ตอนนี้น่าจะเป็นเวลาที่ดีสำหรับผู้เรียนหลาย ๆ คนที่จะกลับไปทบทวนเนื้อหาเกี่ยวกับ evaluation metrics หลาย ๆ ประเภทจาก lecture ที่ชื่อว่า <a class="reference external" href="https://youtu.be/xXW2mPt83Dc">Model Evaluation</a> ของภายใต้ Session 6: Data Modeling ของ Brain Building Blocks</p>
 </section>
 </section>
 
