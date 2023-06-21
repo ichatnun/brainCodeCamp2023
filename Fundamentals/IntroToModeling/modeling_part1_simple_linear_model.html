@@ -543,9 +543,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/344194c38e642d1726f7c476328fb5250899a310b61999a07e6c185f9aa1d9f7.png" src="../../_images/344194c38e642d1726f7c476328fb5250899a310b61999a07e6c185f9aa1d9f7.png" />
-</div>
 </div>
 <p>กำหนดให้เรามีจำนวนจุดข้อมูลในรูปด้านบนทั้งหมด <span class="math notranslate nohighlight">\(n\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span> แสดงด้วยสีน้ำเงิน หากเราพิจารณาภาพความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> กับ <span class="math notranslate nohighlight">\(y\)</span> จากการรันโค้ดด้านบน จะพบว่ามีลักษณะคล้ายกับเส้นตรง</p>
 <p><strong>หมายเหตุ</strong> ถึงแม้ว่าในรูปด้านบน เราจะ plot เส้นประสีดำ ซึ่งแสดงความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง (ปราศจากสัญญาณรบกวน) ได้ แต่ในชีวิตจริง เรามักจะไม่มีโอกาสเข้าถึงข้อมูลตรงนี้ได้เลย</p>
@@ -599,8 +596,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "942b071d6ac54bf68075cb645c9d3d5f", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>จะเห็นได้ว่าเราสามารถลองปรับค่าความชันและจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> ของเส้นตรงไปเรื่อย ๆ จนมีความสอดคล้องกับชุดข้อมูลที่เราเก็บมา (สีน้ำเงิน)</p>
 <p>หากเรากำหนดให้ค่า <span class="math notranslate nohighlight">\(\hat{w_0}=1\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}=2\)</span> จะพบว่าเส้นตรงสีแดงมีความสอดคล้องกับจุดสีน้ำเงินค่อนข้างดี โดยเส้นตรงนั้นมีสมการคือ <span class="math notranslate nohighlight">\(y = 2x + 1\)</span> ซึ่งเป็นเส้นตรงที่มีความชันเป็น <span class="math notranslate nohighlight">\(2\)</span> และมีจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> คือ <span class="math notranslate nohighlight">\((0,1)\)</span></p>
@@ -646,8 +641,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "eca3ed1dbd4d4af3b525c1184779652b", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>ที่ผ่านมาเราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> โดยการดูด้วยตาว่าเส้นตรงสีแดงที่เกิดขึ้นมานั้น ดูสอดคล้องกับจุดข้อมูลสีน้ำเงินมากน้อยแค่ไหน ซึ่งนับว่าเป็นจากวัดความเหมือนหรือความแตกต่างเชิงคุณภาพ (qualitative)</p>
 <p>ในลำดับถัดไป เราจะมาลองดูวิธีการวัดความเหมือนหรือความแตกต่างเชิงปริมาณกันบ้าง (quantitative)</p>
@@ -697,15 +690,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True slope 2.00
-Estimated slope 2.01
-
-True intercept 1.00
-Estimated intercept 1.13
-</pre></div>
-</div>
-</div>
 </div>
 <p>จะเห็นว่าความชันและจุดตัดแกน <span class="math notranslate nohighlight">\(y\)</span> ที่ประมาณจากโมเดล linear regression มีค่าใกล้กับค่าที่เรากำหนดมาตอนสร้างชุดข้อมูล</p>
 <p>หลังจากที่เรา fit โมเดลแล้ว (โมเดลได้ทำการประมาณค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> เรียบร้อยแล้ว) เราสามารถทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> จาก <span class="math notranslate nohighlight">\(x\)</span> ใดๆ ได้จากสมการ <span class="math notranslate nohighlight">\( \hat{y} = \hat{w_0} + \hat{w_1}x\)</span> ได้โดยตรง หรือผ่านการเรียกใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">predict</span></code> ได้เช่นกัน</p>
@@ -736,9 +720,6 @@ Estimated intercept 1.13
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/4d3e9e19cf359802a0c3c0fddcc52e9050c4ad5e48d1b8a8f48022bd9541c305.png" src="../../_images/4d3e9e19cf359802a0c3c0fddcc52e9050c4ad5e48d1b8a8f48022bd9541c305.png" />
-</div>
 </div>
 <p>จากการสังเกตด้วยตา จะเห็นว่าค่า <span class="math notranslate nohighlight">\(y\)</span> ที่โมเดลได้ทำนายออกมา (จุดสีแดง) มีความสอดคล้องกับความสัมพันธ์ระหว่าง <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> ที่แท้จริง (เส้นประสีดำ) มากกว่าข้อมูลที่เราเก็บมาเสียอีก (จุดสีน้ำเงิน)</p>
 <p>นอกจากนั้น เราก็ได้ใช้ loss function ตัวเดิม</p>
@@ -759,19 +740,16 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_sample_linear</span>
 <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">25</span>
 <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># กำหนดค่า w0 และ w1 ที่แท้จริง สำหรับสร้างข้อมูล</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">generate_sample_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x_example</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="n">y_example</span> <span class="o">=</span> <span class="n">generate_sample_linear</span><span class="p">(</span><span class="n">x_example</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Plot ข้อมูล x, y ที่มีอยู่</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_example</span><span class="p">,</span> <span class="n">y_example</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;contrast [a.u.]&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;average firing rate [a.u]&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/fb903da03c3fb8bf6d90d9f9c38c3306c6446f0586569641c00fea3ef908a7e1.png" src="../../_images/fb903da03c3fb8bf6d90d9f9c38c3306c6446f0586569641c00fea3ef908a7e1.png" />
 </div>
 </div>
 <p>จากการดูหน้าตาของกราฟนี้ เราพบว่ามีลักษณะเป็นคล้ายเส้นตรง (อย่างน้อยก็ในช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ระหว่าง <span class="math notranslate nohighlight">\(3\)</span> กับ <span class="math notranslate nohighlight">\(6\)</span>)</p>
@@ -816,12 +794,12 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">w2_true</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">x1</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">generate_sample_multi_linear</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">w2_true</span><span class="p">)</span>
+<span class="n">y_multi</span> <span class="o">=</span> <span class="n">generate_sample_multi_linear</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">w2_true</span><span class="p">)</span>
 
 <span class="c1"># แสดงผลภาพ</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y_multi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;contrast [a.u.]&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;loudness [a.u.]&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;average firing rate [a.u.]&#39;</span><span class="p">)</span>
@@ -829,9 +807,6 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/8bc4c969758ffb0f8dc8ce6346422ca6d4a755f3f597b87d454d8fed32393cc2.png" src="../../_images/8bc4c969758ffb0f8dc8ce6346422ca6d4a755f3f597b87d454d8fed32393cc2.png" />
 </div>
 </div>
 <p>หากเราสังเกตรูปด้านบน เราจะเห็นว่าข้อมูลมีลักษณะเป็นเหมือนแผ่นกระดาษสี่เหลี่ยมผืนผ้า</p>
@@ -864,7 +839,7 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1_whole_plane</span><span class="p">,</span> <span class="n">x2_whole_plane</span><span class="p">,</span> <span class="n">y_predicted_whole_plane</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y_multi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;contrast [a.u.]&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;loudness [a.u.]&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;average firing rate [a.u.]&#39;</span><span class="p">)</span>
@@ -873,8 +848,6 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ca72ad5a045e4196ad932a79df4d2b88", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>การลองปรับค่า <span class="math notranslate nohighlight">\(w_0\)</span>, <span class="math notranslate nohighlight">\(w_1\)</span> และ <span class="math notranslate nohighlight">\(w_2\)</span> ไปเรื่อย ๆ เราน่าจะพอเห็นภาพแล้วว่าตัวแปรแต่ละตัวส่งผลอย่างไรต่อ plane ของเรา เช่น การปรับ <span class="math notranslate nohighlight">\(w_0\)</span> เพียงอย่างเดียวจะยก plane ขึ้นหรือลงโดยไม่เปลี่ยนความชันของ plane เลย</p>
 <p>อย่างที่เราได้เคยคุยกันแล้วว่าการลองปรับค่าตัวแปรไปเรื่อย ๆ จนกว่าจะเจอค่าที่อธิบายจุดข้อมูลสีน้ำเงินได้ดีที่สุด เป็นอะไรที่ค่อนข้างใช้เวลานาน เรามาลองใช้เทคนิคที่เราเรียนรู้มาในช่วงแรกของบทเรียนนี้กันดีกว่า</p>
@@ -908,7 +881,7 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 
 <span class="c1"># ให้โมเดลหาค่า w_0, w_1 และ w_2 จากข้อมูลทั้งหมดที่มี</span>
 <span class="n">model_multi_linear</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-<span class="n">model_multi_linear</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">model_multi_linear</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_multi</span><span class="p">)</span>
 <span class="n">w0_hat</span> <span class="o">=</span> <span class="n">model_multi_linear</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">w1_hat</span> <span class="o">=</span> <span class="n">model_multi_linear</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">w2_hat</span> <span class="o">=</span> <span class="n">model_multi_linear</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -919,18 +892,6 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated w1 </span><span class="si">{</span><span class="n">w1_hat</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;True w2 </span><span class="si">{</span><span class="n">w2_true</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated w2 </span><span class="si">{</span><span class="n">w2_hat</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True w0 1.00
-Estimated w0 1.00
-
-True w1 2.00
-Estimated w1 2.00
-
-True w2 1.00
-Estimated w2 1.00
 </pre></div>
 </div>
 </div>
@@ -956,7 +917,7 @@ Estimated w2 1.00
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1_whole_plane</span><span class="p">,</span> <span class="n">x2_whole_plane</span><span class="p">,</span> <span class="n">y_predicted_whole_plane</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y_multi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;contrast [a.u.]&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;loudness [a.u.]&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;average firing rate [a.u.]&#39;</span><span class="p">)</span>
@@ -964,9 +925,6 @@ Estimated w2 1.00
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/1ae2879f182fa1654b1b20564a9d3f5b1e81c6d5ae60ad9737954bf03f5365b0.png" src="../../_images/1ae2879f182fa1654b1b20564a9d3f5b1e81c6d5ae60ad9737954bf03f5365b0.png" />
 </div>
 </div>
 <p>จะเห็นได้ว่าเรา plane ที่เราหามาจากการแก้โจทย์ สามารถอธิบายข้อมูลที่เรามีอยู่ได้ดีพอสมควร</p>
