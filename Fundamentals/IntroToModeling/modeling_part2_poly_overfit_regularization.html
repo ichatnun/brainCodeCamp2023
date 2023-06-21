@@ -572,8 +572,9 @@ Estimated intercept 8.12
 <p>ใน part ที่แล้วเราได้เห็นแล้วว่า multiple linear regression มีสมการเป็น</p>
 <div class="math notranslate nohighlight">
 \[ y = \hat{w_0} + \hat{w_1} x_1+ \hat{w_2} x_2 + ...+ \hat{w_p} x_p\]</div>
-<p>หากกำหนดให้ <span class="math notranslate nohighlight">\(z_i = x^i\)</span> จะส่งผลให้เราสามารถเขียนโมเดลใหม่ได้เป็น
-$<span class="math notranslate nohighlight">\(y = \hat{w_0} + \hat{w_1} z_1+ \hat{w_2} z_2 + ...+ \hat{w_p} z_p\)</span>$</p>
+<p>หากกำหนดให้ <span class="math notranslate nohighlight">\(z_i = x^i\)</span> จะส่งผลให้เราสามารถเขียนโมเดลใหม่ได้เป็น</p>
+<div class="math notranslate nohighlight">
+\[y = \hat{w_0} + \hat{w_1} z_1+ \hat{w_2} z_2 + ...+ \hat{w_p} z_p\]</div>
 <p>เราเห็นว่าทั้งสองสมการหน้าตาคล้ายกันมาก และเรารู้วิธีใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> มาหาค่า <span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_p}\)</span> ของสมการแรกได้ เราก็ควรจะใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> มาหาค่า <span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_p}\)</span> ของสมการที่ 2 ได้เช่นกัน</p>
 <hr class="docutils" />
 <p>ในส่วนถัดไป เราจะลองนำเอาโมเดล <span class="math notranslate nohighlight">\(y = \hat{w_0} + \hat{w_1} z_1+ \hat{w_2} z_2 + \hat{w_3} z_3 + \hat{w_4} z_4\)</span> มาใช้กับข้อมูลจากข้อก่อนหน้า</p>
@@ -925,10 +926,9 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <ol class="arabic simple">
 <li><p>หากกำหนดให้ <span class="math notranslate nohighlight">\(λ=0\)</span> โจทย์ของเราจะกลายเป็น</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$\min_{\hat{w}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x^{15})\right)^{2} + 0 $$
-เราจะได้ loss function ที่ไม่สนใจ regularization term หรือ term ที่ 2 เลย (ก็คือการแก้ปัญหาแบบไม่ใช้ regularization นั่นเอง)
-</pre></div>
-</div>
+<div class="math notranslate nohighlight">
+\[\min_{\hat{w}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x^{15})\right)^{2} + 0 \]</div>
+<p>   เราจะได้ loss function ที่ไม่สนใจ regularization term หรือ term ที่ 2 เลย (ก็คือการแก้ปัญหาแบบไม่ใช้ regularization นั่นเอง)</p>
 <ol class="arabic simple" start="2">
 <li><p>หากกำหนดให้ <span class="math notranslate nohighlight">\(λ=10^{10}\)</span> ซึ่งมีค่าที่สูงมากๆ จะเห็นว่า term ที่ 2 จะมีน้ำหนักมากกว่า term ที่ 1 มาก ซึ่งจะส่งผลให้เกิดคำตอบ <span class="math notranslate nohighlight">\(\hat{W}\)</span> ที่มีค่าน้อย จนแทบจะมีค่าเป็น <span class="math notranslate nohighlight">\(0\)</span> เพื่อให้พจน์ที่สอง มีค่าน้อยที่สุดเท่าที่เป็นไปได้ (ก็คือการแก้ปัญหาแบบแทบจะไม่ได้สนใจ term ที่ 1 เลย)</p></li>
 </ol>
