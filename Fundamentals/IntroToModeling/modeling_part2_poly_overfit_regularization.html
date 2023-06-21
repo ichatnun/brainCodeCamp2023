@@ -490,6 +490,8 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># ใช้สำหรับการทำ interactive display</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">777</span><span class="p">)</span> <span class="c1"># ตั้งค่า random seed เอาไว้ เพื่อให้การรันโค้ดนี้ได้ผลเหมือนเดิม</span>
 </pre></div>
 </div>
 </div>
@@ -536,7 +538,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/015a2afc9eee6326fba6e8d136879b716a31360ef31ac903e5eb281101d9eaad.png" src="../../_images/015a2afc9eee6326fba6e8d136879b716a31360ef31ac903e5eb281101d9eaad.png" />
+<img alt="../../_images/cbf400edaa1be48e6e16b1ddcd368169b6d183b12748250bb659e1dd1c306e5d.png" src="../../_images/cbf400edaa1be48e6e16b1ddcd368169b6d183b12748250bb659e1dd1c306e5d.png" />
 </div>
 </div>
 <p>หากเรานำเอาสมการเส้นตรง <span class="math notranslate nohighlight">\( y = \hat{w_0} + \hat{w_1} x\)</span> มาอธิบายข้อมูลประเภทนี้ จะส่งผลให้เกิดความคาดเคลื่อนได้</p>
@@ -576,12 +578,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope 0.12
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated slope -0.18
 
-Estimated intercept 8.12
+Estimated intercept 8.10
 </pre></div>
 </div>
-<img alt="../../_images/cee1567a757494a62ff6c38a7273c2fe7db52423c3d67996a0cc3e73db63e7ea.png" src="../../_images/cee1567a757494a62ff6c38a7273c2fe7db52423c3d67996a0cc3e73db63e7ea.png" />
+<img alt="../../_images/58b5d3ceac0ab93006abe768b043823d4f6e7ec634f942d83c82e87808a0693f.png" src="../../_images/58b5d3ceac0ab93006abe768b043823d4f6e7ec634f942d83c82e87808a0693f.png" />
 </div>
 </div>
 <p>จะพบว่าโมเดลเส้นตรงนั้นไม่สอดคล้องกับข้อมูลที่เรามีอยู่ สังเกตได้จาก</p>
@@ -690,8 +692,8 @@ Estimated intercept 8.12
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fac862dcd93d02a49d65016eb0b78096ac1c91803afc7a8199b0eac23831a7ff.png" src="../../_images/fac862dcd93d02a49d65016eb0b78096ac1c91803afc7a8199b0eac23831a7ff.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.          0.17413679  0.85183539 -0.00832567  0.00486855]
+<img alt="../../_images/1d1bd55a70005584a62b5ed345ada26fa9a6c30279b524301f33fe220ce0c3c1.png" src="../../_images/1d1bd55a70005584a62b5ed345ada26fa9a6c30279b524301f33fe220ce0c3c1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 0.         -0.00433819  1.03139417 -0.00184097 -0.00225545]
 </pre></div>
 </div>
 </div>
@@ -746,7 +748,7 @@ Estimated intercept 8.12
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1c43638b760c4be2b1c895b0533e9c73"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "acc3aeddd6524d20a9102a28f90aca61"}</script></div>
 </div>
 <p>ทีนี้เราลองเอาผลจากค่า polynomial order ของโมเดลที่แตกต่างกันมาเปรียบเทียบกันดู</p>
 <div class="cell docutils container">
@@ -800,8 +802,8 @@ Estimated intercept 8.12
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/229a645b4f805d099fafed099f198114407fff672e00aa2fe150b3fd4751c374.png" src="../../_images/229a645b4f805d099fafed099f198114407fff672e00aa2fe150b3fd4751c374.png" />
-<img alt="../../_images/cc648824e8d5ab95b2befb1d72a57be6c64600dcba834a2b3885e0226b28c890.png" src="../../_images/cc648824e8d5ab95b2befb1d72a57be6c64600dcba834a2b3885e0226b28c890.png" />
+<img alt="../../_images/7725bffb6a03245962d7ca398db62a802c40f11d5c54e7138fa570aa30fa230c.png" src="../../_images/7725bffb6a03245962d7ca398db62a802c40f11d5c54e7138fa570aa30fa230c.png" />
+<img alt="../../_images/3a1f6cda006a1c1be9b74011e21c742d16affdf059a9261983a3c6ed61d52719.png" src="../../_images/3a1f6cda006a1c1be9b74011e21c742d16affdf059a9261983a3c6ed61d52719.png" />
 </div>
 </div>
 <p>จากผลการทดสอบเปลี่ยนค่า polynomial order ของโมเดล จะพบว่าค่า MSE ที่ถูกทดสอบมีค่าน้อยลงเรื่อยๆ จนเหลือ <span class="math notranslate nohighlight">\(0\)</span> ที่ polynomial order <span class="math notranslate nohighlight">\(= 15\)</span></p>
@@ -844,11 +846,11 @@ Estimated intercept 8.12
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6c78413632aa62aeb6c7df66853b9596ef45975725b303784fa505fa2de72124.png" src="../../_images/6c78413632aa62aeb6c7df66853b9596ef45975725b303784fa505fa2de72124.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 5.35342883e-06 -2.29690634e+00  8.76527988e+00  1.55708704e-01
-  2.56214136e+00  2.84249822e+00 -1.07406744e+00  3.03740734e+00
- -1.61838900e+00  2.92827512e-01  5.24170711e-01 -2.94652008e+00
- -1.37832022e+00  2.06629883e-01  1.64670446e-01  1.85953983e-02]
+<img alt="../../_images/279126be3eba731be13dd9b59330d72907f1c560caef212878232c77d5e1b37e.png" src="../../_images/279126be3eba731be13dd9b59330d72907f1c560caef212878232c77d5e1b37e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[w_0, w_1, ...]= [ 4.38918870e-07 -9.16803517e-01  5.25232344e-01 -9.06545642e-01
+  5.91847282e-01 -7.01295262e-01  3.80429515e-02  1.41867825e-02
+ -6.74743217e-01  3.47335771e-02  3.91400155e-01  1.12787498e-01
+ -3.56448876e-02 -2.30436108e-02 -4.11080381e-03 -2.51657502e-04]
 </pre></div>
 </div>
 </div>
@@ -910,7 +912,7 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/34a4ca4140658f97ab5c9b3129c7836e612892b2aa06b0935faec576f9805e9c.png" src="../../_images/34a4ca4140658f97ab5c9b3129c7836e612892b2aa06b0935faec576f9805e9c.png" />
+<img alt="../../_images/ef7fc2066fd695b54798d892a6d1e970421157484db210ddf8a69d5fe13e261b.png" src="../../_images/ef7fc2066fd695b54798d892a6d1e970421157484db210ddf8a69d5fe13e261b.png" />
 </div>
 </div>
 <p>ในกรณีที่เราเจอปัญหา underfitting วิธีแก้ปัญหาวิธีหนึ่งที่ได้รับความนิยมมากก็คือ การเลือกใช้โมเดลที่ซับซ้อนมากยิ่งขึ้น เช่น การเพิ่มจำนวนตัวแปรในโมเดล หรือในตัวอย่างนี้ก็คือการเพิ่ม order ของ polynomial</p>
@@ -1102,7 +1104,7 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ee6350d220cc3ba5091ef724bb080240dee77917fdaabd86ff93234b0737e2ba.png" src="../../_images/ee6350d220cc3ba5091ef724bb080240dee77917fdaabd86ff93234b0737e2ba.png" />
+<img alt="../../_images/89f1436f1da0db5dc07fa4378e2604764f3c7dffeb2c96b9a2c46f2597590885.png" src="../../_images/89f1436f1da0db5dc07fa4378e2604764f3c7dffeb2c96b9a2c46f2597590885.png" />
 </div>
 </div>
 <p>จากการทดสอบด้านบน สังเกตได้ว่า</p>
