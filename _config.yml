@@ -33,3 +33,12 @@ html:
 
 html:
   show_navbar_depth: 1
+
+# Launch button settings
+launch_buttons:
+  colab_url                 : "https://colab.research.google.com" # The URL of Google Colab (https://colab.research.google.com)
+
+repository:
+  url                       : https://github.com/ichatnun/brainCodeCamp  # The URL to your book's repository
+  path_to_book              : ''  # A path to your book's folder, relative to the repository root.
+  branch                    : main  # Which branch of the repository should be used when creating links
