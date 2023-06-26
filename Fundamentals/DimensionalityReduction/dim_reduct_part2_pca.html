@@ -470,12 +470,12 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis-pca">
 <h1>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this heading">#</a></h1>
 <p>เราจะมาทดลองใช้เทคนิค principal component analysis (PCA) ในการลดมิติของข้อมูลกัน</p>
-<p>เราจะเริ่มจากการนำเอาข้อมูลจากตัวอย่างสุดท้ายมาดู ซึ่งแต่ละจุดข้อมูล (x,y) เป็นข้อมูลใน space ที่มี 2 มิติ (ค่า x เป็นมิติแรก และค่า y เป็นมิติที่สอง) และในชุดข้อมูลนี้มีจุดอยู่ 2 ประเภท (2 classes)</p>
+<p>เราจะเริ่มจากการนำเอาข้อมูลจากตัวอย่างสุดท้ายมาดู ซึ่งแต่ละจุดข้อมูล <span class="math notranslate nohighlight">\((x,y)\)</span> เป็นข้อมูลใน space ที่มี 2 มิติ (ค่า <span class="math notranslate nohighlight">\(x\)</span> เป็นมิติแรก และค่า <span class="math notranslate nohighlight">\(y\)</span> เป็นมิติที่สอง) และในชุดข้อมูลนี้มีจุดอยู่ 2 ประเภท (2 classes)</p>
 <ul class="simple">
 <li><p>class 1: <span class="math notranslate nohighlight">\(y = x\)</span> โดยที่ <span class="math notranslate nohighlight">\( -4 ≤ x &lt; 0 \)</span></p></li>
 <li><p>class 2: <span class="math notranslate nohighlight">\(y = x\)</span> โดยที่ <span class="math notranslate nohighlight">\( 0 &lt; x ≤ 4 \)</span></p></li>
 </ul>
-<p>ตอนนั้นเราใช้การหมุนจุดข้อมูลตามเข็มนาฬิกาไป 45 องศา แต่ใน part นี้เราจะมองอีกมุม กล่าวคือ เราจะไม่หมุนจุดข้อมูล แต่เราจะหมุนแกนทั้งหมดใน space (แกน x และ แกน y) 45 องศาแบบทวนเข็มนาฬิกาแทน</p>
+<p>ตอนนั้นเราใช้การหมุนจุดข้อมูลตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา แต่ใน part นี้เราจะมองอีกมุม กล่าวคือ เราจะไม่หมุนจุดข้อมูล แต่เราจะหมุนแกนทั้งหมดใน space (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกาแทน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -483,6 +483,8 @@ document.write(`
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">multivariate_normal</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># ตั้งค่า random seed เอาไว้ เพื่อให้การรันโค้ดนี้ได้ผลเหมือนเดิม</span>
 </pre></div>
 </div>
 </div>
@@ -536,12 +538,12 @@ document.write(`
 <img alt="../../_images/eb17bef072269e51dcff74aa78a14f2f8ab974c89b89f4398b6803f133bbcec8.png" src="../../_images/eb17bef072269e51dcff74aa78a14f2f8ab974c89b89f4398b6803f133bbcec8.png" />
 </div>
 </div>
-<p>จากภาพด้านบน แกนสีขมพูเข้ม คือแกน x ที่ถูกหมุน และแกนสีชมพูที่อ่อนกว่า คือแกน y ที่ถูกหมุน</p>
+<p>จากภาพด้านบน แกนสีขมพูเข้ม คือแกน <span class="math notranslate nohighlight">\(x\)</span> ที่ถูกหมุน และแกนสีชมพูที่อ่อนกว่า คือแกน <span class="math notranslate nohighlight">\(y\)</span> ที่ถูกหมุน</p>
 <p>จะเห็นได้ว่าข้อมูลจะอยู่บนแกนสีชมพูเข้มทั้งหมด ไม่มีข้อมูลในแกนสีชมพูอ่อนเลย ซึ่งหมายความว่าเราสามารถลดจำนวนมิติได้โดยการกำจัดแกนสีขมพูอ่อนไป</p>
 <p>ในขณะที่ ถ้าเราดูข้อมูลในแกนตั้งต้น (สีเทา) จุดข้อมูลจะกระจายตัวอยู่ระหว่าง 2 แกนเลย ทำให้ลดมิติได้ยาก</p>
 <hr class="docutils" />
 <p>สิ่งที่เทคนิค PCA ใช้ในการลดมิติข้อมูล ก็คือการหาแกนที่เมื่อเราลดมิติของข้อมูลไปบนแกนนั้น (ทางเทคนิคเรียกว่า project ข้อมูลไปบนแกนนั้น) จะพบว่าข้อมูลจะมีการกระจายตัวสูงที่สุด ซึ่งเราวัดการกระจายตัวด้วย variance ของข้อมูลบนแกนนั้น</p>
-<p>ถ้าหากเราเริ่มต้นด้วยข้อมูลใน space ที่มี 2 มิติ (แกน x และแกน y) เทคนิค PCA จะสามารถหาจำนวนแกนใหม่มาได้เท่ากับจำนวนแกนในตอนแรก (2 แกน) เลย โดยที่จะเรียกแกนเหล่านั้นว่า principal component ตัวแรก (PC1) และ PC2 โดยมีคุณสมบัติที่สำคัญ ดังนี้</p>
+<p>ถ้าหากเราเริ่มต้นด้วยข้อมูลใน space ที่มี 2 มิติ (แกน <span class="math notranslate nohighlight">\(x\)</span> และแกน <span class="math notranslate nohighlight">\(y\)</span>) เทคนิค PCA จะสามารถหาจำนวนแกนใหม่มาได้เท่ากับจำนวนแกนในตอนแรก (2 แกน) เลย โดยที่จะเรียกแกนเหล่านั้นว่า principal component ตัวแรก (PC1) และ PC2 โดยมีคุณสมบัติที่สำคัญ ดังนี้</p>
 <ul class="simple">
 <li><p>PC1 จะเป็นแกนที่มีค่า variance ของการกระจายตัวมากกว่าหรือเท่ากับ PC2</p></li>
 <li><p>PC1 จะตั้งฉากกับ PC2</p></li>
@@ -610,9 +612,9 @@ document.write(`
 </div>
 <p>ข้อสังเกต</p>
 <ol class="arabic simple">
-<li><p>ภาพซ้ายมือสุดแสดงข้อมูลใน space ตั้งต้นที่มี 2 มิติ (แกน x และ แกน y) เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ (x,y) โดยที่ x เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน x และ y เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน y จะเห็นได้ว่าในที่นี้เกือบทุกจุดข้อมูลมีค่า x, y ไม่เป็น 0</p></li>
-<li><p>ภาพกลางแสดงข้อมูลใน space 2 มิติ เหมือนในภาพซ้ายมือ แต่เราจะแสดงข้อมูลแกนที่เทคนิค PCA หามา ประกอบด้วย PC1 (สีชมพูเข้ม) และ PC2 (สีชมพูอ่อน) แทนแกน x และ แกน y เก่า</p></li>
-<li><p>ภาพขวาสุด เหมือนกับภาพกลาง เพียงแต่เราหมุนรูปให้ PC1 มาแทนที่แกน x เก่า เพื่อให้เรามองและตีความอ่านภาพได้ง่ายขึ้น ในภาพนี้เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ (PC1 score,PC2 score) โดยที่ PC1 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC1 และ PC2 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC2 จะเห็นได้ว่าในที่นี้ทุกจุดข้อมูลมีค่า PC2 score เป็นศูนย์ ในที่นี้ เราสามารถกำจัด PC2 ออกไปได้โดยที่เราไม่เสียข้อมูล ซึ่งแปลว่าเราจะ represent จุดข้อมูลแต่ละจุดด้วยตัวเลขตัวเดียว ที่มีค่าเท่ากับ PC1 score</p></li>
+<li><p>ภาพซ้ายมือสุดแสดงข้อมูลใน space ตั้งต้นที่มี 2 มิติ (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ <span class="math notranslate nohighlight">\((x,y)\)</span> โดยที่ <span class="math notranslate nohighlight">\(x\)</span> เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน <span class="math notranslate nohighlight">\(y\)</span> จะเห็นได้ว่าในที่นี้เกือบทุกจุดข้อมูลมีค่า <span class="math notranslate nohighlight">\(x, y\)</span> ไม่เป็น <span class="math notranslate nohighlight">\(0\)</span></p></li>
+<li><p>ภาพกลางแสดงข้อมูลใน space 2 มิติ เหมือนในภาพซ้ายมือ แต่เราจะแสดงข้อมูลแกนที่เทคนิค PCA หามา ประกอบด้วย PC1 (สีชมพูเข้ม) และ PC2 (สีชมพูอ่อน) แทนแกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span> เก่า</p></li>
+<li><p>ภาพขวาสุด เหมือนกับภาพกลาง เพียงแต่เราหมุนรูปให้ PC1 มาแทนที่แกน <span class="math notranslate nohighlight">\(x\)</span> เก่า เพื่อให้เรามองและตีความอ่านภาพได้ง่ายขึ้น ในภาพนี้เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ (PC1 score,PC2 score) โดยที่ PC1 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC1 และ PC2 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC2 จะเห็นได้ว่าในที่นี้ทุกจุดข้อมูลมีค่า PC2 score เป็นศูนย์ ในที่นี้ เราสามารถกำจัด PC2 ออกไปได้โดยที่เราไม่เสียข้อมูล ซึ่งแปลว่าเราจะ represent จุดข้อมูลแต่ละจุดด้วยตัวเลขตัวเดียว ที่มีค่าเท่ากับ PC1 score</p></li>
 </ol>
 <p>เราสามารถเรียกดู attribute ที่ชื่อว่า <code class="docutils literal notranslate"><span class="pre">explained_variance_ratio_</span></code> มาดูว่าแต่ละ PC ที่ PCA หามา มันอธิบาย variance ในข้อมูลเราได้กี่เปอร์เซนต์</p>
 <div class="cell docutils container">
@@ -816,7 +818,7 @@ document.write(`
 เทคนิค PCA ยังสามารถใช้ลดมิติของข้อมูลได้ โดยที่ยังสามารถแยกกลุ่มข้อมูลทั้งสองกลุ่ม (สีแดง และ สีน้ำเงิน) ได้เป็นอย่างดี</p>
 <hr class="docutils" />
 <p>หลายตัวอย่างที่ผ่านมาเราได้เห็นแล้วว่า PCA จะทำหน้าที่หาแกน PC ออกมา โดยสามารถหาแกนมาได้ทั้งหมดเป็นจำนวนเท่ากับจำนวนมิติตั้งต้น เรามักจะเรียก PC ที่สามารถอธิบาย variance ของข้อมูลได้มากที่สุดว่า PC1 และเรียกตัวถัด ๆ ไปเรียงตามความสามารถในการอธิบาย variance เช่น ถ้าเรามีข้อมูลใน 4 มิติ เราก็จะมี PC1, PC2, PC3 และ PC4 ที่อธิบาย variance ของข้อมูลได้จากมากไปน้อย แล้วถ้าเราต้องการลดจำนวนมิติของข้อมูลลงให้เหลือสองมิติ เราก็อาจจะเลือกใช้ PC แค่ 2 ตัว เช่น เก็บแค่ PC1 score และ PC2 score (กำจัด PC3 และ PC4)</p>
-<p><strong>หมายเหตุ</strong> เราสามารถใช้เทคนิค PCA ได้กับข้อมูลหลากหลายประเภท เช่น ในกรณีที่เรามีข้อมูลที่เป็นรูปภาพขนาด 128 x 128 เราก็สามารถมองได้ว่าแต่ละภาพคือ vector ที่มีขนาด <span class="math notranslate nohighlight">\(128x128 = 16,384\)</span> ซึ่งแปลว่าจุดข้อมูลที่เรามีนั้นอยู่ใน space ที่มีขนาด 16,384 มิติ เราสามารถทดลองใช้ PCA ในการลดมิติได้ในลักษณะเดียวกับตัวอย่างที่ผ่าน ๆ มาได้</p>
+<p><strong>หมายเหตุ</strong> เราสามารถใช้เทคนิค PCA ได้กับข้อมูลหลากหลายประเภท เช่น ในกรณีที่เรามีข้อมูลที่เป็นรูปภาพขนาด 128 x 128 เราก็สามารถมองได้ว่าแต่ละภาพคือ vector ที่มีขนาด 128 x 128 = 16,384 ซึ่งแปลว่าจุดข้อมูลที่เรามีนั้นอยู่ใน space ที่มีขนาด 16,384 มิติ เราสามารถทดลองใช้ PCA ในการลดมิติได้ในลักษณะเดียวกับตัวอย่างที่ผ่าน ๆ มาได้</p>
 </section>
 
     <script type="text/x-thebe-config">
