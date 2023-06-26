@@ -65,10 +65,6 @@ parts:
       title: Python
     - file: Fundamentals/01_Prereqs/01_numpy
       title: 01_numpy
-    - file: Fundamentals/01_Prereqs/02_intro_pytorch
-      title: Pytorch
-    - file: Fundamentals/01_Prereqs/03_intro_to_convolutional_nn
-      title: CNN
 
   - caption: Welcome to Brain Code Camp! (Week 1)
     chapters:
@@ -108,6 +104,10 @@ parts:
 
   - caption: Deep Learning (Week 6)
     chapters: 
+    - file: Fundamentals/DeepLearning/intro_pytorch
+      title: Pytorch
+    - file: Fundamentals/DeepLearning/intro_to_convolutional_nn
+      title: CNN
     - file: Fundamentals/DeepLearning/thai_food_classification_transformers
       title: Image Classification
     - file: Fundamentals/DeepLearning/object_detection_transformer
