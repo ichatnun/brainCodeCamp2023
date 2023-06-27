@@ -546,7 +546,7 @@ g(z) = \frac{1}{1 + e^{-z}}
 <img alt="../../_images/bfdf4a4b98e86d78fc0d52c4fa3e4f5973a3c945667184086c2f0a9679eef859.png" src="../../_images/bfdf4a4b98e86d78fc0d52c4fa3e4f5973a3c945667184086c2f0a9679eef859.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า logistic function มีค่าในช่วง 0 ถึง 1 เราจึงสามารถใช้ฟังค์ชันนี้แปลงผลรวมเชิงเส้นเป็นค่าความน่าจะเป็น (probability) ในการจำแนกคลาส</p>
+<p>จะเห็นได้ว่า logistic function มีค่าในช่วง 0 ถึง 1 เราจึงสามารถใช้ฟังค์ชันนี้แปลงผลรวมเชิงเส้นเป็นค่าความน่าจะเป็น (probability) ในการจำแนกหมวดหมู่ข้อมูล</p>
 <div class="math notranslate nohighlight">
 \[
 P(x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
@@ -566,7 +566,7 @@ log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
 <section id="generate-simulated-dataset">
 <h2>Generate simulated dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
 <p>เพื่อเปรียบเทียบการทำงานของ Linear regression และ Logistic regression เราจะลองสร้างชุดข้อมูลที่ประกอบไปด้วย จำนวน <span class="math notranslate nohighlight">\(n=100\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
-<p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification)</p>
+<p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) โดยมีข้อมูลในแต่ละคลาสจำนวน 50 จุด</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
@@ -683,7 +683,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" src="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า ค่าที่ทำนายจากโมเดล linear regression มีความคลาดเคลื่อนสูงมาก ในขณะที่โมเดล logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ปรากฏข้อมูลทั้งสอง class และเนื่องจาก ชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
+<p>จะเห็นได้ว่า ค่าที่ทำนายจากโมเดล linear regression มีความคลาดเคลื่อนสูงมาก ในขณะที่โมเดล logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ปรากฏข้อมูลทั้งสองคลาส และเนื่องจาก ชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
 <p>Quiz: Determine decision boundary, given <span class="math notranslate nohighlight">\(P(x) = g(x*2.13 + 1.08)\)</span></p>
 <p><em>จะแสดงคำตอบในวิดีโอ</em></p>
 <p>ต่อไป เราจะลองสร้างชุดข้อมูลที่ feature space มีมิติสูงขึ้น โดยเป็นชุดข้อมูลที่ประกอบด้วย 2 features เพื่อจำแนก 2 classes</p>
