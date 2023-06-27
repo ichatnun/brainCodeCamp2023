@@ -471,13 +471,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis-pca">
 <h1>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this heading">#</a></h1>
-<p>เราจะมาทดลองใช้เทคนิค principal component analysis (PCA) ในการลดมิติของข้อมูลกัน</p>
+<p>ใน tutorial นี้เรามาทดลองใช้เทคนิค principal component analysis (PCA) ในการลดจำนวนมิติของข้อมูลกัน</p>
 <p>เราจะเริ่มจากการนำเอาข้อมูลจากตัวอย่างสุดท้ายใน tutorial ที่แล้วมาดู ซึ่งแต่ละจุดข้อมูล <span class="math notranslate nohighlight">\((x,y)\)</span> เป็นข้อมูลใน space ที่มี 2 มิติ (ค่า <span class="math notranslate nohighlight">\(x\)</span> เป็นมิติแรก และค่า <span class="math notranslate nohighlight">\(y\)</span> เป็นมิติที่สอง) และในชุดข้อมูลนี้มีจุดอยู่ 2 ประเภท (2 classes)</p>
 <ul class="simple">
 <li><p>class 1: <span class="math notranslate nohighlight">\(y = x\)</span> โดยที่ <span class="math notranslate nohighlight">\( -4 ≤ x &lt; 0 \)</span></p></li>
 <li><p>class 2: <span class="math notranslate nohighlight">\(y = x\)</span> โดยที่ <span class="math notranslate nohighlight">\( 0 &lt; x ≤ 4 \)</span></p></li>
 </ul>
-<p>ตอนนั้นเราใช้การหมุนจุดข้อมูลตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา แต่ใน part นี้เราจะมองอีกมุม กล่าวคือ เราจะไม่หมุนจุดข้อมูล แต่เราจะหมุนแกนทั้งหมดใน space (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) ไป <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกาแทน</p>
+<p>ตอนนั้นเราใช้การหมุนจุดข้อมูลตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา แต่ใน tutorial นี้ นี้เราจะมองอีกมุม กล่าวคือ เราจะไม่หมุนจุดข้อมูล แต่เราจะหมุนแกนทั้งหมดใน space (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) ไป <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกาแทน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -485,6 +485,8 @@ document.write(`
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">multivariate_normal</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># ใช้สำหรับการทำ interactive display</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># ตั้งค่า random seed เอาไว้ เพื่อให้การรันโค้ดนี้ได้ผลเหมือนเดิม</span>
 </pre></div>
@@ -541,12 +543,70 @@ document.write(`
 </div>
 </div>
 <p>จากภาพด้านบน แกนสีชมพูเข้ม คือแกน <span class="math notranslate nohighlight">\(x\)</span> ที่ถูกหมุนไป <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกา และแกนสีชมพูที่อ่อนกว่า คือแกน <span class="math notranslate nohighlight">\(y\)</span> ที่ถูกหมุนไปด้วยองศาเดียวกัน</p>
-<p>จะเห็นได้ว่าข้อมูลจะอยู่บนแกนสีชมพูเข้มทั้งหมด ไม่มีข้อมูลกระจายตัวในแกนสีชมพูอ่อนเลย ซึ่งหมายความว่าเราสามารถลดจำนวนมิติได้โดยการกำจัดแกนสีขมพูอ่อนไป</p>
+<p>จะเห็นได้ว่าข้อมูลจะอยู่บนแกนสีชมพูเข้มทั้งหมด ไม่มีข้อมูลกระจายตัวในแกนสีชมพูอ่อนเลย ซึ่งหมายความว่าเราสามารถลดจำนวนมิติได้โดยการกำจัดแกนสีชมพูอ่อนไป</p>
 <p>ในขณะที่ ถ้าเราดูข้อมูลในแกนตั้งต้น (สีเทา) จุดข้อมูลจะกระจายตัวอยู่ระหว่าง 2 แกนเลย ทำให้ไม่สามารถกำจัดแกนใดแกนหนึ่งออกไปได้โดยไม่กระทบต่อคุณภาพของข้อมูล</p>
 <p><br><br></p>
 <hr class="docutils" />
 <p>สิ่งที่เทคนิค PCA ใช้ในการลดจำนวนมิติของข้อมูล ก็คือการหาแกนที่เมื่อเราลดมิติของข้อมูลไปบนแกนนั้น (ทางเทคนิคเรียกว่า project ข้อมูลไปบนแกนนั้น) จะพบว่าข้อมูลจะมีการกระจายตัวสูงที่สุด ซึ่งเราวัดการกระจายตัวด้วย variance ของข้อมูลบนแกนนั้น</p>
-<p>ถ้าหากเราเริ่มต้นด้วยข้อมูลใน space ที่มี 2 มิติ (แกน <span class="math notranslate nohighlight">\(x\)</span> และแกน <span class="math notranslate nohighlight">\(y\)</span>) เทคนิค PCA จะสามารถหาจำนวนแกนใหม่มาได้เท่ากับจำนวนแกนในตอนแรก (2 แกน) เลย โดยที่จะเรียกแกนเหล่านั้นว่า principal component ตัวแรก (PC1) และ PC2 โดยมีคุณสมบัติที่สำคัญ ดังนี้</p>
+<p>ก่อนอื่น เราจะมาดู concept ของคำว่า projection กัน โดยเราจะมองจุดข้อมูลของเราเป็นวัตถุ 1 ชิ้น</p>
+<p>การ project จุดข้อมูลของเราไปบนแกนอะไร ก็เหมือนกับการที่เราส่องไฟฉายไปที่วัตถุนั้น โดยให้แสงทำมุมตั้งฉากกับแกนนั้น แล้วเงาของวัตถุที่ปรากฎบนแกน ก็คือข้อมูลที่ถูกลดมิติลงนั่นเอง</p>
+<p>ดูตัวอย่างจาก code ใน cell ถัดไป ซึ่งใช้จุดสีอ่อน ๆ (ค่า alpha น้อย) แสดงถึงตัวข้อมูลที่ถูก project ไปบนแกนที่เราสนใจ (แสดงด้วยสีชมพูเข้ม)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ผู้เรียนไม่ต้องกังวลเกี่ยวกับรายละเอียดของ code ใน cell นี้ ซึ่งจะใช้ในการอธิบาย concept เท่านั้น ไม่ได้คำนึงถึงการเขียนแบบ optimize</span>
+
+<span class="k">def</span> <span class="nf">projection_example</span><span class="p">():</span>
+
+    <span class="n">num_points_proj_ex</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># จำนวนจุดข้อมูล</span>
+    <span class="n">x_proj_ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_points_proj_ex</span><span class="p">)</span>
+    <span class="n">y_proj_ex</span> <span class="o">=</span> <span class="n">x_proj_ex</span>
+
+    <span class="c1"># นำเอาค่า x มาใส่ใน column แรกของ data matrix และ ค่า y มาใส่ใน column ที่สอง</span>
+    <span class="n">data_proj_ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_points_proj_ex</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_proj_ex</span>
+    <span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_proj_ex</span>
+
+    <span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">angle_counter_clock_degree</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Angle (deg)&#39;</span><span class="p">),</span>
+                      <span class="n">show_proj_path</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Show projection path&#39;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">plot_rotated_results</span><span class="p">(</span><span class="n">angle_counter_clock_degree</span><span class="p">,</span> <span class="n">show_proj_path</span><span class="p">):</span>
+
+        <span class="c1"># แปลงค่ามุมจากองศามาเป็น radians</span>
+        <span class="n">angle_rad</span> <span class="o">=</span> <span class="n">angle_counter_clock_degree</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span>
+
+        <span class="c1"># คำนวนค่าความชันของเส้นที่เราจะ project ข้อมูลไปบนนั้น</span>
+        <span class="n">slope</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span>
+
+        <span class="c1"># ทำการ project ข้อมูล</span>
+        <span class="n">data_projected_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span> <span class="o">+</span> <span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># สร้าง figure</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+        <span class="c1"># Plot ข้อมูล x, y ที่มีอยู่ด้วยสีน้ำเงิน</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_proj_ex</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_proj_ex</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="c1"># Plot จุดข้อมูลที่เป็น class 1</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_proj_ex</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_proj_ex</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># Plot จุดข้อมูลที่เป็น class 2</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_disp</span><span class="p">,</span> <span class="p">[</span><span class="n">slope</span><span class="o">*</span><span class="n">x_disp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">slope</span><span class="o">*</span><span class="n">x_disp</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># แสดงรูปเส้นที่เราจะ project ข้อมูลไปบนนั้น</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_projected_coords</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_projected_coords</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># Plot จุดข้อมูลที่เป็น class 1</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_projected_coords</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_projected_coords</span><span class="p">[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># Plot จุดข้อมูลที่เป็น class 1</span>
+
+        <span class="c1"># ทำการ plot ตัว projection line</span>
+        <span class="k">if</span> <span class="n">show_proj_path</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">idx_pt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data_projected_coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_projected_coords</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]],[</span><span class="n">data_proj_ex</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_projected_coords</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data rotated by </span><span class="si">{</span><span class="n">angle_counter_clock_degree</span><span class="si">}</span><span class="s2"> degrees (counter-clockwise centered at (0,0))&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">x_disp</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">y_disp</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">projection_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3161b0805c03470dbcc08bc8a515894c"}</script></div>
+</div>
+<p>ถ้าหากเราเริ่มต้นด้วยข้อมูลใน space ที่มี 2 มิติ (แกน <span class="math notranslate nohighlight">\(x\)</span> และแกน <span class="math notranslate nohighlight">\(y\)</span>) เทคนิค PCA จะสามารถหาจำนวนแกนใหม่มาได้เท่ากับจำนวนแกนในตอนแรก (2 แกน) เลย โดยที่จะเรียกแกนเหล่านั้นว่า principal component ตัวแรก (PC1) และ ตัวที่สอง (PC2) โดยมีคุณสมบัติที่สำคัญ ดังนี้</p>
 <ul class="simple">
 <li><p>PC1 จะเป็นแกนที่มีค่า variance ของการกระจายตัวมากกว่าหรือเท่ากับ PC2</p></li>
 <li><p>PC1 จะตั้งฉากกับ PC2</p></li>
@@ -556,7 +616,7 @@ document.write(`
 <p>เราจะมาลองทดสอบ PCA กับข้อมูลจากตัวอย่างด้านบน ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition.PCA</span></code> กัน</p>
 <p><strong>หมายเหตุ</strong></p>
 <ol class="arabic simple">
-<li><p>เทคนิค PCA เป็นเทคนิคประเภท unsupervised learning ซึ่งจะไม่ใช้ข้อมูล class กล่าวคือ PCA จะหาแกนใหม่ ๆ มาโดยที่ไม่รู้ว่าแต่ละจุดข้อมูลเป็นข้อมูลจาก class ไหนเลย ในตัวอย่างด้านบน ซึ่งมี 2 ประเภท (class สีน้ำเงิน และ class สีแดง) เราจะพูดได้ว่า PCA ทำงานโดยไม่สนใจเลยว่าจุดไหนมีสีอะไร อาจจะมองว่าทุกจุดเป็นจุดสีเดียวกันหมดก็ได้</p></li>
+<li><p>เทคนิค PCA เป็นเทคนิคเชิงเส้นประเภท unsupervised learning ซึ่งจะไม่ใช้ข้อมูล class กล่าวคือ PCA จะหาแกนใหม่ ๆ มาโดยที่ไม่รู้ว่าแต่ละจุดข้อมูลเป็นข้อมูลจาก class ไหนเลย ในตัวอย่างด้านบน ซึ่งมี 2 ประเภท (class สีน้ำเงิน และ class สีแดง) เราจะพูดได้ว่า PCA ทำงานโดยไม่สนใจเลยว่าจุดไหนมีสีอะไร เราสามารถมองได้ว่า PCA ทำงานโดยการมองทุกจุดเป็นจุดสีเดียวกันหมด (เช่น มองเป็นสีดำ) ก็ได้</p></li>
 <li><p>ในหลาย ๆ กรณี ในชุดข้อมูลหลายชุด จะมีข้อมูล class ของแต่ละจุดข้อมูลมาด้วย เวลาเราทำ PCA เราก็จะไม่ใช้ข้อมูล class เหล่านั้น แต่เวลาเราจะ plot ผลหลังการทำ PCA เรามักจะนำเอาข้อมูล class เหล่านั้นมาระบายสีจุดที่ผ่านเทคนิค PCA มาแล้ว เพื่อดูว่าจุดข้อมูลจากแต่ละ class นั้นเรียงตัวกันอยู่ใน space ใหม่ (ที่เกิดจากแกน PC ต่าง ๆ) อย่างไร ซึ่งเราจะมาลองทำแบบนี้กับตัวอย่างสุดท้ายของ tutorial นี้</p></li>
 </ol>
 <div class="cell docutils container">
@@ -570,7 +630,7 @@ document.write(`
 <span class="n">pc2</span> <span class="o">=</span> <span class="n">model_PCA</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="c1"># คำนวณหาความชันของเส้นตรงที่วิ่งผ่านจุด (0,0) และว่ิงไปในทิศทางเดียวกับ principal component -&gt; y = m*x</span>
-<span class="n">m_pc1</span> <span class="o">=</span> <span class="n">pc1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+<span class="n">m_pc1</span> <span class="o">=</span> <span class="n">pc1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">m_pc2</span> <span class="o">=</span> <span class="n">pc2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># คำนวณพิกัดใหม่ของทุกจุดข้อมูล</span>
@@ -600,7 +660,7 @@ document.write(`
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_disp</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># แสดงผลโดยการหมุนแกน pc1 ให้มาอยู่ที่ตำแหน่งแกน x</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_disp</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># แสดงผลโดยการหมุนแกน pc2 ให้มาอยู่ที่ตำแหน่งแกน y</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC1 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">,</span> 
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC1 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">,</span>
           <span class="n">ylabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC2 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;PCA-tranformed data&quot;</span><span class="p">)</span>
 
@@ -615,9 +675,9 @@ document.write(`
 </div>
 <p>ข้อสังเกต</p>
 <ol class="arabic simple">
-<li><p>ภาพซ้ายมือสุดแสดงข้อมูลใน space ตั้งต้นที่มี 2 มิติ (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ <span class="math notranslate nohighlight">\((x,y)\)</span> โดยที่ <span class="math notranslate nohighlight">\(x\)</span> เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน <span class="math notranslate nohighlight">\(y\)</span> จะเห็นได้ว่าในที่นี้เกือบทุกจุดข้อมูลมีค่า <span class="math notranslate nohighlight">\(x, y\)</span> ไม่เป็น <span class="math notranslate nohighlight">\(0\)</span></p></li>
+<li><p>ภาพซ้ายมือสุดแสดงข้อมูลใน space ตั้งต้นที่มี 2 มิติ (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ <span class="math notranslate nohighlight">\((x,y)\)</span> โดยที่ <span class="math notranslate nohighlight">\(x\)</span> เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน <span class="math notranslate nohighlight">\(x\)</span> และ <span class="math notranslate nohighlight">\(y\)</span> เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน <span class="math notranslate nohighlight">\(y\)</span> จะเห็นได้ว่าในที่นี้เกือบทุกจุดข้อมูลมีค่า <span class="math notranslate nohighlight">\(x\)</span> และ ค่า <span class="math notranslate nohighlight">\(y\)</span> ไม่เป็น <span class="math notranslate nohighlight">\(0\)</span></p></li>
 <li><p>ภาพกลางแสดงข้อมูลใน space 2 มิติ เหมือนในภาพซ้ายมือ แต่เราจะแสดงข้อมูลแกนที่เทคนิค PCA หามา ประกอบด้วย PC1 (สีชมพูเข้ม) และ PC2 (สีชมพูอ่อน) แทนแกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span> เก่า</p></li>
-<li><p>ภาพขวาสุด เหมือนกับภาพกลาง เพียงแต่เราหมุนรูปให้ PC1 มาแทนที่แกน <span class="math notranslate nohighlight">\(x\)</span> เก่า เพื่อให้เรามองและตีความอ่านภาพได้ง่ายขึ้น ในภาพนี้เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ (PC1 score,PC2 score) โดยที่ PC1 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC1 และ PC2 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC2 จะเห็นได้ว่าในที่นี้ทุกจุดข้อมูลมีค่า PC2 score เป็นศูนย์ ในที่นี้ เราสามารถกำจัด PC2 ออกไปได้โดยที่เราไม่เสียข้อมูล ซึ่งแปลว่าเราจะ represent จุดข้อมูลแต่ละจุดด้วยตัวเลขตัวเดียว ที่มีค่าเท่ากับ PC1 score</p></li>
+<li><p>ภาพขวาสุด เหมือนกับภาพกลาง เพียงแต่เราหมุนรูปให้ PC1 มาแทนที่แกน <span class="math notranslate nohighlight">\(x\)</span> เก่า เพื่อให้เรามองและตีความอ่านภาพได้ง่ายขึ้น (ภาพขวาสุดจะเป็นผลที่ได้จากการเอียงศีรษะดูภาพกลาง) ในภาพนี้เราสามารถ represent แต่ละจุดข้อมูลด้วยตัวเลข 2 ตัวในรูปแบบ (PC1 score, PC2 score) โดยที่ PC1 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC1 และ PC2 score เป็นค่าของจุดข้อมูลถ้าเรา project ข้อมูลลงไปบนแกน PC2 จะเห็นได้ว่าในที่นี้ทุกจุดข้อมูลมีค่า PC2 score เป็นศูนย์ ในที่นี้ เราสามารถกำจัด PC2 ออกไปได้โดยที่เราไม่เสียข้อมูล ซึ่งแปลว่าเราจะ represent จุดข้อมูลแต่ละจุดด้วยตัวเลขตัวเดียว ที่มีค่าเท่ากับ PC1 score</p></li>
 </ol>
 <p>เราสามารถเรียกดู attribute ที่ชื่อว่า <code class="docutils literal notranslate"><span class="pre">explained_variance_ratio_</span></code> มาดูว่าแต่ละ PC ที่ PCA หามา มันอธิบาย variance ในข้อมูลเราได้กี่เปอร์เซนต์</p>
 <div class="cell docutils container">
@@ -653,7 +713,7 @@ document.write(`
 <span class="n">pc2</span> <span class="o">=</span> <span class="n">model_PCA</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="c1"># คำนวณหาความชันของเส้นตรงที่วิ่งผ่านจุด (0,0) และว่ิงไปในทิศทางเดียวกับ principal component -&gt; y = m*x</span>
-<span class="n">m_pc1</span> <span class="o">=</span> <span class="n">pc1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+<span class="n">m_pc1</span> <span class="o">=</span> <span class="n">pc1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">m_pc2</span> <span class="o">=</span> <span class="n">pc2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># คำนวณพิกัดใหม่ของทุกจุดข้อมูล</span>
@@ -683,7 +743,7 @@ document.write(`
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_disp</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># แสดงผลโดยการหมุนแกน pc1 ให้มาอยู่ที่ตำแหน่งแกน x</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_disp</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># แสดงผลโดยการหมุนแกน pc2 ให้มาอยู่ที่ตำแหน่งแกน y</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC1 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">,</span> 
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC1 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">,</span>
           <span class="n">ylabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC2 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;PCA-tranformed data&quot;</span><span class="p">)</span>
 
@@ -707,18 +767,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0fee724b7309d1bac23d0c70de89736f433af78c9560c27512c1f01828043b0a.png" src="../../_images/0fee724b7309d1bac23d0c70de89736f433af78c9560c27512c1f01828043b0a.png" />
-<img alt="../../_images/b4efb7c7ad6be53829bc168e55d9bb4eb89497d46648aa913652fefa378cc833.png" src="../../_images/b4efb7c7ad6be53829bc168e55d9bb4eb89497d46648aa913652fefa378cc833.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  84.52
-% variance captured by PC2 =  15.48
+<img alt="../../_images/171ad9ba5a3fe6210b885862bf0c6e7f5a440929870191cc9d41b359ce94dd87.png" src="../../_images/171ad9ba5a3fe6210b885862bf0c6e7f5a440929870191cc9d41b359ce94dd87.png" />
+<img alt="../../_images/f468d5e7799ca1293b8a96a501aec37edb5e0cf1fee7070c2f22abeee88f3adc.png" src="../../_images/f468d5e7799ca1293b8a96a501aec37edb5e0cf1fee7070c2f22abeee88f3adc.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  85.18
+% variance captured by PC2 =  14.82
 </pre></div>
 </div>
 </div>
 </div>
 <p>จะเห็นได้ว่าในตัวอย่างนี้เทคนิค PCA หาแกน PC1 ซึ่งเป็นแกนที่สามารถอธิบาย variance ในข้อมูลได้สูงที่สุด (มากกว่า 80%) และหาแกน PC2 ที่เป็นแกนที่ตั้งฉากกับ PC1 โดยที่สามารถอธิบาย variance ในข้อมูลได้น้อยกว่าแกน PC1 ซึ่งถ้าเอาสองแกนนี้รวมกันก็จะสามารถอธิบาย variance ข้อมูลได้รวมกัน 100%</p>
-<p>ถ้าเราต้องการลดมิติลง เราอาจจะตัดแกน PC2 ทิ้งไป เนื่องจากอธิบาย variance ได้น้อยกว่า</p>
+<p>ถ้าเราต้องการลดมิติลงโดยการเลือกตัดแกนใดแกนหนึ่งทิ้ง เราอาจจะตัดแกน PC2 ทิ้งไป เนื่องจากอธิบาย variance ได้น้อยกว่าก็ได้</p>
+<p><br><br></p>
 <hr class="docutils" />
-<p>เรามาดูตัวอย่างสุดท้ายของ part นี้กัน ในตัวอย่างนี้เราจะลองใช้ PCA กับข้อมูลที่มาจากสอง class ตามโค้ดด้านล่าง</p>
+<p>เรามาดูตัวอย่างสุดท้ายของ part นี้กัน ในตัวอย่างนี้เราจะลองใช้ PCA กับข้อมูลที่มาจากสอง classes ตามโค้ดด้านล่าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">100</span>
@@ -745,7 +806,7 @@ document.write(`
 <span class="n">pc2</span> <span class="o">=</span> <span class="n">model_PCA</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="c1"># คำนวณหาความชันของเส้นตรงที่วิ่งผ่านจุด (0,0) และว่ิงไปในทิศทางเดียวกับ principal component -&gt; y = m*x</span>
-<span class="n">m_pc1</span> <span class="o">=</span> <span class="n">pc1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+<span class="n">m_pc1</span> <span class="o">=</span> <span class="n">pc1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">m_pc2</span> <span class="o">=</span> <span class="n">pc2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pc2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># คำนวณพิกัดใหม่ของทุกจุดข้อมูล</span>
@@ -756,7 +817,7 @@ document.write(`
 <span class="n">y_disp</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span> <span class="c1"># ค่าต่ำสูงและสูงสุดของ y สำหรับแสดงผล</span>
 
 <span class="c1"># ใช้สีน้ำเงินสำหรับแสดงจุดข้อมูลที่มาจาก class 1 (label=0) และใช้สีแดงสำหรับแสดงจุดข้อมูลที่มาจาก class 2 (label=1)</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">([</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="s2">&quot;red&quot;</span><span class="p">])</span> 
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">([</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="s2">&quot;red&quot;</span><span class="p">])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
@@ -778,7 +839,7 @@ document.write(`
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_disp</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># แสดงผลโดยการหมุนแกน pc1 ให้มาอยู่ที่ตำแหน่งแกน x</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_disp</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># แสดงผลโดยการหมุนแกน pc2 ให้มาอยู่ที่ตำแหน่งแกน y</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC1 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">,</span> 
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC1 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">,</span>
           <span class="n">ylabel</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PC2 score (explained var = </span><span class="si">{</span><span class="n">model_PCA</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2"> 0.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;PCA-tranformed data&quot;</span><span class="p">)</span>
 
@@ -799,8 +860,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0cd14c2c2424fb75e668864b9b107218e5f89bb4a20fa7ec085aea93189225c8.png" src="../../_images/0cd14c2c2424fb75e668864b9b107218e5f89bb4a20fa7ec085aea93189225c8.png" />
-<img alt="../../_images/0bb9a2385854bc987c4a87dc3438b52b026d9f9dd2cc692cca6183d5146b93ca.png" src="../../_images/0bb9a2385854bc987c4a87dc3438b52b026d9f9dd2cc692cca6183d5146b93ca.png" />
+<img alt="../../_images/d193b093d0edf0b24fc7525ca0dd6ef4b3481048cb50827ac8fb0738ee5c4c61.png" src="../../_images/d193b093d0edf0b24fc7525ca0dd6ef4b3481048cb50827ac8fb0738ee5c4c61.png" />
+<img alt="../../_images/6db16db665140c61ce414d93555be59b4526a4b389e636577442172f332b0cb3.png" src="../../_images/6db16db665140c61ce414d93555be59b4526a4b389e636577442172f332b0cb3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -811,17 +872,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  97.49
-% variance captured by PC2 =  2.51
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% variance captured by PC1 =  97.70
+% variance captured by PC2 =  2.30
 </pre></div>
 </div>
 </div>
 </div>
-<p>ในกรณีนี้ ถึงแม้ว่าเทคนิค PCA transform ข้อมูลโดยที่ไม่ได้นำเอาข้อมูลว่าแต่ละจุดมาจาก class ไหนเลย
-เทคนิค PCA ยังสามารถใช้ลดมิติของข้อมูลได้ โดยที่ยังสามารถแยกกลุ่มข้อมูลทั้งสองกลุ่ม (สีแดง และ สีน้ำเงิน) ได้เป็นอย่างดี</p>
+<p>ในกรณีนี้ ถึงแม้ว่าเทคนิค PCA จะ transform ข้อมูลโดยที่ไม่ได้นำเอาข้อมูลว่าแต่ละจุดมาจาก class ไหนเลย
+เทคนิค PCA ยังสามารถใช้ลดมิติของข้อมูลได้โดยการตัดแกน PC2 (แกนสีชมพูอ่อน) ทิ้ง โดยที่ยังสามารถแยกกลุ่มข้อมูลทั้งสองกลุ่ม (สีแดง และ สีน้ำเงิน) ได้เป็นอย่างดี ผ่านการดูแค่ค่า PC1 score เท่านั้น</p>
+<p><br><br></p>
 <hr class="docutils" />
-<p>หลายตัวอย่างที่ผ่านมาเราได้เห็นแล้วว่า PCA จะทำหน้าที่หาแกน PC ออกมา โดยสามารถหาแกนมาได้ทั้งหมดเป็นจำนวนเท่ากับจำนวนมิติตั้งต้น เรามักจะเรียก PC ที่สามารถอธิบาย variance ของข้อมูลได้มากที่สุดว่า PC1 และเรียกตัวถัด ๆ ไปเรียงตามความสามารถในการอธิบาย variance เช่น ถ้าเรามีข้อมูลใน 4 มิติ เราก็จะมี PC1, PC2, PC3 และ PC4 ที่อธิบาย variance ของข้อมูลได้จากมากไปน้อย แล้วถ้าเราต้องการลดจำนวนมิติของข้อมูลลงให้เหลือสองมิติ เราก็อาจจะเลือกใช้ PC แค่ 2 ตัว เช่น เก็บแค่ PC1 score และ PC2 score (กำจัด PC3 และ PC4)</p>
-<p><strong>หมายเหตุ</strong> เราสามารถใช้เทคนิค PCA ได้กับข้อมูลหลากหลายประเภท เช่น ในกรณีที่เรามีข้อมูลที่เป็นรูปภาพขนาด 128 x 128 เราก็สามารถมองได้ว่าแต่ละภาพคือ vector ที่มีขนาด 128 x 128 = 16,384 ซึ่งแปลว่าจุดข้อมูลที่เรามีนั้นอยู่ใน space ที่มีขนาด 16,384 มิติ เราสามารถทดลองใช้ PCA ในการลดมิติได้ในลักษณะเดียวกับตัวอย่างที่ผ่าน ๆ มาได้</p>
+<p>หลายตัวอย่างที่ผ่านมาเราได้เห็นแล้วว่า PCA จะทำหน้าที่หาแกน PC ออกมา โดยสามารถหาแกนมาได้ทั้งหมดเป็นจำนวนเท่ากับจำนวนมิติตั้งต้น เรามักจะเรียก PC ที่สามารถอธิบาย variance ของข้อมูลได้มากที่สุดว่า PC1 และเรียกตัวถัด ๆ ไปเรียงตามความสามารถในการอธิบาย variance เช่น ถ้าเรามีข้อมูลใน 4 มิติ เราก็จะมี PC1, PC2, PC3 และ PC4 ที่อธิบาย variance ของข้อมูลได้จากมากไปน้อย แล้วถ้าเราต้องการลดจำนวนมิติของข้อมูลลงให้เหลือ 2 มิติ เราก็อาจจะเลือกใช้ PC แค่ 2 ตัว เช่น เก็บแค่ PC1 score และ PC2 score (กำจัด PC3 และ PC4)</p>
+<p><strong>หมายเหตุ</strong> เราสามารถใช้เทคนิค PCA ได้กับข้อมูลหลากหลายประเภท เช่น ในกรณีที่เรามีข้อมูลที่เป็นรูปภาพขนาด 128 x 128 เราก็สามารถมองได้ว่าแต่ละภาพคือ vector ที่มีขนาด 128 x 128 = 16,384 ถ้าหากเราใช้ค่าของแต่ละ pixel เป็น feature ข้อมูลของเราก็จะเป็นจุดข้อมูลที่อยู่ใน space ที่มีขนาด 16,384 มิติ เราสามารถทดลองใช้ PCA ในการลดมิติได้ในลักษณะเดียวกับตัวอย่างที่ผ่าน ๆ มาได้</p>
 </section>
 
     <script type="text/x-thebe-config">
