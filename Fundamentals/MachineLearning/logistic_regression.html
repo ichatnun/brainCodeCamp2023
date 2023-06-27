@@ -546,14 +546,16 @@ g(z) = \frac{1}{1 + e^{-z}}
 <img alt="../../_images/bfdf4a4b98e86d78fc0d52c4fa3e4f5973a3c945667184086c2f0a9679eef859.png" src="../../_images/bfdf4a4b98e86d78fc0d52c4fa3e4f5973a3c945667184086c2f0a9679eef859.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า logistic function มีค่าในช่วง 0 ถึง 1 เราจึงสามารถใช้ฟังค์ชันนี้แปลงผลรวมเชิงเส้นเป็นค่าความน่าจะเป็น (probability) ในการจำแนกคลาส
-$<span class="math notranslate nohighlight">\(
+<p>จะเห็นได้ว่า logistic function มีค่าในช่วง 0 ถึง 1 เราจึงสามารถใช้ฟังค์ชันนี้แปลงผลรวมเชิงเส้นเป็นค่าความน่าจะเป็น (probability) ในการจำแนกคลาส</p>
+<div class="math notranslate nohighlight">
+\[
 P(x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
-\)</span><span class="math notranslate nohighlight">\(
-หรือ
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>หรือ</p>
+<div class="math notranslate nohighlight">
+\[
 log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
-\)</span>$</p>
+\]</div>
 <p>และสามารถกำหนดเงื่อนไขการตัดสินใจหรือ decision boundary ที่ <span class="math notranslate nohighlight">\(P=0.5\)</span> เพื่อใช้ในการจำแนกคลาสของ <span class="math notranslate nohighlight">\(y\)</span> ซึ่งแสดงเป็นความสัมพันธ์ทางคณิตศาสตร์ได้ ดังนี้</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P(x) ≥ 0.5 → y=1\)</span></p></li>
@@ -1105,7 +1107,7 @@ weighted avg       0.90      0.88      0.88        60
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the decision boundaries</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;[Training Data] </span><span class="se">\n</span><span class="s1">Logistic Regression: Decision boundary&#39;</span><span class="p">,</span> <span class="s1">&#39;[Test Data] </span><span class="se">\n</span><span class="s1">Logistic Regression: Decision boundary&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">],</span> <span class="p">[</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">],</span> <span class="n">titles</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
     <span class="n">disp</span> <span class="o">=</span> <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">tuned_clf</span><span class="p">,</span>
@@ -1127,7 +1129,7 @@ weighted avg       0.90      0.88      0.88        60
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/23b260867ec2ca15424d4dc3904baa854f42801fef7d287afab67aa792c56a9a.png" src="../../_images/23b260867ec2ca15424d4dc3904baa854f42801fef7d287afab67aa792c56a9a.png" />
+<img alt="../../_images/c5703fa5fd4a41352a3e48468c4354f79c6297a7c7a9223359f1791c464c68ef.png" src="../../_images/c5703fa5fd4a41352a3e48468c4354f79c6297a7c7a9223359f1791c464c68ef.png" />
 </div>
 </div>
 <p>เมื่อชุดข้อมูลประกอบด้วย 3 คลาส decision boundary ของโมเดล logistic regression ยังคงประกอบเส้นตรง เพื่อจำแนกกลุ่มข้อมูลออกจากกัน</p>
