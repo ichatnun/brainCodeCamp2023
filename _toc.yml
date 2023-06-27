@@ -92,15 +92,16 @@ parts:
     chapters: 
     - file: Fundamentals/MachineLearning/intro_to_machine_learning
       title: Introduction to Machine Learning
-    - file: Fundamentals/MachineLearning/knn
-      title: K-Nearest Neighbors
     - file: Fundamentals/MachineLearning/logistic_regression
       title: Logistic Regression
     - file: Fundamentals/MachineLearning/svm
       title: Support Vector Machines
     - file: Fundamentals/MachineLearning/decision_tree_random_forest
       title: Decision Trees and Random Forest
+    - file: Fundamentals/MachineLearning/knn
+      title: K-Nearest Neighbors
     - file: Fundamentals/MachineLearning/eeg_supervised_learning
+      title: EEG example
 
   - caption: Deep Learning (Week 6)
     chapters: 
