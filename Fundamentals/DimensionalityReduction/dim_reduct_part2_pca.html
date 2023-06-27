@@ -250,14 +250,16 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (Week 5)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/intro_to_machine_learning.html">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/intro_to_machine_learning.html">Machine learning</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/knn.html">K-Nearest Neighbors</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/logistic_regression.html">Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/svm.html">Support Vector Machines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/decision_tree_random_forest.html">Decision Tree and Random Forest</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/knn.html">K-Nearest Neighbors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/eeg_supervised_learning.html">การวิเคราะห์ข้อมูล EEG brainwave</a></li>
 
 
@@ -470,12 +472,12 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis-pca">
 <h1>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this heading">#</a></h1>
 <p>เราจะมาทดลองใช้เทคนิค principal component analysis (PCA) ในการลดมิติของข้อมูลกัน</p>
-<p>เราจะเริ่มจากการนำเอาข้อมูลจากตัวอย่างสุดท้ายมาดู ซึ่งแต่ละจุดข้อมูล <span class="math notranslate nohighlight">\((x,y)\)</span> เป็นข้อมูลใน space ที่มี 2 มิติ (ค่า <span class="math notranslate nohighlight">\(x\)</span> เป็นมิติแรก และค่า <span class="math notranslate nohighlight">\(y\)</span> เป็นมิติที่สอง) และในชุดข้อมูลนี้มีจุดอยู่ 2 ประเภท (2 classes)</p>
+<p>เราจะเริ่มจากการนำเอาข้อมูลจากตัวอย่างสุดท้ายใน tutorial ที่แล้วมาดู ซึ่งแต่ละจุดข้อมูล <span class="math notranslate nohighlight">\((x,y)\)</span> เป็นข้อมูลใน space ที่มี 2 มิติ (ค่า <span class="math notranslate nohighlight">\(x\)</span> เป็นมิติแรก และค่า <span class="math notranslate nohighlight">\(y\)</span> เป็นมิติที่สอง) และในชุดข้อมูลนี้มีจุดอยู่ 2 ประเภท (2 classes)</p>
 <ul class="simple">
 <li><p>class 1: <span class="math notranslate nohighlight">\(y = x\)</span> โดยที่ <span class="math notranslate nohighlight">\( -4 ≤ x &lt; 0 \)</span></p></li>
 <li><p>class 2: <span class="math notranslate nohighlight">\(y = x\)</span> โดยที่ <span class="math notranslate nohighlight">\( 0 &lt; x ≤ 4 \)</span></p></li>
 </ul>
-<p>ตอนนั้นเราใช้การหมุนจุดข้อมูลตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา แต่ใน part นี้เราจะมองอีกมุม กล่าวคือ เราจะไม่หมุนจุดข้อมูล แต่เราจะหมุนแกนทั้งหมดใน space (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกาแทน</p>
+<p>ตอนนั้นเราใช้การหมุนจุดข้อมูลตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา แต่ใน part นี้เราจะมองอีกมุม กล่าวคือ เราจะไม่หมุนจุดข้อมูล แต่เราจะหมุนแกนทั้งหมดใน space (แกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span>) ไป <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกาแทน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -538,11 +540,12 @@ document.write(`
 <img alt="../../_images/eb17bef072269e51dcff74aa78a14f2f8ab974c89b89f4398b6803f133bbcec8.png" src="../../_images/eb17bef072269e51dcff74aa78a14f2f8ab974c89b89f4398b6803f133bbcec8.png" />
 </div>
 </div>
-<p>จากภาพด้านบน แกนสีขมพูเข้ม คือแกน <span class="math notranslate nohighlight">\(x\)</span> ที่ถูกหมุน และแกนสีชมพูที่อ่อนกว่า คือแกน <span class="math notranslate nohighlight">\(y\)</span> ที่ถูกหมุน</p>
-<p>จะเห็นได้ว่าข้อมูลจะอยู่บนแกนสีชมพูเข้มทั้งหมด ไม่มีข้อมูลในแกนสีชมพูอ่อนเลย ซึ่งหมายความว่าเราสามารถลดจำนวนมิติได้โดยการกำจัดแกนสีขมพูอ่อนไป</p>
-<p>ในขณะที่ ถ้าเราดูข้อมูลในแกนตั้งต้น (สีเทา) จุดข้อมูลจะกระจายตัวอยู่ระหว่าง 2 แกนเลย ทำให้ลดมิติได้ยาก</p>
+<p>จากภาพด้านบน แกนสีชมพูเข้ม คือแกน <span class="math notranslate nohighlight">\(x\)</span> ที่ถูกหมุนไป <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกา และแกนสีชมพูที่อ่อนกว่า คือแกน <span class="math notranslate nohighlight">\(y\)</span> ที่ถูกหมุนไปด้วยองศาเดียวกัน</p>
+<p>จะเห็นได้ว่าข้อมูลจะอยู่บนแกนสีชมพูเข้มทั้งหมด ไม่มีข้อมูลกระจายตัวในแกนสีชมพูอ่อนเลย ซึ่งหมายความว่าเราสามารถลดจำนวนมิติได้โดยการกำจัดแกนสีขมพูอ่อนไป</p>
+<p>ในขณะที่ ถ้าเราดูข้อมูลในแกนตั้งต้น (สีเทา) จุดข้อมูลจะกระจายตัวอยู่ระหว่าง 2 แกนเลย ทำให้ไม่สามารถกำจัดแกนใดแกนหนึ่งออกไปได้โดยไม่กระทบต่อคุณภาพของข้อมูล</p>
+<p><br><br></p>
 <hr class="docutils" />
-<p>สิ่งที่เทคนิค PCA ใช้ในการลดมิติข้อมูล ก็คือการหาแกนที่เมื่อเราลดมิติของข้อมูลไปบนแกนนั้น (ทางเทคนิคเรียกว่า project ข้อมูลไปบนแกนนั้น) จะพบว่าข้อมูลจะมีการกระจายตัวสูงที่สุด ซึ่งเราวัดการกระจายตัวด้วย variance ของข้อมูลบนแกนนั้น</p>
+<p>สิ่งที่เทคนิค PCA ใช้ในการลดจำนวนมิติของข้อมูล ก็คือการหาแกนที่เมื่อเราลดมิติของข้อมูลไปบนแกนนั้น (ทางเทคนิคเรียกว่า project ข้อมูลไปบนแกนนั้น) จะพบว่าข้อมูลจะมีการกระจายตัวสูงที่สุด ซึ่งเราวัดการกระจายตัวด้วย variance ของข้อมูลบนแกนนั้น</p>
 <p>ถ้าหากเราเริ่มต้นด้วยข้อมูลใน space ที่มี 2 มิติ (แกน <span class="math notranslate nohighlight">\(x\)</span> และแกน <span class="math notranslate nohighlight">\(y\)</span>) เทคนิค PCA จะสามารถหาจำนวนแกนใหม่มาได้เท่ากับจำนวนแกนในตอนแรก (2 แกน) เลย โดยที่จะเรียกแกนเหล่านั้นว่า principal component ตัวแรก (PC1) และ PC2 โดยมีคุณสมบัติที่สำคัญ ดังนี้</p>
 <ul class="simple">
 <li><p>PC1 จะเป็นแกนที่มีค่า variance ของการกระจายตัวมากกว่าหรือเท่ากับ PC2</p></li>
@@ -553,8 +556,8 @@ document.write(`
 <p>เราจะมาลองทดสอบ PCA กับข้อมูลจากตัวอย่างด้านบน ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition.PCA</span></code> กัน</p>
 <p><strong>หมายเหตุ</strong></p>
 <ol class="arabic simple">
-<li><p>เทคนิค PCA เป็นเทคนิคประเภท unsupervised learning ซึ่งจะไม่ใช้ข้อมูล class กล่าวคือ PCA จะหาแกนใหม่ ๆ มาโดยที่ไม่รู้ว่าแต่ละจุดข้อมูลเป็นข้อมูลจาก class ไหนเลย ในตัวอย่างด้านบน ซึ่งมีสอง class (class สีน้ำเงิน และ class สีแดง) เราจะพูดได้ว่า PCA ทำงานโดยไม่สนใจเลยว่าจุดไหนมีสีอะไร อาจจะมองว่าทุกจุดเป็นจุดสีเดียวกันหมดก็ได้</p></li>
-<li><p>ในหลาย ๆ กรณี ในชุดข้อมูลหลายชุด จะมีข้อมูล class ของแต่ละจุดข้อมูลมาด้วย เวลาเราทำ PCA เราก็จะไม่ใช้ข้อมูล class เหล่านั้น แต่เวลาเราจะ plot ผลหลังการทำ PCA เรามักจะนำเอาข้อมูล class เหล่านั้นมาระบายสีจุดที่ผ่านเทคนิค PCA มาแล้ว เพื่อดูว่าจุดข้อมูลจากแต่ละ class นั้นเรียงตัวกันอยู่ใน space ใหม่ (ที่เกิดจากแกน PC ต่าง ๆ) อย่างไร</p></li>
+<li><p>เทคนิค PCA เป็นเทคนิคประเภท unsupervised learning ซึ่งจะไม่ใช้ข้อมูล class กล่าวคือ PCA จะหาแกนใหม่ ๆ มาโดยที่ไม่รู้ว่าแต่ละจุดข้อมูลเป็นข้อมูลจาก class ไหนเลย ในตัวอย่างด้านบน ซึ่งมี 2 ประเภท (class สีน้ำเงิน และ class สีแดง) เราจะพูดได้ว่า PCA ทำงานโดยไม่สนใจเลยว่าจุดไหนมีสีอะไร อาจจะมองว่าทุกจุดเป็นจุดสีเดียวกันหมดก็ได้</p></li>
+<li><p>ในหลาย ๆ กรณี ในชุดข้อมูลหลายชุด จะมีข้อมูล class ของแต่ละจุดข้อมูลมาด้วย เวลาเราทำ PCA เราก็จะไม่ใช้ข้อมูล class เหล่านั้น แต่เวลาเราจะ plot ผลหลังการทำ PCA เรามักจะนำเอาข้อมูล class เหล่านั้นมาระบายสีจุดที่ผ่านเทคนิค PCA มาแล้ว เพื่อดูว่าจุดข้อมูลจากแต่ละ class นั้นเรียงตัวกันอยู่ใน space ใหม่ (ที่เกิดจากแกน PC ต่าง ๆ) อย่างไร ซึ่งเราจะมาลองทำแบบนี้กับตัวอย่างสุดท้ายของ tutorial นี้</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

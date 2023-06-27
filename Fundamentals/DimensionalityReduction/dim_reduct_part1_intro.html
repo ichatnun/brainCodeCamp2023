@@ -250,14 +250,16 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (Week 5)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/intro_to_machine_learning.html">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/intro_to_machine_learning.html">Machine learning</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/knn.html">K-Nearest Neighbors</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/logistic_regression.html">Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/svm.html">Support Vector Machines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/decision_tree_random_forest.html">Decision Tree and Random Forest</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="../MachineLearning/knn.html">K-Nearest Neighbors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../MachineLearning/eeg_supervised_learning.html">การวิเคราะห์ข้อมูล EEG brainwave</a></li>
 
 
@@ -469,6 +471,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-basics">
 <h1>The Basics<a class="headerlink" href="#the-basics" title="Permalink to this heading">#</a></h1>
+<p><strong>จะมีการเติม video อธิบายเนื้อหาเพิ่มเติมตรงนี้ เกี่ยวกับข้อมูล และการนับมิติ</strong></p>
 <p>Dimensionality reduction คือ การลดจำนวนมิติของข้อมูล</p>
 <p>หากใช้ภาษาทางเทคนิค เราจะเรียกว่าเป็น การแปลงข้อมูลจากข้อมูลใน space ที่มีจำนวนมิติมาก (high-dimensional space) มาสู่ space ที่มีจำนวนมิติน้อย (low-dimensional space) ซึ่งเรามักจะออกแบบการลดจำนวนมิติลง โดยที่สูญเสียข้อมูลน้อยที่สุดเท่าที่ทำได้</p>
 <p>ตัวอย่างของข้อมูลที่มีจำนวนมิติมาก</p>
@@ -483,6 +486,7 @@ document.write(`
 <li><p>นอกจากนี้ หากเราลดจำนวนมิติของข้อมูลลงจนเหลือไม่เกิน 3 มิติ ก็จะช่วยให้เราสามารถนำเอาข้อมูลมา plot และดูได้ด้วยตาเปล่า</p></li>
 </ol>
 <p>ในการลดจำนวนมิติของข้อมูล เราสามารถใช้ทั้งเทคนิคที่เป็นแบบ linear หรือ แบบ non-linear ก็ได้ โดยที่แต่ละเทคนิคก็จะมีข้อดีและข้อเสีย และมีสมมติฐานในการใช้งานที่แตกต่างกัน</p>
+<p><br><br></p>
 <hr class="docutils" />
 <p>สมมติว่าเรามีชุดข้อมูลชุดหนึ่ง ที่มีจุดข้อมูลอยู่ทั้งหมด 100 จุด แต่ละจุดข้อมูล <span class="math notranslate nohighlight">\((x,y)\)</span> เป็นข้อมูลใน space ที่มี 2 มิติ (ค่า <span class="math notranslate nohighlight">\(x\)</span> เป็นมิติแรก และค่า <span class="math notranslate nohighlight">\(y\)</span> เป็นมิติที่สอง) และในชุดข้อมูลนี้มีจุดอยู่ 2 ประเภท (2 classes)</p>
 <ul class="simple">
@@ -533,10 +537,10 @@ document.write(`
 <img alt="../../_images/89ec6d24a905f817d776966ab0bb8f0fc73ca1854e9eb4764f11eaa8ba256ac4.png" src="../../_images/89ec6d24a905f817d776966ab0bb8f0fc73ca1854e9eb4764f11eaa8ba256ac4.png" />
 </div>
 </div>
-<p>ถ้าหากเราต้องการแก้โจทย์ two-class classification หรือ แบ่งจุดข้อมูลที่เรามีออกเป็น 2 ประเภท (ประเภทน้ำเงิน และ ประเภทสีแดง) เราสามารถใช้แกน <span class="math notranslate nohighlight">\(y\)</span> เป็นตัวแบ่งได้เลย โดยเราจะตอบว่าจุดข้อมูลนั้นเป็น</p>
+<p>ถ้าหากเราต้องการแก้โจทย์ two-class classification หรือ แบ่งจุดข้อมูลที่เรามีออกเป็น 2 ประเภท (ประเภทน้ำเงิน และ ประเภทสีแดง) โดยที่เราใช้ค่า <span class="math notranslate nohighlight">\(x\)</span> เป็น feature แรก และใช้ค่า <span class="math notranslate nohighlight">\(y\)</span> เป็น feature ที่สอง เราสามารถใช้แกน <span class="math notranslate nohighlight">\(y\)</span> (สมการคือ <span class="math notranslate nohighlight">\( x=0\)</span>) แบ่งข้อมูลทั้ง 2 ประเภทออกจากกันได้เลย โดยเราจะตอบว่าจุดข้อมูลนั้นเป็น</p>
 <ol class="arabic simple">
-<li><p>class 1 (ประเภทที่ 1) ถ้าหากจุดนั้นมีค่า <span class="math notranslate nohighlight">\(x\)</span> น้อยกว่า <span class="math notranslate nohighlight">\(0\)</span> หรือถ้าดูจากภาพก็จุดนั้นอยู่ทางซ้ายของแกน <span class="math notranslate nohighlight">\(y\)</span></p></li>
-<li><p>class 2 (ประเภทที่ 2) ถ้าหากจุดนั้นมีค่า <span class="math notranslate nohighlight">\(x\)</span> มากกว่า <span class="math notranslate nohighlight">\(0\)</span> หรือถ้าดูจากภาพก็จุดนั้นอยู่ทางขวาของแกน <span class="math notranslate nohighlight">\(y\)</span></p></li>
+<li><p>class 1 (ประเภทที่ 1) ถ้าหากจุดนั้นมีค่า <span class="math notranslate nohighlight">\(x\)</span> น้อยกว่า <span class="math notranslate nohighlight">\(0\)</span> หรือถ้าดูจากภาพก็คือจุดนั้นอยู่ทางซ้ายของแกน <span class="math notranslate nohighlight">\(y\)</span></p></li>
+<li><p>class 2 (ประเภทที่ 2) ถ้าหากจุดนั้นมีค่า <span class="math notranslate nohighlight">\(x\)</span> มากกว่า <span class="math notranslate nohighlight">\(0\)</span> หรือถ้าดูจากภาพก็คือจุดนั้นอยู่ทางขวาของแกน <span class="math notranslate nohighlight">\(y\)</span></p></li>
 </ol>
 <p>จะเห็นว่าเราสามารถแบ่งจุดข้อมูลสองกลุ่มนี้ได้อย่างง่ายดาย โดยการดูแค่ค่า <span class="math notranslate nohighlight">\(x\)</span> อย่างเดียว โดยที่ไม่ต้องสนใจค่า <span class="math notranslate nohighlight">\(y\)</span> ซึ่งแปลว่าเราจริง ๆ แล้ว เราสามารถลดข้อมูลมิติของข้อมูลจากสองมิติ (<span class="math notranslate nohighlight">\(x\)</span> หนึ่งมิติ และ <span class="math notranslate nohighlight">\(y\)</span> เป็นอีกมิติ) ให้เหลือแค่มิติเดียว (ค่า <span class="math notranslate nohighlight">\(x\)</span> เพียงอย่างเดียว) ก็ยังสามารถ classify จุดเหล่านี้ได้เหมือนเดิม ดังแสดงในภาพด้านล่าง</p>
 <div class="cell docutils container">
@@ -622,8 +626,8 @@ document.write(`
 <img alt="../../_images/9e71204fdcae4ed3c1f7129373787e318e48be6564fca622cfa8b5b871fa9ac4.png" src="../../_images/9e71204fdcae4ed3c1f7129373787e318e48be6564fca622cfa8b5b871fa9ac4.png" />
 </div>
 </div>
-<p>เราสามารถสังเกตได้ว่าถ้าเรานำเอาข้อมูลด้านบนมาหมุนตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา เราจะสามารถแปลงโจทย์ข้อนี้ให้กลายเป็นโจทย์ข้อมูลที่เรามีอยู่ก็จะมีหน้าตาคล้ายกับข้อมูลในตัวอย่างก่อนหน้า</p>
-<p>การหมุนจุดข้อมูลทวนเข็มนาฬิกา สามารถใช้ rotation matrix ได้</p>
+<p>จะเห็นว่าถ้าเรานำเอาข้อมูลด้านบนมาหมุนตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา เราจะสามารถแปลงโจทย์ข้อนี้ให้กลายเป็นโจทย์ที่มีหน้าตาคล้ายกับข้อมูลในตัวอย่างก่อนหน้า</p>
+<p>การหมุนจุดข้อมูลทวนเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(\theta\)</span> องศา เราสามารถอธิบายด้วย rotation matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
   R(θ) = 
@@ -640,7 +644,7 @@ document.write(`
       y\\
   \end{bmatrix} 
 \end{split}\]</div>
-<p>เราจะสามารถหมุนจุดข้อมูลนั้นทวนเข็มนาฬิกา 45 องศา ด้วยการคำนวณ</p>
+<p>เราจะสามารถหมุนจุดข้อมูลนั้นตามเข็มนาฬิกา 45 องศา ด้วยการใช้ <span class="math notranslate nohighlight">\(R(-45°)\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
    \begin{bmatrix}
@@ -715,13 +719,13 @@ document.write(`
 </div>
 <p>มีข้อสังเกตดังนี้</p>
 <ul class="simple">
-<li><p>ข้อมูลเริ่มต้นอยู่ใน space ขนาด 2 มิติ โดยมีลักษณะเป็นเส้นตรงที่ทำมุม 45 องศา ทวนเข็มนาฬิกากับแกน <span class="math notranslate nohighlight">\(x\)</span></p></li>
-<li><p>ถ้าหากเราหมุนข้อมูลเหล่านั้นตามเข็มนาฬิกาด้วยมุม 45 องศา เราจะเห็นข้อมูลจัดเรียงกันอยู่บนแกน <span class="math notranslate nohighlight">\(x\)</span> โดยที่ค่าใน แกน <span class="math notranslate nohighlight">\(y\)</span> ทุกตัวเป็น 0</p></li>
+<li><p>ข้อมูลเริ่มต้นอยู่ใน space ขนาด 2 มิติ โดยมีลักษณะเป็นเส้นตรงที่ทำมุม <span class="math notranslate nohighlight">\(45\)</span> องศากับแกน <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p>ถ้าหากเราหมุนจุดข้อมูลเหล่านั้นตามเข็มนาฬิกาไป <span class="math notranslate nohighlight">\(45\)</span> องศา เราจะเห็นข้อมูลจัดเรียงกันอยู่บนแกน <span class="math notranslate nohighlight">\(x\)</span> โดยที่ค่าใน แกน <span class="math notranslate nohighlight">\(y\)</span> ทุกตัวเป็น <span class="math notranslate nohighlight">\(0\)</span></p></li>
 <li><p>ถ้าหากเราต้องการจะ classify ข้อมูลนี้ เราสามารถทำได้โดยที่แค่ค่าในแกน <span class="math notranslate nohighlight">\(x\)</span> (ไม่ต้องดูแกน <span class="math notranslate nohighlight">\(y\)</span> เลย) แสดงว่าเราสามารถลดจำนวนมิติของข้อมูลให้เหลือ <span class="math notranslate nohighlight">\(1\)</span> มิติได้ โดยที่ยังมีความสามารถในการทำ classification ได้เหมือนเดิม</p></li>
 </ul>
 <hr class="docutils" />
-<p>จากตัวอย่างทั้งหมดใน part นี้ จะเห็นได้ว่าในหลาย ๆ ครั้ง เราสามารถลดจำนวนมิติได้  ซึ่งในตัวอย่างเหล่านี้เราแค่ใช้การ transform จุดข้อมูลอย่างง่าย เช่น การหมุน ก็ส่งผลให้ข้อมูลมาอยู่ในรูปแบบที่เราสามารถกำจัดแกน <span class="math notranslate nohighlight">\(y\)</span> ได้เลย ส่งผลให้จำนวนมิติลดลงจาก <span class="math notranslate nohighlight">\(2\)</span> มิติ ไปเป็น <span class="math notranslate nohighlight">\(1\)</span> มิติ
-และเรายังพบว่าเราสามารถนำเอาข้อมูลใน <span class="math notranslate nohighlight">\(1\)</span> มิตินี้ไปใช้งานต่อได้ เช่น เรายังสามารถนำเอาไปใช้เป็น feature ในการ classify ได้เหมือนเดิม</p>
+<p>จากตัวอย่างทั้งหมดใน part นี้ จะเห็นได้ว่าในหลาย ๆ ครั้ง เราสามารถลดจำนวนมิติได้  ซึ่งในตัวอย่างเหล่านี้เราแค่ใช้การ transform จุดข้อมูลอย่างง่าย เช่น การหมุน ก็ส่งผลให้ข้อมูลมาอยู่ในรูปแบบที่เราสามารถกำจัดแกน <span class="math notranslate nohighlight">\(y\)</span> ได้เลย ส่งผลให้จำนวนมิติลดลงจาก 2 มิติ ไปเป็น 1 มิติ
+และเรายังพบว่าเราสามารถนำเอาข้อมูลใน 1 มิตินี้ไปใช้งานต่อได้ เช่น เรายังสามารถนำเอาไปใช้เป็น feature ในการ classify ได้เหมือนเดิม</p>
 <p><strong>หมายเหตุ</strong> ในตัวอย่างล่าสุด เราหมุนจุดข้อมูลไป <span class="math notranslate nohighlight">\(45\)</span> องศาแบบตามเข็มนาฬิกา โดยที่ไม่ขยับแกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span> เลย ซึ่งการทำแบบนี้ ในอีกมุมมองนึง ก็เหมือนกับการหมุนแกน <span class="math notranslate nohighlight">\(x\)</span> และ แกน <span class="math notranslate nohighlight">\(y\)</span> ไป <span class="math notranslate nohighlight">\(45\)</span> องศาแบบทวนเข็มนาฬิกา โดยที่ไม่ขยับจุดข้อมูลได้เช่นกัน</p>
 <hr class="docutils" />
 <p>ในสถานการณ์การทำงานจริง เรามักเจอข้อมูลที่มีความซับซ้อนมาก เช่น ข้อมูลที่อยู่ใน space ที่มีจำนวนมิติสูงมาก เราอาจจะไม่สามารถใช้การ transform แบบง่าย ๆ ที่เราใช้ในตัวอย่างนี้ จึงมีเทคนิคมากมายถูกคิดค้นขึ้นเพื่อใช้ช่วยลดมิติของข้อมูลได้อย่างมีหลักการ</p>
