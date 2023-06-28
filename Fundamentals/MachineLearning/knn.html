@@ -706,7 +706,6 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 </div>
 </div>
 <p>การเลือกค่า <code class="docutils literal notranslate"><span class="pre">'n_neighbors'</span></code> ที่เหมาะสมจะมีความจำเพาะต่อชุดข้อมูล  ยิ่งให้ค่า <code class="docutils literal notranslate"><span class="pre">'n_neighbors'</span></code> มีค่ามากจะช่วยลดผลของ noise ทำให้ได้ decision boundary ที่ smooth แต่ในขณะเดียวกันก็จะทำให้ความสามารถในการจำแนกลดลง ดังจะเห็นจากค่า accuracy ในตัวอย่างด้านล่าง</p>
-<p><strong>Quiz:</strong> ถ้ากำหนดให้ <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> มีค่าสูงมากๆ จะเป็นยังไงบ้าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># กำหนดช่วงค่า n_neighbors</span>
@@ -739,6 +738,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 <img alt="../../_images/30c4c94005061b2c3dd8d871704e6dcf718eddce944b93daf16bbaff229fc34c.png" src="../../_images/30c4c94005061b2c3dd8d871704e6dcf718eddce944b93daf16bbaff229fc34c.png" />
 </div>
 </div>
+<p><strong>Quiz:</strong> ถ้ากำหนดให้ <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> มีค่าสูงมากๆ จะเป็นยังไงบ้าง</p>
 </section>
 <section id="k-nn-weights">
 <h2>k-NN เมื่อปรับค่า <code class="docutils literal notranslate"><span class="pre">'weights'</span></code> ของจุดข้อมูล<a class="headerlink" href="#k-nn-weights" title="Permalink to this heading">#</a></h2>
