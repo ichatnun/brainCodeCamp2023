@@ -679,7 +679,7 @@ document.write(`
 <span class="s2">  &lt;/style&gt;</span>
 <span class="s2">&lt;/head&gt;</span>
 <span class="s2">&lt;body&gt;</span>
-<span class="s2">  &lt;input type=&quot;range&quot; id=&quot;angleSlider&quot; min=&quot;-180&quot; max=&quot;180&quot; value=&quot;-45&quot; step=&quot;1&quot;&gt;</span>
+<span class="s2">  &lt;input type=&quot;range&quot; id=&quot;angleSlider&quot; min=&quot;-180&quot; max=&quot;180&quot; value=&quot;0&quot; step=&quot;1&quot;&gt;</span>
 <span class="s2">  &lt;div id=&quot;angleValue&quot;&gt;&lt;/div&gt;</span>
 <span class="s2">  &lt;div id=&quot;transformationMatrix&quot;&gt;&lt;/div&gt;</span>
 <span class="s2">  &lt;canvas id=&quot;canvas&quot;&gt;&lt;/canvas&gt;</span>
@@ -785,7 +785,6 @@ document.write(`
 <span class="s2">      });</span>
 
 <span class="s2">      adjustedPoints.forEach((point, i) =&gt; {</span>
-<span class="s2">        console.log(i)</span>
 <span class="s2">        let alpha = 1;</span>
 
 <span class="s2">        if (i &lt; numPoints/2) {</span>
