@@ -679,26 +679,15 @@ document.write(`
 <span class="s2">  &lt;/style&gt;</span>
 <span class="s2">&lt;/head&gt;</span>
 <span class="s2">&lt;body&gt;</span>
-<span class="s2">  &lt;input type=&quot;range&quot; id=&quot;angleSlider&quot; min=&quot;-180&quot; max=&quot;180&quot; value=&quot;45&quot; step=&quot;1&quot;&gt;</span>
+<span class="s2">  &lt;input type=&quot;range&quot; id=&quot;angleSlider&quot; min=&quot;-180&quot; max=&quot;180&quot; value=&quot;-45&quot; step=&quot;1&quot;&gt;</span>
 <span class="s2">  &lt;div id=&quot;angleValue&quot;&gt;&lt;/div&gt;</span>
 <span class="s2">  &lt;div id=&quot;transformationMatrix&quot;&gt;&lt;/div&gt;</span>
 <span class="s2">  &lt;canvas id=&quot;canvas&quot;&gt;&lt;/canvas&gt;</span>
 <span class="s2">  &lt;script&gt;</span>
 <span class="s2">    // Generate x and y data points from Python code</span>
 <span class="s2">    const numPoints = 50;</span>
-<span class="s2">    const x = [-4.        , -3.83673469, -3.67346939, -3.51020408, -3.34693878,</span>
-<span class="s2">       -3.18367347, -3.02040816, -2.85714286, -2.69387755, -2.53061224,</span>
-<span class="s2">       -2.36734694, -2.20408163, -2.04081633, -1.87755102, -1.71428571,</span>
-<span class="s2">       -1.55102041, -1.3877551 , -1.2244898 , -1.06122449, -0.89795918,</span>
-<span class="s2">       -0.73469388, -0.57142857, -0.40816327, -0.24489796, -0.08163265,</span>
-<span class="s2">        0.08163265,  0.24489796,  0.40816327,  0.57142857,  0.73469388,</span>
-<span class="s2">        0.89795918,  1.06122449,  1.2244898 ,  1.3877551 ,  1.55102041,</span>
-<span class="s2">        1.71428571,  1.87755102,  2.04081633,  2.20408163,  2.36734694,</span>
-<span class="s2">        2.53061224,  2.69387755,  2.85714286,  3.02040816,  3.18367347,</span>
-<span class="s2">        3.34693878,  3.51020408,  3.67346939,  3.83673469,  4.        ];</span>
-<span class="s2">    const y = [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,</span>
-<span class="s2">       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,</span>
-<span class="s2">       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.];</span>
+<span class="s2">    const x = [-2.8284271247461903,-2.7129811169126663,-2.5975351161502105,-2.4820891083166865,-2.3666431075542302,-2.2511970997207067,-2.1357510918871827,-2.020305091124727,-1.9048590832912027,-1.789413075457679,-1.6739670746952229,-1.5585210668616991,-1.4430750660992433,-1.3276290582657193,-1.2121830504321953,-1.0967370496697393,-0.9812910418362154,-0.8658450410737594,-0.7503990332402356,-0.6349530254067116,-0.5195070246442557,-0.4040610168107318,-0.2886150160482758,-0.17316900821475187,-0.057723000381228025,0.057723000381228025,0.17316900821475187,0.2886150160482758,0.4040610168107318,0.5195070246442557,0.6349530254067116,0.7503990332402356,0.8658450410737594,0.9812910418362154,1.0967370496697393,1.2121830504321953,1.3276290582657193,1.4430750660992433,1.5585210668616991,1.6739670746952229,1.789413075457679,1.9048590832912027,2.020305091124727,2.1357510918871827,2.2511970997207067,2.3666431075542302,2.4820891083166865,2.5975351161502105,2.7129811169126663,2.8284271247461903];</span>
+<span class="s2">    const y = [-2.82842712474619,-2.7129811169126663,-2.59753511615021,-2.482089108316686,-2.3666431075542302,-2.2511970997207063,-2.1357510918871827,-2.0203050911247264,-1.9048590832912025,-1.7894130754576787,-1.6739670746952227,-1.558521066861699,-1.4430750660992429,-1.327629058265719,-1.212183050432195,-1.096737049669739,-0.9812910418362152,-0.8658450410737593,-0.7503990332402355,-0.6349530254067116,-0.5195070246442556,-0.40406101681073175,-0.2886150160482757,-0.17316900821475184,-0.05772300038122801,0.05772300038122801,0.17316900821475184,0.2886150160482757,0.40406101681073175,0.5195070246442556,0.6349530254067116,0.7503990332402355,0.8658450410737593,0.9812910418362152,1.096737049669739,1.212183050432195,1.327629058265719,1.4430750660992429,1.558521066861699,1.6739670746952227,1.7894130754576787,1.9048590832912025,2.0203050911247264,2.1357510918871827,2.2511970997207063,2.3666431075542302,2.482089108316686,2.59753511615021,2.7129811169126663,2.82842712474619];</span>
 
 <span class="s2">    // Combine x and y data into points array</span>
 <span class="s2">    const points = x.map((xVal, index) =&gt; ({</span>
@@ -782,10 +771,10 @@ document.write(`
 <span class="s2">      context.stroke();</span>
 
 <span class="s2">      // Draw points</span>
-<span class="s2">      adjustedOriginalPoints.forEach(point =&gt; {</span>
+<span class="s2">      adjustedOriginalPoints.forEach((point, i) =&gt; {</span>
 <span class="s2">        let alpha = 0.1;</span>
 
-<span class="s2">        if (point.x &lt; centerX) {</span>
+<span class="s2">        if (i &lt; numPoints/2) {</span>
 <span class="s2">          context.fillStyle = `rgba(0, 0, 255, $</span><span class="si">{alpha}</span><span class="s2">)`; // First half of rotated points with blue color</span>
 <span class="s2">        } else {</span>
 <span class="s2">          context.fillStyle = `rgba(255, 0, 0, $</span><span class="si">{alpha}</span><span class="s2">)`; // Second half of rotated points with red color</span>
@@ -795,10 +784,11 @@ document.write(`
 <span class="s2">        context.fill();</span>
 <span class="s2">      });</span>
 
-<span class="s2">      adjustedPoints.forEach(point =&gt; {</span>
+<span class="s2">      adjustedPoints.forEach((point, i) =&gt; {</span>
+<span class="s2">        console.log(i)</span>
 <span class="s2">        let alpha = 1;</span>
 
-<span class="s2">        if (point.x &lt; centerX) {</span>
+<span class="s2">        if (i &lt; numPoints/2) {</span>
 <span class="s2">          context.fillStyle = `rgba(0, 0, 255, $</span><span class="si">{alpha}</span><span class="s2">)`; // First half of rotated points with blue color</span>
 <span class="s2">        } else {</span>
 <span class="s2">          context.fillStyle = `rgba(255, 0, 0, $</span><span class="si">{alpha}</span><span class="s2">)`; // Second half of rotated points with red color</span>
@@ -815,12 +805,12 @@ document.write(`
 <span class="s2">      transformationMatrix.innerHTML = `</span>
 <span class="s2">        &lt;table&gt;</span>
 <span class="s2">          &lt;tr&gt;</span>
-<span class="s2">            &lt;td&gt;$</span><span class="si">{rotationMatrix[0]}</span><span class="s2">&lt;/td&gt;</span>
-<span class="s2">            &lt;td&gt;$</span><span class="si">{rotationMatrix[1]}</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">            &lt;td&gt;${rotationMatrix[0].toFixed(2)}&lt;/td&gt;</span>
+<span class="s2">            &lt;td&gt;${rotationMatrix[1].toFixed(2)}&lt;/td&gt;</span>
 <span class="s2">          &lt;/tr&gt;</span>
 <span class="s2">          &lt;tr&gt;</span>
-<span class="s2">            &lt;td&gt;$</span><span class="si">{rotationMatrix[2]}</span><span class="s2">&lt;/td&gt;</span>
-<span class="s2">            &lt;td&gt;$</span><span class="si">{rotationMatrix[3]}</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">            &lt;td&gt;${rotationMatrix[2].toFixed(2)}&lt;/td&gt;</span>
+<span class="s2">            &lt;td&gt;${rotationMatrix[3].toFixed(2)}&lt;/td&gt;</span>
 <span class="s2">          &lt;/tr&gt;</span>
 <span class="s2">        &lt;/table&gt;</span>
 <span class="s2">      `;</span>
@@ -858,19 +848,24 @@ document.write(`
   <script>
     // Generate x and y data points from Python code
     const numPoints = 50;
-    const x = [-4.        , -3.83673469, -3.67346939, -3.51020408, -3.34693878,
-       -3.18367347, -3.02040816, -2.85714286, -2.69387755, -2.53061224,
-       -2.36734694, -2.20408163, -2.04081633, -1.87755102, -1.71428571,
-       -1.55102041, -1.3877551 , -1.2244898 , -1.06122449, -0.89795918,
-       -0.73469388, -0.57142857, -0.40816327, -0.24489796, -0.08163265,
-        0.08163265,  0.24489796,  0.40816327,  0.57142857,  0.73469388,
-        0.89795918,  1.06122449,  1.2244898 ,  1.3877551 ,  1.55102041,
-        1.71428571,  1.87755102,  2.04081633,  2.20408163,  2.36734694,
-        2.53061224,  2.69387755,  2.85714286,  3.02040816,  3.18367347,
-        3.34693878,  3.51020408,  3.67346939,  3.83673469,  4.        ];
-    const y = [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.];
+    const x = [-2.82842712 -2.71298112 -2.59753512 -2.48208911 -2.36664311 -2.2511971
+ -2.13575109 -2.02030509 -1.90485908 -1.78941308 -1.67396707 -1.55852107
+ -1.44307507 -1.32762906 -1.21218305 -1.09673705 -0.98129104 -0.86584504
+ -0.75039903 -0.63495303 -0.51950702 -0.40406102 -0.28861502 -0.17316901
+ -0.057723    0.057723    0.17316901  0.28861502  0.40406102  0.51950702
+  0.63495303  0.75039903  0.86584504  0.98129104  1.09673705  1.21218305
+  1.32762906  1.44307507  1.55852107  1.67396707  1.78941308  1.90485908
+  2.02030509  2.13575109  2.2511971   2.36664311  2.48208911  2.59753512
+  2.71298112  2.82842712];
+    const y = [-2.82842712 -2.71298112 -2.59753512 -2.48208911 -2.36664311 -2.2511971
+ -2.13575109 -2.02030509 -1.90485908 -1.78941308 -1.67396707 -1.55852107
+ -1.44307507 -1.32762906 -1.21218305 -1.09673705 -0.98129104 -0.86584504
+ -0.75039903 -0.63495303 -0.51950702 -0.40406102 -0.28861502 -0.17316901
+ -0.057723    0.057723    0.17316901  0.28861502  0.40406102  0.51950702
+  0.63495303  0.75039903  0.86584504  0.98129104  1.09673705  1.21218305
+  1.32762906  1.44307507  1.55852107  1.67396707  1.78941308  1.90485908
+  2.02030509  2.13575109  2.2511971   2.36664311  2.48208911  2.59753512
+  2.71298112  2.82842712];
 
     // Combine x and y data into points array
     const points = x.map((xVal, index) => ({
