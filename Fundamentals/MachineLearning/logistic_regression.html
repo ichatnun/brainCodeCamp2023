@@ -556,7 +556,7 @@ P(x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
 \[
 log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
 \]</div>
-<p>และสามารถกำหนดเงื่อนไขการตัดสินใจหรือ decision boundary ที่ <span class="math notranslate nohighlight">\(P=0.5\)</span> เพื่อใช้ในการจำแนกคลาสของ <span class="math notranslate nohighlight">\(y\)</span> ซึ่งแสดงเป็นความสัมพันธ์ทางคณิตศาสตร์ได้ ดังนี้</p>
+<p>และสามารถกำหนดเงื่อนไขการตัดสินใจหรือ decision boundary ที่ <span class="math notranslate nohighlight">\(P=0.5\)</span> เพื่อใช้ในการจำแนก label ของ <span class="math notranslate nohighlight">\(y\)</span> ซึ่งแสดงเป็นความสัมพันธ์ทางคณิตศาสตร์ได้ ดังนี้</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P(x) ≥ 0.5 → y=1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(P(x) &lt; 0.5 → y=0\)</span></p></li>
@@ -566,7 +566,7 @@ log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
 <section id="generate-simulated-dataset">
 <h2>Generate simulated dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
 <p>เพื่อเปรียบเทียบการทำงานของ Linear regression และ Logistic regression เราจะลองสร้างชุดข้อมูลที่ประกอบไปด้วย จำนวน <span class="math notranslate nohighlight">\(n=100\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
-<p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) โดยมีข้อมูลในแต่ละคลาสจำนวน 50 จุด</p>
+<p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) โดยมีข้อมูลจำนวน 50 จุดในแต่ละคลาส</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
@@ -684,7 +684,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 </div>
 </div>
 <p>จะเห็นได้ว่า ค่าที่ทำนายจากโมเดล linear regression มีความคลาดเคลื่อนสูงมาก ในขณะที่โมเดล logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ปรากฏข้อมูลทั้งสองคลาส และเนื่องจาก ชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
-<p>Quiz: Determine decision boundary, given <span class="math notranslate nohighlight">\(P(x) = g(x*2.13 + 1.08)\)</span></p>
+<p><strong>Quiz:</strong> Determine decision boundary, given <span class="math notranslate nohighlight">\(P(x) = g(x*2.13 + 1.08)\)</span></p>
 <p><em>จะแสดงคำตอบในวิดีโอ</em></p>
 <p>ต่อไป เราจะลองสร้างชุดข้อมูลที่ feature space มีมิติสูงขึ้น โดยเป็นชุดข้อมูลที่ประกอบด้วย 2 features เพื่อจำแนก 2 classes</p>
 <div class="cell docutils container">
@@ -783,10 +783,10 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <li><p>เหมาะสำหรับข้อมูลขนาดเล็ก</p></li>
 <li><p>สามารถใช้ร่วมกับ L1 และ L2 regularization</p></li>
 </ul>
-<p>เราสามารถเลือกใช้ solver ที่เหมาะสมโดยยังมี hyperparameters อีก 2 ตัวที่กำหนดการหยุดทำงานของ iterative solvers เหล่านี้ ได้แก่</p>
+<p>เราสามารถเลือกใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ที่เหมาะสมโดยยังมี hyperparameters อีก 2 ตัวที่กำหนดการหยุดทำงานของ iterative solvers เหล่านี้ ได้แก่</p>
 <ul class="simple">
-<li><p>‘tol’ คือ ค่า tolerance เป็นการกำหนดระดับความแม่นยำ (precision) ของ คำตอบจาก iterative solver โดยเมื่อค่าคำตอบที่ได้จาก solver มีการเปลี่ยนแปลงน้อยกว่าค่า tolerance ที่กำหนด จะถือว่าได้ค่าตอบที่มีความถูกต้องในระดับความแม่นยำที่ต้องการ และหยุดการคำนวณ</p></li>
-<li><p>‘max_iter’ กำหนดจำนวนครั้งมากที่สุดที่ให้ solver คำนวณหาค่าคำตอบ ก่อนยุติการคำนวณ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'tol'</span></code> คือ ค่า tolerance เป็นการกำหนดระดับความแม่นยำ (precision) ของ คำตอบจาก iterative solver โดยเมื่อค่าคำตอบที่ได้จาก solver มีการเปลี่ยนแปลงน้อยกว่าค่า tolerance ที่กำหนด จะถือว่าได้ค่าตอบที่มีความถูกต้องในระดับความแม่นยำที่ต้องการ และหยุดการคำนวณ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'max_iter'</span></code> กำหนดจำนวนครั้งมากที่สุดที่ให้ solver คำนวณหาค่าคำตอบ ก่อนยุติการคำนวณ</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -834,11 +834,11 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <section id="regularization">
 <h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h2>
 <p>หากพบปัญหา overfitting หรือการเรียนรู้ข้อมูลสัญญาณที่เกินมากเกินไปจากข้อมูลฝึกสอน เราสามารถใช้ regularization ร่วมกับ logistic regression</p>
-<p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> เราสามารถปรับค่า Regularization Strength <span class="math notranslate nohighlight">\(\lambda\)</span> ได้โดยผ่านทางพารามิเตอร์ <span class="math notranslate nohighlight">\(C\)</span> โดย ค่า <span class="math notranslate nohighlight">\(C\)</span> มีค่าเท่ากับ <span class="math notranslate nohighlight">\(1/\lambda\)</span> (Inverse of Regularization Strength)</p>
+<p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> เราสามารถปรับค่า Regularization Strength <span class="math notranslate nohighlight">\(\lambda\)</span> ได้โดยผ่านทางไฮเปอร์พารามิเตอร์ <code class="docutils literal notranslate"><span class="pre">C</span></code> โดย ค่า <code class="docutils literal notranslate"><span class="pre">C</span></code> มีค่าเท่ากับ <span class="math notranslate nohighlight">\(1/\lambda\)</span> (Inverse of Regularization Strength)</p>
 </section>
 <section id="logistic-regression-pipeline">
 <h2>Logistic regression pipeline<a class="headerlink" href="#logistic-regression-pipeline" title="Permalink to this heading">#</a></h2>
-<p>ต่อไปเราจะลองพัฒนาโมเดล logistic อย่างครบกระบวนการ</p>
+<p>ต่อไปเราจะลองพัฒนาโมเดล logistic อย่างครบกระบวนการ ด้วยชุดข้อมูลที่จะสร้างขึ้น</p>
 <section id="generate-3-class-dataset">
 <h3>Generate 3-class dataset<a class="headerlink" href="#generate-3-class-dataset" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -879,14 +879,14 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/e7345b66ea39804f77f48905e83077cebb11bcb453b4ba6c36fb31163006e5cf.png" src="../../_images/e7345b66ea39804f77f48905e83077cebb11bcb453b4ba6c36fb31163006e5cf.png" />
 </div>
 </div>
-<p>ข้อมูลที่สร้างขึ้นมีประกอบด้วย 2 features และ label แบ่งเป็น 3 กลุ่ม (class: 0, 1, 2) เราจะพัฒนาโมเดล logistic regression เพื่อจำแนกข้อมูลในแต่ละกลุ่ม</p>
+<p>ข้อมูลที่สร้างขึ้นมีประกอบด้วย 2 features และ label แบ่งเป็น 3 คลาส (class: 0, 1, 2) โดยมีข้อมูลจำนวน 200 จุดในแต่ละคลาส เราจะพัฒนาโมเดล k-NN เพื่อจำแนกข้อมูลแต่ละกลุ่มออกจากกัน</p>
 <p>เมื่อสังเกตการกระจายตัวของข้อมูล พบว่า class 0 มีการกระจายข้อมูลแบ่งแยกออกมาอย่างเห็นได้ชัด ในขณะที่ class 1 และ class 2 จะกระจายตัวอยู่ร่วมกัน</p>
 </section>
 <section id="training-data-test-data">
 <h3>แบ่งข้อมูลเป็น training data และ test data<a class="headerlink" href="#training-data-test-data" title="Permalink to this heading">#</a></h3>
 <p>โดยใช้ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train_test_split</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
-<p>ในตัวอย่างนี้เราจะใช้ default value ซึ่งจะ shuffle ข้อมูลก่อนแบ่งข้อมูล และ ไม่ stratify (ไม่กำกับสัดส่วนของ class ใน training data และ test data)</p>
-<p>อย่างไรก็ดี ในกรณีที่ข้อมูลประกอบด้วย class ต่างๆ ที่มีสัดส่วนต่างกันอย่างมาก (imbalanced dataset) การทำ stratify มีความจำเป็นอย่างมากเพื่อคงสัดส่วนของแต่ละ class ใน training data และ test data</p>
+<p>ในตัวอย่างนี้เราจะใช้ default value ซึ่งจะ shuffle ข้อมูลก่อนแบ่งข้อมูล และ ไม่ stratify (ไม่กำกับสัดส่วนของคลาสใน training data และ test data)</p>
+<p>อย่างไรก็ดี ในกรณีที่ข้อมูลประกอบด้วยคลาสต่างๆ ที่มีสัดส่วนต่างกันอย่างมาก (imbalanced dataset) การทำ stratify มีความจำเป็นอย่างมากเพื่อคงสัดส่วนของแต่ละคลาส ใน training data และ test data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง training data และ test data โดยแบ่งจากชุดข้อมูล x,y</span>
@@ -1009,8 +1009,8 @@ weighted avg       0.89      0.87      0.86        60
 <h3>ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV">GridSearchCV</a> และ train โมเดล<a class="headerlink" href="#hyperparameter-tuning-gridsearchcv-train" title="Permalink to this heading">#</a></h3>
 <p>โดยเราจะปรับแต่งโมเดล โดย tune 2 hyperparameters ที่สำคัญของ logistic regression ได้แก่</p>
 <ol class="arabic simple">
-<li><p>‘solver’</p></li>
-<li><p>‘C’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'solver'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'C'</span></code></p></li>
 </ol>
 <p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ยังมีวิธีการอื่นๆ ในการปรับแต่งโมเดล เช่น</p>
 <ul class="simple">
