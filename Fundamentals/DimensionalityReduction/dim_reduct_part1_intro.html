@@ -679,12 +679,13 @@ document.write(`
 <span class="s2">  &lt;/style&gt;</span>
 <span class="s2">&lt;/head&gt;</span>
 <span class="s2">&lt;body&gt;</span>
-<span class="s2">  &lt;input type=&quot;range&quot; id=&quot;angleSlider&quot; min=&quot;-180&quot; max=&quot;180&quot; value=&quot;0&quot; step=&quot;1&quot;&gt;</span>
+<span class="s2">  &lt;input type=&quot;range&quot; id=&quot;angleSlider&quot; min=&quot;-180&quot; max=&quot;180&quot; value=&quot;45&quot; step=&quot;1&quot;&gt;</span>
 <span class="s2">  &lt;div id=&quot;angleValue&quot;&gt;&lt;/div&gt;</span>
 <span class="s2">  &lt;div id=&quot;transformationMatrix&quot;&gt;&lt;/div&gt;</span>
 <span class="s2">  &lt;canvas id=&quot;canvas&quot;&gt;&lt;/canvas&gt;</span>
 <span class="s2">  &lt;script&gt;</span>
-<span class="s2">    // Data points</span>
+<span class="s2">    // Generate x and y data points from Python code</span>
+<span class="s2">    const numPoints = 50;</span>
 <span class="s2">    const x = [-4.        , -3.83673469, -3.67346939, -3.51020408, -3.34693878,</span>
 <span class="s2">       -3.18367347, -3.02040816, -2.85714286, -2.69387755, -2.53061224,</span>
 <span class="s2">       -2.36734694, -2.20408163, -2.04081633, -1.87755102, -1.71428571,</span>
@@ -702,7 +703,8 @@ document.write(`
 <span class="s2">    // Combine x and y data into points array</span>
 <span class="s2">    const points = x.map((xVal, index) =&gt; ({</span>
 <span class="s2">      x: xVal * 50, // Scale x values to fit canvas</span>
-<span class="s2">      y: y[index] * 50 // Scale y values to fit canvas</span>
+<span class="s2">      y: y[index] * 50, // Scale y values to fit canvas</span>
+<span class="s2">      original: true // Flag to indicate original points</span>
 <span class="s2">    }));</span>
 
 <span class="s2">    // Get the angle slider element</span>
@@ -735,7 +737,8 @@ document.write(`
 <span class="s2">      // Apply rotation transformation to each point</span>
 <span class="s2">      const rotatedPoints = points.map(point =&gt; ({</span>
 <span class="s2">        x: (point.x * rotationMatrix[0]) + (point.y * rotationMatrix[1]),</span>
-<span class="s2">        y: (point.x * rotationMatrix[2]) + (point.y * rotationMatrix[3])</span>
+<span class="s2">        y: (point.x * rotationMatrix[2]) + (point.y * rotationMatrix[3]),</span>
+<span class="s2">        original: point.original</span>
 <span class="s2">      }));</span>
 
 <span class="s2">      // Find the maximum distance between the points</span>
@@ -756,7 +759,14 @@ document.write(`
 <span class="s2">      // Adjust the points to be relative to the center</span>
 <span class="s2">      const adjustedPoints = rotatedPoints.map(point =&gt; ({</span>
 <span class="s2">        x: centerX + point.x,</span>
-<span class="s2">        y: centerY - point.y // Subtract to invert the y-axis</span>
+<span class="s2">        y: centerY - point.y, // Subtract to invert the y-axis</span>
+<span class="s2">        original: false</span>
+<span class="s2">      }));</span>
+
+<span class="s2">      const adjustedOriginalPoints = points.map(point =&gt; ({</span>
+<span class="s2">        x: centerX + point.x,</span>
+<span class="s2">        y: centerY - point.y, // Subtract to invert the y-axis</span>
+<span class="s2">        original: true</span>
 <span class="s2">      }));</span>
 
 <span class="s2">      // Clear canvas</span>
@@ -771,17 +781,28 @@ document.write(`
 <span class="s2">      context.strokeStyle = &#39;gray&#39;;</span>
 <span class="s2">      context.stroke();</span>
 
-<span class="s2">      // Before rotation</span>
-<span class="s2">      context.fillStyle = &#39;red&#39;;</span>
-<span class="s2">      points.forEach(point =&gt; {</span>
+<span class="s2">      // Draw points</span>
+<span class="s2">      adjustedOriginalPoints.forEach(point =&gt; {</span>
+<span class="s2">        let alpha = 0.1;</span>
+
+<span class="s2">        if (point.x &lt; centerX) {</span>
+<span class="s2">          context.fillStyle = `rgba(0, 0, 255, $</span><span class="si">{alpha}</span><span class="s2">)`; // First half of rotated points with blue color</span>
+<span class="s2">        } else {</span>
+<span class="s2">          context.fillStyle = `rgba(255, 0, 0, $</span><span class="si">{alpha}</span><span class="s2">)`; // Second half of rotated points with red color</span>
+<span class="s2">        }</span>
 <span class="s2">        context.beginPath();</span>
-<span class="s2">        context.arc(centerX + point.x, centerY - point.y, 4, 0, 2 * Math.PI);</span>
+<span class="s2">        context.arc(point.x, point.y, 4, 0, 2 * Math.PI);</span>
 <span class="s2">        context.fill();</span>
 <span class="s2">      });</span>
 
-<span class="s2">      // After rotation</span>
-<span class="s2">      context.fillStyle = &#39;blue&#39;;</span>
 <span class="s2">      adjustedPoints.forEach(point =&gt; {</span>
+<span class="s2">        let alpha = 1;</span>
+
+<span class="s2">        if (point.x &lt; centerX) {</span>
+<span class="s2">          context.fillStyle = `rgba(0, 0, 255, $</span><span class="si">{alpha}</span><span class="s2">)`; // First half of rotated points with blue color</span>
+<span class="s2">        } else {</span>
+<span class="s2">          context.fillStyle = `rgba(255, 0, 0, $</span><span class="si">{alpha}</span><span class="s2">)`; // Second half of rotated points with red color</span>
+<span class="s2">        }</span>
 <span class="s2">        context.beginPath();</span>
 <span class="s2">        context.arc(point.x, point.y, 4, 0, 2 * Math.PI);</span>
 <span class="s2">        context.fill();</span>
@@ -830,12 +851,13 @@ document.write(`
   </style>
 </head>
 <body>
-  <input type="range" id="angleSlider" min="-180" max="180" value="0" step="1">
+  <input type="range" id="angleSlider" min="-180" max="180" value="45" step="1">
   <div id="angleValue"></div>
   <div id="transformationMatrix"></div>
   <canvas id="canvas"></canvas>
   <script>
-    // Data points
+    // Generate x and y data points from Python code
+    const numPoints = 50;
     const x = [-4.        , -3.83673469, -3.67346939, -3.51020408, -3.34693878,
        -3.18367347, -3.02040816, -2.85714286, -2.69387755, -2.53061224,
        -2.36734694, -2.20408163, -2.04081633, -1.87755102, -1.71428571,
@@ -853,7 +875,8 @@ document.write(`
     // Combine x and y data into points array
     const points = x.map((xVal, index) => ({
       x: xVal * 50, // Scale x values to fit canvas
-      y: y[index] * 50 // Scale y values to fit canvas
+      y: y[index] * 50, // Scale y values to fit canvas
+      original: true // Flag to indicate original points
     }));
 
     // Get the angle slider element
@@ -886,7 +909,8 @@ document.write(`
       // Apply rotation transformation to each point
       const rotatedPoints = points.map(point => ({
         x: (point.x * rotationMatrix[0]) + (point.y * rotationMatrix[1]),
-        y: (point.x * rotationMatrix[2]) + (point.y * rotationMatrix[3])
+        y: (point.x * rotationMatrix[2]) + (point.y * rotationMatrix[3]),
+        original: point.original
       }));
 
       // Find the maximum distance between the points
@@ -907,7 +931,14 @@ document.write(`
       // Adjust the points to be relative to the center
       const adjustedPoints = rotatedPoints.map(point => ({
         x: centerX + point.x,
-        y: centerY - point.y // Subtract to invert the y-axis
+        y: centerY - point.y, // Subtract to invert the y-axis
+        original: false
+      }));
+
+      const adjustedOriginalPoints = points.map(point => ({
+        x: centerX + point.x,
+        y: centerY - point.y, // Subtract to invert the y-axis
+        original: true
       }));
 
       // Clear canvas
@@ -922,17 +953,28 @@ document.write(`
       context.strokeStyle = 'gray';
       context.stroke();
 
-      // Before rotation
-      context.fillStyle = 'red';
-      points.forEach(point => {
+      // Draw points
+      adjustedOriginalPoints.forEach(point => {
+        let alpha = 0.1;
+
+        if (point.x < centerX) {
+          context.fillStyle = `rgba(0, 0, 255, ${alpha})`; // First half of rotated points with blue color
+        } else {
+          context.fillStyle = `rgba(255, 0, 0, ${alpha})`; // Second half of rotated points with red color
+        }
         context.beginPath();
-        context.arc(centerX + point.x, centerY - point.y, 4, 0, 2 * Math.PI);
+        context.arc(point.x, point.y, 4, 0, 2 * Math.PI);
         context.fill();
       });
 
-      // After rotation
-      context.fillStyle = 'blue';
       adjustedPoints.forEach(point => {
+        let alpha = 1;
+
+        if (point.x < centerX) {
+          context.fillStyle = `rgba(0, 0, 255, ${alpha})`; // First half of rotated points with blue color
+        } else {
+          context.fillStyle = `rgba(255, 0, 0, ${alpha})`; // Second half of rotated points with red color
+        }
         context.beginPath();
         context.arc(point.x, point.y, 4, 0, 2 * Math.PI);
         context.fill();
@@ -971,7 +1013,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rotate_counterclockwise</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
 
-  <span class="c1"># สร้าง rotation matrix R ที่ทำหน้าที่ใช้หมุนพิกัดตามเข็มนาฬิกา</span>
+  <span class="c1"># สร้าง rotation matrix R ที่ทำหน้าที่ใช้หมุนพิกัดทวนเข็มนาฬิกา</span>
   <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">degree</span><span class="p">)],</span>
                 <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">degree</span><span class="p">)]])</span>
 
