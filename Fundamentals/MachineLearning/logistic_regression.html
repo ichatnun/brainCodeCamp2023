@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Logistic regression &#8212; Brain Code Camp</title>
+    <title>Logistic Regression &#8212; Brain Code Camp</title>
   
   
   
@@ -457,7 +457,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Logistic regression</h1>
+    <h1>Logistic Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -467,12 +467,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-dataset">Generate simulated dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-dataset">Generate Simulated Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-solvers">Logistic Regression เมื่อใช้ solvers ชนิดต่างๆ</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-pipeline">Logistic regression pipeline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-3-class-dataset">Generate 3-class dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-pipeline">Logistic Regression Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-3-class-dataset">Generate 3-class Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-data-test-data">แบ่งข้อมูลเป็น training data และ test data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">ทำการ standardize ข้อมูลทั้งหมด</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-default-hyperparameter">เทรนโมเดล ด้วย base model (default hyperparameter)</a></li>
@@ -492,12 +492,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
-<h1>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
+<h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
 <p>ก่อนหน้านี้  เราได้เรียนรู้ Simple Linear Model ทำให้เราสามารถพัฒนาโมเดลเชิงเส้น (linear model) เพื่อทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> โดยเรียนรู้จากชุดข้อมูลที่มีโดยไม่จำกัด range ของค่า <span class="math notranslate nohighlight">\(y\)</span> ในกรณีที่ชุดข้อมูลประกอบด้วย 1 feature คือ <span class="math notranslate nohighlight">\(x\)</span> เราสามารถเขียนสมการของความสัมพันธ์เชิงเส้นได้เป็น</p>
 <div class="math notranslate nohighlight">
 \[y = w_0 + w_1x\]</div>
 <p>โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> คือ พารามิเตอร์ของโมเดลเชิงเส้น</p>
-<p>อย่างไรก็ดี มีโจทย์ในอีกประเภทหนึ่ง คือ classification problem หรือ ปัญหาการจำแนกหมวดหมู่ ซึ่ง <span class="math notranslate nohighlight">\(y\)</span> เป็น label ของหมวดหมู่ โดยมักแทนด้วยเป็นจำนวนเต็ม เพื่อให้สามารถทำงานกับระบบคำนวณของคอมพิวเตอร์ได้  ในกรณีที่ชุดข้อมูลประกอบด้วย 2 หมวดหมู่ หรือ binary-classification เรามักกำหนดให้ค่า <span class="math notranslate nohighlight">\(y\)</span> มีค่าเป็น 0 หรือ 1 แทน label ของแต่ละหมวดหมู่  การพัฒนาโมเดลเชิงเส้นเพื่อจำแนกข้อมูลที่จำกัด range ของค่า <span class="math notranslate nohighlight">\(y\)</span> โดยตรงจึงไม่เหมาะสม โดยเราสามารถใช้ฟังค์ชันทางคณิตศาสตร์เพื่อแปลงค่าให้อยู่ในช่วงที่เราต้องการได้ หนึ่งในฟังค์ชันที่มีคุณสมบัติดังกล่าว คือ logistic function หรือ Sigmoid function ซึ่งมีสมการทางคณิตศาสตร์ ดังนี้</p>
+<p>อย่างไรก็ดี มีโจทย์ในอีกประเภทหนึ่ง คือ classification problem หรือ ปัญหาการจำแนกหมวดหมู่ ซึ่ง <span class="math notranslate nohighlight">\(y\)</span> เป็น label ของหมวดหมู่ โดยมักแทนด้วยเป็นจำนวนเต็ม เพื่อให้สามารถทำงานกับระบบคำนวณของคอมพิวเตอร์ได้  ในกรณีที่ชุดข้อมูลประกอบด้วย 2 หมวดหมู่ หรือ binary-classification เรามักกำหนดให้ค่า <span class="math notranslate nohighlight">\(y\)</span> มีค่าเป็น 0 หรือ 1 แทน label หรือ class ของแต่ละหมวดหมู่  การพัฒนาโมเดลเชิงเส้นเพื่อจำแนกข้อมูลที่จำกัด range ของค่า <span class="math notranslate nohighlight">\(y\)</span> โดยตรงจึงไม่เหมาะสม โดยเราสามารถใช้ฟังค์ชันทางคณิตศาสตร์เพื่อแปลงค่าให้อยู่ในช่วงที่เราต้องการได้ หนึ่งในฟังค์ชันที่มีคุณสมบัติดังกล่าว คือ logistic function หรือ Sigmoid function ซึ่งมีสมการทางคณิตศาสตร์ ดังนี้</p>
 <div class="math notranslate nohighlight">
 \[
 g(z) = \frac{1}{1 + e^{-z}}
@@ -556,17 +556,17 @@ P(x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
 \[
 log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
 \]</div>
-<p>และสามารถกำหนดเงื่อนไขการตัดสินใจหรือ decision boundary ที่ <span class="math notranslate nohighlight">\(P=0.5\)</span> เพื่อใช้ในการจำแนก label ของ <span class="math notranslate nohighlight">\(y\)</span> ซึ่งแสดงเป็นความสัมพันธ์ทางคณิตศาสตร์ได้ ดังนี้</p>
+<p>และสามารถกำหนดเงื่อนไขการตัดสินใจหรือ decision boundary ที่ <span class="math notranslate nohighlight">\(P=0.5\)</span> เพื่อใช้ในการจำแนกคลาสของ <span class="math notranslate nohighlight">\(y\)</span> ซึ่งแสดงเป็นความสัมพันธ์ทางคณิตศาสตร์ได้ ดังนี้</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P(x) ≥ 0.5 → y=1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(P(x) &lt; 0.5 → y=0\)</span></p></li>
 </ul>
 <p>โมเดล logistic จะเรียนรู้จากชุดข้อมูล โดยปรับค่าพารามิเตอร์ของโมเดล <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> เพื่อให้ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจากความน่าจะเป็นมีความคลาดเคลื่อนจากค่า <span class="math notranslate nohighlight">\(y\)</span> ของข้อมูล มีความคลาดเคลื่อนน้อยที่สุด  และได้ decision boundary ที่สามารถจำแนกกลุ่มได้ดีที่สุด ด้วย iterative solver ประเภทต่างๆ</p>
-<p>ในบทเรียนนี้เราจะเรียนรู้การทำ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป</p>
+<p>ใน tutorial นี้เราจะเรียนรู้การทำงานของ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป</p>
 <section id="generate-simulated-dataset">
-<h2>Generate simulated dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
+<h2>Generate Simulated Dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
 <p>เพื่อเปรียบเทียบการทำงานของ Linear regression และ Logistic regression เราจะลองสร้างชุดข้อมูลที่ประกอบไปด้วย จำนวน <span class="math notranslate nohighlight">\(n=100\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
-<p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) โดยมีข้อมูลจำนวน 50 จุดในแต่ละคลาส</p>
+<p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) และแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่จำนวน 50 จุด</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
@@ -683,10 +683,10 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" src="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า ค่าที่ทำนายจากโมเดล linear regression มีความคลาดเคลื่อนสูงมาก ในขณะที่โมเดล logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ปรากฏข้อมูลทั้งสองคลาส และเนื่องจาก ชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
+<p>จะเห็นได้ว่า ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจาก linear regression มีความคลาดเคลื่อนสูงมาก ในขณะที่ logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ที่ปรากฏข้อมูลทั้งสองคลาส และเนื่องจาก ชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
 <p><strong>Quiz:</strong> Determine decision boundary, given <span class="math notranslate nohighlight">\(P(x) = g(x*2.13 + 1.08)\)</span></p>
 <p><em>จะแสดงคำตอบในวิดีโอ</em></p>
-<p>ต่อไป เราจะลองสร้างชุดข้อมูลที่ feature space มีมิติสูงขึ้น โดยเป็นชุดข้อมูลที่ประกอบด้วย 2 features เพื่อจำแนก 2 classes</p>
+<p>ต่อไป เราจะลองสร้างชุดข้อมูลที่ feature space มีมิติสูงขึ้น โดยเป็นชุดข้อมูลที่ประกอบด้วย 2 features เพื่อจำแนก 2 classes โดยในแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่ 100 จุด</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
@@ -727,7 +727,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 </section>
 <section id="decision-boundary">
 <h2>Decision Boundary<a class="headerlink" href="#decision-boundary" title="Permalink to this heading">#</a></h2>
-<p>เราสามารถ visualize ลักษณะของ decision boundary โดยใช้ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.inspection.DecisionBoundaryDisplay.html">DecisionBoundaryDisplay</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
+<p>เราสามารถ visualize ลักษณะของ decision boundary (เขตแดนแบ่งแยกคลาส) โดยใช้ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.inspection.DecisionBoundaryDisplay.html">DecisionBoundaryDisplay</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างโมเดล</span>
@@ -759,11 +759,11 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/7cd5f73667ddb6221455ca99585857ef8346324a9b7ffcb71230d8a65439ed40.png" src="../../_images/7cd5f73667ddb6221455ca99585857ef8346324a9b7ffcb71230d8a65439ed40.png" />
 </div>
 </div>
-<p>แสดง decision boundary ของโมเดล logistic regression ที่มีลักษณะเป็นเส้นตรง จำแนกกลุ่มข้อมูลออกจากกัน</p>
+<p>แสดง decision boundary ของโมเดล logistic regression ที่มีลักษณะเป็นเส้นตรง จำแนกกลุ่มข้อมูลต่างคลาสออกจากกัน</p>
 </section>
 <section id="logistic-regression-solvers">
 <h2>Logistic Regression เมื่อใช้ solvers ชนิดต่างๆ<a class="headerlink" href="#logistic-regression-solvers" title="Permalink to this heading">#</a></h2>
-<p>ค่าพารามิเตอร์ <span class="math notranslate nohighlight">\(w\)</span> ของโมเดล logistic ที่เหมาะสมที่สุดสามารถหาด้วย iterative solvers ที่ประมาณค่าคำตอบ โดยเดาค่าเริ่มต้นเพื่อคำนวณหาค่าคำตอบ และมีการปรับค่าซ้ำๆ เพื่อให้ได้ค่าคำตอบที่ถูกต้องมากขึ้น อาทิเช่น</p>
+<p>เราสามารถ optimize โมเดล logistic โดยการหาค่าโมเดลพารามิเตอร์ <span class="math notranslate nohighlight">\(w\)</span> ที่เหมาะสมด้วย iterative solver ที่ประมาณค่าคำตอบจากการปรับค่าและคำนวณซ้ำๆ เพื่อให้ได้คำตอบที่เข้าใกล้คำตอบที่ถูกต้องมากที่สุด อาทิเช่น</p>
 <p><strong>Newton-CG Solver</strong>:</p>
 <ul class="simple">
 <li><p>ใช้วิธี Newton-Conjugate Gradient</p></li>
@@ -783,7 +783,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <li><p>เหมาะสำหรับข้อมูลขนาดเล็ก</p></li>
 <li><p>สามารถใช้ร่วมกับ L1 และ L2 regularization</p></li>
 </ul>
-<p>เราสามารถเลือกใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ที่เหมาะสมโดยยังมี hyperparameters อีก 2 ตัวที่กำหนดการหยุดทำงานของ iterative solvers เหล่านี้ ได้แก่</p>
+<p>เราสามารถเลือกใช้ iterative solver ที่เหมาะสมโดยยังมี hyperparameters อีก 2 ตัวที่กำหนดการหยุดทำงานของ iterative solvers เหล่านี้ ได้แก่</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">'tol'</span></code> คือ ค่า tolerance เป็นการกำหนดระดับความแม่นยำ (precision) ของ คำตอบจาก iterative solver โดยเมื่อค่าคำตอบที่ได้จาก solver มีการเปลี่ยนแปลงน้อยกว่าค่า tolerance ที่กำหนด จะถือว่าได้ค่าตอบที่มีความถูกต้องในระดับความแม่นยำที่ต้องการ และหยุดการคำนวณ</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'max_iter'</span></code> กำหนดจำนวนครั้งมากที่สุดที่ให้ solver คำนวณหาค่าคำตอบ ก่อนยุติการคำนวณ</p></li>
@@ -834,13 +834,13 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <section id="regularization">
 <h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h2>
 <p>หากพบปัญหา overfitting หรือการเรียนรู้ข้อมูลสัญญาณที่เกินมากเกินไปจากข้อมูลฝึกสอน เราสามารถใช้ regularization ร่วมกับ logistic regression</p>
-<p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> เราสามารถปรับค่า Regularization Strength <span class="math notranslate nohighlight">\(\lambda\)</span> ได้โดยผ่านทางไฮเปอร์พารามิเตอร์ <code class="docutils literal notranslate"><span class="pre">C</span></code> โดย ค่า <code class="docutils literal notranslate"><span class="pre">C</span></code> มีค่าเท่ากับ <span class="math notranslate nohighlight">\(1/\lambda\)</span> (Inverse of Regularization Strength)</p>
+<p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> เราสามารถปรับค่า regularization strength <span class="math notranslate nohighlight">\(\lambda\)</span> ได้โดยผ่านทางไฮเปอร์พารามิเตอร์ <code class="docutils literal notranslate"><span class="pre">C</span></code> โดย ค่า <code class="docutils literal notranslate"><span class="pre">C</span></code> มีค่าเท่ากับ <span class="math notranslate nohighlight">\(1/\lambda\)</span> (Inverse of Regularization Strength)</p>
 </section>
 <section id="logistic-regression-pipeline">
-<h2>Logistic regression pipeline<a class="headerlink" href="#logistic-regression-pipeline" title="Permalink to this heading">#</a></h2>
+<h2>Logistic Regression Pipeline<a class="headerlink" href="#logistic-regression-pipeline" title="Permalink to this heading">#</a></h2>
 <p>ต่อไปเราจะลองพัฒนาโมเดล logistic อย่างครบกระบวนการ ด้วยชุดข้อมูลที่จะสร้างขึ้น</p>
 <section id="generate-3-class-dataset">
-<h3>Generate 3-class dataset<a class="headerlink" href="#generate-3-class-dataset" title="Permalink to this heading">#</a></h3>
+<h3>Generate 3-class Dataset<a class="headerlink" href="#generate-3-class-dataset" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
@@ -879,7 +879,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/e7345b66ea39804f77f48905e83077cebb11bcb453b4ba6c36fb31163006e5cf.png" src="../../_images/e7345b66ea39804f77f48905e83077cebb11bcb453b4ba6c36fb31163006e5cf.png" />
 </div>
 </div>
-<p>ข้อมูลที่สร้างขึ้นมีประกอบด้วย 2 features และ label แบ่งเป็น 3 คลาส (class: 0, 1, 2) โดยมีข้อมูลจำนวน 200 จุดในแต่ละคลาส เราจะพัฒนาโมเดล logistic เพื่อจำแนกข้อมูลแต่ละกลุ่มออกจากกัน</p>
+<p>ข้อมูลที่สร้างขึ้นมีประกอบด้วย 2 features และ 3 classes (class: 0, 1, 2) โดยข้อมูลในแต่ละคลาสมีจำนวนเท่ากันที่ 200 จุด   เราจะพัฒนาโมเดล logistic เพื่อจำแนกข้อมูลแต่ละคลาสออกจากกัน</p>
 <p>เมื่อสังเกตการกระจายตัวของข้อมูล พบว่า class 0 มีการกระจายข้อมูลแบ่งแยกออกมาอย่างเห็นได้ชัด ในขณะที่ class 1 และ class 2 จะกระจายตัวอยู่ร่วมกัน</p>
 </section>
 <section id="training-data-test-data">
@@ -1204,12 +1204,12 @@ weighted avg       0.90      0.88      0.88        60
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-dataset">Generate simulated dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-dataset">Generate Simulated Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-solvers">Logistic Regression เมื่อใช้ solvers ชนิดต่างๆ</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-pipeline">Logistic regression pipeline</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-3-class-dataset">Generate 3-class dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-pipeline">Logistic Regression Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-3-class-dataset">Generate 3-class Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-data-test-data">แบ่งข้อมูลเป็น training data และ test data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">ทำการ standardize ข้อมูลทั้งหมด</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-default-hyperparameter">เทรนโมเดล ด้วย base model (default hyperparameter)</a></li>
