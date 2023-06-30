@@ -629,7 +629,7 @@ document.write(`
 <p>Kernel ถูกนำมาใช้เพื่อเพิ่มความสามารถในการจำแนกชุดข้อมูลที่มีความซับซ้อนมากขึ้น โดยเพิ่มความสามารถในการสร้าง decision boundary ที่มีลักษณะไม่เป็นเชิงเส้น นอกจากนี้ บาง kernel  ยังสามารถแปลง features ของชุดข้อมูลไปสู่มิติที่สูงขึ้น โดย kernel อยู่ในรูปฟังก์ชันต่างๆ เช่น</p>
 <ul class="simple">
 <li><p>Linear kernel: ที่เราใช้ก่อนหน้านี้ เป็นการแยกกลุ่มข้อมูลด้วยเส้นตรงในมิติต้นฉบับ</p></li>
-<li><p>Polynomial kernel: ใช้สำหรับการแยกกลุ่มข้อมูลที่ด้วยเส้น polynomial ในมิติต้นฉบับ เมื่อใช้ polynomial kernel เราต้องกำหนด <code class="docutils literal notranslate"><span class="pre">'degree'</span></code> ของ polynomial โดย เมื่อกำหนด <code class="docutils literal notranslate"><span class="pre">'degree'=</span> <span class="pre">0</span></code>  polynomial kernel จะทำงานเหมือนกับ linear kernel</p></li>
+<li><p>Polynomial kernel: ใช้สำหรับการแยกกลุ่มข้อมูลที่ด้วยเส้น polynomial ในมิติต้นฉบับ เมื่อใช้ polynomial kernel เราต้องกำหนด <code class="docutils literal notranslate"><span class="pre">degree</span></code> ของ polynomial โดย เมื่อกำหนด <code class="docutils literal notranslate"><span class="pre">degree</span> <span class="pre">=</span> <span class="pre">0</span></code>  polynomial kernel จะทำงานเหมือนกับ linear kernel</p></li>
 <li><p>Radial Basis Function (RBF) Kernel: เป็น kernel ที่ถูกใช้งานมากและเป็นที่นิยม  เนื่องจากสามารถจำแนกกลุ่มข้อมูลที่มีลักษณะซับซ้อนได้ดี โดยแปลงข้อมูล features ไปสู่มิติที่สูงขึ้น  ทั้งนี้ RBF ยังเป็น default kernel ของ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ในการทำ Support Vector Classification</p></li>
 </ul>
 <p>เราสามารถเลือกใช้ <code class="docutils literal notranslate"><span class="pre">kernel</span></code> ตามลักษณะของข้อมูลและงานที่ต้องการ
@@ -1011,8 +1011,8 @@ weighted avg       0.89      0.89      0.89       120
 <h3>ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV">GridSearchCV</a> และ train โมเดล<a class="headerlink" href="#hyperparameter-tuning-gridsearchcv-train" title="Permalink to this heading">#</a></h3>
 <p>โดยเราจะปรับแต่งโมเดล โดย tune 2 hyperparameters ที่สำคัญของ SVM ได้แก่</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'kernel'</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'C'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
 </ol>
 <p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ยังมีวิธีการอื่นๆ ในการปรับแต่งโมเดล เช่น</p>
 <ul class="simple">
@@ -1101,7 +1101,7 @@ weighted avg       0.92      0.91      0.91       120
 <img alt="../../_images/7eba1b05f8af6ebcb838607a285c4f104c99828840f8d861b039ad28bab1af3c.png" src="../../_images/7eba1b05f8af6ebcb838607a285c4f104c99828840f8d861b039ad28bab1af3c.png" />
 </div>
 </div>
-<p>จะสังเกตได้ว่า เมื่อมีการปรับจูน hyperparameters ของโมเดลให้มีความเหมาะสมแล้ว เราได้โมเดลที่เรียนรู้จากข้อมูลชุดเดิม แล้วสามารถทำนายได้ค่า accuracy ที่สูงขึ้น โดยเมื่อพิจารณา Confusion Matrix จะพบว่า โมเดลสามารถจำแนกข้อมูล class 1 และ class 2 ได้ดีขึ้น</p>
+<p>จะสังเกตได้ว่า เมื่อมีการปรับจูน hyperparameters ของโมเดลให้มีความเหมาะสมแล้ว เราได้โมเดลที่เรียนรู้จากข้อมูลชุดเดิม แล้วสามารถทำนาย test data ได้ค่า accuracy ที่สูงขึ้น โดยเมื่อพิจารณา Confusion Matrix จะพบว่า โมเดลสามารถจำแนกข้อมูล class 1 และ class 2 ได้ดีขึ้น</p>
 </section>
 </section>
 </section>

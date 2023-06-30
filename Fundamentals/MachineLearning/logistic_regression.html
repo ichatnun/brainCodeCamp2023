@@ -470,7 +470,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-dataset">Generate Simulated Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-solvers">Logistic Regression เมื่อใช้ solvers ชนิดต่างๆ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-solver">Logistic Regression เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ชนิดต่างๆ</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-pipeline">Logistic Regression Pipeline</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-3-class-dataset">Generate 3-class Dataset</a></li>
@@ -494,7 +494,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
 <h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
-<p>ก่อนหน้านี้  เราได้เรียนรู้ Simple Linear Model ทำให้เราสามารถพัฒนาโมเดลเชิงเส้น (linear model) เพื่อทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> โดยเรียนรู้จากชุดข้อมูลที่มีโดยไม่จำกัด range ของค่า <span class="math notranslate nohighlight">\(y\)</span> ในกรณีที่ชุดข้อมูลประกอบด้วย 1 feature คือ <span class="math notranslate nohighlight">\(x\)</span> เราสามารถเขียนสมการของความสัมพันธ์เชิงเส้นได้เป็น</p>
+<p>ก่อนหน้านี้  เราได้เรียนรู้ Simple Linear Model ในสัปดาห์ที่ 3 ทำให้เราสามารถพัฒนาโมเดลเชิงเส้น (linear model) เพื่อทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> โดยเรียนรู้จากชุดข้อมูลที่มีโดยไม่จำกัด range ของค่า <span class="math notranslate nohighlight">\(y\)</span> ในกรณีที่ชุดข้อมูลประกอบด้วย 1 feature คือ <span class="math notranslate nohighlight">\(x\)</span> เราสามารถเขียนสมการของความสัมพันธ์เชิงเส้นได้เป็น</p>
 <div class="math notranslate nohighlight">
 \[y = w_0 + w_1x\]</div>
 <p>โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> คือ พารามิเตอร์ของโมเดลเชิงเส้น</p>
@@ -562,7 +562,7 @@ log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
 <li><p><span class="math notranslate nohighlight">\(P(x) ≥ 0.5 → y=1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(P(x) &lt; 0.5 → y=0\)</span></p></li>
 </ul>
-<p>โมเดล logistic จะเรียนรู้จากชุดข้อมูล โดยปรับค่าพารามิเตอร์ของโมเดล <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> เพื่อให้ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจากความน่าจะเป็นมีความคลาดเคลื่อนจากค่า <span class="math notranslate nohighlight">\(y\)</span> ของข้อมูล มีความคลาดเคลื่อนน้อยที่สุด  และได้ decision boundary ที่สามารถจำแนกกลุ่มได้ดีที่สุด ด้วย iterative solver ประเภทต่างๆ</p>
+<p>โมเดล logistic จะเรียนรู้จากชุดข้อมูล โดยปรับค่าพารามิเตอร์ของโมเดล <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> เพื่อให้ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจากความน่าจะเป็นมีความคลาดเคลื่อนจากค่า <span class="math notranslate nohighlight">\(y\)</span> ของชุดข้อมูลน้อยที่สุด  และได้ decision boundary ที่สามารถจำแนกกลุ่มได้ดีที่สุด ด้วย iterative solver ประเภทต่างๆ</p>
 <p>ใน tutorial นี้เราจะเรียนรู้การทำงานของ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป</p>
 <section id="generate-simulated-dataset">
 <h2>Generate Simulated Dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
@@ -684,7 +684,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" src="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจาก linear regression มีความคลาดเคลื่อนสูงมาก ในขณะที่ logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ที่ปรากฏข้อมูลทั้งสองคลาส และเนื่องจาก ชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
+<p>จะเห็นได้ว่า ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจาก linear regression มีความคลาดเคลื่อนสูงมาก  ในขณะที่ logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ที่ปรากฏข้อมูลทั้งสองคลาส และเนื่องจากชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
 <p><strong>Quiz:</strong> Determine decision boundary, given <span class="math notranslate nohighlight">\(P(x) = g(x*2.13 + 1.08)\)</span></p>
 <p><em>จะแสดงคำตอบในวิดีโอ</em></p>
 <p>ต่อไป เราจะลองสร้างชุดข้อมูลที่ feature space มีมิติสูงขึ้น โดยเป็นชุดข้อมูลที่ประกอบด้วย 2 features เพื่อจำแนก 2 classes โดยในแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่ 100 จุด</p>
@@ -760,22 +760,22 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/7cd5f73667ddb6221455ca99585857ef8346324a9b7ffcb71230d8a65439ed40.png" src="../../_images/7cd5f73667ddb6221455ca99585857ef8346324a9b7ffcb71230d8a65439ed40.png" />
 </div>
 </div>
-<p>แสดง decision boundary ของโมเดล logistic regression ที่มีลักษณะเป็นเส้นตรง จำแนกกลุ่มข้อมูลต่างคลาสออกจากกัน</p>
+<p>แสดง decision boundary ของโมเดล logistic ที่มีลักษณะเป็นเส้นตรง จำแนกกลุ่มข้อมูลต่างคลาสออกจากกัน</p>
 </section>
-<section id="logistic-regression-solvers">
-<h2>Logistic Regression เมื่อใช้ solvers ชนิดต่างๆ<a class="headerlink" href="#logistic-regression-solvers" title="Permalink to this heading">#</a></h2>
+<section id="logistic-regression-solver">
+<h2>Logistic Regression เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ชนิดต่างๆ<a class="headerlink" href="#logistic-regression-solver" title="Permalink to this heading">#</a></h2>
 <p>เราสามารถ optimize โมเดล logistic โดยการหาค่าโมเดลพารามิเตอร์ <span class="math notranslate nohighlight">\(w\)</span> ที่เหมาะสมด้วย iterative solver ที่ประมาณค่าคำตอบจากการปรับค่าและคำนวณซ้ำๆ เพื่อให้ได้คำตอบที่เข้าใกล้คำตอบที่ถูกต้องมากที่สุด อาทิเช่น</p>
 <p><strong>Newton-CG Solver</strong>:</p>
 <ul class="simple">
 <li><p>ใช้วิธี Newton-Conjugate Gradient</p></li>
-<li><p>เหมาะสำหรับข้อมูลขนาดใหญ่ แต่จะใช้ computer time มากตามจำนวน features</p></li>
+<li><p>เหมาะสำหรับข้อมูลขนาดใหญ่ แต่จะใช้ computational time มากตามจำนวน features</p></li>
 <li><p>สามารถใช้ร่วมกับ L2 regularization</p></li>
 </ul>
 <p><strong>lbfgs Solver (Limited-memory Broyden-Fletcher-Goldfarb-Shanno)</strong>:</p>
 <ul class="simple">
 <li><p>ใช้ L-BFGS algorithm ในการค้นหาค่าพารามิเตอร์ที่เหมาะสม</p></li>
 <li><p>เหมาะสำหรับข้อมูลขนาดเล็กถึงกลาง</p></li>
-<li><p>เป็น default solver ของ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ในการทำ Logistic Regression</p></li>
+<li><p>เป็น default solver ของ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ในการทำ logistic regression</p></li>
 <li><p>สามารถใช้ร่วมกับ L2 regularization</p></li>
 </ul>
 <p><strong>liblinear Solver</strong>:</p>
@@ -786,8 +786,8 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 </ul>
 <p>เราสามารถเลือกใช้ iterative solver ที่เหมาะสมโดยยังมี hyperparameters อีก 2 ตัวที่กำหนดการหยุดทำงานของ iterative solvers เหล่านี้ ได้แก่</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'tol'</span></code> คือ ค่า tolerance เป็นการกำหนดระดับความแม่นยำ (precision) ของ คำตอบจาก iterative solver โดยเมื่อค่าคำตอบที่ได้จาก solver มีการเปลี่ยนแปลงน้อยกว่าค่า tolerance ที่กำหนด จะถือว่าได้ค่าตอบที่มีความถูกต้องในระดับความแม่นยำที่ต้องการ และหยุดการคำนวณ</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'max_iter'</span></code> กำหนดจำนวนครั้งมากที่สุดที่ให้ solver คำนวณหาค่าคำตอบ ก่อนยุติการคำนวณ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tol</span></code> คือ ค่า tolerance เป็นการกำหนดระดับความแม่นยำ (precision) ของ คำตอบจาก iterative solver โดยเมื่อค่าคำตอบที่ได้จาก solver มีการเปลี่ยนแปลงน้อยกว่าค่า tolerance ที่กำหนด จะถือว่าได้ค่าตอบที่มีความถูกต้องในระดับความแม่นยำที่ต้องการ และหยุดการคำนวณ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_iter</span></code> กำหนดจำนวนครั้งมากที่สุดที่ให้ solver คำนวณหาค่าคำตอบ ก่อนยุติการคำนวณ</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,11 +830,11 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/ac1bec5ffca35715043d282c72e1118889253176f344cb8816b552ffaf15d776.png" src="../../_images/ac1bec5ffca35715043d282c72e1118889253176f344cb8816b552ffaf15d776.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า solvers ต่างๆ สามารถค้นหาค่าพารามิเตอร์ <span class="math notranslate nohighlight">\(w\)</span> ที่เหมาะสม โดยมี Decision Boundary ที่ใกล้เคียงกัน ทั้งนี้ decision boundary ของโมเดล logistic regression จะประกอบขึ้นจากเส้นตรง</p>
+<p>จะเห็นได้ว่า solvers ต่างๆ สามารถค้นหาค่าพารามิเตอร์ <span class="math notranslate nohighlight">\(w\)</span> ที่เหมาะสม โดยมี decision boundary ที่ใกล้เคียงกัน ทั้งนี้ decision boundary ของโมเดล logistic จะประกอบขึ้นจากเส้นตรง</p>
 </section>
 <section id="regularization">
 <h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h2>
-<p>หากพบปัญหา overfitting หรือการเรียนรู้ข้อมูลสัญญาณที่เกินมากเกินไปจากข้อมูลฝึกสอน เราสามารถใช้ regularization ร่วมกับ logistic regression</p>
+<p>หากพบปัญหา overfitting หรือการเรียนรู้ข้อมูลฝึกสอนมากเกินไปจนโมเดลจดจำคำตอบ เราสามารถใช้ regularization ร่วมกับ logistic regression</p>
 <p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> เราสามารถปรับค่า regularization strength <span class="math notranslate nohighlight">\(\lambda\)</span> ได้โดยผ่านทางไฮเปอร์พารามิเตอร์ <code class="docutils literal notranslate"><span class="pre">C</span></code> โดย ค่า <code class="docutils literal notranslate"><span class="pre">C</span></code> มีค่าเท่ากับ <span class="math notranslate nohighlight">\(1/\lambda\)</span> (Inverse of Regularization Strength)</p>
 </section>
 <section id="logistic-regression-pipeline">
@@ -1010,8 +1010,8 @@ weighted avg       0.89      0.87      0.86        60
 <h3>ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV">GridSearchCV</a> และ train โมเดล<a class="headerlink" href="#hyperparameter-tuning-gridsearchcv-train" title="Permalink to this heading">#</a></h3>
 <p>โดยเราจะปรับแต่งโมเดล โดย tune 2 hyperparameters ที่สำคัญของ logistic regression ได้แก่</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'solver'</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'C'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solver</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
 </ol>
 <p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ยังมีวิธีการอื่นๆ ในการปรับแต่งโมเดล เช่น</p>
 <ul class="simple">
@@ -1101,10 +1101,11 @@ weighted avg       0.90      0.88      0.88        60
 <img alt="../../_images/03addc45cc3da7f6c25813d498ca6f2a0585fba38a169d2aa653b4b21c3b9c4c.png" src="../../_images/03addc45cc3da7f6c25813d498ca6f2a0585fba38a169d2aa653b4b21c3b9c4c.png" />
 </div>
 </div>
-<p>จะสังเกตได้ว่า เมื่อมีการปรับจูน hyperparameters ของโมเดลให้มีความเหมาะสมแล้ว เราได้โมเดลที่เรียนรู้จากข้อมูลชุดเดิม แล้วสามารถทำนายได้ค่า accuracy ที่สูงขึ้น โดยเมื่อพิจารณา Confusion Matrix จะพบว่า โมเดลสามารถจำแนกข้อมูล class 1 และ class 2 ได้ดีขึ้น</p>
+<p>จะสังเกตได้ว่า เมื่อมีการปรับจูน hyperparameters ของโมเดลให้มีความเหมาะสมแล้ว เราได้โมเดลที่เรียนรู้จากข้อมูลชุดเดิม แล้วสามารถทำนาย test data ได้ค่า accuracy ที่สูงขึ้น โดยเมื่อพิจารณา Confusion Matrix จะพบว่า โมเดลสามารถจำแนกข้อมูล class 1 และ class 2 ได้ดีขึ้น</p>
 </section>
 <section id="id1">
 <h3>Decision Boundary<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>เราจะมาลองดู decision boundary ของโมเดลบน training data และ test data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the decision boundaries</span>
@@ -1207,7 +1208,7 @@ weighted avg       0.90      0.88      0.88        60
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-simulated-dataset">Generate Simulated Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-solvers">Logistic Regression เมื่อใช้ solvers ชนิดต่างๆ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-solver">Logistic Regression เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ชนิดต่างๆ</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-pipeline">Logistic Regression Pipeline</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-3-class-dataset">Generate 3-class Dataset</a></li>
