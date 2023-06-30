@@ -254,6 +254,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="svm.html">Support Vector Machines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decision_tree_random_forest.html">Decision Tree and Random Forest</a></li>
@@ -557,7 +558,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
     <span class="c1"># สร้างชุดข้อมูลแบบ multi-class</span>
-    <span class="c1"># ตั้งค่า random seed สำหรับการทำซ้ำ (reproducibility)</span>
+    <span class="c1"># ตั้งค่า random seed เพื่อให้สามารถสร้างชุดข้อมูลเดิมทุกครั้ง เพื่อใช้สำหรับการสอน</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 
     <span class="c1"># กำหนด จำนวน features</span>
