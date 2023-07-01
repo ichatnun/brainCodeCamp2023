@@ -589,29 +589,29 @@ AI-Machine Learning-Deep Learning <a class="reference external" href="https://bl
 </ul>
 <div class="math notranslate nohighlight">
 \[
-{Accuracy} = \frac{{TP} + {TN}} {{TP} + {TN} + {FP} + {FN}}
+\text{Accuracy} = \frac{{TP} + {TN}} {{TP} + {TN} + {FP} + {FN}}
 \]</div>
 <ul class="simple">
 <li><p><strong>Precision</strong> (ค่าความแม่นยำ): เป็นค่าที่แสดงถึงความสามารถของโมเดลในการทำนายคลาสที่สนใจ (positive) ว่าได้แม่นยำแค่ไหน หรือก็คือ <em>สัดส่วนจำนวนเคสที่ป่วยจริง ต่อ จำนวนเคสทั้งหมดที่โมเดลทำนายว่าป่วย</em></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[Precision = \frac{TP}{TP+FP}\]</div>
+\[ \text{Precision} = \frac{TP}{TP+FP}\]</div>
 <ul class="simple">
 <li><p><strong>Sensitivity/Recall</strong> (ค่าความอ่อนไหวหรือค่าความไว): แสดงถึงความสามารถของโมเดลในการทำนายคลาสที่สนใจ (positive) ได้อย่างถูกต้อง เทียบกับผลการทำนายว่าเป็นคลาสที่สนใจทั้งหมด หรือก็คือ <em>สัดส่วนจำนวนเคสที่ป่วยจริงและโมเดลทำนายถูกต้อง ต่อ จำนวนเคสคนป่วยทั้งหมดในกลุ่มตัวอย่าง</em></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[Recall = \frac{TP}{TP+FN}\]</div>
+\[ \text{Recall} = \frac{TP}{TP+FN}\]</div>
 <ul class="simple">
 <li><p><strong>Specificity</strong> (ส่วนค่าความจำเพาะ): แสดงถึงความสามารถของโมเดลในการทำนายคลาสที่เราไม่สนใจ (negative) ได้อย่างถูกต้อง หรือก็คือ <em>สัดส่วนจำนวนเคสปกติที่โมเดลทำนายถูกต้อง ต่อ จำนวนเคสคนปกติทั้งหมดในกลุ่มตัวอย่าง</em></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[Specificity = \frac{TN}{TN+FP}\]</div>
+\[ \text{Specificity} = \frac{TN}{TN+FP}\]</div>
 <ul class="simple">
 <li><p><strong>F1 Score</strong>: ค่าเฉลี่ยฮาร์โมนิกระหว่าง precision และ recall</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-F1\text{-}Score = 2 \times \frac{Precision \times Recall}{Precision + Recall}
+\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
 \]</div>
 <ul class="simple">
 <li><p><strong>ROC Curve</strong> (Receiver Operating Characteristic Curve): กราฟที่แสดงความสามารถในการแยกแยะของโมเดลระหว่าง TPR: True Positive Rate (sensitivity) และ FPR: False Positive Rate (1-specificity)

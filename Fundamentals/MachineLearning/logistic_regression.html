@@ -500,14 +500,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
 <h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
-<p>ก่อนหน้านี้  เราได้เรียนรู้ Simple Linear Model ในสัปดาห์ที่ 3 ทำให้เราสามารถพัฒนาโมเดลเชิงเส้น (linear model) เพื่อทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> โดยเรียนรู้จากชุดข้อมูลที่มีโดยไม่จำกัด range ของค่า <span class="math notranslate nohighlight">\(y\)</span> ในกรณีที่ชุดข้อมูลประกอบด้วย 1 feature คือ <span class="math notranslate nohighlight">\(x\)</span> เราสามารถเขียนสมการของความสัมพันธ์เชิงเส้นได้เป็น</p>
+<p>ก่อนหน้านี้  เราได้เรียนรู้ Simple Linear Model ในสัปดาห์ที่ 3 ทำให้เราสามารถพัฒนาโมเดลเชิงเส้น (linear model) เพื่อทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> โดยเรียนรู้จากชุดข้อมูลที่มีโดยไม่จำกัดค่าที่เป็นไปได้ของค่า <span class="math notranslate nohighlight">\(y\)</span> ในกรณีที่ชุดข้อมูลประกอบด้วย 1 feature คือ <span class="math notranslate nohighlight">\(x\)</span> เราสามารถเขียนสมการของความสัมพันธ์เชิงเส้นได้เป็น</p>
 <div class="math notranslate nohighlight">
 \[y = w_0 + w_1x\]</div>
 <p>โดยที่ <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> คือ พารามิเตอร์ของโมเดลเชิงเส้น</p>
-<p>อย่างไรก็ดี มีโจทย์ในอีกประเภทหนึ่ง คือ classification problem หรือ ปัญหาการจำแนกหมวดหมู่ ซึ่ง <span class="math notranslate nohighlight">\(y\)</span> เป็น label ของหมวดหมู่ โดยมักแทนด้วยเป็นจำนวนเต็ม เพื่อให้สามารถทำงานกับระบบคำนวณของคอมพิวเตอร์ได้  ในกรณีที่ชุดข้อมูลประกอบด้วย 2 หมวดหมู่ หรือ binary-classification เรามักกำหนดให้ค่า <span class="math notranslate nohighlight">\(y\)</span> มีค่าเป็น 0 หรือ 1 แทน label หรือ class ของแต่ละหมวดหมู่  การพัฒนาโมเดลเชิงเส้นเพื่อจำแนกข้อมูลที่จำกัด range ของค่า <span class="math notranslate nohighlight">\(y\)</span> โดยตรงจึงไม่เหมาะสม โดยเราสามารถใช้ฟังค์ชันทางคณิตศาสตร์เพื่อแปลงค่าให้อยู่ในช่วงที่เราต้องการได้ หนึ่งในฟังค์ชันที่มีคุณสมบัติดังกล่าว คือ logistic function หรือ Sigmoid function ซึ่งมีสมการทางคณิตศาสตร์ ดังนี้</p>
+<p>อย่างไรก็ดี มีโจทย์อีกประเภทหนึ่ง คือ classification problem หรือ ปัญหาการจำแนกหมวดหมู่ ซึ่ง <span class="math notranslate nohighlight">\(y\)</span> เป็น label ของหมวดหมู่ (class) โดยมักแทนด้วยตัวเลข (เช่น จำนวนเต็ม) เพื่อให้สามารถทำงานกับระบบคำนวณของคอมพิวเตอร์ได้</p>
+<p>ในกรณีที่ชุดข้อมูลประกอบด้วย 2 classes หรือ binary classification เรามักกำหนดให้ค่า <span class="math notranslate nohighlight">\(y\)</span> มีค่าเป็น 0 หรือ 1 แทน label ของแต่ละ class เช่น
+การใช้เลข 0 แทน class แรก และตัวเลข 1 แทน class ที่สอง</p>
+<p>การนำเอา linear model ตามสมการด้านบนมาใช้ทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> ในโจทย์ประเภทนี้จะไม่เหมาะนัก เนื่องจาก linear model นั้นให้ค่า <span class="math notranslate nohighlight">\(y\)</span> ได้ตั้งแต่ <span class="math notranslate nohighlight">\(-∞\)</span> ไปจนถึง <span class="math notranslate nohighlight">\(+∞\)</span> ในขณะที่เราต้องการค่า <span class="math notranslate nohighlight">\(y\)</span> ที่เป็น 0 หรือ 1 เท่านั้น</p>
+<p>วิธีหนึ่งที่เราสามารถใช้ในการแก้ปัญหาตรงนี้ก็คือการนำเอาฟังก์ชันทางคณิตศาสตร์มาใช้แปลงค่า <span class="math notranslate nohighlight">\(y\)</span> ที่เราได้รับมาจากสมการ <span class="math notranslate nohighlight">\(y = w_0 + w_1x\)</span> ให้มีค่าอยู่ระหว่าง 0 กับ 1 ได้ หนึ่งในฟังก์ชันที่มีคุณสมบัติดังกล่าว คือ logistic function หรือ sigmoid function ซึ่งมีสมการทางคณิตศาสตร์ ดังนี้</p>
 <div class="math notranslate nohighlight">
 \[
-g(z) = \frac{1}{1 + e^{-z}}
+g(x) = \frac{1}{1 + e^{-x}}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -529,20 +533,20 @@ g(z) = \frac{1}{1 + e^{-z}}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid_function</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
 
 <span class="c1"># คำนวณค่า sigmoid function ด้วยช่วงค่า x ที่กำหนด</span>
-<span class="n">z</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">sig</span> <span class="o">=</span> <span class="n">sigmoid_function</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">x</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">sigmoid_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># plot sigmoid function</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$z$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$g(z)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$g(x)$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Logistic Function or Sigmoid Function&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -550,29 +554,57 @@ g(z) = \frac{1}{1 + e^{-z}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bfdf4a4b98e86d78fc0d52c4fa3e4f5973a3c945667184086c2f0a9679eef859.png" src="../../_images/bfdf4a4b98e86d78fc0d52c4fa3e4f5973a3c945667184086c2f0a9679eef859.png" />
+<img alt="../../_images/4c86387ed4fcaf4d4bbb0206a75c661077b8feb240b7c15d519d45787fb530ca.png" src="../../_images/4c86387ed4fcaf4d4bbb0206a75c661077b8feb240b7c15d519d45787fb530ca.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า logistic function มีค่าในช่วง 0 ถึง 1 เราจึงสามารถใช้ฟังค์ชันนี้แปลงผลรวมเชิงเส้นเป็นค่าความน่าจะเป็น (probability) ในการจำแนกหมวดหมู่ข้อมูล</p>
+<p>จะเห็นได้ว่า logistic function มีค่าในช่วง 0 ถึง 1 เสมอ ดังนั้นสิ่งที่เราทำได้ก็คือเปลี่ยนจากการให้ตัวโมเดล output ค่า <span class="math notranslate nohighlight">\(w_0 + w_1x\)</span> ซึ่งมีค่าจาก <span class="math notranslate nohighlight">\(-∞\)</span> ไปจนถึง <span class="math notranslate nohighlight">\(+∞\)</span> ไปเป็นการ output ค่า <span class="math notranslate nohighlight">\(g(w_0 + w_1x)\)</span> ซึ่งมีค่ามากกว่าหรือเท่ากับ 0 แต่น้อยกว่าหรือเท่ากับ 1 แทน</p>
+<p>หากเรากำหนดให้ ค่า <span class="math notranslate nohighlight">\(y=0\)</span> แทน class 0 และ ค่า <span class="math notranslate nohighlight">\(y=1\)</span> แทน class 1 เราอาจจะตีความ output ใหม่ของโมเดล <span class="math notranslate nohighlight">\(g(w_0 + w_1x)\)</span> เป็นค่าความน่าจะเป็นที่จุดข้อมูล <span class="math notranslate nohighlight">\(x\)</span> ของเราเป็น class 1 โดยสามารถเขียนเป็นสมการทางคณิตศาสตร์ได้เป็น</p>
 <div class="math notranslate nohighlight">
 \[
-P(x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
+P(\text{class 1}| x) = y = g(w_0 + w_1x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
 \]</div>
-<p>หรือ</p>
-<div class="math notranslate nohighlight">
-\[
-log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
-\]</div>
-<p>และสามารถกำหนดเงื่อนไขการตัดสินใจหรือ decision boundary ที่ <span class="math notranslate nohighlight">\(P=0.5\)</span> เพื่อใช้ในการจำแนกคลาสของ <span class="math notranslate nohighlight">\(y\)</span> ซึ่งแสดงเป็นความสัมพันธ์ทางคณิตศาสตร์ได้ ดังนี้</p>
+<p>อ้างอิงจากสมการนี้ จะพบว่าโมเดลจะ output ค่า <span class="math notranslate nohighlight">\(y\)</span> ออกมา ซึ่งค่า <span class="math notranslate nohighlight">\(y\)</span> นี้จะแสดงถึงความน่าจะเป็นที่จุดข้อมูลที่ใส่เข้ามาในโมเดลจะเป็น class 1 เราสามารถกำหนดเงื่อนไขของการตัดสินใจว่าจุดข้อมูลที่เรานำมาทดสอบเป็น class ใด โดยการใช้เทียบดูว่า ค่า <span class="math notranslate nohighlight">\(y\)</span> ซึ่งเป็น output ของโมเดล มีค่าน้อยกว่า 0.5 หรือไม่</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P(x) ≥ 0.5 → y=1\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(P(x) &lt; 0.5 → y=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y ≥ 0.5 →\)</span> จุดข้อมูลดังกล่าวเป็น class 1</p></li>
+<li><p><span class="math notranslate nohighlight">\(y &lt; 0.5 →\)</span> จุดข้อมูลดังกล่าวเป็น class 2</p></li>
 </ul>
-<p>โมเดล logistic จะเรียนรู้จากชุดข้อมูล โดยปรับค่าพารามิเตอร์ของโมเดล <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> เพื่อให้ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจากความน่าจะเป็นมีความคลาดเคลื่อนจากค่า <span class="math notranslate nohighlight">\(y\)</span> ของชุดข้อมูลน้อยที่สุด  และได้ decision boundary ที่สามารถจำแนกกลุ่มได้ดีที่สุด ด้วย iterative solver ประเภทต่างๆ</p>
-<p>ใน tutorial นี้เราจะเรียนรู้การทำงานของ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป</p>
+<p>ในที่นี้บริเวณที่เกิดค่าความน่าจะเป็นที่ 0.5 จะเป็นบริเวณที่เกิด decision boundary ขึ้น</p>
+<p>โมเดล logistic จะเรียนรู้จากชุดข้อมูล โดยปรับค่าพารามิเตอร์ของโมเดล <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> เพื่อให้ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายออกมามีความคลาดเคลื่อนจากค่า <span class="math notranslate nohighlight">\(y\)</span> ที่เป็นผลเฉลยของชุดข้อมูลน้อยที่สุด</p>
+<p><br><br></p>
+<hr class="docutils" />
+<p><strong>ข้อมูลทางเทคนิคเพิ่มเติมสำหรับผู้ที่สนใจ</strong></p>
+<br>
+<p><strong>ข้อแรก</strong></p>
+<p>หากเราโยกย้ายพจน์ต่าง ๆ ในสมการ
+$<span class="math notranslate nohighlight">\( P(\text{class 1}| x) = \frac{1}{1 + e^{-(w_0+w_1x)}} \)</span>$</p>
+<p>เราสามารถแสดงได้ว่า</p>
+<div class="math notranslate nohighlight">
+\[
+log\left(\frac{P(\text{class 1}| x)}{1-P(\text{class 1}| x)}\right) = w_0+w_1x
+\]</div>
+<p>พจน์ด้านซ้ายมือมีชื่อเรียกว่า <strong>log-odds</strong> ซึ่งเป็นค่า log ของ <em>ความน่าจะเป็นที่เป็น class 1</em> หารด้วย <em>ความน่าจะเป็นที่ไม่เป็น class 1</em></p>
+<p>เราจะเห็นได้ว่า logistic regression สร้างแบบจำลองโดยการกำหนดให้ log-odds เป็นฟังก์ชัน linear</p>
+<p>เรามาลองดูคุณสมบัติของ log-odds กันนิดนึงดีกว่า</p>
+<ul class="simple">
+<li><p>ถ้า <span class="math notranslate nohighlight">\(P(\text{class 1}| x) → 0\)</span> (ความน่าจะเป็นที่เป็น class 1 มีค่าเข้าใกล้ 0) จะพบว่าค่า
+<span class="math notranslate nohighlight">\(
+log\left(\frac{P(\text{class 1}| x)}{1-P(\text{class 1}| x)}\right) → -∞
+\)</span></p></li>
+<li><p>ถ้า <span class="math notranslate nohighlight">\(P(\text{class 1}| x) → 1\)</span> (ความน่าจะเป็นที่เป็น class 1 มีค่าเข้าใกล้ 1) จะพบว่าค่า
+<span class="math notranslate nohighlight">\(
+log\left(\frac{P(\text{class 1}| x)}{1-P(\text{class 1}| x)}\right) → +∞
+\)</span></p></li>
+</ul>
+<p>จะเห็นได้ว่าค่า log-odds นั้นมีค่าที่เป็นไปได้ระหว่าง -∞ ถึง +∞  ซึ่งจะไม่ขัดแย้งกับค่าที่เป็นไปได้ของสมการ <span class="math notranslate nohighlight">\(w_0+w_1x\)</span> ที่เราใช้สำหรับโมเดลตัว log-odds เลย</p>
+<p>จากข้อสังเกตนี้ เราเห็นได้ว่าจริง ๆ แล้ว logistic regression นั้น มีความเกี่ยวข้องกับ linear regression ค่อนข้างมาก ซึ่งเราสามารถมองได้ว่า logistic regression ก็คล้าย ๆ กับการนำเอา linear regression มาใช้งาน แต่เราตีความ output ที่ออกมาว่าเป็น log-odds</p>
+<br>
+<p><strong>ข้อที่สอง</strong></p>
+<hr class="docutils" />
+<p><br><br>
+ใน tutorial นี้เราจะเรียนรู้การทำงานของ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป</p>
 <section id="generate-simulated-dataset">
 <h2>Generate Simulated Dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
-<p>เพื่อเปรียบเทียบการทำงานของ Linear regression และ Logistic regression เราจะลองสร้างชุดข้อมูลที่ประกอบไปด้วย จำนวน <span class="math notranslate nohighlight">\(n=100\)</span> จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_n,y_n)\)</span></p>
+<p>เพื่อเปรียบเทียบการทำงานของ Linear regression และ Logistic regression เราจะลองสร้างชุดข้อมูลที่ประกอบไปด้วย จำนวน 100 จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_{100},y_{100})\)</span></p>
 <p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) และแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่จำนวน 50 จุด</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -637,7 +669,9 @@ log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง Linear Model</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
 <span class="c1"># สอนโมเดลจากข้อมูล x, y ที่มี แล้วทำนายค่า $y$</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">y_linear</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -648,6 +682,7 @@ log\left(\frac{P(x)}{1-P(x)}\right) = w_0+w_1x
 
 <span class="c1"># สร้าง Logistic Model</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
 <span class="c1"># สอนโมเดลจากข้อมูล x, y ที่มี แล้วทำนายค่า $y$</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">y_logit</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -690,7 +725,9 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" src="../../_images/96d2df32edb06d26dd2aebb7a6dc25b108c6f027fc8b89abb4dc9fdec9abe771.png" />
 </div>
 </div>
-<p>จะเห็นได้ว่า ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจาก linear regression มีความคลาดเคลื่อนสูงมาก  ในขณะที่ logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า โดยจะมีบางช่วงข้อมูลที่โมเดลทำนายคลาดเคลื่อน ซึ่งเป็นช่วงค่า <span class="math notranslate nohighlight">\(x\)</span> ที่ปรากฏข้อมูลทั้งสองคลาส และเนื่องจากชุดข้อมูลมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
+<p>จะเห็นได้ว่า ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายจาก linear regression มีความคลาดเคลื่อนสูงมาก โดย linear regression ได้ตอบค่าที่น้อยกว่า 0 และค่าที่มากกว่า 1 ด้วยซ้ำ</p>
+<p>ในขณะที่ logistic regression สามารถเรียนรู้และทำนายข้อมูลในลักษณะนี้ได้ดีกว่า linear regression โดยตัวโมเดลทำนายคลาดเคลื่อนในช่วงค่าที่ปรากฏข้อมูลจากทั้งสองคลาส (บริเวณค่า <span class="math notranslate nohighlight">\(x\)</span> ระหว่าง -1 ถึง 0 มีการซ้อนทับกันระหว่าง 2 classes)</p>
+<p>ด้วยความคลุมเครือในบริเวณนั้น การมีตัวแปร <span class="math notranslate nohighlight">\(x\)</span> เพียงตัวเดียวจึงไม่เพียงพอในการจำแนกข้อมูลช่วงดังกล่าว</p>
 <p><strong>Quiz:</strong> Determine decision boundary, given <span class="math notranslate nohighlight">\(P(x) = g(x*2.13 + 1.08)\)</span></p>
 <p><em>จะแสดงคำตอบในวิดีโอ</em></p>
 <p>ต่อไป เราจะลองสร้างชุดข้อมูลที่ feature space มีมิติสูงขึ้น โดยเป็นชุดข้อมูลที่ประกอบด้วย 2 features เพื่อจำแนก 2 classes โดยในแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่ 100 จุด</p>
@@ -766,7 +803,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <img alt="../../_images/7cd5f73667ddb6221455ca99585857ef8346324a9b7ffcb71230d8a65439ed40.png" src="../../_images/7cd5f73667ddb6221455ca99585857ef8346324a9b7ffcb71230d8a65439ed40.png" />
 </div>
 </div>
-<p>แสดง decision boundary ของโมเดล logistic ที่มีลักษณะเป็นเส้นตรง จำแนกกลุ่มข้อมูลต่างคลาสออกจากกัน</p>
+<p>สังเกตได้ว่า decision boundary ของโมเดล logistic มีลักษณะเป็นเส้นตรง จำแนกกลุ่มข้อมูลต่างคลาสออกจากกัน</p>
 </section>
 <section id="logistic-regression-solver">
 <h2>Logistic Regression เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ชนิดต่างๆ<a class="headerlink" href="#logistic-regression-solver" title="Permalink to this heading">#</a></h2>
