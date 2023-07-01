@@ -603,14 +603,17 @@ log\left(\frac{P(\text{class 1}| x)}{1-P(\text{class 1}| x)}\right) → +∞
 <div class="math notranslate nohighlight">
 \[ y = \frac{1}{1 + e^{-(w_0+w_1x)}} ≥ 0.5 \]</div>
 <p>เรามาลองโยกย้ายสมการกันดู</p>
-<p>\begin{align}
-\frac{1}{1 + e^{-(w_0+w_1x)}} &amp;≥ \frac{1}{2} \ \
-2 &amp;≥ 1 + e^{-(w_0+w_1x)} \ \
-1 &amp;≥ e^{-(w_0+w_1x)} \ \
-ln(1) &amp;≥ ln(e^{-(w_0+w_1x)}) \ \
-0 &amp;≥ -(w_0+w_1x) \ \
-w_0+w_1x &amp;≥ 0\
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{1}{1 + e^{-(w_0+w_1x)}} &amp;≥ \frac{1}{2} \\ \\
+2 &amp;≥ 1 + e^{-(w_0+w_1x)} \\ \\
+1 &amp;≥ e^{-(w_0+w_1x)} \\ \\
+ln(1) &amp;≥ ln(e^{-(w_0+w_1x)}) \\ \\
+0 &amp;≥ -(w_0+w_1x) \\ \\
+w_0+w_1x &amp;≥ 0\\
+\end{align}
+\end{split}\]</div>
 <p>ซึ่งแปลว่า</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(y ≥ 0.5 ⟷ w_0+w_1x ≥ 0\)</span></p></li>
