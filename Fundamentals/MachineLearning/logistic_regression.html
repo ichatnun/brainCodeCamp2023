@@ -542,7 +542,7 @@ g(x) = \frac{1}{1 + e^{-x}}
 
 <span class="c1"># plot sigmoid function</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
@@ -572,7 +572,7 @@ P(\text{class 1}| x) = y = g(w_0 + w_1x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
 <p>โมเดล logistic จะเรียนรู้จากชุดข้อมูล โดยปรับค่าพารามิเตอร์ของโมเดล <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> เพื่อให้ค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายออกมามีความคลาดเคลื่อนจากค่า <span class="math notranslate nohighlight">\(y\)</span> ที่เป็นผลเฉลยของชุดข้อมูลน้อยที่สุด</p>
 <p><br><br></p>
 <hr class="docutils" />
-<p><strong>ข้อมูลทางเทคนิคเพิ่มเติมสำหรับผู้ที่สนใจ</strong></p>
+<p><strong>Optional: ข้อมูลทางเทคนิคเพิ่มเติมสำหรับผู้ที่สนใจ</strong></p>
 <br>
 <p><strong>ข้อแรก</strong></p>
 <p>หากเราโยกย้ายพจน์ต่าง ๆ ในสมการ
@@ -599,9 +599,33 @@ log\left(\frac{P(\text{class 1}| x)}{1-P(\text{class 1}| x)}\right) → +∞
 <p>จากข้อสังเกตนี้ เราเห็นได้ว่าจริง ๆ แล้ว logistic regression นั้น มีความเกี่ยวข้องกับ linear regression ค่อนข้างมาก ซึ่งเราสามารถมองได้ว่า logistic regression ก็คล้าย ๆ กับการนำเอา linear regression มาใช้งาน แต่เราตีความ output ที่ออกมาว่าเป็น log-odds</p>
 <br>
 <p><strong>ข้อที่สอง</strong></p>
+<p>ในการตัดสินใจว่าจุดข้อมูล <span class="math notranslate nohighlight">\(x\)</span> มีเป็น class 1 เราใช้เงื่อนไข</p>
+<div class="math notranslate nohighlight">
+\[ y = \frac{1}{1 + e^{-(w_0+w_1x)}} ≥ 0.5 \]</div>
+<p>เรามาลองโยกย้ายสมการกันดู</p>
+<p>\begin{align}
+\frac{1}{1 + e^{-(w_0+w_1x)}} &amp;≥ \frac{1}{2} \ \
+2 &amp;≥ 1 + e^{-(w_0+w_1x)} \ \
+1 &amp;≥ e^{-(w_0+w_1x)} \ \
+ln(1) &amp;≥ ln(e^{-(w_0+w_1x)}) \ \
+0 &amp;≥ -(w_0+w_1x) \ \
+w_0+w_1x &amp;≥ 0\
+\end{align}</p>
+<p>ซึ่งแปลว่า</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y ≥ 0.5 ⟷ w_0+w_1x ≥ 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y ≤ 0.5 ⟷ w_0+w_1x ≤ 0\)</span></p></li>
+</ul>
+<p>ดังนั้นเราจะได้เงื่อนไขในการแบ่งคลาสในอีกรูปแบบหนึ่ง ก็คือ</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_0+w_1x ≥ 0 →\)</span> จุดข้อมูลดังกล่าวเป็น class 1</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_0+w_1x ≤ 0 →\)</span> จุดข้อมูลดังกล่าวเป็น class 2</p></li>
+</ul>
+<p>ซึ่งเป็นอสมการแบบ linear</p>
+<p>เราจะได้เห็นจากหลาย ๆ ตัวอย่างใน tutorial นี้ว่า decision boundary ก็มีลักษณะเป็นเส้นตรงจริง ๆ</p>
 <hr class="docutils" />
 <p><br><br>
-ใน tutorial นี้เราจะเรียนรู้การทำงานของ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป</p>
+ใน tutorial นี้เราจะเรียนรู้การทำงานของ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป.</p>
 <section id="generate-simulated-dataset">
 <h2>Generate Simulated Dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
 <p>เพื่อเปรียบเทียบการทำงานของ Linear regression และ Logistic regression เราจะลองสร้างชุดข้อมูลที่ประกอบไปด้วย จำนวน 100 จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_{100},y_{100})\)</span></p>
