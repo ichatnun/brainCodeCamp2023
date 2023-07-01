@@ -55,16 +55,17 @@ parts:
         - file: Fundamentals/BrainBuildingBlocks/Session7/S7L6_LanguageModels
     - file: Fundamentals/BrainBuildingBlocks/Session8/S8_Intro
       sections:
+      - file: Fundamentals/BrainBuildingBlocks/Session8/S8L1_DiagnosisAndMonitoring
       - file: Fundamentals/BrainBuildingBlocks/Session8/S8L4_ComputationalNeuropsychiatry
     - file: Fundamentals/BrainBuildingBlocks/Session9/S9_Intro
       sections:
       - file: Fundamentals/BrainBuildingBlocks/Session9/S9L2_BrainComputerInterface
   - caption: Prerequisites
     chapters:
-    - file: Fundamentals/01_Prereqs/00_basic_python
+    - file: Fundamentals/Prereqs/00_basic_python
       title: Python
-    - file: Fundamentals/01_Prereqs/01_numpy
-      title: 01_numpy
+    - file: Fundamentals/Prereqs/01_numpy
+      title: Numpy
 
   - caption: Welcome to Brain Code Camp! (Week 1)
     chapters:
@@ -88,22 +89,28 @@ parts:
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
 
-  - caption: Machine Learning (Week 5)
-    chapters: 
-    - file: Fundamentals/MachineLearning/intro_to_machine_learning
-      title: Introduction to Machine Learning
-    - file: Fundamentals/MachineLearning/logistic_regression
-      title: Logistic Regression
-    - file: Fundamentals/MachineLearning/svm
-      title: Support Vector Machines
-    - file: Fundamentals/MachineLearning/decision_tree_random_forest
-      title: Decision Trees and Random Forest
-    - file: Fundamentals/MachineLearning/knn
-      title: K-Nearest Neighbors
-    - file: Fundamentals/MachineLearning/eeg_supervised_learning
-      title: EEG example
+  - caption: Machine Learning (Weeks 5-6)
+    chapters:
+    - file: Fundamentals/MachineLearning/ml_part1_intro
+      title: ML Part 1 (Week 5)
+      sections:
+      - file: Fundamentals/MachineLearning/intro_to_machine_learning
+        title: Introduction to Machine Learning
+      - file: Fundamentals/MachineLearning/logistic_regression
+        title: Logistic Regression
+      - file: Fundamentals/MachineLearning/svm
+        title: Support Vector Machines
+      - file: Fundamentals/MachineLearning/decision_tree_random_forest
+        title: Decision Trees and Random Forest
+    - file: Fundamentals/MachineLearning/ml_part2_intro
+      title: ML Part 2 (Week 6)
+      sections: 
+      - file: Fundamentals/MachineLearning/knn     
+        title: K-Nearest Neighbors
+      - file: Fundamentals/MachineLearning/eeg_supervised_learning
+        title: EEG Analysis
 
-  - caption: Deep Learning (Week 6)
+  - caption: Deep Learning (Week 7)
     chapters: 
     - file: Fundamentals/DeepLearning/intro_pytorch
       title: Pytorch
@@ -116,22 +123,22 @@ parts:
     - file: Fundamentals/DeepLearning/breast_cancer_segmentation_transformers
       title: Image Segmentation
 
-  - caption: Signal Processing (Week 7)
+  - caption: Signal Processing (Week 8)
     chapters: 
     - file: Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging
     - file: Fundamentals/SignalProcessing/signal_processing_part2_dft
     - file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
     - file: Fundamentals/SignalProcessing/signal_processing_part4_application
 
-  - caption: Applications (Weeks 8-10)
+  - caption: Applications (Weeks 9-11)
     chapters: 
     - file: Applications/EEG/EEG_Intro
-      title: EEG (Week 8)
+      title: EEG (Week 9)
       sections:
       - file: Applications/EEG/motor_imagery_part1
       - file: Applications/EEG/motor_imagery_part2   
     - file: Applications/NeuralSpiking/Intro
-      title: Neural Spiking (Week 9)
+      title: Neural Spiking (Week 10)
     - file: Applications/fMRI/Intro
-      title: fMRI (Week 10)
+      title: fMRI (Week 11)
 
