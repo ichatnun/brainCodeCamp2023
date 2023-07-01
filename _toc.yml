@@ -100,11 +100,11 @@ parts:
         title: Logistic Regression
       - file: Fundamentals/MachineLearning/svm
         title: Support Vector Machines
-      - file: Fundamentals/MachineLearning/decision_tree_random_forest
-        title: Decision Trees and Random Forest
     - file: Fundamentals/MachineLearning/ml_part2_intro
       title: ML Part 2 (Week 6)
       sections: 
+      - file: Fundamentals/MachineLearning/decision_tree_random_forest
+        title: Decision Trees and Random Forest
       - file: Fundamentals/MachineLearning/knn     
         title: K-Nearest Neighbors
       - file: Fundamentals/MachineLearning/eeg_supervised_learning
