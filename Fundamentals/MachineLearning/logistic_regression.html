@@ -515,7 +515,7 @@ g(x) = \frac{1}{1 + e^{-x}}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">DecisionBoundaryDisplay</span>
@@ -533,7 +533,7 @@ g(x) = \frac{1}{1 + e^{-x}}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
 
 <span class="c1"># คำนวณค่า sigmoid function ด้วยช่วงค่า x ที่กำหนด</span>
@@ -575,8 +575,9 @@ P(\text{class 1}| x) = y = g(w_0 + w_1x) = \frac{1}{1 + e^{-(w_0+w_1x)}}
 <p><strong>Optional: ข้อมูลทางเทคนิคเพิ่มเติมสำหรับผู้ที่สนใจ</strong></p>
 <br>
 <p><strong>ข้อแรก</strong></p>
-<p>หากเราโยกย้ายพจน์ต่าง ๆ ในสมการ
-$<span class="math notranslate nohighlight">\( P(\text{class 1}| x) = \frac{1}{1 + e^{-(w_0+w_1x)}} \)</span>$</p>
+<p>หากเราโยกย้ายพจน์ต่าง ๆ ในสมการ</p>
+<div class="math notranslate nohighlight">
+\[ P(\text{class 1}| x) = \frac{1}{1 + e^{-(w_0+w_1x)}} \]</div>
 <p>เราสามารถแสดงได้ว่า</p>
 <div class="math notranslate nohighlight">
 \[
@@ -635,7 +636,7 @@ w_0+w_1x &amp;≥ 0\\
 <p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) และแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่จำนวน 50 จุด</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
     <span class="c1"># สร้างชุดข้อมูลแบบ multi-class</span>
     <span class="c1"># ตั้งค่า random seed เพื่อให้สามารถสร้างชุดข้อมูลเดิมทุกครั้ง เพื่อใช้สำหรับการสอน</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
@@ -694,7 +695,7 @@ w_0+w_1x &amp;≥ 0\\
 <p>เราจะลอง fit ข้อมูลชุดนี้ ด้วย <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">Linear regression</a> และ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">Logistic Regression</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง Linear Model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง Linear Model</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
@@ -760,7 +761,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <p>ต่อไป เราจะลองสร้างชุดข้อมูลที่ feature space มีมิติสูงขึ้น โดยเป็นชุดข้อมูลที่ประกอบด้วย 2 features เพื่อจำแนก 2 classes โดยในแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่ 100 จุด</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
 <span class="c1"># กำหนด จำนวนคลาส</span>
 <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">2</span>
 
@@ -801,7 +802,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <p>เราสามารถ visualize ลักษณะของ decision boundary (เขตแดนแบ่งแยกคลาส) โดยใช้ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.inspection.DecisionBoundaryDisplay.html">DecisionBoundaryDisplay</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างโมเดล</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างโมเดล</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
 
 <span class="c1"># สอนโมเดลจากข้อมูล x, y ที่สร้างขึ้นก่อนหน้านี้</span>
@@ -861,7 +862,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
 <span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;newton-cg&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">),</span>
           <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">),</span>
           <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">),</span>
@@ -914,7 +915,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <h3>Generate 3-class Dataset<a class="headerlink" href="#generate-3-class-dataset" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
 <span class="c1"># กำหนด จำนวนคลาส</span>
 <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">3</span>
 
@@ -960,7 +961,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <p>อย่างไรก็ดี ในกรณีที่ข้อมูลประกอบด้วยคลาสต่างๆ ที่มีสัดส่วนต่างกันอย่างมาก (imbalanced dataset) การทำ stratify มีความจำเป็นอย่างมากเพื่อคงสัดส่วนของแต่ละคลาส ใน training data และ test data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง training data และ test data โดยแบ่งจากชุดข้อมูล x,y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง training data และ test data โดยแบ่งจากชุดข้อมูล x,y</span>
 <span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                                                     <span class="n">stratify</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 
@@ -993,7 +994,7 @@ Test set: จำนวนข้อมูล แบ่งกลุ่มตาม
 <p>ใช้ mean และ standard deviation (SD) จาก training data ในการ standardize test set เพื่อป้องกัน information leak</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง standardized scaler จาก features ใน training data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง standardized scaler จาก features ใน training data</span>
 <span class="n">x_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 
 <span class="c1"># scale ค่า features ใน training data และ test data</span>
@@ -1008,7 +1009,7 @@ Test set: จำนวนข้อมูล แบ่งกลุ่มตาม
 <h3>เทรนโมเดล ด้วย base model (default hyperparameter)<a class="headerlink" href="#base-model-default-hyperparameter" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># สร้างโมเดล</span>
 <span class="n">base_clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
@@ -1090,7 +1091,7 @@ weighted avg       0.89      0.87      0.86        60
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># กำหนดช่วงค่า hyperparameters ในรูปแบบ dictionary</span>
 <span class="n">clf_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;solver&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;newton-cg&#39;</span><span class="p">,</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span><span class="s1">&#39;liblinear&#39;</span><span class="p">],</span>
@@ -1178,7 +1179,7 @@ weighted avg       0.90      0.88      0.88        60
 <p>เราจะมาลองดู decision boundary ของโมเดลบน training data และ test data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the decision boundaries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the decision boundaries</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;[Training Data] </span><span class="se">\n</span><span class="s1">Logistic Regression: Decision boundary&#39;</span><span class="p">,</span> <span class="s1">&#39;[Test Data] </span><span class="se">\n</span><span class="s1">Logistic Regression: Decision boundary&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">],</span> <span class="p">[</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">],</span> <span class="n">titles</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>

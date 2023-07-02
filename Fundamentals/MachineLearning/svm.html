@@ -483,6 +483,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">ทำการ standardize ข้อมูลทั้งหมด</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-default-hyperparameter">เทรนโมเดล ด้วย base model (default hyperparameter)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning-gridsearchcv-train">ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย GridSearchCV และ train โมเดล</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
 </ul>
 </li>
 </ul>
@@ -508,7 +509,7 @@ document.write(`
 <p>เราจะเรียนรู้การทำ Support Vector Classification ผ่านการเรียกใช้ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 <span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">DecisionBoundaryDisplay</span>
@@ -526,7 +527,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">):</span>
     <span class="c1"># สร้างชุดข้อมูลแบบ multi-class</span>
     <span class="c1"># ตั้งค่า random seed เพื่อให้สามารถสร้างชุดข้อมูลเดิมทุกครั้ง เพื่อใช้สำหรับการสอน</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
@@ -590,7 +591,7 @@ document.write(`
 <p>เพื่อให้การจำแนกคลาสเป็นไปอย่างแม่นยำและมีประสิทธิภาพสูง SVM ไม่เพียงแต่ค้นหา separating hyperplane ที่สามารถจำแนกคลาสของข้อมูลเท่านั้น แต่ยัง maximize ขนาด <strong>functional margin</strong> ซึ่งเป็นระยะห่างระหว่าง separating hyperplane กับจุดข้อมูลที่ใกล้เคียงที่สุดจากแต่ละคลาส ซึ่งมักจะเป็นจุดข้อมูลที่จำแนกได้ยากที่สุด จึงเป็นเงื่อนไขสำคัญสำหรับ SVM ที่จะตัดสินใจ จุดข้อมูลเหล่านี้มีชื่อเรียกเฉพาะว่า <strong>support vectors</strong> ดังตัวอย่างด้านล่าง</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างโมเดล</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างโมเดล</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 
 <span class="c1"># สอนโมเดลจากข้อมูล x, y ที่สร้างขึ้นก่อนหน้านี้</span>
@@ -606,9 +607,12 @@ document.write(`
 <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span>
                                        <span class="n">x</span><span class="p">,</span>
                                        <span class="n">plot_method</span><span class="o">=</span><span class="s2">&quot;contour&quot;</span><span class="p">,</span>
-                                       <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">],</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-                                       <span class="p">)</span>
+                                       <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+                                       <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                       <span class="n">linestyles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">],</span>
+                                       <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
 <span class="c1"># plot support vectors</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
            <span class="n">clf</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
@@ -643,7 +647,7 @@ document.write(`
 ดังตัวอย่างด้านล่าง ทั้งนี้ เราจะสร้างข้อมูลชุดเดียวกับที่ใช้ก่อนหน้านี้ใน tutorial ของ logistic regression</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
 <span class="c1"># กำหนด จำนวนคลาส</span>
 <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">2</span>
 
@@ -677,7 +681,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
 <span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">),</span>
           <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">),</span>
           <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">),</span>
@@ -722,13 +726,13 @@ document.write(`
 <p>ต่อไปเราจะลองสร้างชุดข้อมูลที่มีความซับซ้อนมากขึ้น และเปรียบเทียบการทำงานของ SVM เมื่อใช้ kernel ประเภทต่างๆ</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
 <span class="c1"># กำหนด จำนวนคลาส</span>
 <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="c1"># กำหนดช่วงค่า Mean และ standard deviation สำหรับแต่ละคลาส</span>
 <span class="n">mean_class</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
-<span class="n">std_class</span>  <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">]]</span>
+<span class="n">std_class</span>  <span class="o">=</span> <span class="p">[[</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">]]</span>
 
 <span class="c1"># กำหนดจำนวนข้อมูล สำหรับแต่ละคลาส</span>
 <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>
@@ -750,12 +754,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0e5c6adaf32b8cbaa5c1a5f08ccc03eca6bc776ad41ea2e89628a5388f035dd8.png" src="../../_images/0e5c6adaf32b8cbaa5c1a5f08ccc03eca6bc776ad41ea2e89628a5388f035dd8.png" />
+<img alt="../../_images/66cafdb8fe4b3afa6dbc027526716a29ae0f7b98f9aa17e1d578ea0c933d48a5.png" src="../../_images/66cafdb8fe4b3afa6dbc027526716a29ae0f7b98f9aa17e1d578ea0c933d48a5.png" />
 </div>
 </div>
+<p>ข้อมูลที่สร้างขึ้นมีประกอบด้วย 2 features และ 2 classes (class: 0, 1) โดยข้อมูลในแต่ละคลาสมีจำนวนเท่ากันที่ 100 จุด เมื่อพิจารณาการกระจายตัวของข้อมูล พบว่า ข้อมูลคลาส 0 จะรวมตัวกัน โดยมีข้อมูลคลาส 1 กระจายตัวอยู่โดยรอบ  เราจะลองใช้ SVM และ kernel ที่ได้เรียนรู้ก่อนหน้านี้มาจำแนกข้อมูลชุดนี้</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
 <span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">),</span>
           <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">),</span>
           <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">),</span>
@@ -792,7 +797,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d8cafe0f1fb5764466264dd22b1a26f989688edcaad549d73053b655080f2b16.png" src="../../_images/d8cafe0f1fb5764466264dd22b1a26f989688edcaad549d73053b655080f2b16.png" />
+<img alt="../../_images/f6b0471d881da2126812ae821f83b5fcf92b98eb73878b2cc08573c894c51d1c.png" src="../../_images/f6b0471d881da2126812ae821f83b5fcf92b98eb73878b2cc08573c894c51d1c.png" />
 </div>
 </div>
 <p>จะเห็นได้ว่า ข้อมูลชุดนี้ไม่เหมาะกับการใช้ linear kernel โดย พบว่า polynomial (degree 2) kernel และ RBF kernel สร้าง non-linear decision boundary ที่มีความเหมาะสมกับการจำแนกชุดข้อมูลมากกว่า</p>
@@ -804,49 +809,60 @@ document.write(`
 \[
 C \sum_{i=1}^{n} L(f(x_i),y_i) + Ω(w)
 \]</div>
-<p>เมื่อ <span class="math notranslate nohighlight">\(L\)</span> คือ loss function และ <span class="math notranslate nohighlight">\(Ω(w)\)</span> คือ regularization term ของ โมเดลพารามิเตอร์ โดยเป็นการเรียกใช้ L2 regularization</p>
-<p>(more info <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/svm/plot_svm_scale_c.html">Scaling the regularization parameter for SVCs</a>)</p>
+<p>เมื่อ <span class="math notranslate nohighlight">\(L\)</span> คือ loss function มาตรฐานของ SVM ซึ่งเป็นพจน์ที่พยายามทำให้โมเดลให้คำตอบที่ถูกต้องสำหรับจุดข้อมูลใน training data, <span class="math notranslate nohighlight">\(w\)</span> แสดงถึงพารามิเตอร์ของโมเดล และ <span class="math notranslate nohighlight">\(Ω(w)\)</span> คือ regularization term โดยเป็นการเรียกใช้ L2 regularization</p>
+<ul class="simple">
+<li><p>การกำหนดให้ <span class="math notranslate nohighlight">\(C\)</span> มีค่าน้อย เป็นการลดความสำคัญของ <span class="math notranslate nohighlight">\(L\)</span> ส่งผลให้โมเดลโฟกัสกับ regularization term มากขึ้น ดังนั้นโมเดลจึงไม่ได้พยายามเรียนรู้จาก training data ที่มีอยู่มากนัก ซึ่งช่วยป้องกันปัญหา overfitting</p></li>
+<li><p>การเพิ่มค่า <span class="math notranslate nohighlight">\(C\)</span> ให้มากขึ้น เป็นการเพิ่มน้ำหนักให้กับ <span class="math notranslate nohighlight">\(L\)</span> ส่งผลให้โมเดลสามารถเรียนรู้จาก training data ได้มากขึ้น</p>
+<ul>
+<li><p>ถ้าหากเราเพิ่มค่า <span class="math notranslate nohighlight">\(C\)</span> จนมากเกินไป โมเดลจะโฟกัสกับ <span class="math notranslate nohighlight">\(L\)</span> มากขึ้นเรื่อย ๆ จนไม่ค่อยสนใจ regularization term ทำให้มีโอกาสที่จะเจอปัญหา overfitting ในกรณีที่โมเดลเรามีจำนวนพารามิเตอร์เมื่อเทียบกับจำนวนข้อมูลได้</p></li>
+</ul>
+</li>
+</ul>
+<p>(ข้อมูลเพิ่มเติม <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/svm/plot_svm_scale_c.html">Scaling the regularization parameter for SVCs</a>)</p>
+<p>เรามาลองดู decision boundary ว่าจะมีลักษณะเป็นอย่างไรเมื่อเราใช้เทคนิค regularization ด้วยค่า <span class="math notranslate nohighlight">\(C\)</span> หลาย ๆ ค่ากัน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># กำหนดช่วงค่า C</span>
-<span class="n">C_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.001</span><span class="p">),</span>
+          <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+          <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+          <span class="p">)</span>
 
-<span class="c1"># สร้างโมเดลด้วค่า C ต่างๆ ให้โมเดลเรียนรู้จากข้อมูล x, y ที่สร้างขึ้นก่อนหน้านี้ แล้วทดสอบโมเดลด้วย accuracy score</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">C_val</span> <span class="ow">in</span> <span class="n">C_values</span><span class="p">:</span>
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C_val</span><span class="p">)</span>
-    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># สอนโมเดลจากข้อมูล x, y ที่สร้างขึ้นก่อนหน้านี้</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">)</span>
 
-    <span class="c1"># ทำนายค่า y โดยใช้โมเดล</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># ตั้งชื่อ plot ที่สอดคล้องกับชุดข้อมูล</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SVC with polynomial (degree 10) kernel, </span><span class="se">\n</span><span class="s1">C=$10^-3$&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;SVC with polynomial (degree 10) kernel, </span><span class="se">\n</span><span class="s1">C=$10^0$&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;SVC with polynomial (degree 10) kernel, </span><span class="se">\n</span><span class="s1">C=$10^3$&#39;</span>
+          <span class="p">]</span>
 
-    <span class="c1"># คำนวณ accuracy score</span>
-    <span class="n">accuracy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prediction</span><span class="p">))</span>
-
-<span class="c1"># แสดงผล</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;max accuracy=</span><span class="si">{:.4f}</span><span class="s1"> at C=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">accuracy</span><span class="p">),</span> <span class="n">C_values</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)]))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">C_values</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;C Values&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy Score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SVC with polynomial (degree 3) kernel&#39;</span><span class="p">)</span>
+<span class="c1"># plot the decision boundaries</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">clf</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">titles</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="n">disp</span> <span class="o">=</span> <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span>
+                                                  <span class="n">x</span><span class="p">,</span>
+                                                  <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
+                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                                  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                                  <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                                                  <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
+                                                  <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
+                                                  <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max accuracy=0.7250 at C=10
-</pre></div>
-</div>
-<img alt="../../_images/6ea394a9a442b10b583218cbb8106ea2996480c66165eff8b72edb90ba297677.png" src="../../_images/6ea394a9a442b10b583218cbb8106ea2996480c66165eff8b72edb90ba297677.png" />
+<img alt="../../_images/16020b4f1387da77d22aad67f5d240ab3cbc2d22e985d7485b770bf480c65a03.png" src="../../_images/16020b4f1387da77d22aad67f5d240ab3cbc2d22e985d7485b770bf480c65a03.png" />
 </div>
 </div>
-<p>ตัวอย่างแสดงให้เห็นว่า เราสามารถเพิ่ม accuracy ของโมเดลได้ด้วยการปรับค่า <span class="math notranslate nohighlight">\(C\)</span> ที่เหมาะสม จะเห็นว่า L2 regulariztion ให้ค่า accuracy ค่อนข้างคงที่เมื่อ <span class="math notranslate nohighlight">\(C\ge10\)</span> โดยมีค่า accuracy สูงสุดที่ <span class="math notranslate nohighlight">\(C=10\)</span></p>
-<p><strong>Quiz:</strong> ทำไมเมื่อเพิ่ม <span class="math notranslate nohighlight">\(C\)</span> ให้มีค่าสูงขึ้น สามารถเพิ่มความแม่นยำของโมเดลได้จนถึงจุดหนึง หลังจากนั้นการเพิ่มค่า <span class="math notranslate nohighlight">\(C\)</span> กลับทำให้ accuracy ที่ค่อนข้างคงที่</p>
-<p>จะสังเกตุได้ว่า ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> พารามิเตอร์ <span class="math notranslate nohighlight">\(C\)</span> จะคูณอยู่กับ loss-fuction term ต่างจาก พารามิเตอร์ <span class="math notranslate nohighlight">\(λ\)</span> ในบทเรียน regularization ในสัปดาห์ที่ 3</p>
-<p>เมื่อค่า <span class="math notranslate nohighlight">\(C&lt;1\)</span> จึงเป็นการลดน้ำหนักของ Loss-function term โมเดลจึงโฟกัสกับ regularization term ดังนั้น โมเดลจึงไม่ได้พยายามเรียนรู้จากข้อมูลที่มีอยู่ (underfitting) ส่งผลให้โมเดลที่ได้มีความแม่นยำน้อย</p>
-<p>เมื่อค่า <span class="math notranslate nohighlight">\(C&gt;1\)</span> เป็นการให้น้ำหนักกับ Loss-function term มากกว่า regularization term และเมื่อ <span class="math notranslate nohighlight">\(C&gt;&gt;1\)</span> โมเดลจะโฟกัสกับ Loss-function term และ ลดผลจาก regularization term เสมือนไม่มีการทำ regularization</p>
+<p>ตัวอย่างนี้แสดงให้เห็นของปัญหาที่เกิดขึ้นเมื่อเราใช้ค่า <code class="docutils literal notranslate"><span class="pre">C</span></code> ที่มีค่ามากจนเกินพอดี ส่งผลให้เกิด decision boundary ที่มีความซับซ้อนเกิดกว่าสิ่งที่ควรจะเป็น (overfitting)</p>
 </section>
 <section id="svm-pipeline">
 <h2>SVM Pipeline<a class="headerlink" href="#svm-pipeline" title="Permalink to this heading">#</a></h2>
@@ -855,7 +871,7 @@ C \sum_{i=1}^{n} L(f(x_i),y_i) + Ω(w)
 <h3>Generate 3-class dataset<a class="headerlink" href="#generate-3-class-dataset" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
 <span class="c1"># กำหนด จำนวนคลาส</span>
 <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">3</span>
 
@@ -898,7 +914,7 @@ C \sum_{i=1}^{n} L(f(x_i),y_i) + Ω(w)
 <p>อย่างไรก็ดี ในกรณีที่ข้อมูลประกอบด้วยคลาสต่างๆ ที่มีสัดส่วนต่างกันอย่างมาก (imbalanced dataset) การทำ stratify มีความจำเป็นอย่างมากเพื่อคงสัดส่วนของแต่ละคลาส ใน training data และ test data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง training data และ test data โดยแบ่งจากชุดข้อมูล x,y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง training data และ test data โดยแบ่งจากชุดข้อมูล x,y</span>
 <span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                                                     <span class="n">stratify</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
 
@@ -931,7 +947,7 @@ Test set: จำนวนข้อมูล แบ่งกลุ่มตาม
 <p>ใช้ mean และ standard deviation (SD) จาก training data ในการ standardize test set เพื่อป้องกัน information leak</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง standardized scaler จาก features ใน training data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง standardized scaler จาก features ใน training data</span>
 <span class="n">x_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 
 <span class="c1"># scale ค่า features ใน training data และ test data</span>
@@ -946,7 +962,7 @@ Test set: จำนวนข้อมูล แบ่งกลุ่มตาม
 <h3>เทรนโมเดล ด้วย base model (default hyperparameter)<a class="headerlink" href="#base-model-default-hyperparameter" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># สร้างโมเดล</span>
 <span class="n">base_clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
@@ -1028,7 +1044,7 @@ weighted avg       0.89      0.89      0.89       120
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># กำหนดช่วงค่า hyperparameters ในรูปแบบ dictionary</span>
 <span class="n">clf_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span><span class="s1">&#39;linear&#39;</span><span class="p">],</span>
@@ -1110,6 +1126,39 @@ weighted avg       0.92      0.91      0.91       120
 </div>
 <p>จะสังเกตได้ว่า เมื่อมีการปรับจูน hyperparameters ของโมเดลให้มีความเหมาะสมแล้ว เราได้โมเดลที่เรียนรู้จากข้อมูลชุดเดิม แล้วสามารถทำนาย test data ได้ค่า accuracy ที่สูงขึ้น โดยเมื่อพิจารณา Confusion Matrix จะพบว่า โมเดลสามารถจำแนกข้อมูล class 1 และ class 2 ได้ดีขึ้น</p>
 </section>
+<section id="decision-boundary">
+<h3>Decision Boundary<a class="headerlink" href="#decision-boundary" title="Permalink to this heading">#</a></h3>
+<p>เราจะมาลองดู decision boundary ของโมเดลบน training data และ test data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the decision boundaries</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;[Training Data] </span><span class="se">\n</span><span class="s1">SVM: Decision boundary&#39;</span><span class="p">,</span> <span class="s1">&#39;[Test Data] </span><span class="se">\n</span><span class="s1">SVM: Decision boundary&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">],</span> <span class="p">[</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">],</span> <span class="n">titles</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="n">disp</span> <span class="o">=</span> <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">tuned_clf</span><span class="p">,</span>
+                                                  <span class="n">x</span><span class="p">,</span>
+                                                  <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
+                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                                  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                                  <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                                                  <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
+                                                  <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
+                                                  <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e5bb4c5b3d1b1a87d5ced93f30d922a2f1d3f719e72f96f36c4a1072ecfe746e.png" src="../../_images/e5bb4c5b3d1b1a87d5ced93f30d922a2f1d3f719e72f96f36c4a1072ecfe746e.png" />
+</div>
+</div>
+<p>แสดง decision boundary ของ SVM ที่ทำงานร่วมกับ <code class="docutils literal notranslate"><span class="pre">RBF</span> <span class="pre">kernel</span></code> เมื่อ <code class="docutils literal notranslate"><span class="pre">C=10</span></code> ซึ่งเป็นโมเดลที่ได้รับการปรับจูนให้เหมาะสมกับการเรียนรู้จากชุดข้อมูลนี้</p>
+</section>
 </section>
 </section>
 
@@ -1122,16 +1171,16 @@ weighted avg       0.92      0.91      0.91       120
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "my_env"
         },
         kernelOptions: {
-            name: "python3",
+            name: "my_env",
             path: "./Fundamentals/MachineLearning"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'my_env'</script>
 
                 </article>
               
@@ -1189,6 +1238,7 @@ weighted avg       0.92      0.91      0.91       120
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">ทำการ standardize ข้อมูลทั้งหมด</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-default-hyperparameter">เทรนโมเดล ด้วย base model (default hyperparameter)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning-gridsearchcv-train">ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย GridSearchCV และ train โมเดล</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
 </ul>
 </li>
 </ul>

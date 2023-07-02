@@ -485,6 +485,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">ทำการ standardize ข้อมูลทั้งหมด</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-default-hyperparameter">เทรนโมเดล ด้วย base model (default hyperparameter)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning-gridsearchcv-train">ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย GridSearchCV และ train โมเดล</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impurity-based-feature-importances">Impurity-based Feature Importances</a></li>
 </ul>
 </li>
@@ -785,7 +786,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/217812193434d3eb30b590084e74820e281725a4cda09f67fb7b1808f66bfd4a.png" src="../../_images/217812193434d3eb30b590084e74820e281725a4cda09f67fb7b1808f66bfd4a.png" />
+<img alt="../../_images/91e86eac846dfb74bf1fac97a2ca424cb0e829810aa99ba1ebc584ba4d012ca3.png" src="../../_images/91e86eac846dfb74bf1fac97a2ca424cb0e829810aa99ba1ebc584ba4d012ca3.png" />
 </div>
 </div>
 <p>การเพิ่มค่า <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> หรือจำนวนต้นไม้ ส่งผลให้เพิ่มระยะเวลาการคำนวณอย่างมีนัยยะสำคัญ  ดังนั้น เราจึงควรเลือกค่า <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> ที่ให้ accuracy สูง โดยไม่ใช้เวลาในการพัฒนาโมเดลมากจนเกินไป จากรูปด้านบน เราสามารถเลือกค่า <code class="docutils literal notranslate"><span class="pre">n_estimators</span> <span class="pre">=</span> <span class="pre">50</span></code> ก็เพียงพอ</p>
@@ -1198,6 +1199,38 @@ weighted avg       0.92      0.92      0.92       120
 </div>
 <p>จะสังเกตได้ว่า เมื่อมีการปรับจูน hyperparameters ของโมเดลให้มีความเหมาะสมแล้ว เราได้โมเดลที่เรียนรู้จากข้อมูลชุดเดิม แล้วสามารถทำนาย test set ได้ค่า accuracy ที่สูงขึ้น โดยเมื่อพิจารณา Confusion Matrix จะพบว่า โมเดลสามารถจำแนกข้อมูล class 1 และ class 2 ได้ดีขึ้น</p>
 </section>
+<section id="decision-boundary">
+<h3>Decision Boundary<a class="headerlink" href="#decision-boundary" title="Permalink to this heading">#</a></h3>
+<p>เราจะมาลองดู decision boundary ของโมเดลบน training data และ test data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the decision boundaries</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;[Training Data] </span><span class="se">\n</span><span class="s1">Random Forest: Decision boundary&#39;</span><span class="p">,</span> <span class="s1">&#39;[Test Data] </span><span class="se">\n</span><span class="s1">Random Forest: Decision boundary&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">],</span> <span class="p">[</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">],</span> <span class="n">titles</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="n">disp</span> <span class="o">=</span> <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">tuned_clf</span><span class="p">,</span>
+                                                  <span class="n">x</span><span class="p">,</span>
+                                                  <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
+                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                                  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                                  <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                                                  <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
+                                                  <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
+                                                  <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ba76fd01eae7e306bc72364061f082bbc7bced478ca6e390bb3c25d65a5e87ef.png" src="../../_images/ba76fd01eae7e306bc72364061f082bbc7bced478ca6e390bb3c25d65a5e87ef.png" />
+</div>
+</div>
+</section>
 <section id="impurity-based-feature-importances">
 <h3>Impurity-based Feature Importances<a class="headerlink" href="#impurity-based-feature-importances" title="Permalink to this heading">#</a></h3>
 <p>โมเดล random forest สามารถคำนวณค่า relative feature importance ของแต่ละ feature ได้  บนหลักการที่ว่า feature ที่สำคัญ คือ feature ที่ช่วยจำแนกคลาสได้ดี หรือ ลดการปะปนของคลาสในข้อมูลได้มาก (ลด impurity) โดยผลรวมของ relative feature importance จากทุก features จะเท่ากับ 1</p>
@@ -1221,7 +1254,7 @@ Feature 2: 0.13
 </div>
 </div>
 </div>
-<p>Feature 1 ค่อนข้างมีความสำคัญอย่างมากในการจำแนกคลาส เมื่อเทียบกับ Feature 2  สอดคล้องกับ scatter plot แสดงการกระจายตัวของชุดข้อมูลบน feature space</p>
+<p>Feature 1 ค่อนข้างมีความสำคัญอย่างมากในการจำแนกคลาส เมื่อเทียบกับ Feature 2 ซึ่งสอดคล้องกับ scatter plot แสดงการกระจายตัวของชุดข้อมูลบน feature space และ decision boundary ที่พบก่อนหน้านี้</p>
 </section>
 </section>
 </section>
@@ -1304,6 +1337,7 @@ Feature 2: 0.13
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">ทำการ standardize ข้อมูลทั้งหมด</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-default-hyperparameter">เทรนโมเดล ด้วย base model (default hyperparameter)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning-gridsearchcv-train">ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย GridSearchCV และ train โมเดล</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-boundary">Decision Boundary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impurity-based-feature-importances">Impurity-based Feature Importances</a></li>
 </ul>
 </li>
