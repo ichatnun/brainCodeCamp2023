@@ -267,9 +267,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">K-Nearest Neighbors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eeg_supervised_learning.html">EEG Analysis</a></li>
 
-
-
-
 </ul>
 </li>
 </ul>
@@ -562,7 +559,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span><span class="n">n_samples</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_multi_class_dataset</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">mean_class</span><span class="p">,</span> <span class="n">std_class</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">):</span>
     <span class="c1"># สร้างชุดข้อมูลแบบ multi-class</span>
     <span class="c1"># ตั้งค่า random seed เพื่อให้สามารถสร้างชุดข้อมูลเดิมทุกครั้ง เพื่อใช้สำหรับการสอน</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
@@ -652,7 +649,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
                                                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                                   <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
                                                   <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -662,7 +659,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f8aee123a83d1dcbfd6a7291d9c15d5ce93db98d1057ae6312931389be8f5d2f.png" src="../../_images/f8aee123a83d1dcbfd6a7291d9c15d5ce93db98d1057ae6312931389be8f5d2f.png" />
+<img alt="../../_images/53d047c5b7108e4bdd7b21837ab263894cefc6773c7cb17dda48debc04218328.png" src="../../_images/53d047c5b7108e4bdd7b21837ab263894cefc6773c7cb17dda48debc04218328.png" />
 </div>
 </div>
 <p>รูปแสดง decision boundary ของโมเดล k-NN เมื่อเลือกกำหนด <code class="docutils literal notranslate"><span class="pre">'metric'</span></code> ที่คำนวณ distance ระหว่างจุดข้อมูลที่ต่างกันไป</p>
@@ -674,18 +671,18 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
-<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
           <span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
-          <span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span>
-          <span class="p">)</span>
+          <span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+          <span class="p">]</span>
 
 <span class="c1"># สอนโมเดลจากข้อมูล x, y ที่สร้างขึ้นก่อนหน้านี้</span>
-<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
 
 <span class="c1"># ตั้งชื่อ plot ที่สอดคล้องกับชุดข้อมูล</span>
 <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;KNC: n_neighbors=3&#39;</span><span class="p">,</span>
           <span class="s1">&#39;KNC: n_neighbors=5&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;KNC: n_neighbors=12&#39;</span>
+          <span class="s1">&#39;KNC: n_neighbors=25&#39;</span>
           <span class="p">]</span>
 
 <span class="c1"># plot the decision boundaries</span>
@@ -700,7 +697,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
                                                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                                   <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
                                                   <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -710,42 +707,10 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/db2e8548ec16e534a97f9a7da76bfbe35a6aa20245085a0c7dd4a0c1bdcf298e.png" src="../../_images/db2e8548ec16e534a97f9a7da76bfbe35a6aa20245085a0c7dd4a0c1bdcf298e.png" />
+<img alt="../../_images/26d58ed78d23c1fd1c35fe5fb622755ecceea61fddbe80d1dfffe4c4b6796051.png" src="../../_images/26d58ed78d23c1fd1c35fe5fb622755ecceea61fddbe80d1dfffe4c4b6796051.png" />
 </div>
 </div>
-<p>การเลือกค่า <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> ที่เหมาะสมจะมีความจำเพาะต่อชุดข้อมูล  ยิ่งกำหนดให้ <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> มีค่ามากจะช่วยลดผลของ noise ทำให้ได้ decision boundary ที่ smooth แต่ในขณะเดียวกันก็จะทำให้ความสามารถในการจำแนกลดลง ดังจะเห็นจากค่า accuracy ในตัวอย่างด้านล่าง</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># กำหนดช่วงค่า n_neighbors</span>
-<span class="n">n_neighbors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
-
-<span class="c1"># สร้างโมเดลด้วค่า C ต่างๆ ให้โมเดลเรียนรู้จากข้อมูล x, y ที่สร้างขึ้นก่อนหน้านี้ แล้วทดสอบโมเดลด้วย accuracy score</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">n_neighbors</span><span class="p">:</span>
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-    <span class="c1"># ทำนายค่า y โดยใช้โมเดล</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="c1"># คำนวณ accuracy score</span>
-    <span class="n">accuracy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prediction</span><span class="p">))</span>
-
-<span class="c1"># แสดงผล</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy Score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;k-NN&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/30c4c94005061b2c3dd8d871704e6dcf718eddce944b93daf16bbaff229fc34c.png" src="../../_images/30c4c94005061b2c3dd8d871704e6dcf718eddce944b93daf16bbaff229fc34c.png" />
-</div>
-</div>
+<p>การเลือกค่า <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> ที่เหมาะสมจะมีความจำเพาะต่อชุดข้อมูล  ยิ่งกำหนดให้ <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> มีค่ามากจะช่วยลดผลของ noise ทำให้ได้ decision boundary ที่ smooth แต่ในขณะเดียวกันก็จะทำให้ความสามารถในการจำแนกลดลง ดังจะเห็นจากจำนวนข้อมูล class 1 (จุดสีแดง) ที่โมเดลทำนายผิด ว่าเป็น class 0 ที่ปรากฏในพื้นที่สีฟ้า</p>
 <p><strong>Quiz:</strong> ถ้ากำหนดให้ <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> มีค่าสูงมากๆ จะเป็นยังไงบ้าง</p>
 </section>
 <section id="k-nn-weights">
@@ -755,12 +720,12 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างชุดโมเดล</span>
-<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">),</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">),</span>
           <span class="n">KNC</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
-          <span class="p">)</span>
+          <span class="p">]</span>
 
 <span class="c1"># สอนโมเดลจากข้อมูล x, y ที่สร้างขึ้นก่อนหน้านี้</span>
-<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
 
 <span class="c1"># ตั้งชื่อ plot ที่สอดคล้องกับชุดข้อมูล</span>
 <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;KNN with n_neighbors=5, weights=&quot;uniform&quot;&#39;</span><span class="p">,</span>
@@ -779,7 +744,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
                                                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                                   <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
                                                   <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -789,7 +754,7 @@ d_{Minkowski}(\vec{r_1},\vec{r_2}) = \sum_{j=1}^{m} \big(|r_{1,j} - r_{2,j}|^p\b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2b8993d2ec884966a36ea36240c5c4513711832b8683d675258a377d1387baf5.png" src="../../_images/2b8993d2ec884966a36ea36240c5c4513711832b8683d675258a377d1387baf5.png" />
+<img alt="../../_images/b1dfd96d82f972d35a1c6f105ee74dad2c5b6c27d67775fddc43310d6e190686.png" src="../../_images/b1dfd96d82f972d35a1c6f105ee74dad2c5b6c27d67775fddc43310d6e190686.png" />
 </div>
 </div>
 <p>รูปแสดง decision boundary ของโมเดล k-NN เมื่อเลือกกำหนด <code class="docutils literal notranslate"><span class="pre">weights</span></code> ต่างกัน</p>
