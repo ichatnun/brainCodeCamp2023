@@ -594,7 +594,7 @@ document.write(`
 </div>
 </div>
 <p>ข้อมูลที่สร้างขึ้นมีการแบ่งกลุ่มค่อนข้างชัดเจน  โดยเป็นข้อมูลชุดเดียวกันกับที่เราใช้ศึกษาการทำงานของโมเดล logistic และ โมเดล SVM ใน tutorial ก่อนหน้านี้  โดยพบว่า โมเดล logistic ได้เลือก linear decision boundary เป็นเส้นตรงที่สามารถจำแนกคลาสได้ดีที่สุด  ในขณะที่โมเดล SVM จำแนกชุดข้อมูลนี้ด้วย decision boundary ที่มีลักษณะได้ทั้ง linear หรือ non-linear ตาม kernel ที่เลือกใช้</p>
-<p>เราจะให้โมเดล decision tree เรียนรู้ข้อมูลชุดนี้ โดยใช้ default hyperparameters นั่นคือ โมเดลสามารถแตกกิ่งไปได้เรื่อยๆ เพื่อลดการปะปนกันของคลาส (imputity) จนได้ข้อมูลกลุ่มย่อยสุดท้ายที่มีคลาสเดียวกัน  ซึ่งกระบวนการนี้ในเชิงเทคนิค คือ การพยายามลดค่า Gini imputity ให้ต่ำที่สุดจนกลายเป็น 0</p>
+<p>เราจะให้โมเดล decision tree เรียนรู้ข้อมูลชุดนี้ โดยใช้ default hyperparameters นั่นคือ โมเดลสามารถแตกกิ่งไปได้เรื่อยๆ เพื่อลดการปะปนกันของคลาส (impurity) จนได้ข้อมูลกลุ่มย่อยสุดท้ายที่มีคลาสเดียวกัน  ซึ่งกระบวนการนี้ในเชิงเทคนิค คือ การพยายามลดค่า Gini imputity ให้ต่ำที่สุดจนกลายเป็น 0</p>
 <p>ทั้งนี้ สามารถศึกษา Gini impurity และ classification criteria อื่นๆ ได้เพิ่มเติมจาก
 <a class="reference external" href="https://scikit-learn.org/stable/modules/tree.html#mathematical-formulation">classification criteria</a></p>
 <div class="cell docutils container">
@@ -615,7 +615,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8f3752087a865253320b668e0327885d5c6bee75270b94fa1c142fc0013ea9c6.png" src="../../_images/8f3752087a865253320b668e0327885d5c6bee75270b94fa1c142fc0013ea9c6.png" />
+<img alt="../../_images/b57ec4a29505acb6832d89e6aed3bdf74c49d4b54d6c4deac1d232500cd86569.png" src="../../_images/b57ec4a29505acb6832d89e6aed3bdf74c49d4b54d6c4deac1d232500cd86569.png" />
 </div>
 </div>
 <p>พบว่า ต้นไม้มีการตัดสินใจด้วย 2 เงื่อนไข คือ</p>
@@ -650,7 +650,7 @@ document.write(`
 <img alt="../../_images/441cde9221ff36ef56f96fdf3da2a6664e71b3dfd4eece6cf6e5f08b86253f7a.png" src="../../_images/441cde9221ff36ef56f96fdf3da2a6664e71b3dfd4eece6cf6e5f08b86253f7a.png" />
 </div>
 </div>
-<p>ภาพแสดง decision boundary ที่มีลักษณะเป็นกล่อง  ซึ่งเกิดจากการตัดกันของเงื่อนไขในการจำแนกข้อมูล 2 เงื่อนไขที่แสดงก่อนหน้านี้  จะสังเกตุได้ว่า decision boundary ของโมเดล random forest แตกต่างจาก decision boundary ของโมเดล logistic และโมเดล SVM ที่พบก่อนหน้านี้อย่างชัดเจน</p>
+<p>ภาพแสดง decision boundary ที่มีลักษณะเป็นกล่อง  ซึ่งเกิดจากการตัดกันของเงื่อนไขในการจำแนกข้อมูล 2 เงื่อนไขที่แสดงก่อนหน้านี้  จะสังเกตุได้ว่า decision boundary ของโมเดล decision tree แตกต่างจาก decision boundary ของโมเดล logistic และโมเดล SVM ที่พบก่อนหน้านี้อย่างชัดเจน</p>
 <p>ต่อไปเราจะลองสร้างข้อมูลที่จำแนกคลาสได้ยากขึ้น โดยให้ข้อมูล 2 คลาสกระจายตัวปะปนกัน  เพื่อดูโครงสร้างต้นไม้และ decision boundary</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -724,7 +724,7 @@ document.write(`
 <img alt="../../_images/39083a548252e9cf48d6f21bb95b01640065413c8b8862f16335245218a04d5f.png" src="../../_images/39083a548252e9cf48d6f21bb95b01640065413c8b8862f16335245218a04d5f.png" />
 </div>
 </div>
-<p>เมื่อให้โมเดล decision tree เรียนรู้จากข้อมูลที่มีความซับซ้อน  โมเดลจะสร้างเงื่อนไขจำนวนมากเกิดเป็นต้นไม้ที่มีขนาดใหญ่ เพื่อพยายามจำแนกคลาสให้ได้มากที่สุด  ส่งผลให้โมเดลเกิดปัญหา overfitting ซึ่งสามารถสังเกตได้จาก decision boundary ที่มีความซับซ้อนเกิดกว่าสิ่งที่ควรจะเป็น</p>
+<p>เมื่อให้โมเดล decision tree เรียนรู้จากข้อมูลที่มีความซับซ้อน  โมเดลจะสร้างเงื่อนไขจำนวนมากเกิดเป็นต้นไม้ที่มีขนาดใหญ่ เพื่อพยายามจำแนกคลาสให้ได้มากที่สุด  ส่งผลให้โมเดลเกิดปัญหา overfitting ซึ่งสามารถสังเกตได้จาก decision boundary ที่มีความซับซ้อนเกินกว่าสิ่งที่ควรจะเป็น</p>
 <p>จะเห็นได้ว่า โมเดล decision tree มีข้อดีที่มีการเรียนรู้ข้อมูลด้วยการสร้างเงื่อนไขตัดสินใจเชิงตรรกะที่เข้าใจได้ง่าย และสามารถอธิบายการทำงานได้ชัดเจนจากโครงสร้างต้นไม้  แต่ในขณะเดียวกัน โมเดลก็มีข้อเสียที่มักเกิด overfitting โดยเฉพาะเมื่อชุดข้อมูลมี noise มาก  ซึ่งสามารถแก้ไขเบื้องต้นโดยการปรับค่า hyperparameters ไม่ให้ต้นไม้แตกกิ่งมากจนเกินไป และการทำ pruning ซึ่งเป็นกระบวนการลดขนาดของต้นไม้ โดยตัดกิ่งเงื่อนไขที่ไม่ได้เพิ่มความแม่นยำของโมเดลอย่างมีนัยยะสำคัญออกไป นอกจากนี้ หากเรานำต้นไม้หลายๆ ต้นมาเรียนรู้ข้อมูล แล้วให้มาโหวดคำตอบสุดท้ายร่วมกัน ก็จัดเป็นอีกหนึ่งวิธีที่สามารถลดปัญหา overfitting ลงได้ โดยหนึ่งในโมเดลที่ต่อยอดจากโมเดล decision tree ในลักษณะนี้ คือ โมเดล random forest ที่จะศึกษาในลำดับถัดไป</p>
 <p><strong>หมายเหตุ</strong>
 โมเดล decision tree เป็นพื้นฐานในการพัฒนา machine learning algorithms หลายชนิดที่ใช้อย่างแพร่หลายในปัจจุบัน ผ่านกระบวนการ <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html">ensemble methods</a> วิธีต่างๆ โดยสามารถศึกษาเพิ่มเติมได้</p>
@@ -843,7 +843,7 @@ document.write(`
 <img alt="../../_images/1ac262dd186dab34206ff8ec43a39cd89fb94ca2ae2e3d4b55cc03f37091cc97.png" src="../../_images/1ac262dd186dab34206ff8ec43a39cd89fb94ca2ae2e3d4b55cc03f37091cc97.png" />
 </div>
 </div>
-<p>จะสังเกตได้ว่า decision boundary ของโมเดล random forest ยังมีลักษณะค่อนข้าง overfitting นั่นเป็นเพราะโมเดล decision tree มี default criteria ให้แตกกิ่งต้นไม้จนกว่า Gini impurity เป็น 0 ต้นไม้จึงมีขนาดใหญ่โดย terminal node มีจำนวนข้อมูลน้อยมาก เช่น desicion node ล่างสุดที่โมเดลสร้างเงื่อนไขขึ้นเพียงเพื่อจำแนก 2 จุดข้อมูลออกจากกัน</p>
+<p>จะสังเกตได้ว่า decision boundary ของโมเดล random forest ยังมีลักษณะค่อนข้าง overfitting นั่นเป็นเพราะโมเดล decision tree มี default criteria ให้แตกกิ่งต้นไม้จนกว่า Gini impurity เป็น 0 ต้นไม้จึงมีขนาดใหญ่โดย terminal node มีจำนวนข้อมูลน้อยมาก เช่น decision node ล่างสุดที่โมเดลสร้างเงื่อนไขขึ้นเพียงเพื่อจำแนก 2 จุดข้อมูลออกจากกัน</p>
 <p>ทั้งนี้ เราสามารถลดปัญหา overfitting ได้ด้วยการควบคุมขนาดต้นไม้ ผ่านการปรับ hyperparameters ต่างๆ เช่น <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, <code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>, <code class="docutils literal notranslate"><span class="pre">min_samples_leaf</span></code>, <code class="docutils literal notranslate"><span class="pre">min_impurity_decrease</span></code>, <code class="docutils literal notranslate"><span class="pre">ccp_alpha</span></code> เป็นต้น ซึ่งสามารถศึกษาความหมายเพิ่มเติมได้จากเว็บไซต์ของ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">link</a></p>
 <p>โดยในที่นี้เราจะลองควบคุมขนาดต้นไม้ด้วยค่า <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> ต่อไป</p>
 </section>
@@ -979,8 +979,8 @@ R(T) + α|\tilde{T}|
 <img alt="../../_images/e7766ee037c7b664b58ca19a390d913a5186c9d58357224605d57212a71baf43.png" src="../../_images/e7766ee037c7b664b58ca19a390d913a5186c9d58357224605d57212a71baf43.png" />
 </div>
 </div>
-<p>จะสังเกตเห็นว่า เมื่อเราใช้ค่า <code class="docutils literal notranslate"><span class="pre">ccp_alpha</span></code> มากเกินไป ทำให้ต้นไม้ลดขนาดเกินพอดีจนเหลือความลึกของ decition node เพียง 1 ชั้น</p>
-<p>ทั้งนี้ นักเรียนสามารถ run cell ด้านบนซ้ำได้ เพื่อสุ่มเลือกดูโครงสร้างต้นไม้ต้นอื่นในโมเดล random forrest</p>
+<p>จะสังเกตเห็นว่า เมื่อเราใช้ค่า <code class="docutils literal notranslate"><span class="pre">ccp_alpha</span></code> มากเกินไป ทำให้ต้นไม้ลดขนาดเกินพอดีจนเหลือความลึกของ decision node เพียง 1 ชั้น</p>
+<p>ทั้งนี้ นักเรียนสามารถ run cell ด้านบนซ้ำได้ เพื่อสุ่มเลือกดูโครงสร้างต้นไม้ต้นอื่นในโมเดล random forest</p>
 <p>ต่อไปเราจะมาดูลักษณะ decision boundary ของโมเดล random forest นี้กัน</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
