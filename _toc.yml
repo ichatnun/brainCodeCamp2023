@@ -75,7 +75,7 @@ parts:
     chapters:
     - file: Fundamentals/ComputationalNeuroscience/Intro
 
-  - caption: Introduction to Modeling (Week 3)
+  - caption: Intro to Modeling and Model Selection (Week 3)
     chapters:
     - file: Fundamentals/IntroToModeling/modeling_intro
     - file: Fundamentals/IntroToModeling/modeling_part1_simple_linear_model
