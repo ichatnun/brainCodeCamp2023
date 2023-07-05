@@ -233,7 +233,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../ComputationalNeuroscience/Intro.html">Computational Neuroscience</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Modeling (Week 3)</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Modeling and Model Selection (Week 3)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../IntroToModeling/modeling_intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../IntroToModeling/modeling_part1_simple_linear_model.html">Simple Linear Model</a></li>
@@ -271,7 +271,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning (Week 7)</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_pytorch.html">Pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro_to_convolutional_nn.html">CNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_convolutional_nn.html">Classification with Convolutional Neural Network using PyTorch</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="thai_food_classification_transformers.html">Image Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="object_detection_transformer.html">Object Detection</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Image Segmentation</a></li>
@@ -481,7 +482,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="breast-cancer-segmentation-using-transformers">
+  <p>\text{output_size} = \left(\frac}}\right) + 1</p>
+<p>In this equation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\text{output\_size}</span></code> represents the size (height or width) of the output feature map.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\text{input\_size}</span></code> denotes the size (height or width) of the input image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\text{kernel\_size}</span></code> refers to the size (height or width) of the convolutional kernel/filter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\text{padding}</span></code> indicates the number of zero-padding pixels added to the borders of the input image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\text{stride}</span></code> represents the stride value, which defines the step size for the kernel movement over the input image during convolution.</p></li>
+</ul>
+<section class="tex2jax_ignore mathjax_ignore" id="breast-cancer-segmentation-using-transformers">
 <h1>Breast Cancer Segmentation using Transformers<a class="headerlink" href="#breast-cancer-segmentation-using-transformers" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p><strong>Semantic segmentation</strong> เป็นการทำนายที่ต้องการนำภาพมาและแบ่งประเภทของแต่ละพิกเซลในภาพ Semantic segmentation มีประโยชน์และถูกนำมาใช้ในหลากหลายแอพพลิเคชั่น เช่น การตัดแบ่งภาพถ่ายทางการแพทย์ และรถยนจ์ขับเคลื่อนอัจฉริยะ ยกตัวอย่างเช่น ในกรณีของรถส่งพิซซ่าอัจโนมัติ การนำ semantic segmentation มาช่วยจะสามารถไกด์ให้รถยังขับอยู่บนทางเท้าได้ ไม่ขับเข้าไปในบริเวณที่ผิดพลาดได้ (ดูตัวอย่างจาก <a class="reference external" href="https://huggingface.co/blog/fine-tune-segformer">https://huggingface.co/blog/fine-tune-segformer</a>)</p></li>
@@ -498,135 +508,127 @@ document.write(`
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>transformers
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>datasets
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>evaluate
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="o">[</span>torch<span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Requirement already satisfied: kaggle in /usr/local/lib/python3.10/dist-packages (1.5.13)
-Requirement already satisfied: certifi in /usr/local/lib/python3.10/dist-packages (from kaggle) (2022.12.7)
-Requirement already satisfied: urllib3 in /usr/local/lib/python3.10/dist-packages (from kaggle) (1.26.15)
-Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from kaggle) (4.65.0)
-Requirement already satisfied: python-slugify in /usr/local/lib/python3.10/dist-packages (from kaggle) (8.0.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: kaggle in /usr/local/lib/python3.10/dist-packages (1.5.13)
+Requirement already satisfied: six&gt;=1.10 in /usr/local/lib/python3.10/dist-packages (from kaggle) (1.16.0)
+Requirement already satisfied: certifi in /usr/local/lib/python3.10/dist-packages (from kaggle) (2023.5.7)
 Requirement already satisfied: python-dateutil in /usr/local/lib/python3.10/dist-packages (from kaggle) (2.8.2)
 Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from kaggle) (2.27.1)
-Requirement already satisfied: six&gt;=1.10 in /usr/local/lib/python3.10/dist-packages (from kaggle) (1.16.0)
+Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from kaggle) (4.65.0)
+Requirement already satisfied: python-slugify in /usr/local/lib/python3.10/dist-packages (from kaggle) (8.0.1)
+Requirement already satisfied: urllib3 in /usr/local/lib/python3.10/dist-packages (from kaggle) (1.26.16)
 Requirement already satisfied: text-unidecode&gt;=1.3 in /usr/local/lib/python3.10/dist-packages (from python-slugify-&gt;kaggle) (1.3)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;kaggle) (3.4)
 Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;kaggle) (2.0.12)
-Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Collecting transformers
-  Downloading transformers-4.28.1-py3-none-any.whl (7.0 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">7.0/7.0 MB</span> <span class=" -Color -Color-Red">43.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.10/dist-packages (from transformers) (1.22.4)
-Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from transformers) (3.12.0)
-Collecting tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1
-  Downloading tokenizers-0.13.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">7.8/7.8 MB</span> <span class=" -Color -Color-Red">64.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: tqdm&gt;=4.27 in /usr/local/lib/python3.10/dist-packages (from transformers) (4.65.0)
-Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from transformers) (2.27.1)
-Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.10/dist-packages (from transformers) (2022.10.31)
-Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.10/dist-packages (from transformers) (6.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;kaggle) (3.4)
+Requirement already satisfied: transformers in /usr/local/lib/python3.10/dist-packages (4.30.2)
+Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from transformers) (3.12.2)
+Requirement already satisfied: huggingface-hub&lt;1.0,&gt;=0.14.1 in /usr/local/lib/python3.10/dist-packages (from transformers) (0.15.1)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.10/dist-packages (from transformers) (1.22.4)
 Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.10/dist-packages (from transformers) (23.1)
-Collecting huggingface-hub&lt;1.0,&gt;=0.11.0
-  Downloading huggingface_hub-0.14.1-py3-none-any.whl (224 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">224.5/224.5 kB</span> <span class=" -Color -Color-Red">21.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0,&gt;=0.11.0-&gt;transformers) (4.5.0)
-Requirement already satisfied: fsspec in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0,&gt;=0.11.0-&gt;transformers) (2023.4.0)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers) (2022.12.7)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.10/dist-packages (from transformers) (6.0)
+Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.10/dist-packages (from transformers) (2022.10.31)
+Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from transformers) (2.27.1)
+Requirement already satisfied: tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1 in /usr/local/lib/python3.10/dist-packages (from transformers) (0.13.3)
+Requirement already satisfied: safetensors&gt;=0.3.1 in /usr/local/lib/python3.10/dist-packages (from transformers) (0.3.1)
+Requirement already satisfied: tqdm&gt;=4.27 in /usr/local/lib/python3.10/dist-packages (from transformers) (4.65.0)
+Requirement already satisfied: fsspec in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0,&gt;=0.14.1-&gt;transformers) (2023.6.0)
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0,&gt;=0.14.1-&gt;transformers) (4.6.3)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers) (2023.5.7)
 Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers) (2.0.12)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers) (1.26.15)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers) (3.4)
-Installing collected packages: tokenizers, huggingface-hub, transformers
-Successfully installed huggingface-hub-0.14.1 tokenizers-0.13.3 transformers-4.28.1
-Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Collecting datasets
-  Downloading datasets-2.12.0-py3-none-any.whl (474 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">474.6/474.6 kB</span> <span class=" -Color -Color-Red">9.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting multiprocess
-  Downloading multiprocess-0.70.14-py310-none-any.whl (134 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">134.3/134.3 kB</span> <span class=" -Color -Color-Red">16.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting dill&lt;0.3.7,&gt;=0.3.0
-  Downloading dill-0.3.6-py3-none-any.whl (110 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">110.5/110.5 kB</span> <span class=" -Color -Color-Red">13.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: huggingface-hub&lt;1.0.0,&gt;=0.11.0 in /usr/local/lib/python3.10/dist-packages (from datasets) (0.14.1)
+Requirement already satisfied: datasets in /usr/local/lib/python3.10/dist-packages (2.13.1)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.10/dist-packages (from datasets) (1.22.4)
+Requirement already satisfied: pyarrow&gt;=8.0.0 in /usr/local/lib/python3.10/dist-packages (from datasets) (9.0.0)
+Requirement already satisfied: dill&lt;0.3.7,&gt;=0.3.0 in /usr/local/lib/python3.10/dist-packages (from datasets) (0.3.6)
+Requirement already satisfied: pandas in /usr/local/lib/python3.10/dist-packages (from datasets) (1.5.3)
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/local/lib/python3.10/dist-packages (from datasets) (2.27.1)
 Requirement already satisfied: tqdm&gt;=4.62.1 in /usr/local/lib/python3.10/dist-packages (from datasets) (4.65.0)
-Requirement already satisfied: fsspec[http]&gt;=2021.11.1 in /usr/local/lib/python3.10/dist-packages (from datasets) (2023.4.0)
-Collecting aiohttp
-  Downloading aiohttp-3.8.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.0 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.0/1.0 MB</span> <span class=" -Color -Color-Red">37.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting xxhash
-  Downloading xxhash-3.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (212 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">212.5/212.5 kB</span> <span class=" -Color -Color-Red">22.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.10/dist-packages (from datasets) (6.0)
-Requirement already satisfied: pandas in /usr/local/lib/python3.10/dist-packages (from datasets) (1.5.3)
-Collecting responses&lt;0.19
-  Downloading responses-0.18.0-py3-none-any.whl (38 kB)
-Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.10/dist-packages (from datasets) (1.22.4)
+Requirement already satisfied: xxhash in /usr/local/lib/python3.10/dist-packages (from datasets) (3.2.0)
+Requirement already satisfied: multiprocess in /usr/local/lib/python3.10/dist-packages (from datasets) (0.70.14)
+Requirement already satisfied: fsspec[http]&gt;=2021.11.1 in /usr/local/lib/python3.10/dist-packages (from datasets) (2023.6.0)
+Requirement already satisfied: aiohttp in /usr/local/lib/python3.10/dist-packages (from datasets) (3.8.4)
+Requirement already satisfied: huggingface-hub&lt;1.0.0,&gt;=0.11.0 in /usr/local/lib/python3.10/dist-packages (from datasets) (0.15.1)
 Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from datasets) (23.1)
-Requirement already satisfied: pyarrow&gt;=8.0.0 in /usr/local/lib/python3.10/dist-packages (from datasets) (9.0.0)
-Collecting frozenlist&gt;=1.1.1
-  Downloading frozenlist-1.3.3-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (149 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">149.6/149.6 kB</span> <span class=" -Color -Color-Red">15.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting yarl&lt;2.0,&gt;=1.0
-  Downloading yarl-1.9.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (268 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">268.8/268.8 kB</span> <span class=" -Color -Color-Red">18.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting multidict&lt;7.0,&gt;=4.5
-  Downloading multidict-6.0.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (114 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">114.5/114.5 kB</span> <span class=" -Color -Color-Red">13.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (2.0.12)
-Collecting aiosignal&gt;=1.1.2
-  Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.10/dist-packages (from datasets) (6.0)
 Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (23.1.0)
-Collecting async-timeout&lt;5.0,&gt;=4.0.0a3
-  Downloading async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
-Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (3.12.0)
-Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (4.5.0)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (1.26.15)
+Requirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (2.0.12)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (6.0.4)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (4.0.2)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (1.9.2)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (1.3.3)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets) (1.3.1)
+Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (3.12.2)
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0.0,&gt;=0.11.0-&gt;datasets) (4.6.3)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (2023.5.7)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (3.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;datasets) (2022.12.7)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;datasets) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;datasets) (2022.7.1)
 Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;datasets) (1.16.0)
-Installing collected packages: xxhash, multidict, frozenlist, dill, async-timeout, yarl, responses, multiprocess, aiosignal, aiohttp, datasets
-Successfully installed aiohttp-3.8.4 aiosignal-1.3.1 async-timeout-4.0.2 datasets-2.12.0 dill-0.3.6 frozenlist-1.3.3 multidict-6.0.4 multiprocess-0.70.14 responses-0.18.0 xxhash-3.2.0 yarl-1.9.2
-Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Collecting evaluate
-  Downloading evaluate-0.4.0-py3-none-any.whl (81 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">81.4/81.4 kB</span> <span class=" -Color -Color-Red">3.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.10/dist-packages (from evaluate) (1.22.4)
-Requirement already satisfied: tqdm&gt;=4.62.1 in /usr/local/lib/python3.10/dist-packages (from evaluate) (4.65.0)
-Requirement already satisfied: huggingface-hub&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from evaluate) (0.14.1)
+Requirement already satisfied: evaluate in /usr/local/lib/python3.10/dist-packages (0.4.0)
+Requirement already satisfied: datasets&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from evaluate) (2.13.1)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.10/dist-packages (from evaluate) (1.22.4)
+Requirement already satisfied: dill in /usr/local/lib/python3.10/dist-packages (from evaluate) (0.3.6)
 Requirement already satisfied: pandas in /usr/local/lib/python3.10/dist-packages (from evaluate) (1.5.3)
 Requirement already satisfied: requests&gt;=2.19.0 in /usr/local/lib/python3.10/dist-packages (from evaluate) (2.27.1)
-Requirement already satisfied: dill in /usr/local/lib/python3.10/dist-packages (from evaluate) (0.3.6)
+Requirement already satisfied: tqdm&gt;=4.62.1 in /usr/local/lib/python3.10/dist-packages (from evaluate) (4.65.0)
 Requirement already satisfied: xxhash in /usr/local/lib/python3.10/dist-packages (from evaluate) (3.2.0)
-Requirement already satisfied: fsspec[http]&gt;=2021.05.0 in /usr/local/lib/python3.10/dist-packages (from evaluate) (2023.4.0)
-Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from evaluate) (23.1)
 Requirement already satisfied: multiprocess in /usr/local/lib/python3.10/dist-packages (from evaluate) (0.70.14)
+Requirement already satisfied: fsspec[http]&gt;=2021.05.0 in /usr/local/lib/python3.10/dist-packages (from evaluate) (2023.6.0)
+Requirement already satisfied: huggingface-hub&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from evaluate) (0.15.1)
+Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from evaluate) (23.1)
 Requirement already satisfied: responses&lt;0.19 in /usr/local/lib/python3.10/dist-packages (from evaluate) (0.18.0)
-Requirement already satisfied: datasets&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from evaluate) (2.12.0)
-Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.10/dist-packages (from datasets&gt;=2.0.0-&gt;evaluate) (6.0)
-Requirement already satisfied: aiohttp in /usr/local/lib/python3.10/dist-packages (from datasets&gt;=2.0.0-&gt;evaluate) (3.8.4)
 Requirement already satisfied: pyarrow&gt;=8.0.0 in /usr/local/lib/python3.10/dist-packages (from datasets&gt;=2.0.0-&gt;evaluate) (9.0.0)
-Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&gt;=0.7.0-&gt;evaluate) (4.5.0)
-Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&gt;=0.7.0-&gt;evaluate) (3.12.0)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;evaluate) (1.26.15)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;evaluate) (2022.12.7)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;evaluate) (3.4)
+Requirement already satisfied: aiohttp in /usr/local/lib/python3.10/dist-packages (from datasets&gt;=2.0.0-&gt;evaluate) (3.8.4)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.10/dist-packages (from datasets&gt;=2.0.0-&gt;evaluate) (6.0)
+Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&gt;=0.7.0-&gt;evaluate) (3.12.2)
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&gt;=0.7.0-&gt;evaluate) (4.6.3)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;evaluate) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;evaluate) (2023.5.7)
 Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;evaluate) (2.0.12)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;evaluate) (2022.7.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.19.0-&gt;evaluate) (3.4)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;evaluate) (2.8.2)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (1.9.2)
-Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (4.0.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;evaluate) (2022.7.1)
 Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (23.1.0)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (1.3.3)
 Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (6.0.4)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (4.0.2)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (1.9.2)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (1.3.3)
 Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;datasets&gt;=2.0.0-&gt;evaluate) (1.3.1)
 Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;evaluate) (1.16.0)
-Installing collected packages: evaluate
-Successfully installed evaluate-0.4.0
+Requirement already satisfied: transformers[torch] in /usr/local/lib/python3.10/dist-packages (4.30.2)
+Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (3.12.2)
+Requirement already satisfied: huggingface-hub&lt;1.0,&gt;=0.14.1 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (0.15.1)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (1.22.4)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (23.1)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (6.0)
+Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (2022.10.31)
+Requirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (2.27.1)
+Requirement already satisfied: tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (0.13.3)
+Requirement already satisfied: safetensors&gt;=0.3.1 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (0.3.1)
+Requirement already satisfied: tqdm&gt;=4.27 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (4.65.0)
+Requirement already satisfied: torch!=1.12.0,&gt;=1.9 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (2.0.1+cu118)
+Requirement already satisfied: accelerate&gt;=0.20.2 in /usr/local/lib/python3.10/dist-packages (from transformers[torch]) (0.20.3)
+Requirement already satisfied: psutil in /usr/local/lib/python3.10/dist-packages (from accelerate&gt;=0.20.2-&gt;transformers[torch]) (5.9.5)
+Requirement already satisfied: fsspec in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0,&gt;=0.14.1-&gt;transformers[torch]) (2023.6.0)
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.10/dist-packages (from huggingface-hub&lt;1.0,&gt;=0.14.1-&gt;transformers[torch]) (4.6.3)
+Requirement already satisfied: sympy in /usr/local/lib/python3.10/dist-packages (from torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (1.11.1)
+Requirement already satisfied: networkx in /usr/local/lib/python3.10/dist-packages (from torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (3.1)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.10/dist-packages (from torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (3.1.2)
+Requirement already satisfied: triton==2.0.0 in /usr/local/lib/python3.10/dist-packages (from torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (2.0.0)
+Requirement already satisfied: cmake in /usr/local/lib/python3.10/dist-packages (from triton==2.0.0-&gt;torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (3.25.2)
+Requirement already satisfied: lit in /usr/local/lib/python3.10/dist-packages (from triton==2.0.0-&gt;torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (16.0.6)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers[torch]) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers[torch]) (2023.5.7)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers[torch]) (2.0.12)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;transformers[torch]) (3.4)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from jinja2-&gt;torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (2.1.3)
+Requirement already satisfied: mpmath&gt;=0.19 in /usr/local/lib/python3.10/dist-packages (from sympy-&gt;torch!=1.12.0,&gt;=1.9-&gt;transformers[torch]) (1.3.0)
 </pre></div>
 </div>
 </div>
@@ -643,8 +645,8 @@ Successfully installed evaluate-0.4.0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading breast-ultrasound-images-dataset.zip to /content
- 98% 191M/195M [00:01&lt;00:00, 142MB/s]
-100% 195M/195M [00:01&lt;00:00, 126MB/s]
+ 92% 180M/195M [00:01&lt;00:00, 171MB/s]
+100% 195M/195M [00:01&lt;00:00, 184MB/s]
 Archive:  breast-ultrasound-images-dataset.zip
   inflating: Dataset_BUSI_with_GT/benign/benign (1).png  
   inflating: Dataset_BUSI_with_GT/benign/benign (1)_mask.png  
@@ -2258,6 +2260,7 @@ Archive:  breast-ultrasound-images-dataset.zip
 <span class="n">im_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span> <span class="k">if</span> <span class="s2">&quot;_mask&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path</span><span class="p">]</span>
 <span class="n">data_paths</span> <span class="o">=</span> <span class="p">[]</span>
 
+<span class="c1"># สร้าง dictionary ที่รวม image path, masking path, และ class name</span>
 <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">im_paths</span><span class="p">:</span>
     <span class="n">class_name</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span>
     <span class="n">seg_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span> <span class="o">+</span> <span class="s2">&quot;_mask.png&quot;</span><span class="p">)</span>
@@ -2279,11 +2282,14 @@ Archive:  breast-ultrasound-images-dataset.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_paths</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of dictionary to dictionary of each list</span>
+<span class="n">data_paths</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;img&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_paths</span><span class="p">],</span>
     <span class="s2">&quot;seg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;seg&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_paths</span><span class="p">],</span>
     <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data_paths</span><span class="p">]</span>
 <span class="p">}</span>
+
+<span class="c1"># convert ระหว่าง id &lt;-&gt; lable name</span>
 <span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s2">&quot;background&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;benign&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;malignant&quot;</span><span class="p">}</span>
 <span class="n">label2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">id2label</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 </pre></div>
@@ -2296,6 +2302,8 @@ Archive:  breast-ultrasound-images-dataset.zip
     <span class="p">{</span><span class="s2">&quot;img&quot;</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">Image</span><span class="p">(),</span>
      <span class="s2">&quot;seg&quot;</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">Image</span><span class="p">(),</span>
      <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">)}))</span>
+
+<span class="c1"># train test split</span>
 <span class="n">ds_split</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2313,9 +2321,16 @@ Archive:  breast-ultrasound-images-dataset.zip
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_extractor</span> <span class="o">=</span> <span class="n">SegformerFeatureExtractor</span><span class="p">()</span>
 
+<span class="c1"># กำหนด transformsที่ต้องการ</span>
 <span class="n">_transforms</span> <span class="o">=</span> <span class="n">Compose</span><span class="p">([</span>
     <span class="n">ColorJitter</span><span class="p">(</span><span class="n">brightness</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">contrast</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
 <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.10/dist-packages/transformers/models/segformer/feature_extraction_segformer.py:28: FutureWarning: The class SegformerFeatureExtractor is deprecated and will be removed in version 5 of Transformers. Please use SegformerImageProcessor instead.
+  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -2323,6 +2338,12 @@ Archive:  breast-ultrasound-images-dataset.zip
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_transforms</span><span class="p">(</span><span class="n">example_batch</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    pipeline ในการ transfrom train data</span>
+<span class="sd">    ถ้าเป็น mask ของ class benign จะให้value = 1</span>
+<span class="sd">    และถ้าเป็น class malignant จะเป็น value = 2</span>
+<span class="sd">    และลด channel ให้เหลือ 1 channel</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">_transforms</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">example_batch</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">]]</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">segim</span><span class="p">,</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">example_batch</span><span class="p">[</span><span class="s2">&quot;seg&quot;</span><span class="p">],</span> <span class="n">example_batch</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]):</span>
@@ -2359,6 +2380,7 @@ Archive:  breast-ultrasound-images-dataset.zip
 </div>
 </div>
 </div>
+<p>input function สำหรับ transfrom data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_ds</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">train_transforms</span><span class="p">)</span>
@@ -2367,12 +2389,17 @@ Archive:  breast-ultrasound-images-dataset.zip
 </div>
 </div>
 </div>
+<p>function ที่ใช้ในการ evaluate</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_labels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">id2label</span><span class="p">)</span>
 <span class="n">metric</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;mean_iou&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">compute_metrics</span><span class="p">(</span><span class="n">eval_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    process สำหรับการ evaluate ผลลัพธ์ ที่ทำนายจากโมเดล</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># ไม่ต้องคิด gradient</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
         <span class="n">logits</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">eval_pred</span>
         <span class="n">logits_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
@@ -2384,6 +2411,8 @@ Archive:  breast-ultrasound-images-dataset.zip
         <span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="n">pred_labels</span> <span class="o">=</span> <span class="n">logits_tensor</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+        <span class="c1"># คำนวน evaluation metric</span>
         <span class="n">metrics</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span>
             <span class="n">predictions</span><span class="o">=</span><span class="n">pred_labels</span><span class="p">,</span>
             <span class="n">references</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
@@ -2401,7 +2430,8 @@ Archive:  breast-ultrasound-images-dataset.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pretrained_model_name</span> <span class="o">=</span> <span class="s2">&quot;nvidia/mit-b0&quot;</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างโมเดลจาก pretrain model</span>
+<span class="n">pretrained_model_name</span> <span class="o">=</span> <span class="s2">&quot;nvidia/mit-b0&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">SegformerForSemanticSegmentation</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="n">pretrained_model_name</span><span class="p">,</span>
     <span class="n">id2label</span><span class="o">=</span><span class="n">id2label</span><span class="p">,</span>
@@ -2411,10 +2441,10 @@ Archive:  breast-ultrasound-images-dataset.zip
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "403692d80fd74ba79414b2843d578e25", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "1f4a8ec86fad408dadb68346fccfc505", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some weights of the model checkpoint at nvidia/mit-b0 were not used when initializing SegformerForSemanticSegmentation: [&#39;classifier.bias&#39;, &#39;classifier.weight&#39;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some weights of the model checkpoint at nvidia/mit-b0 were not used when initializing SegformerForSemanticSegmentation: [&#39;classifier.weight&#39;, &#39;classifier.bias&#39;]
 - This IS expected if you are initializing SegformerForSemanticSegmentation from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing SegformerForSemanticSegmentation from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of SegformerForSemanticSegmentation were not initialized from the model checkpoint at nvidia/mit-b0 and are newly initialized: [&#39;decode_head.linear_c.3.proj.weight&#39;, &#39;decode_head.linear_c.0.proj.weight&#39;, &#39;decode_head.batch_norm.bias&#39;, &#39;decode_head.linear_c.2.proj.bias&#39;, &#39;decode_head.linear_c.3.proj.bias&#39;, &#39;decode_head.batch_norm.running_mean&#39;, &#39;decode_head.batch_norm.weight&#39;, &#39;decode_head.classifier.bias&#39;, &#39;decode_head.batch_norm.num_batches_tracked&#39;, &#39;decode_head.linear_c.1.proj.weight&#39;, &#39;decode_head.linear_c.0.proj.bias&#39;, &#39;decode_head.linear_fuse.weight&#39;, &#39;decode_head.batch_norm.running_var&#39;, &#39;decode_head.linear_c.1.proj.bias&#39;, &#39;decode_head.classifier.weight&#39;, &#39;decode_head.linear_c.2.proj.weight&#39;]
+Some weights of SegformerForSemanticSegmentation were not initialized from the model checkpoint at nvidia/mit-b0 and are newly initialized: [&#39;decode_head.linear_fuse.weight&#39;, &#39;decode_head.linear_c.3.proj.bias&#39;, &#39;decode_head.batch_norm.weight&#39;, &#39;decode_head.batch_norm.num_batches_tracked&#39;, &#39;decode_head.batch_norm.bias&#39;, &#39;decode_head.linear_c.2.proj.bias&#39;, &#39;decode_head.linear_c.2.proj.weight&#39;, &#39;decode_head.classifier.weight&#39;, &#39;decode_head.batch_norm.running_mean&#39;, &#39;decode_head.linear_c.0.proj.weight&#39;, &#39;decode_head.linear_c.1.proj.weight&#39;, &#39;decode_head.linear_c.1.proj.bias&#39;, &#39;decode_head.linear_c.0.proj.bias&#39;, &#39;decode_head.linear_c.3.proj.weight&#39;, &#39;decode_head.batch_norm.running_var&#39;, &#39;decode_head.classifier.bias&#39;]
 You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
 </pre></div>
 </div>
@@ -2427,6 +2457,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 </div>
 </div>
+<p>เทรน 30  epochs</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;WANDB_DISABLED&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span>
@@ -2466,7 +2497,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
-/usr/local/lib/python3.10/dist-packages/transformers/optimization.py:391: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+/usr/local/lib/python3.10/dist-packages/transformers/optimization.py:411: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
   warnings.warn(
 </pre></div>
 </div>
@@ -2474,7 +2505,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
     <div>
       
       <progress value='2340' max='2340' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      [2340/2340 51:50, Epoch 30/30]
+      [2340/2340 1:05:53, Epoch 30/30]
     </div>
     <table border="1" class="dataframe">
   <thead>
@@ -2492,89 +2523,89 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
   <tbody>
     <tr>
       <td>300</td>
-      <td>0.168800</td>
-      <td>0.189721</td>
-      <td>0.583508</td>
-      <td>0.676649</td>
-      <td>0.945779</td>
-      <td>[0.9516104057481862, 0.39156784884062523, 0.40734712695334824]</td>
-      <td>[0.9812963960600039, 0.44611444261810695, 0.602536514473124]</td>
+      <td>0.180500</td>
+      <td>0.207105</td>
+      <td>0.563584</td>
+      <td>0.650218</td>
+      <td>0.945108</td>
+      <td>[0.9522910214628129, 0.35597900507094016, 0.38248337122310894]</td>
+      <td>[0.9844119296714371, 0.4803877884345996, 0.48585527883746626]</td>
     </tr>
     <tr>
       <td>600</td>
-      <td>0.110000</td>
-      <td>0.136239</td>
-      <td>0.665849</td>
-      <td>0.730001</td>
-      <td>0.958890</td>
-      <td>[0.9598761605888882, 0.5255780806484118, 0.5120934903592241]</td>
-      <td>[0.9894780779885711, 0.5854114026113997, 0.6151147884260854]</td>
+      <td>0.152000</td>
+      <td>0.162783</td>
+      <td>0.604853</td>
+      <td>0.713426</td>
+      <td>0.947683</td>
+      <td>[0.9525706140330837, 0.4258345563794154, 0.43615323108476856]</td>
+      <td>[0.9791855052811275, 0.5975566139521575, 0.5635362311699621]</td>
     </tr>
     <tr>
       <td>900</td>
-      <td>0.062300</td>
-      <td>0.123287</td>
-      <td>0.689928</td>
-      <td>0.763359</td>
-      <td>0.961261</td>
-      <td>[0.9621835025007047, 0.5756209473600957, 0.5319784454834068]</td>
-      <td>[0.9878636314140187, 0.6594118772638115, 0.6428014324412763]</td>
+      <td>0.043500</td>
+      <td>0.151741</td>
+      <td>0.628168</td>
+      <td>0.708019</td>
+      <td>0.954531</td>
+      <td>[0.9580944032975929, 0.4604088037923396, 0.46600137880435566]</td>
+      <td>[0.9878961064559273, 0.6007323005025066, 0.5354272765687837]</td>
     </tr>
     <tr>
       <td>1200</td>
-      <td>0.090600</td>
-      <td>0.119506</td>
-      <td>0.693796</td>
-      <td>0.763600</td>
-      <td>0.962148</td>
-      <td>[0.9634087760708576, 0.608324183731119, 0.5096544783887844]</td>
-      <td>[0.9890982316292428, 0.6945442694511138, 0.6071565903129698]</td>
+      <td>0.078100</td>
+      <td>0.146854</td>
+      <td>0.648438</td>
+      <td>0.743815</td>
+      <td>0.955529</td>
+      <td>[0.9586950345597687, 0.46937472529471586, 0.5172430492953498]</td>
+      <td>[0.983367143662574, 0.5959896339391627, 0.652088757114403]</td>
     </tr>
     <tr>
       <td>1500</td>
-      <td>0.026400</td>
-      <td>0.125012</td>
-      <td>0.697309</td>
-      <td>0.766322</td>
-      <td>0.962938</td>
-      <td>[0.9644211618891124, 0.6114300323603145, 0.5160765344044083]</td>
-      <td>[0.9896303191564199, 0.6985558260878972, 0.6107812466869494]</td>
+      <td>0.035200</td>
+      <td>0.153306</td>
+      <td>0.647511</td>
+      <td>0.747619</td>
+      <td>0.954053</td>
+      <td>[0.9565895254437337, 0.47311257865553547, 0.5128303326014411]</td>
+      <td>[0.9806451753285087, 0.5658362591574818, 0.6963768026680048]</td>
     </tr>
     <tr>
       <td>1800</td>
-      <td>0.035100</td>
-      <td>0.133124</td>
-      <td>0.700596</td>
-      <td>0.805721</td>
-      <td>0.960168</td>
-      <td>[0.9613903135337983, 0.6091365308318296, 0.5312597133898779]</td>
-      <td>[0.9810485097434613, 0.7406890032772653, 0.6954257123094476]</td>
+      <td>0.100400</td>
+      <td>0.157909</td>
+      <td>0.658462</td>
+      <td>0.733171</td>
+      <td>0.958309</td>
+      <td>[0.9603114527087526, 0.4867013048043347, 0.5283727513095081]</td>
+      <td>[0.9881126634523039, 0.5895808868674706, 0.6218209122610078]</td>
     </tr>
     <tr>
       <td>2100</td>
-      <td>0.029900</td>
-      <td>0.128964</td>
-      <td>0.710710</td>
-      <td>0.801180</td>
-      <td>0.962541</td>
-      <td>[0.9636614868348602, 0.6296479036679308, 0.5388193171768468]</td>
-      <td>[0.984319053527676, 0.7282499998309643, 0.6909695339752079]</td>
+      <td>0.020100</td>
+      <td>0.161642</td>
+      <td>0.654843</td>
+      <td>0.734376</td>
+      <td>0.957776</td>
+      <td>[0.9603979053980308, 0.47884308927633784, 0.5252888038447846]</td>
+      <td>[0.9872288158312638, 0.5836944664667767, 0.632204579889383]</td>
     </tr>
   </tbody>
-</table><p></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trainer is attempting to log a value of &quot;[0.9516104057481862, 0.39156784884062523, 0.40734712695334824]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9812963960600039, 0.44611444261810695, 0.602536514473124]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9598761605888882, 0.5255780806484118, 0.5120934903592241]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9894780779885711, 0.5854114026113997, 0.6151147884260854]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9621835025007047, 0.5756209473600957, 0.5319784454834068]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9878636314140187, 0.6594118772638115, 0.6428014324412763]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9634087760708576, 0.608324183731119, 0.5096544783887844]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9890982316292428, 0.6945442694511138, 0.6071565903129698]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9644211618891124, 0.6114300323603145, 0.5160765344044083]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9896303191564199, 0.6985558260878972, 0.6107812466869494]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9613903135337983, 0.6091365308318296, 0.5312597133898779]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9810485097434613, 0.7406890032772653, 0.6954257123094476]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.9636614868348602, 0.6296479036679308, 0.5388193171768468]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
-Trainer is attempting to log a value of &quot;[0.984319053527676, 0.7282499998309643, 0.6909695339752079]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+</table><p></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trainer is attempting to log a value of &quot;[0.9522910214628129, 0.35597900507094016, 0.38248337122310894]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9844119296714371, 0.4803877884345996, 0.48585527883746626]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9525706140330837, 0.4258345563794154, 0.43615323108476856]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9791855052811275, 0.5975566139521575, 0.5635362311699621]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9580944032975929, 0.4604088037923396, 0.46600137880435566]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9878961064559273, 0.6007323005025066, 0.5354272765687837]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9586950345597687, 0.46937472529471586, 0.5172430492953498]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.983367143662574, 0.5959896339391627, 0.652088757114403]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9565895254437337, 0.47311257865553547, 0.5128303326014411]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9806451753285087, 0.5658362591574818, 0.6963768026680048]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9603114527087526, 0.4867013048043347, 0.5283727513095081]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9881126634523039, 0.5895808868674706, 0.6218209122610078]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9603979053980308, 0.47884308927633784, 0.5252888038447846]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_iou&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
+Trainer is attempting to log a value of &quot;[0.9872288158312638, 0.5836944664667767, 0.632204579889383]&quot; of type &lt;class &#39;list&#39;&gt; for key &quot;eval/per_category_accuracy&quot; as a scalar. This invocation of Tensorboard&#39;s writer.add_scalar() is incorrect so we dropped this attribute.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;segformer-breast-cancer_30ep/preprocessor_config.json&#39;]
@@ -2584,10 +2615,11 @@ Trainer is attempting to log a value of &quot;[0.984319053527676, 0.728249999830
 </div>
 <section id="inference">
 <h2>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">#</a></h2>
+<p>ทดลองใช้จริง โดยการเตรียมข้อมูลจะคล้ายกับการเตรียมข้อมูลสำหรับเทรนโมเดล</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [optional] copy preprocessor_config.json to the model path folder</span>
-<span class="o">!</span>cp<span class="w"> </span>segformer-breast-cancer_30ep/preprocessor_config.json<span class="w"> </span>segformer-breast-cancer_30ep/checkpoint-2100/preprocessor_config.json<span class="w"> </span>
+<span class="o">!</span>cp<span class="w"> </span>segformer-breast-cancer_30ep/preprocessor_config.json<span class="w"> </span>segformer-breast-cancer_30ep/checkpoint-2100/preprocessor_config.json
 </pre></div>
 </div>
 </div>
@@ -2595,9 +2627,9 @@ Trainer is attempting to log a value of &quot;[0.984319053527676, 0.728249999830
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
-<span class="n">model_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">/checkpoint-2100&quot;</span> 
-<span class="n">image_processor</span> <span class="o">=</span> <span class="n">feature_extractor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">/preprocessor_config.json&quot;</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-<span class="n">model</span> <span class="o">=</span> <span class="n">SegformerForSemanticSegmentation</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">id2label</span><span class="o">=</span><span class="n">id2label</span><span class="p">,</span> <span class="n">label2id</span><span class="o">=</span><span class="n">label2id</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+<span class="n">model_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">/checkpoint-2100&quot;</span>
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">feature_extractor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">/preprocessor_config.json&quot;</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SegformerForSemanticSegmentation</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">id2label</span><span class="o">=</span><span class="n">id2label</span><span class="p">,</span> <span class="n">label2id</span><span class="o">=</span><span class="n">label2id</span><span class="p">,</span> <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2664,10 +2696,10 @@ Trainer is attempting to log a value of &quot;[0.984319053527676, 0.728249999830
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.5, 780.5, 577.5, -0.5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.5, 605.5, 604.5, -0.5)
 </pre></div>
 </div>
-<img alt="../../_images/6d1535e469eba57f48c4fb6fc914f9bd8a6175755cabe876a850f9ddcc87b072.png" src="../../_images/6d1535e469eba57f48c4fb6fc914f9bd8a6175755cabe876a850f9ddcc87b072.png" />
+<img alt="../../_images/b27f3f5f99732d2be22e1c9b332e4ccdef673cfb8282d2c9128439912708f261.png" src="../../_images/b27f3f5f99732d2be22e1c9b332e4ccdef673cfb8282d2c9128439912708f261.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2694,10 +2726,10 @@ Trainer is attempting to log a value of &quot;[0.984319053527676, 0.728249999830
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;score&#39;: None,
   &#39;label&#39;: &#39;background&#39;,
-  &#39;mask&#39;: &lt;PIL.Image.Image image mode=L size=562x471 at 0x7F5D439BAA70&gt;},
+  &#39;mask&#39;: &lt;PIL.Image.Image image mode=L size=562x471 at 0x7F821418A500&gt;},
  {&#39;score&#39;: None,
   &#39;label&#39;: &#39;benign&#39;,
-  &#39;mask&#39;: &lt;PIL.Image.Image image mode=L size=562x471 at 0x7F5D439B98A0&gt;}]
+  &#39;mask&#39;: &lt;PIL.Image.Image image mode=L size=562x471 at 0x7F8210DC6C20&gt;}]
 </pre></div>
 </div>
 </div>
@@ -2762,7 +2794,7 @@ Trainer is attempting to log a value of &quot;[0.984319053527676, 0.728249999830
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1de7c36a5ef181157e35c49803f50d0c1002b09bf145e8b51115f2e7e8ded14e.png" src="../../_images/1de7c36a5ef181157e35c49803f50d0c1002b09bf145e8b51115f2e7e8ded14e.png" />
+<img alt="../../_images/391bf02f9a91f56b5ce7e7820f5ca9b9906855d61791a774f456a7627a414331.png" src="../../_images/391bf02f9a91f56b5ce7e7820f5ca9b9906855d61791a774f456a7627a414331.png" />
 </div>
 </div>
 </section>

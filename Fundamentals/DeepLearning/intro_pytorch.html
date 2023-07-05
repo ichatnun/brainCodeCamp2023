@@ -235,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../ComputationalNeuroscience/Intro.html">Computational Neuroscience</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Modeling (Week 3)</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Modeling and Model Selection (Week 3)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../IntroToModeling/modeling_intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../IntroToModeling/modeling_part1_simple_linear_model.html">Simple Linear Model</a></li>
@@ -273,7 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning (Week 7)</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro_to_convolutional_nn.html">CNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_convolutional_nn.html">Classification with Convolutional Neural Network using PyTorch</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="thai_food_classification_transformers.html">Image Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="object_detection_transformer.html">Object Detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="breast_cancer_segmentation_transformers.html">Image Segmentation</a></li>
@@ -502,7 +503,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -530,10 +531,10 @@ torch.Size([3])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">#  สร้าง tensor ขนาด 3x3 ที่มีค่าเป็น 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span> 
 
-<span class="n">O</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">O</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">#  สร้าง tensor ขนาด 3x4 ที่มีค่าเป็น 1</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -551,7 +552,7 @@ tensor([[1., 1., 1., 1.],
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_r</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_r</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span> <span class="c1"># สร้าง tensor ที่มีค่าตั้งแต่ 0 ถึง 1 โดยเพิ่มทีละ 0.2</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">a_r</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_r</span><span class="p">))</span>
@@ -596,7 +597,7 @@ tensor([[ 0.5000,  0.4286],
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>  <span class="c1"># matrix multiplication, torch.mm(A, B)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>  <span class="c1"># matrix multiplication(คูณเมตริกซ์), torch.mm(A, B)</span>
 </pre></div>
 </div>
 </div>
@@ -615,8 +616,8 @@ tensor([[ 0.5000,  0.4286],
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
-<span class="n">f</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-<span class="n">x</span><span class="o">.</span><span class="n">grad</span>  <span class="c1"># เท่ากับ f&#39;(1) =  2(1) - 10 = -8</span>
+<span class="n">f</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1"># f&#39;(x) = 2x - 10</span>
+<span class="n">x</span><span class="o">.</span><span class="n">grad</span>  <span class="c1"># เท่ากับ f&#39;(1) = 2(1) - 10 = -8</span>
 </pre></div>
 </div>
 </div>
@@ -680,11 +681,13 @@ Shape of output =  torch.Size([10, 3])
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 
 <span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="c1"># สร้าง Neural Network ที่มี 2 Linear layer</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
+    <span class="c1"># สร้าง forward porpagation</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -697,6 +700,8 @@ Shape of output =  torch.Size([10, 3])
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
+
+<span class="c1"># สร้าง input ขนาด 4x5</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">x_out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input x: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>

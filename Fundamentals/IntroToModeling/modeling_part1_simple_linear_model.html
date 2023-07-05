@@ -235,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../ComputationalNeuroscience/Intro.html">Computational Neuroscience</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Modeling (Week 3)</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Modeling and Model Selection (Week 3)</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="modeling_intro.html">Introduction</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple Linear Model</a></li>
@@ -273,7 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning (Week 7)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/intro_pytorch.html">Pytorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/intro_to_convolutional_nn.html">CNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/intro_to_convolutional_nn.html">Classification with Convolutional Neural Network using PyTorch</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/thai_food_classification_transformers.html">Image Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/object_detection_transformer.html">Object Detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/breast_cancer_segmentation_transformers.html">Image Segmentation</a></li>
@@ -573,6 +574,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\hat{y}\)</span> เป็นค่า <span class="math notranslate nohighlight">\(y\)</span> ที่ทำนายมาจากสมการเส้นตรงของเรา สำหรับค่า <span class="math notranslate nohighlight">\(x\)</span> ใด ๆ</p></li>
 </ul>
 <p>ถ้าเกิดว่าเราสามารถหาค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> ที่เหมาะสมออกมาได้ (ซึ่งเราก็หวังว่ามันจะเป็นค่าเดียวกับ <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span> ของความสัมพันธ์จริง) เราจะสามารถทำนายค่า <span class="math notranslate nohighlight">\(y\)</span> เป็น <span class="math notranslate nohighlight">\(\hat{w_0} + \hat{w_1} x\)</span> จากค่า <span class="math notranslate nohighlight">\(x\)</span> ใด ๆ ได้ทันที โดยที่ไม่ต้องไปนั่งไล่ดูจุดข้อมูลทั้ง <span class="math notranslate nohighlight">\(n\)</span> จุดในชุดข้อมูลเลย</p>
+<p><strong>หมายเหตุ</strong> ในบทเรียนนี้เราใส่สัญลักษณ์ hat เข้าไปบนตัวแปร (เช่น <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span>) เพื่อทำให้เห็นชัดว่าเรากำลังพูดถึงตัวแปรที่เราประมาณค่าออกมา ไม่ได้กำลังพูดถึงค่าจริงของตัวแปรเหล่านั้น (เช่น <span class="math notranslate nohighlight">\(w_0\)</span> และ <span class="math notranslate nohighlight">\(w_1\)</span>)</p>
+<p><br><br></p>
 <p>ใน code ด้านล่าง เรามาลองปรับค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> กัน เพื่อหาดูว่าค่าที่เหมาะสมมีค่าเป็นเท่าไหร่</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -657,7 +660,7 @@ document.write(`
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "ab153cfa1dbc4b0cb9a33fd56fc24ef4", "version_major": 2, "version_minor": 0}</script></div>
 </div>
-<p>ที่ผ่านมาเราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> โดยการดูด้วยตาว่าเส้นตรงสีแดงที่เกิดขึ้นมานั้น ดูสอดคล้องกับจุดข้อมูลสีน้ำเงินมากน้อยแค่ไหน ซึ่งนับว่าเป็นจากวัดความเหมือนหรือความแตกต่างเชิงคุณภาพ (qualitative)</p>
+<p>ที่ผ่านมาเราเลือกค่า <span class="math notranslate nohighlight">\(\hat{w_0}\)</span> และ <span class="math notranslate nohighlight">\(\hat{w_1}\)</span> โดยการดูด้วยตาว่าเส้นตรงสีแดงที่เกิดขึ้นมานั้น ดูสอดคล้องกับจุดข้อมูลสีน้ำเงินมากน้อยแค่ไหน ซึ่งนับว่าเป็นจากวัดความเหมือนหรือความแตกต่างเชิงคุณภาพ (qualitative)</p>
 <p>ในลำดับถัดไป เราจะมาลองดูวิธีการวัดความเหมือนหรือความแตกต่างเชิงปริมาณกันบ้าง (quantitative)</p>
 <p>เรามาลองใช้ฟังก์ชัน <span class="math notranslate nohighlight">\(L(y_{i},\hat{y_i})\)</span> สำหรับวัดความต่างระหว่าง <span class="math notranslate nohighlight">\(y_{i}\)</span> และ <span class="math notranslate nohighlight">\(\hat{y_i}\)</span> ออกมาเป็นตัวเลข 1 ตัว โดยการนำเอาค่าทั้งสองมาลบกันแล้วยกกำลังสอง</p>
 <div class="math notranslate nohighlight">
@@ -1001,7 +1004,7 @@ Estimated w2 1.00
 <p>ซึ่งสมการนี้จะถือเป็นสมการเชิงเส้นเหมือนเดิม แต่เราจะอยู่ในมิติที่สูงขึ้นเรื่อย ๆ เช่น</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(p=1\)</span>: <span class="math notranslate nohighlight">\( y=w_0 + w_1 x_1\)</span> เป็นเส้นตรง</p></li>
-<li><p><span class="math notranslate nohighlight">\(p=2\)</span>: <span class="math notranslate nohighlight">\( y=w_0 + w_1 x_1 + w_2 x_2\)</span> เป็นแผ่นกระดาษสี่เหลี่มผืนผ้า (plane)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p=2\)</span>: <span class="math notranslate nohighlight">\( y=w_0 + w_1 x_1 + w_2 x_2\)</span> เป็นแผ่นกระดาษสี่เหลี่ยม (plane)</p></li>
 <li><p><span class="math notranslate nohighlight">\(p&gt;2\)</span>: <span class="math notranslate nohighlight">\( y=w_0 + w_1 x_1 + ... + w_p x_p\)</span> เป็นแผ่นกระดาษใน <span class="math notranslate nohighlight">\(p+1\)</span> มิติ หรือมีชื่อเรียกทางเทคนิคว่า hyperplane</p></li>
 </ul>
 <p>ไม่ว่าเราจะใช้ <span class="math notranslate nohighlight">\(p\)</span> มีค่าเป็นเท่าไหร่ก็ตาม เราก็ยังสามารถหาค่า <span class="math notranslate nohighlight">\(w_0, w_1, ..., w_p\)</span> ได้โดยการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ได้เหมือนเดิม!</p>
