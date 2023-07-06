@@ -755,7 +755,7 @@ Estimated intercept 8.10
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "acc3aeddd6524d20a9102a28f90aca61"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "acc3aeddd6524d20a9102a28f90aca61", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>ทีนี้เราลองเอาผลจากค่า polynomial order ของโมเดลที่แตกต่างกันมาเปรียบเทียบกันดู</p>
 <div class="cell docutils container">
@@ -940,37 +940,37 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <p>จากตัวอย่างที่เรากำหนดให้ <span class="math notranslate nohighlight">\(p=15\)</span> ซึ่งเป็น polynomial ที่มี order = 15 หรือมีตัวแปรทั้งหมด 16 ตัว (<span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_{15}}\)</span>) เราพบปัญหา overfitting</p>
 <p>ในตัวอย่างนี้เราจะลองใช้เทคนิค regularization ทดลองดูว่าเราจะสามารถบรรเทาปัญหา overfitting ที่พบเจอได้หรือไม่</p>
 <p><br><br></p>
-<p>ในรูปแบบมาตรฐานของการใช้เทคนิค regularization เราจะเปลี่ยนหน้าตาของ loss function ไปจากเดิม โดยการเพิ่มพจน์ (term) เข้าไป เช่น การเปลี่ยน loss function ไปเป็น <span class="math notranslate nohighlight">\(L(y, \hat{y}) =\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} +λ R(W)\)</span></p>
-<p>ในที่นี้เราใช้ <span class="math notranslate nohighlight">\(W\)</span> เพื่ออ้างอิงถึง <span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_{15}}\)</span> พร้อมกัน</p>
-<p>เราเรียก <span class="math notranslate nohighlight">\(R(W)\)</span> ว่าเป็น regularization term ซึ่ง regularization ที่เราจะเห็นได้บ่อยที่สุด ประกอบด้วย</p>
+<p>ในรูปแบบมาตรฐานของการใช้เทคนิค regularization เราจะเปลี่ยนหน้าตาของ loss function ไปจากเดิม โดยการเพิ่มพจน์ (term) เข้าไป เช่น การเปลี่ยน loss function ไปเป็น <span class="math notranslate nohighlight">\(L(y, \hat{y}) =\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} +λ R(\mathbf{\hat{w}})\)</span></p>
+<p>ในที่นี้เราใช้ <span class="math notranslate nohighlight">\(\mathbf{\hat{w}}\)</span> เพื่ออ้างอิงถึง <span class="math notranslate nohighlight">\(\hat{w_0}, \hat{w_1}, ..., \hat{w_{15}}\)</span> พร้อมกัน</p>
+<p>เราเรียก <span class="math notranslate nohighlight">\(R(\mathbf{\hat{w}})\)</span> ว่าเป็น regularization term ซึ่ง regularization ที่เราจะเห็นได้บ่อยที่สุด ประกอบด้วย</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(R(W)=\|W\|^2_2 = \hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2\)</span> ซึ่งมีชื่อเรียกว่า L2 regularization หรือ Tikhonov regularization</p></li>
-<li><p><span class="math notranslate nohighlight">\(R(W)=\|W\|_1 = |\hat{w_0}| + |\hat{w_1}| + ... + |\hat{w_{15}}|\)</span> หรือ L1 regularization</p></li>
+<li><p><span class="math notranslate nohighlight">\(R(\mathbf{\hat{w}})=\|\mathbf{\hat{w}}\|^2_2 = \hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2\)</span> ซึ่งมีชื่อเรียกว่า L2 regularization หรือ Tikhonov regularization</p></li>
+<li><p><span class="math notranslate nohighlight">\(R(\mathbf{\hat{w}})=\|\mathbf{\hat{w}}\|_1 = |\hat{w_0}| + |\hat{w_1}| + ... + |\hat{w_{15}}|\)</span> หรือ L1 regularization</p></li>
 </ul>
 <p><br><br>
 ถ้าหากเราเพิ่ม L2 regularization term เข้าไป จะส่งผลให้โจทย์ที่เราต้องแก้เปลี่ยนหน้าตาไปเป็น</p>
-<p><span class="math notranslate nohighlight">\(\min_{\hat{W}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} +λ  (\hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\min_{\mathbf{\hat{w}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} +λ  (\hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2)\)</span></p>
 <p>ซึ่งเราเรียกว่า Ridge regression</p>
 <p>ในการหาค่าต่ำสุดของฟังก์ชันอันใหม่นี้ เราต้องการให้ทั้ง term ที่ 1 และ term ที่ 2 มีค่าที่ต่ำ</p>
 <p>โดยที่มี <span class="math notranslate nohighlight">\(λ \ge 0\)</span> เป็นตัวเลขที่ใช้ balance ว่า เราจะให้ความสำคัญกับ  term ที่ 1 หรือ term ที่ 2 มากกว่ากัน</p>
 <p><br><br>
 ถ้าหากเราเพิ่ม L1 regularization term เข้าไป โจทย์ของเราจะเปลี่ยนไปเป็น</p>
-<p><span class="math notranslate nohighlight">\(\min_{\hat{W}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} +λ  (\hat{|w_0|} + \hat{|w_1|} + ... + \hat{|w_{15}}|)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\min_{\mathbf{\hat{w}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} +λ  (\hat{|w_0|} + \hat{|w_1|} + ... + \hat{|w_{15}}|)\)</span></p>
 <p>ซึ่งเราจะเรียกว่า Least Absolute Shrinkage and Selection Operator (LASSO) โดยเราสามารถใช้ <span class="math notranslate nohighlight">\(λ\ge0\)</span> เป็นตัวกำหนดความสำคัญของแต่ละ term ได้เช่นกัน</p>
 <hr class="docutils" />
 <p><strong>ตัวอย่าง</strong>
 สมมติเราใช้ L2 regularization โจทย์ของเราก็คือ</p>
 <div class="math notranslate nohighlight">
-\[\min_{\hat{w}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x^{15})\right)^{2} +λ  (\hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2)\]</div>
+\[\min_{\mathbf{\hat{w}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} +λ  (\hat{w_0}^2 + \hat{w_1}^2 + ... + \hat{w_{15}}^2)\]</div>
 <p>เรามาลองพิจารณาหลายๆ กรณีสุดโต่ง 2 กรณี</p>
 <ol class="arabic simple">
 <li><p>หากกำหนดให้ <span class="math notranslate nohighlight">\(λ=0\)</span> โจทย์ของเราจะกลายเป็น</p></li>
 </ol>
 <div class="math notranslate nohighlight">
-\[\min_{\hat{w}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x^{15})\right)^{2} + 0 \]</div>
+\[\min_{\mathbf{\hat{w}}}\frac{1}{n}\sum_{i=1}^{n}\left(y_{i}-(\hat{w_0} + \hat{w_1}x_i + \hat{w_2} x_i^2 + ... + \hat{w_{15}} x_i^{15})\right)^{2} + 0 \]</div>
 <p>   เราจะได้ loss function ที่ไม่สนใจ regularization term หรือ term ที่ 2 เลย (ก็คือการแก้ปัญหาแบบไม่ใช้ regularization นั่นเอง)</p>
 <ol class="arabic simple" start="2">
-<li><p>หากกำหนดให้ <span class="math notranslate nohighlight">\(λ=10^{10}\)</span> ซึ่งมีค่าที่สูงมากๆ จะเห็นว่า term ที่ 2 จะมีน้ำหนักมากกว่า term ที่ 1 มาก ซึ่งจะส่งผลให้เกิดคำตอบ <span class="math notranslate nohighlight">\(\hat{W}\)</span> ที่มีค่าน้อย จนแทบจะมีค่าเป็น <span class="math notranslate nohighlight">\(0\)</span> เพื่อให้พจน์ที่สอง มีค่าน้อยที่สุดเท่าที่เป็นไปได้ (ก็คือการแก้ปัญหาแบบแทบจะไม่ได้สนใจ term ที่ 1 เลย)</p></li>
+<li><p>หากกำหนดให้ <span class="math notranslate nohighlight">\(λ=10^{10}\)</span> ซึ่งมีค่าที่สูงมากๆ จะเห็นว่า term ที่ 2 จะมีน้ำหนักมากกว่า term ที่ 1 มาก ซึ่งจะส่งผลให้เกิดคำตอบ <span class="math notranslate nohighlight">\(\mathbf{\hat{w}}\)</span> ที่มีค่าน้อย จนแทบจะมีค่าเป็น <span class="math notranslate nohighlight">\(0\)</span> เพื่อให้พจน์ที่สอง มีค่าน้อยที่สุดเท่าที่เป็นไปได้ (ก็คือการแก้ปัญหาแบบแทบจะไม่ได้สนใจ term ที่ 1 เลย)</p></li>
 </ol>
 <p>ในทางปฏิบัติเราจะเลือกค่า <span class="math notranslate nohighlight">\(λ\)</span> ที่เป็นจุดสมดุลที่ดีระหว่างทั้ง 2 terms</p>
 <p>เรามาลองใช้เทคนิค regularization กัน โดยการคัดลอกฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">fit_and_predict_polynomial</span></code> มาปรับแก้แค่บรรทัดเดียว โดยการเปลี่ยนจะการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LinearRegression</span></code> ไปเป็น <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Ridge</span></code></p>
