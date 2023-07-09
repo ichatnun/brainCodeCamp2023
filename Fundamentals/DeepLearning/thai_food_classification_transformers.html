@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Thai Food Classification with Huggingface’s transformers &#8212; Brain Code Camp</title>
+    <title>Overview of Transformer &#8212; Brain Code Camp</title>
   
   
   
@@ -273,7 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="intro_pytorch.html">Pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro_to_convolutional_nn.html">Classification with Convolutional Neural Network using PyTorch</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Image Classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview of Transformer</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="object_detection_transformer.html">Object Detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="breast_cancer_segmentation_transformers.html">Image Segmentation</a></li>
 </ul>
@@ -460,7 +461,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Thai Food Classification with Huggingface’s transformers</h1>
+    <h1>Overview of Transformer</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -470,12 +471,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview of Transformer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thai-food-classification-with-huggingface-s-transformers">Thai Food Classification with Huggingface’s transformers</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-datasets">Download datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-our-model">Fine-tune our model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-using-feature-extractor-and-model">Prediction: Using feature extractor and model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-using-pipeline-api">Prediction: Using pipeline API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-gradio-application-for-prediction">Create gradio application for prediction</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -487,6 +493,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <p>ในตัวอย่างนี้จะเป็นการแสดงตัวอย่างของการใช้ Transformer ซึ่งเป็นรูปแบบหนึ่งของ deeplearning นอกเหนือจาก CNN ที่สามารถใช้ในการทำ Computer vision ได้เช่นกันโดยจะเป็นการทำนายชื่อของเมนูอาหารจากรูปภาพ</p>
+<section class="tex2jax_ignore mathjax_ignore" id="overview-of-transformer">
+<h1>Overview of Transformer<a class="headerlink" href="#overview-of-transformer" title="Permalink to this heading">#</a></h1>
+<p>Transformers เป็นโมเดล deeplearning ที่ถูกคิดค้นขึ้นมาเพื่อใช้ในงาน Natural Language Processing เช่น แปลภาษา หรือ Large language model อย่าง Chat GPT.โดยในปัจจุบัน transformers ก็ได้ถูกนำมาประยุกต์ใช้ในส่วนของ computer vision เช่นกันโดยการทำงานของ Transformers จะแบ่งรูปภาพออกมาเป็นส่วนๆก่อนจะแปลงภาพย่อยเหล่านั้นออกมาเป็น vector ที่แสดงถึงคุณลักษณะและตำแหน่ง ของภาพนั้นๆ ต่อมาvectorจะถูกนำไปแปรผลด้วยโมเดลที่เรียกว่า encoder ซึ่งใน encoder นั้นจะมีส่วนประกอบที่เรียกว่า Attention ซึ่งจะช่วยให้โมเดลเรียนรู้ได้ว่าส่วนไหนของภาพที่ควรให้ความสำคัญ ก่อนจะเข้าสู่ Neural Network ในขั้นต่อๆเพื่อเรียนรู้ที่จะแยกแยะภาพจาก feature ที่ได้รับจนออกมาเป็น class ของภาพที่ใส่เข้าไป</p>
+<p>อ่านเพิ่มเติม: <a class="reference external" href="https://paperswithcode.com/method/vision-transformer">Vision Transformer</a></p>
+<p><img alt="image.png" src="Fundamentals/DeepLearning/attachment:image.png" /></p>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="thai-food-classification-with-huggingface-s-transformers">
 <h1>Thai Food Classification with Huggingface’s transformers<a class="headerlink" href="#thai-food-classification-with-huggingface-s-transformers" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://colab.research.google.com/github/ai-builders/curriculum/blob/main/notebooks/04v_classification_transformers.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
@@ -770,10 +782,10 @@ Successfully installed accelerate-0.20.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9bd40d8740904b4c9a7b1f794adb3fa6"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0ac37b8a2b724a2db4fadbd379cba4c0"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "20ff45acd6264b34b859186dc22a1267"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:datasets.builder:Found cached dataset imagefolder (/root/.cache/huggingface/datasets/imagefolder/default-2d8f66fe2f49d199/0.0.0/37fbb85cc714a338bea574ac6c7d0b5be5aff46c1862c1989b20e0771199e93f)
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9bd40d8740904b4c9a7b1f794adb3fa6", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0ac37b8a2b724a2db4fadbd379cba4c0", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "20ff45acd6264b34b859186dc22a1267", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:datasets.builder:Found cached dataset imagefolder (/root/.cache/huggingface/datasets/imagefolder/default-2d8f66fe2f49d199/0.0.0/37fbb85cc714a338bea574ac6c7d0b5be5aff46c1862c1989b20e0771199e93f)
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b58ced1e259b4b1db44cce6edc4b8ac4"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-6-87cdaa45b993&gt;:2: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use &#39;evaluate.load&#39; instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b58ced1e259b4b1db44cce6edc4b8ac4", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-6-87cdaa45b993&gt;:2: FutureWarning: load_metric is deprecated and will be removed in the next major version of datasets. Use &#39;evaluate.load&#39; instead, from the new library 🤗 Evaluate: https://huggingface.co/docs/evaluate
   accuracy = load_metric(&quot;accuracy&quot;)
 </pre></div>
 </div>
@@ -1389,12 +1401,17 @@ To create a public link, set `share=True` in `launch()`.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview of Transformer</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thai-food-classification-with-huggingface-s-transformers">Thai Food Classification with Huggingface’s transformers</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-datasets">Download datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-our-model">Fine-tune our model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-using-feature-extractor-and-model">Prediction: Using feature extractor and model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-using-pipeline-api">Prediction: Using pipeline API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-gradio-application-for-prediction">Create gradio application for prediction</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

@@ -275,7 +275,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/intro_pytorch.html">Pytorch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/intro_to_convolutional_nn.html">Classification with Convolutional Neural Network using PyTorch</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/thai_food_classification_transformers.html">Image Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeepLearning/thai_food_classification_transformers.html">Overview of Transformer</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/object_detection_transformer.html">Object Detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../DeepLearning/breast_cancer_segmentation_transformers.html">Image Segmentation</a></li>
 </ul>
@@ -476,6 +477,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="training-validation-and-test-data">
 <h1>Training, Validation and Test data<a class="headerlink" href="#training-validation-and-test-data" title="Permalink to this heading">#</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/x1Fn8Gk2mgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <p>ใน part ก่อนหน้า เราได้เห็นตัวอย่างการใช้ polynomial regression มา fit กับข้อมูลที่มีความสัมพันธ์แบบไม่เป็นเชิงเส้น (nonlinear)</p>
 <ul class="simple">
 <li><p>ถ้าหากเลือก order ของ polynomial ได้อย่างเหมาะสมก็จะช่วยให้ได้โมเดลที่มีความแม่นยำที่สูง</p></li>
@@ -485,7 +487,7 @@ document.write(`
 <p>นอกจากนี้ เรายังได้ทดลองใช้เทคนิค regularization มาบรรเทาปัญหา overfitting และได้เห็นถึงความสำคัญในการเลือกค่า <span class="math notranslate nohighlight">\(λ\)</span> ที่เหมาะสม</p>
 <p>ใน part นี้ เราจะมาลองเรียนรู้วิธีการเลือก order ของ polynomial โดยการใช้การแบ่งข้อมูลของเราออกเป็น 3 ส่วน ประกอบด้วย</p>
 <ol class="arabic simple">
-<li><p>Training data - ข้อมูลสำหรับ fit เพื่อหาค่าตัวแปรของโมเดล เช่น <span class="math notranslate nohighlight">\(\hat{W}\)</span> ใน linear regression และ polynomial regression</p></li>
+<li><p>Training data - ข้อมูลสำหรับ fit เพื่อหาค่าตัวแปรของโมเดล เช่น <span class="math notranslate nohighlight">\(\mathbf{\hat{w}}\)</span> ใน linear regression และ polynomial regression</p></li>
 <li><p>Validation data - ข้อมูลสำหรับเลือก hyper-parameter เช่น order ของ polynomial</p></li>
 <li><p>Test data - ข้อมูลสำหรับใช้ทดสอบวัดความแม่นยำของโมเดลเท่านั้น กล่าวคือ ข้อมูลชุดนี้จะไม่ถูกนำไป fit เพื่อหาค่าของตัวแปรใดๆ ในโมเดล (เหมือน training data) และข้อมูลนี้ก็ไม่ถูกใช้สำหรับเลือก order ของ polynomial (เหมือน validation data) อีกด้วย</p></li>
 </ol>
