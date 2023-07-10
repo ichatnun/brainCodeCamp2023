@@ -85,10 +85,12 @@ parts:
   
   - caption: Dimensionality Reduction (Week 4)
     chapters:
-    - file: Fundamentals/DimensionalityReduction/dim_reduct_part1_intro
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_intro
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part1_basics
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part2_pca
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
     - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_outro
 
   - caption: Machine Learning (Weeks 5-6)
     chapters:
@@ -110,9 +112,11 @@ parts:
         title: K-Nearest Neighbors
       - file: Fundamentals/MachineLearning/eeg_supervised_learning
         title: EEG Analysis
+      - file: Fundamentals/MachineLearning/ml_part2_outro
 
   - caption: Deep Learning (Week 7)
     chapters: 
+    - file: Fundamentals/DeepLearning/deep_learning_intro
     - file: Fundamentals/DeepLearning/intro_pytorch
       title: Pytorch
     - file: Fundamentals/DeepLearning/intro_to_convolutional_nn
@@ -123,14 +127,17 @@ parts:
       title: Object Detection
     - file: Fundamentals/DeepLearning/breast_cancer_segmentation_transformers
       title: Image Segmentation
+    - file: Fundamentals/DeepLearning/deep_learning_outro
 
   - caption: Signal Processing (Week 8)
-    chapters: 
+    chapters:
+    - file: Fundamentals/SignalProcessing/signal_processing_intro
     - file: Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging
     - file: Fundamentals/SignalProcessing/signal_processing_part2_dft
     - file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
     - file: Fundamentals/SignalProcessing/signal_processing_part4_application
-
+    - file: Fundamentals/SignalProcessing/signal_processing_outro
+    
   - caption: Applications (Weeks 9-11)
     chapters: 
     - file: Applications/EEG/EEG_Intro
