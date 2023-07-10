@@ -81,6 +81,7 @@ parts:
     - file: Fundamentals/IntroToModeling/modeling_part1_simple_linear_model
     - file: Fundamentals/IntroToModeling/modeling_part2_poly_overfit_regularization
     - file: Fundamentals/IntroToModeling/modeling_part3_data_splitting
+    - file: Fundamentals/IntroToModeling/modeling_outro
   
   - caption: Dimensionality Reduction (Week 4)
     chapters:
