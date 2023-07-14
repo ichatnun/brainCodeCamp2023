@@ -559,21 +559,21 @@ Successfully installed accelerate-0.20.3
 <p>ที่ใช้ในการทำงาน เราจะใช้ <code class="docutils literal notranslate"><span class="pre">transformers</span></code> และ <code class="docutils literal notranslate"><span class="pre">datasets</span></code> มาช่วยในการทำงาน จาก huggingface hub</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForObjectDetection</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoImageProcessor</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">Trainer</span>
-<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForObjectDetection</span> <span class="c1"># library สำหรับโหลด pre-trained model ที่เราต้องการ</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoImageProcessor</span> <span class="c1"># library สำหรับโมเดลที่เป็น image processor</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span> <span class="c1"># library สำหรับเก็บ arguments ที่เกี่ยวข้องกับการ train model</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">Trainer</span> <span class="c1"># library สำหรับ train model</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span> <span class="c1"># library สำหรับโหลด dataset ที่เราต้องการ</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torchvision</span>
-<span class="kn">import</span> <span class="nn">evaluate</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">import</span> <span class="nn">albumentations</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torchvision</span> <span class="c1"># library สำหรับการทำงานกับรูปภาพ</span>
+<span class="kn">import</span> <span class="nn">evaluate</span> <span class="c1"># library สำหรับการคำนวณค่าความแม่นยำของโมเดล</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> <span class="c1"># library สำหรับการแสดง progress bar</span>
+<span class="kn">import</span> <span class="nn">albumentations</span> <span class="c1"># library สำหรับการทำ data augmentation</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span> <span class="c1"># library สำหรับการทำงานกับรูปภาพ</span>
+<span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># library สำหรับการดาวน์โหลดไฟล์จาก Google Drive (และอื่นๆ)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># library สำหรับการทำงานกับ array</span>
+<span class="kn">import</span> <span class="nn">json</span> <span class="c1"># library สำหรับการทำงานกับไฟล์ json</span>
+<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># library สำหรับการทำงานกับไฟล์และโฟลเดอร์</span>
 </pre></div>
 </div>
 </div>
@@ -584,19 +584,19 @@ Successfully installed accelerate-0.20.3
 <p>Download <code class="docutils literal notranslate"><span class="pre">cppe-5</span></code> dataset เพื่อใช้ในการ train model และ test model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cppe5</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;cppe-5&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cppe5</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;cppe-5&quot;</span><span class="p">)</span> <span class="c1"># โหลด dataset ที่เราต้องการ</span>
 <span class="n">cppe5</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "5904f1a8809b4701967b1730f39f1c34"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b7bf7c7897da4196ab900dc4ef0c7204"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4b9942d2cb5244ab9916a0cc3d7c8bad"}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading and preparing dataset cppe-5/default to /root/.cache/huggingface/datasets/cppe-5/default/1.0.0/dd60c7c8210a67663b06108fb9e23c70acb98e2d3a4f3636f429509b19b74989...
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5904f1a8809b4701967b1730f39f1c34", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "b7bf7c7897da4196ab900dc4ef0c7204", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "4b9942d2cb5244ab9916a0cc3d7c8bad", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading and preparing dataset cppe-5/default to /root/.cache/huggingface/datasets/cppe-5/default/1.0.0/dd60c7c8210a67663b06108fb9e23c70acb98e2d3a4f3636f429509b19b74989...
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9815cf6d4bdc4511a493c27493699110"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8ff8b9d664184555a724cdfdbd02ec11"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "85ff16919f8142b699b3bf5f870b0a54"}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset cppe-5 downloaded and prepared to /root/.cache/huggingface/datasets/cppe-5/default/1.0.0/dd60c7c8210a67663b06108fb9e23c70acb98e2d3a4f3636f429509b19b74989. Subsequent calls will reuse this data.
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9815cf6d4bdc4511a493c27493699110", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "8ff8b9d664184555a724cdfdbd02ec11", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "85ff16919f8142b699b3bf5f870b0a54", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset cppe-5 downloaded and prepared to /root/.cache/huggingface/datasets/cppe-5/default/1.0.0/dd60c7c8210a67663b06108fb9e23c70acb98e2d3a4f3636f429509b19b74989. Subsequent calls will reuse this data.
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0773fe8bf06d4af9bfa0106609473a23"}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatasetDict({
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0773fe8bf06d4af9bfa0106609473a23", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatasetDict({
     train: Dataset({
         features: [&#39;image_id&#39;, &#39;image&#39;, &#39;width&#39;, &#39;height&#39;, &#39;objects&#39;],
         num_rows: 1000
@@ -613,9 +613,9 @@ Successfully installed accelerate-0.20.3
 <p>สร้าง <code class="docutils literal notranslate"><span class="pre">id2label</span></code> และ <code class="docutils literal notranslate"><span class="pre">label2id</span></code> ของ dataset ที่ใช้</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categories</span> <span class="o">=</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;objects&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span>
-<span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">)}</span>
-<span class="n">label2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">id2label</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categories</span> <span class="o">=</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;objects&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span> <span class="c1"># ดู category ทั้งหมดที่มีใน dataset</span>
+<span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">)}</span> <span class="c1"># สร้าง dictionary ที่ map จาก id ไปยัง label</span>
+<span class="n">label2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">id2label</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span> <span class="c1"># สร้าง dictionary ที่ map จาก label ไปยัง id</span>
 </pre></div>
 </div>
 </div>
@@ -623,9 +623,9 @@ Successfully installed accelerate-0.20.3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove images with no objects</span>
-<span class="n">remove_idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">590</span><span class="p">,</span> <span class="mi">821</span><span class="p">,</span> <span class="mi">822</span><span class="p">,</span> <span class="mi">875</span><span class="p">,</span> <span class="mi">876</span><span class="p">,</span> <span class="mi">878</span><span class="p">,</span> <span class="mi">879</span><span class="p">]</span>
-<span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">remove_idx</span><span class="p">]</span>
-<span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">keep</span><span class="p">)</span>
+<span class="n">remove_idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">590</span><span class="p">,</span> <span class="mi">821</span><span class="p">,</span> <span class="mi">822</span><span class="p">,</span> <span class="mi">875</span><span class="p">,</span> <span class="mi">876</span><span class="p">,</span> <span class="mi">878</span><span class="p">,</span> <span class="mi">879</span><span class="p">]</span> <span class="c1"># ลบรูปภาพที่ไม่มี object ออกจาก dataset</span>
+<span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">remove_idx</span><span class="p">]</span> <span class="c1"># สร้าง list ของ index ที่เราต้องการเก็บไว้</span>
+<span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cppe5</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">keep</span><span class="p">)</span> <span class="c1"># ลบรูปภาพที่ไม่มี object ออกจาก dataset </span>
 </pre></div>
 </div>
 </div>
@@ -634,13 +634,18 @@ Successfully installed accelerate-0.20.3
 <p><code class="docutils literal notranslate"><span class="pre">trasnfrom</span></code> data ก่อนที่จะเข้าไปใช้ใน model โดยใช้ <code class="docutils literal notranslate"><span class="pre">albumentations</span></code> ในการทำ data augmentation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transform</span> <span class="o">=</span> <span class="n">albumentations</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างขั้นตอนการแปลงรูปภาพเป็น feature vector โดยมีขั้นตอนดังนี้</span>
+<span class="c1"># 1. ทำการ resize รูปภาพให้มีขนาด 480x480</span>
+<span class="c1"># 2. ทำการกลับภาพแนวนอน (horizontal flip)</span>
+<span class="c1"># 3. ทำการแปลง random brightness () และ contrast </span>
+<span class="c1"># โดยที่ p คือความน่าจะเป็นที่จะทำการแปลง</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">albumentations</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">albumentations</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="c1"># resize to 480x480</span>
         <span class="n">albumentations</span><span class="o">.</span><span class="n">HorizontalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="c1"># horizontal flip</span>
-        <span class="n">albumentations</span><span class="o">.</span><span class="n">RandomBrightnessContrast</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="c1"># random brightness and contrast</span>
+        <span class="n">albumentations</span><span class="o">.</span><span class="n">RandomBrightnessContrast</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="c1"># random brightness and contrast </span>
     <span class="p">],</span>
-    <span class="n">bbox_params</span><span class="o">=</span><span class="n">albumentations</span><span class="o">.</span><span class="n">BboxParams</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;coco&quot;</span><span class="p">,</span> <span class="n">label_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]),</span>
+    <span class="n">bbox_params</span><span class="o">=</span><span class="n">albumentations</span><span class="o">.</span><span class="n">BboxParams</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;coco&quot;</span><span class="p">,</span> <span class="n">label_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]),</span> <span class="c1"># กำหนด format ของ bounding box และ label</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -718,7 +723,7 @@ Successfully installed accelerate-0.20.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2e0b66bde3cb4ed5925f625a52b62ef1"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Could not find image processor class in the image processor config or the model config. Loading based on pattern matching with the model&#39;s feature extractor configuration.
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2e0b66bde3cb4ed5925f625a52b62ef1", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Could not find image processor class in the image processor config or the model config. Loading based on pattern matching with the model&#39;s feature extractor configuration.
 The `max_size` parameter is deprecated and will be removed in v4.26. Please specify in `size[&#39;longest_edge&#39;] instead`.
 </pre></div>
 </div>
@@ -737,7 +742,7 @@ The `max_size` parameter is deprecated and will be removed in v4.26. Please spec
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "13fc56c89e7e4dba84d2a84fefd8411a"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "69ace8b703f540f696a75a81660cc72d"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8a6ab05e213543bf854a97e5fd67bdaf"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some weights of DetrForObjectDetection were not initialized from the model checkpoint at facebook/detr-resnet-50 and are newly initialized because the shapes did not match:
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "13fc56c89e7e4dba84d2a84fefd8411a", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "69ace8b703f540f696a75a81660cc72d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "8a6ab05e213543bf854a97e5fd67bdaf", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some weights of DetrForObjectDetection were not initialized from the model checkpoint at facebook/detr-resnet-50 and are newly initialized because the shapes did not match:
 - class_labels_classifier.weight: found shape torch.Size([92, 256]) in the checkpoint and torch.Size([6, 256]) in the model instantiated
 - class_labels_classifier.bias: found shape torch.Size([92]) in the checkpoint and torch.Size([6]) in the model instantiated
 You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.

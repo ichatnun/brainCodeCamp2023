@@ -509,7 +509,8 @@ document.write(`
 <p>ชุดข้อมูล: <a class="github reference external" href="https://github.com/cccnlab/CDT-API-Network">cccnlab/CDT-API-Network</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset which contrains images and labels</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset which contrains images and labels of the Clock Drawing Test (CDT)</span>
+
 <span class="o">!</span>wget<span class="w"> </span>-O<span class="w"> </span>images.pickle<span class="w"> </span>https://github.com/ichatnun/brainCodeCamp/raw/main/Fundamentals/DimensionalityReduction/data/CDT/clock_images.pickle
 <span class="o">!</span>wget<span class="w"> </span>-O<span class="w"> </span>labels.pickle<span class="w"> </span>https://github.com/ichatnun/brainCodeCamp/raw/main/Fundamentals/DimensionalityReduction/data/CDT/labels.pickle
 </pre></div>
@@ -557,18 +558,18 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
-<span class="kn">import</span> <span class="nn">torchvision</span>
-<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span> <span class="c1"># module ที่เก็บ optimizer ต่างๆ ที่เราจะเอามาใช้ในการ train model</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span> <span class="c1"># โหลด dataset มาใช้งาน</span>
+<span class="kn">import</span> <span class="nn">torchvision</span> <span class="c1"># module สำหรับ computer vision ของ PyTorch</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span> <span class="c1"># module สำหรับ transform รูปภาพ เช่น การปรับขนาดรูปภาพ การทำ data augmentation</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span> <span class="c1"># ใช้สำหรับแบ่งข้อมูลเป็น train/validation/test set</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span> <span class="c1"># ใช้สำหรับหา path ของไฟล์ในโฟลเดอร์</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> <span class="c1"># ใช้สำหรับโหลดรูปภาพ และแปลงรูปภาพให้เป็น array</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span> <span class="c1"># ใช้สำหรับ plot รูปภาพ</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="c1"># ใช้สำหรับ save และ load ข้อมูล</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># ใช้สำหรับจัดการข้อมูลในรูปแบบของตาราง</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># ใช้สำหรับจัดการข้อมูลในรูปแบบของ array</span>
+<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># ใช้สำหรับจัดการไฟล์และโฟลเดอร์</span>
 </pre></div>
 </div>
 </div>
@@ -578,7 +579,8 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 <p>การเตรียมข้อมูลทำได้โดยการอ่านข้อมูลภาพจาก <code class="docutils literal notranslate"><span class="pre">images.pickle</span></code> และประเภทของภาพจาก <code class="docutils literal notranslate"><span class="pre">labels.pickle</span></code> เพื่อใช้ในการเตรียมข้อมูล จากนั้นเปลี่ยนเป็น dataframe</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;images.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># โหลดข้อมูลไฟล์ .pickle ที่เราได้ทำการ save ไว้ก่อนหน้านี้ และโหลดมาผ่าน wget จาก github</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;images.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">images</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;labels.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
@@ -588,9 +590,10 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_images</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># แปลงรูปภาพให้เป็น RGB array และเก็บไว้ใน list</span>
+<span class="n">list_images</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="c1"># Convert array to PIL image</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>  <span class="c1"># Convert to RGB mode</span>
     <span class="n">list_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
@@ -604,8 +607,9 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Images&quot;</span><span class="p">,</span> <span class="s2">&quot;encoded_labels&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Images&quot;</span><span class="p">,</span> <span class="s2">&quot;encoded_labels&quot;</span><span class="p">])</span> <span class="c1"># สร้าง dataframe เพื่อเก็บข้อมูลรูปภาพและ label ที่เป็นตัวเลข</span>
 
+<span class="c1"># นำข้อมูลรูปภาพและ label มาเก็บไว้ใน dataframe</span>
 <span class="k">for</span> <span class="n">img</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">list_images</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="n">df_data</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;Images&quot;</span><span class="p">:</span> <span class="n">img</span><span class="p">,</span> <span class="s2">&quot;encoded_labels&quot;</span><span class="p">:</span> <span class="n">label</span><span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -742,7 +746,8 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 <p>แบ่งข้อมูลเป็น train set (90%) และ test set (10%) โดยใช้ <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> จาก <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># แบ่งข้อมูลเป็น train/validation/test set โดยใช้ train/validation set อยู่ในสัดส่วน 90:10</span>
+<span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -760,40 +765,51 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างขั้นตอนสำหรับการแปลงข้อมูลรูปภาพรวมเป็นตัวแปร transform โดย</span>
+<span class="c1"># 1. ทำการแปลงรูปภาพให้เป็น tensor</span>
+<span class="c1"># 2. ทำการ normalize รูปภาพด้วย mean และ standard deviation ของชุดข้อมูล</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
     <span class="p">[</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))]</span>
 <span class="p">)</span>
 
-<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;CDT_dataset&quot;</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;CDT_dataset&quot;</span> <span class="c1"># กำหนด path ของ dataset ที่เราจะเก็บไว้</span>
 
-<span class="k">class</span> <span class="nc">CDT_dataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+<span class="c1"># สร้าง class สำหรับการโหลด dataset ที่เราสร้างขึ้นมา</span>
+<span class="k">class</span> <span class="nc">CDT_dataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span> 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_data</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">transform</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">img_data</span> <span class="o">=</span> <span class="n">img_data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base_path</span> <span class="o">=</span> <span class="n">base_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># สร้าง function สำหรับ return จำนวนข้อมูลใน dataset ด้วยการใช้ len(...)</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span> <span class="c1"># สร้าง function สำหรับ return ข้อมูลและ label ของข้อมูลใน dataset ด้วยการใช้ index</span>
+        <span class="c1"># โหลดรูปภาพจาก path ที่เก็บไว้</span>
         <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;Images&quot;</span><span class="p">]</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span> <span class="c1"># ลดขนาดภาพให้มีขนาด 32x32 เพื่อใช้ในการทำนาย</span>
+        <span class="c1"># ลดขนาดภาพให้มีขนาด 32x32 เพื่อใช้ในการทำนาย</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span> 
+        <span class="c1"># ถ้ามีการสร้างขั้นตอนการแปลงข้อมูลรูปภาพ ให้ทำการแปลงข้อมูลรูปภาพด้วย</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="c1"># สร้าง label ของข้อมูล</span>
         <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;encoded_labels&quot;</span><span class="p">]</span>
+        <span class="c1"># ส่งข้อมูลรูปภาพและ label กลับไป</span>
         <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">label</span>
 
 
-<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">CDT_dataset</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
-<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">CDT_dataset</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">CDT_dataset</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span> <span class="c1"># สร้าง train dataset</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">CDT_dataset</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span> <span class="c1"># สร้าง test dataset</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง train loader และ test loader โดยกำหนดให้มี batch size เท่ากับ 4 และ shuffle ข้อมูล</span>
+<span class="c1"># โดยที่ DataLoader คือ class สำหรับการโหลดข้อมูลในรูปแบบของ batch</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># สร้าง train loader</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># สร้าง test loader</span>
 </pre></div>
 </div>
 </div>
@@ -801,18 +817,22 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 <p>เขียนฟังก์ชันเพื่อยกตัวอย่างภาพที่ใช้ train โดยใช้ <code class="docutils literal notranslate"><span class="pre">next(iter(train_loader))</span></code> เพื่อดึงตัวอย่างออกมา 1 batch ในด้านบนเรากำหนดให้ <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> มีค่าเท่ากับ 4</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างฟังก์ชันสำหรับการแสดงรูปภาพและ label ของข้อมูลใน dataset</span>
+<span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">img</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span>
     <span class="n">npimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">npimg</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">))</span>
-<span class="n">SD_type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;abnormal&quot;</span><span class="p">}</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">))</span> <span class="c1"># ดึงข้อมูลจาก train loader มาเก็บไว้ในตัวแปร images และ labels</span>
+<span class="c1"># iter(...) คือ function สำหรับการสร้าง iterator ของ train loader</span>
+<span class="c1"># next(...) คือ function สำหรับการดึงข้อมูลจาก iterator ของ train loader มาเก็บไว้ในตัวแปร images และ labels</span>
 
-<span class="n">imshow</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">images</span><span class="p">))</span>
-<span class="n">classes</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;abnormal&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">classes</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="si">:</span><span class="s2">5s</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span>
+<span class="n">SD_type</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;abnormal&quot;</span><span class="p">}</span> <span class="c1"># สร้าง dictionary สำหรับแปลง label ที่เป็นตัวเลขเป็นชื่อของ class</span>
+
+<span class="n">imshow</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">images</span><span class="p">))</span> <span class="c1"># แสดงรูปภาพที่อยู่ในตัวแปร images</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;abnormal&quot;</span><span class="p">)</span> <span class="c1"># กำหนดชื่อของ class ที่เรามี</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">classes</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="si">:</span><span class="s2">5s</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span> <span class="c1"># แสดง label ของข้อมูลที่อยู่ในตัวแปร labels</span>
 </pre></div>
 </div>
 </div>
@@ -830,14 +850,14 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 <p>convolution เป็นวิธีการนึ่งที่ที่ดูการเปลี่ยนแปลงของฟังก์ชั่นหนึ่ง เมื่อมีอีกฟังก์ชั่นเข้ามา ใน deep-learning convolution ถูกนำมาใช้อย่างแพร่หลายในงานที่เกี่ยวกับรูปภาพเพื่อดึงข้อมูลเชิงพื้นที่ (spatial feature) ออกมาจากรูปภาพ โดย pytorch จะใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code> ในการทำ convolution
 โดย parameters ที่สำคัญจะประกอบไปด้วย</p>
 <ul class="simple">
-<li><p>in_channels: input image channel</p></li>
-<li><p>out_channels: output channel หลังจาก convolve แล้ว</p></li>
-<li><p>kernel_size: ขนาดของ filter ที่นำมา convolve กับรูปของเรา</p></li>
-<li><p>stride: filter จะเคลื่อนที่ทีละกี่ pixel ค่า default = 1</p></li>
-<li><p>padding: padding รูปภาพ ค่า default = 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_channels</span></code>: input image channel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_channels</span></code>: output channel หลังจาก convolve แล้ว</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code>: ขนาดของ filter ที่นำมา convolve กับรูปของเรา</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stride</span></code>: filter จะเคลื่อนที่ทีละกี่ pixel ค่า default = 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">padding</span></code>: padding รูปภาพ ค่า default = 0</p></li>
 </ul>
 <p>ภาพที่ได้หลังจากการ convolution อาจจะมีขนาด/depthเปลี่ยนไปขึ้นอยู่กับ parametersซึ่งเราสามารถคำนวนขนาดของภาพที่ออกมาได้ดังนี้</p>
-<p>output_size = ((input_size - kernel_size + 2 * padding) / stride) + 1</p>
+<p><code class="docutils literal notranslate"><span class="pre">output_size</span> <span class="pre">=</span> <span class="pre">((input_size</span> <span class="pre">-</span> <span class="pre">kernel_size</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">padding)</span> <span class="pre">/</span> <span class="pre">stride)</span> <span class="pre">+</span> <span class="pre">1</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สมมุติว่ามีรูปภาพ 1 ภาพ ขนาด 5x5 และมี 3 ช่องสี</span>
@@ -854,13 +874,13 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                 <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
-                 <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                 <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="c1"># จำนวนช่องสีของภาพ</span>
+                 <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="c1"># จำนวนช่องสีของภาพที่เราต้องการให้เป็น output</span>
+                 <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="c1"># ขนาดของ filter</span>
+                 <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># ขนาดของการเคลื่อนที่ของ filter</span>
+                 <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># จำนวนช่องสีที่เราต้องการให้เพิ่มเติมเพื่อให้ขนาดของภาพเท่าเดิม</span>
 <span class="c1"># output size = (5 - 3 + 2*0)/1 + 1 = 3</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">conv</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">conv</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="c1"># ทำการคำนวนด้วยการป้อน input ลงไปใน conv ซึ่งเป็น object ที่เราสร้างไว้ให้ทำหน้าที่เป็น convolution ในสองมิติ </span>
 <span class="n">output</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># depth ของภาพจะเพิ่มเป็น 16และ dimension ของภาพจะเท่ากับการคำนวนคือ 3</span>
 </pre></div>
 </div>
@@ -873,64 +893,78 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 </div>
 <section id="training-model">
 <h2>Training Model<a class="headerlink" href="#training-model" title="Permalink to this heading">#</a></h2>
-<p>สร้าง model โดยใช้ <code class="docutils literal notranslate"><span class="pre">torch.nn.Sequential</span></code> โดยมี layer ดังนี้</p>
+<p>สร้าง model โดยใช้ <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> ซึ่งเป็นตัวแบบของ Neural Network model ใน pytorch โดยมี layer ดังนี้</p>
 <ul class="simple">
 <li><p>Convolutional layer (<code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code>) ซึ่งจะรับค่าทั้งหมด 3 ค่าคือ input depth, output depth และ kernel size ยกตัวอย่างเช่นในเลเยอร์แรก <code class="docutils literal notranslate"><span class="pre">nn.Conv2d(3,</span> <span class="pre">6,</span> <span class="pre">5)</span></code> จะรับ input depth ของภาพเท่ากับ 3 นั่นก็คือ RGB channel นั่นเอง และ output ออกมาเป็นภาพที่มี depth เท่ากับ 6</p></li>
 <li><p>จากนั้นก็จะส่งต่อไปให้ <code class="docutils literal notranslate"><span class="pre">nn.MaxPool2d(2,</span> <span class="pre">2)</span></code> ซึ่งมี kernel size เท่ากับ 2 และ stride เท่ากับ 2 โดยจะลดขนาดของภาพเป็นครึ่งหนึ่งนั่นเอง (แต่ depth เท่าเดิม)</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span> <span class="c1"># สร้าง class สำหรับการสร้างโมเดลจาก nn.Module</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># สร้าง constructor ของ class</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span> <span class="c1"># เรียกใช้ constructor ของ nn.Module</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># สร้าง convolution layer แรก โดยมี in_channels เท่ากับ 3 และ out_channels เท่ากับ 6 และมี kernel_size เท่ากับ 5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># สร้าง pooling layer โดยมี kernel_size เท่ากับ 2 และ stride เท่ากับ 2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># สร้าง convolution layer ที่สอง โดยมี in_channels เท่ากับ 6 และ out_channels เท่ากับ 16 และมี kernel_size เท่ากับ 5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span> <span class="c1"># สร้าง fully connected layer แรก โดยมี in_features เท่ากับ 16 * 5 * 5 และ out_features เท่ากับ 120</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">)</span> <span class="c1"># สร้าง fully connected layer ที่สอง โดยมี in_features เท่ากับ 120 และ out_features เท่ากับ 84</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># สร้าง fully connected layer ที่สาม โดยมี in_features เท่ากับ 84 และ out_features เท่ากับ 10</span>
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># flatten all dimensions except batch</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># สร้าง method สำหรับการทำ forward propagation</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span> <span class="c1"># ทำการ convolution และ pooling และ activation function (ReLu) ใน convolution layer แรก</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span> <span class="c1"># ทำการ convolution และ pooling และ activation function (ReLu) ใน convolution layer ที่สอง</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># ทำการ flatten ข้อมูลใน x ให้เหลือแค่ batch dimension</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># ทำการแปลงผ่าน fully connected และ activation function (ReLu) ใน fully connected layer แรก</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># ทำการแปลงผ่าน fully connected และ activation function (ReLu) ใน fully connected layer ที่สอง</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># ทำการแปลงผ่าน fully connected ใน fully connected layer สุดท้าย</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="c1"># ส่งค่า x กลับ</span>
 
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span> <span class="c1"># สร้าง object ของ class Net</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>กำหนด <code class="docutils literal notranslate"><span class="pre">hyperparameters</span></code> ที่จำเป็นต้องใช้ ได้แก่ loss function ซึ่งคือ <code class="docutils literal notranslate"><span class="pre">CrossEntropyLoss</span></code>, optimizer ซึ่งคือ <code class="docutils literal notranslate"><span class="pre">Adam</span></code> ที่รับพารามิเตอร์ของโมเดล จากนั้นเทรนโมเดลโดยใส่ชุดข้อมูลเข้าไปในโมเดล และทำการอัพเดทโมเดลด้วยการคำนวณ  gradient (<code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code>) และอัพเดทพารามิเตอร์ของโมเดล (<code class="docutils literal notranslate"><span class="pre">optimizer.step()</span></code>)</p>
+<p><strong>เราทราบได้อย่างไรว่า class ที่เราสร้างขึ้น มี network layer เชื่อมต่อกันอย่างไร</strong></p>
+<details>
+    <summary>
+        เฉลย
+    </summary>
+    เราสามารถดูได้จากขั้นตอนการแปลง input ผ่าน method `forward` ที่อยู่ใน class ได้ โดยจากตัวอย่างด้านบน จะพบว่า network ของเรามีการเชื่อมต่อกันแบบเรียงลำดับดังนี้
+    <ol>
+    <li>conv1 + ReLu</li>
+    <li>conv2 + ReLu</li>
+    <li>fc1 + ReLu</li>
+    <li>fc2 + ReLu</li>
+    <li>fc3</li>
+    </ol>
+    โดยที่ activation function นั้นจะมีหรือไม่มีหลังจากที่ทำการคำนวณใน layer แต่ละอันก็ได้
+</deatails><p>กำหนด <code class="docutils literal notranslate"><span class="pre">hyperparameters</span></code> ที่จำเป็นต้องใช้ ได้แก่ loss function ซึ่งคือ <code class="docutils literal notranslate"><span class="pre">CrossEntropyLoss</span></code>, optimizer ซึ่งคือ <code class="docutils literal notranslate"><span class="pre">Adam</span></code> ที่รับพารามิเตอร์ของโมเดล จากนั้นเทรนโมเดลโดยใส่ชุดข้อมูลเข้าไปในโมเดล และทำการอัพเดทโมเดลด้วยการคำนวณ  gradient (<code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code>) และอัพเดทพารามิเตอร์ของโมเดล (<code class="docutils literal notranslate"><span class="pre">optimizer.step()</span></code>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a Loss function and optimizer</span>
 
-<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span> <span class="c1"># กำหนด loss function ที่ใช้ในการคำนวนค่า loss เป็นค่า Cross Entropy Loss ซึ่งหมายถึง การคำนวนค่า loss โดยใช้ค่าความแตกต่างของค่าความน่าจะเป็นของคลาสที่เราต้องการกับค่าความน่าจะเป็นของคลาสอื่นๆ</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span> <span class="c1"># กำหนด optimizer ที่ใช้ในการปรับค่า parameter ของโมเดลให้เป็น optimizer แบบ Adam ซึ่งเป็น optimizer ที่ใช้ในการปรับค่า parameter โดยใช้การคำนวนค่า gradient ของ parameter แต่ละตัวเพื่อใช้ในการปรับค่า parameter โดยใช้ learning rate เท่ากับ 0.001</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
-        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-        <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span> <span class="c1"># ทำการ train model โดยใช้จำนวน epoch เท่ากับ 100</span>
+    <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># กำหนดค่าเริ่มต้นของ running loss เท่ากับ 0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="c1"># ทำการวน loop ในแต่ละ batch ของ train_loader</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">data</span> <span class="c1"># ดึงข้อมูลและ label จาก data</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> <span class="c1"># ทำการปรับค่า gradient เป็น 0 ก่อนการคำนวนค่า gradient ของ parameter แต่ละตัว เนื่องจากการคำนวณ gradient ด้วย backpropagation จะเก็บค่า gradient ไว้ในตัวแปรเดียวกันเรื่อยๆ จนกว่าจะมีการเรียกใช้ method zero_grad() เพื่อทำการเคลียร์ค่า gradient ในตัวแปรนั้น</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="c1"># ทำการ forward propagation โดยใช้ข้อมูลใน inputs ที่ได้จาก data ที่วน loop อยู่</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="c1"># ทำการคำนวณค่า loss โดยใช้ค่า output ที่ได้จากการทำ forward propagation กับ label ที่ได้จาก data ที่วน loop อยู่</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1"># ทำการคำนวณค่า gradient ของ parameter แต่ละตัวโดยใช้ backpropagation</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span> <span class="c1"># ทำการปรับค่า parameter ของโมเดลด้วยค่า gradient ที่คำนวณได้</span>
+        <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="c1"># ทำการบวกค่า loss ในแต่ละ batch เข้ากับ running loss เพื่อใช้ในการคำนวณค่า loss ในแต่ละ epoch</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span> <span class="c1"># ทำการ print ค่า loss ในแต่ละ batch ทุกๆ 10 batch</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> ] loss: </span><span class="si">{</span><span class="n">running_loss</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># ทำการเคลียร์ค่า running loss เพื่อใช้ในการคำนวณค่า loss ใน batch ถัดไป</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished Training&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1046,7 +1080,7 @@ Finished Training
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the model</span>
 <span class="n">PATH</span> <span class="o">=</span> <span class="s2">&quot;./CDT_model.pth&quot;</span>
-<span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">PATH</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">PATH</span><span class="p">)</span> <span class="c1"># ทำการบันทึกโมเดลที่ได้จากการ train เป็นไฟล์ .pth โดย .state_dict() จะเป็นการบันทึกเฉพาะค่า parameter ของโมเดลเท่านั้น</span>
 </pre></div>
 </div>
 </div>
@@ -1056,12 +1090,12 @@ Finished Training
 <p>ทดลองนำภาพตัวอย่างจาก test set มาทำนายด้วยโมเดลที่เราได้เทรนไป</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataiter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">test_loader</span><span class="p">)</span>
-<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">dataiter</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataiter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">test_loader</span><span class="p">)</span> <span class="c1"># ทำการสร้าง object ของ test_loader ให้เป็น iterator</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">dataiter</span><span class="p">)</span> <span class="c1"># ทำการดึงข้อมูลและ label จาก test_loader ที่เป็น iterator ออกมา</span>
 
 <span class="c1"># print images</span>
-<span class="n">imshow</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">images</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GroundTruth: &quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">classes</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="si">:</span><span class="s2">5s</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">images</span><span class="p">))</span> <span class="c1"># ทำการแสดงรูปภาพที่อยู่ใน images ที่เป็น tensor ในรูปแบบของ grid</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GroundTruth: &quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">classes</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="si">:</span><span class="s2">5s</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span> <span class="c1"># ทำการแสดง label ของรูปภาพที่อยู่ใน images ที่เป็น tensor ในรูปแบบของ grid</span>
 </pre></div>
 </div>
 </div>
@@ -1075,8 +1109,8 @@ Finished Training
 <p>ในการใช้งานจริงเราสามารถสร้างโมเดล และอ่าน weights (หรือ parameters) ของโมเดลที่เทรนไว้แล้ว เพื่อนำมาใช้ทำนายเลยได้ ไม่จำเป็นต้องเทรนใหม่</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span> <span class="c1"># สร้าง object ของ class Net ที่เป็นโมเดลที่เราสร้างไว้</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH</span><span class="p">))</span> <span class="c1"># ทำการโหลดค่า parameter ของโมเดลจากไฟล์ .pth ที่เราบันทึกไว้ก่อนหน้านี้</span>
 </pre></div>
 </div>
 </div>
