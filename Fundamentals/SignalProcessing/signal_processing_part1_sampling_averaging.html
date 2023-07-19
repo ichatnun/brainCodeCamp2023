@@ -650,7 +650,7 @@ document.write(`
         <span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่เจาะจง โดยมีค่า sampling rate สูง เพื่อใช้เป็นตัวแทน continuous time signal</span>
         <span class="n">x_cont</span><span class="p">,</span> <span class="n">t_cont</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">freq_wave</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
 
-        <span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่เจาะจง เหมือนกันแต่ มีค่า sampling rate สูง แสดงถึง discrete time signal ที่เก็บมา</span>
+        <span class="c1"># สร้าง time signal ที่เป็นฟังก์ชัน sine ที่มีความถี่เจาะจง เหมือนกันแต่ มีค่า sampling rate ที่น้อยลอง แสดงถึง discrete time signal ที่เก็บมา</span>
         <span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">freq_wave</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">sampling_rate</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
 
         <span class="c1"># กราฟทั้ง x(t) และ x[n] ทับกัน</span>
@@ -670,7 +670,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a5691c50c4fc4aca8a246e0b17f1733a"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a5691c50c4fc4aca8a246e0b17f1733a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <section id="signal-averaging">
 <h2>Signal averaging<a class="headerlink" href="#signal-averaging" title="Permalink to this heading">#</a></h2>
@@ -795,7 +795,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "298d85ebdd7c4aba8b8765cdacf2d5f8"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "298d85ebdd7c4aba8b8765cdacf2d5f8", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>ข้อมูลทาง neuroscience หลายประเภท เช่น สัญญาณที่ได้จากเครื่อง electroencephalogram (EEG) เป็น signal ที่มีสัญญาณรบกวนมาก ดังนั้นการทำ signal averaging เป็นการประมวลผลแบบพื้นฐานของข้อมูลเหล่านี้ จึงได้รับความนิยมเป็นอย่างมาก</p>
 <p><strong>หมายเหตุ</strong> หากเราต้องการวัดคุณภาพของ signal เมื่อเปรียบเทียบกับปริมาณสัญญาณรบกวน ออกมาเป็นตัวเลข (quantitative metric) เราสามารถลอง metric แบบมาตรฐาน เช่น signal-to-noise ratio (SNR) หรือ Contrast-to-noise ratio (CNR) ได้</p>
