@@ -222,8 +222,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisites</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prereqs/00_basic_python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Prereqs/01_numpy.html">Numpy</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Prereqs/BBB2BCC/PrereqBCC.html">Prerequisites: From BBB to BCC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Prereqs/BBB2BCC/NonParametricStatistics.html">Nonparametric Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prereqs/BBB2BCC/DimensionalityReduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prereqs/BBB2BCC/DataVisualization.html">Data Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Prereqs/Coding/PrereqCoding.html">Prerequisites: Coding</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Prereqs/Coding/00_basic_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prereqs/Coding/01_numpy.html">Numpy</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Welcome to Brain Code Camp! (Week 1)</span></p>
 <ul class="nav bd-sidenav">
@@ -252,7 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (Weeks 5-6)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../MachineLearning/ml_part1_intro.html">ML Part 1 (Week 5)</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../MachineLearning/ml_part1_intro.html">ML Part 1 (Week 5)</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../MachineLearning/intro_to_machine_learning.html">Introduction to Machine Learning</a></li>
 
 
@@ -261,7 +270,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../MachineLearning/svm.html">Support Vector Machines</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../MachineLearning/ml_part2_intro.html">ML Part 2 (Week 6)</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../MachineLearning/ml_part2_intro.html">ML Part 2 (Week 6)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../MachineLearning/decision_tree_random_forest.html">Decision Tree and Random Forest</a></li>
 
 
@@ -295,7 +304,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications (Weeks 9-11)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../Applications/EEG/EEG_Intro.html">EEG (Week 9)</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Applications/EEG/EEG_Intro.html">EEG (Week 9)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../Applications/EEG/motor_imagery_part1.html">Data Exploration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Applications/EEG/motor_imagery_part2.html">Data Analysis</a></li>
 </ul>
@@ -491,16 +500,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>\text{output_size} = \left(\frac}}\right) + 1</p>
-<p>In this equation:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">\text{output\_size}</span></code> represents the size (height or width) of the output feature map.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">\text{input\_size}</span></code> denotes the size (height or width) of the input image.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">\text{kernel\_size}</span></code> refers to the size (height or width) of the convolutional kernel/filter.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">\text{padding}</span></code> indicates the number of zero-padding pixels added to the borders of the input image.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">\text{stride}</span></code> represents the stride value, which defines the step size for the kernel movement over the input image during convolution.</p></li>
-</ul>
-<section class="tex2jax_ignore mathjax_ignore" id="breast-cancer-segmentation-using-transformers">
+  <section class="tex2jax_ignore mathjax_ignore" id="breast-cancer-segmentation-using-transformers">
 <h1>Breast Cancer Segmentation using Transformers<a class="headerlink" href="#breast-cancer-segmentation-using-transformers" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p><strong>Semantic segmentation</strong> เป็นการทำนายที่ต้องการนำภาพมาและแบ่งประเภทของแต่ละพิกเซลในภาพ Semantic segmentation มีประโยชน์และถูกนำมาใช้ในหลากหลายแอพพลิเคชั่น เช่น การตัดแบ่งภาพถ่ายทางการแพทย์ และรถยนจ์ขับเคลื่อนอัจฉริยะ ยกตัวอย่างเช่น ในกรณีของรถส่งพิซซ่าอัจโนมัติ การนำ semantic segmentation มาช่วยจะสามารถไกด์ให้รถยังขับอยู่บนทางเท้าได้ ไม่ขับเข้าไปในบริเวณที่ผิดพลาดได้ (ดูตัวอย่างจาก <a class="reference external" href="https://huggingface.co/blog/fine-tune-segformer">https://huggingface.co/blog/fine-tune-segformer</a>)</p></li>
