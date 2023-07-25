@@ -66,6 +66,20 @@ parts:
       title: Python
     - file: Fundamentals/Prereqs/01_numpy
       title: Numpy
+  - caption: Prerequisites
+    chapters:
+    - file: Fundamentals/Prereqs/BBB2BCC/PrereqBCC
+      sections:
+      - file: Fundamentals/Prereqs/BBB2BCC/NonParametricStatistics
+      - file: Fundamentals/Prereqs/BBB2BCC/DimensionalityReduction
+      - file: Fundamentals/Prereqs/BBB2BCC/DataVisualization
+    - file: Fundamentals/Prereqs/Coding/PrereqCoding
+      sections:
+      - file: Fundamentals/Prereqs/Coding/00_basic_python
+        title: Python
+      - file: Fundamentals/Prereqs/Coding/01_numpy
+        title: Numpy
+
 
   - caption: Welcome to Brain Code Camp! (Week 1)
     chapters:
