@@ -3,7 +3,7 @@
 
 title: Brain Code Camp
 author: Brain Code Camp Community
-logo: assets/braincode101.png
+logo: assets/images/braincode101.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
