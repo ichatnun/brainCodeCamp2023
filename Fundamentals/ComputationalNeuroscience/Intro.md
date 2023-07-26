@@ -2,16 +2,13 @@
 
 **สิ่งที่ต้องเตรียมตัวก่อนการเข้าร่วมกิจกรรม**
 
-1. ทบทวนเนื้อหาจากสัปดาห์ที่แล้ว (week 1) และควรมีไอเดียเกี่ยวกับโปรเจคที่จะทำแล้ว
+1. ทบทวนเนื้อหา Neuroscience จาก Brain Builing Blocks โดยเฉพาะ session ที่ 6 และ Session ที่ 7
 
-2. ทบทวนเนื้อหา Neuroscience จาก Brain Builing Blocks โดยเฉพาะ session ที่ 6 และ 7
+2. เรียนรู้เนื้อหาจาก Prerequisites ของแพลตฟอร์ม Brain Code Camp
 
-3. ทบทวนและเรียนรู้เนื้อหา coding โดยเฉพาะจาก Prerequisites ใน platform
-
+(Optional) หากสนใจ สามารถเรียนรู้เนื้อหา Introduction to Modeling and Model Selection (Week 3) ล่วงหน้าได้
 
 **กิจกรรม**
 
-1. Live Discussion พูดคุยเกี่ยวกับ concepts ที่สำคัญของการทำ model
-
-2. แบ่งกลุ่มย่อย เพื่ออัพเดตสถานะของโปรเจคกับ TA และถามตอบข้อสงสัยที่มี
+Live Discussion และการแยกกลุ่มย่อยเพื่อพูดคุยกับเกี่ยว mini project เพิ่มเติม
 

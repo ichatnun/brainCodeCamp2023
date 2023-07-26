@@ -1,3 +1,5 @@
 # Intro to Machine Learning
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MH57PnIY-Z8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+**ทีมผู้สอนจะ upload เนื้อหาเพิ่มเติมในภายหลัง**
