@@ -432,7 +432,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -448,6 +450,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">การเรียนรู้ผ่านแพลตฟอร์ม</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#certificate">การได้รับ certificate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructors">Instructors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">Teaching Assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sponsor">Sponsor</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -459,9 +473,56 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="about-brain-code-camp">
 <h1>About Brain Code Camp<a class="headerlink" href="#about-brain-code-camp" title="Permalink to this heading">#</a></h1>
-<p><strong>Brain Code Camp</strong> เป็นส่วนหนึ่งของโครงการ <strong>BrainCode101</strong> ซึ่งเป็นกิจกรรมที่เน้นการปฏิบัติจริง (Hands-On Workshop) ผ่านแพลต์ฟอร์มออนไลน์ โดยมุ่งเน้นการพัฒนาทักษะและความเข้าใจให้กับผู้เรียนในด้านการเขียนโปรแกรมเพื่อทำความเข้าใจความสัมพันธ์ระหว่างพฤติกรรมและสัญญาณสมองผ่านการสร้างแบบจำลองทางคณิตศาสตร์และปัญญาประดิษฐ์</p>
+<p><strong>Brain Code Camp</strong> เป็นส่วนหนึ่งของโครงการ <strong>BrainCode101</strong> ซึ่งเป็นกิจกรรมที่เน้นการปฏิบัติจริง (Hands-On Workshop) ผ่านแพลตฟอร์มออนไลน์ โดยมุ่งเน้นการพัฒนาทักษะและความเข้าใจให้กับผู้เรียนในด้านการเขียนโปรแกรมเพื่อทำความเข้าใจความสัมพันธ์ระหว่างพฤติกรรมและสัญญาณสมองผ่านการสร้างแบบจำลองทางคณิตศาสตร์และปัญญาประดิษฐ์</p>
+<section id="id1">
+<h2>การเรียนรู้ผ่านแพลตฟอร์ม<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>กิจกรรม Brain Code Camp แบ่งการเรียนรู้ออกเป็น 2 ส่วนหลัก ประกอบด้วย</p>
+<ol class="arabic simple">
+<li><p>การเข้าศึกษาบทเรียนในแพลตฟอร์มที่กำหนดไว้ในแต่ละสัปดาห์ด้วยตนเอง ซึ่งแต่ละบทเรียนจะมี video lecture และ ไฟล์ .ipynb ประกอบ โดยผู้เรียนสามารถเข้าทดลองรัน code ในไฟล์ดังกล่าวผ่าน Google Colab (ในลักษณะเดียวกันกับที่ใช้ทำข้อสอบคัดเลือก) หรือช่องทางอื่นที่สะดวก</p>
+<ul class="simple">
+<li><p>เพื่อให้เกิดประโยชน์สูงสุดต่อผู้เรียน คณะผู้สอนแนะนำให้ผู้เรียนลองปรับแก้ส่วนต่าง ๆ ของ code เช่น</p>
+<ul>
+<li><p>การปรับแก้ parameters ของโมเดล แล้วดูผลลัพธ์ เพื่อให้เข้าใจพฤติกรรมของโมเดลมากยิ่งขึ้น</p></li>
+<li><p>การนำเอา code ที่มีไปปรับแก้ใช้งานกับข้อมูลชุดใหม่ที่ผู้เรียนสนใจ</p></li>
+<li><p>การทดลอง implement ตัว code บางส่วน เพื่อให้มีประสิทธิภาพมากขึ้น</p></li>
+</ul>
+</li>
+<li><p>ในแพลต์ฟอร์มมีเนื้อหาที่เขียนกำกับไว้ว่า Optional ซึ่งจะเป็นเนื้อหาภาคเสริม (ไม่บังคับ) ที่มีรายละเอียดทางเทคนิคมากขึ้นกว่าเนื้อหาในส่วนอื่น โดยเนื้อหาในส่วนนี้เหมาะสำหรับผู้ที่มีความคุ้นเคยกับสถิติ calculus และ linear algebra มาพอสมควร</p></li>
+</ul>
+</li>
+<li><p>การเข้าร่วม Office Hour (OH) ทุกวันพุธ ผ่าน Discord เร่ิมต้น 19.00 น. เป็นระยะเวลาประมาณ 1-1.5 ชั่วโมง</p>
+<ul class="simple">
+<li><p>เป้าหมายของ OH คือ</p>
+<ul>
+<li><p>เปิดโอกาสให้ผู้เรียนได้พูดคุย แลกเปลี่ยนความรู้กับอาจารย์ที่ปรึกษาและผู้เรียนท่านอื่น เกี่ยวกับเนื้อหาที่เกี่ยวข้องกับบทเรียน โดยจะมีการแบ่งกลุ่มย่อย (ผู้เรียนประมาณ 5-6 คน ต่ออาจารย์ที่ปรึกษา 1-2 คน)</p></li>
+<li><p>ติดตามสถานะของการทำ Mini Project</p></li>
+</ul>
+</li>
+<li><p>เริ่มต้น OH ครั้งแรกในวันที่ 16 ส.ค. 2566</p></li>
+<li><p>การเข้าร่วม OH และการทำ mini project จะถูกนำมาใช้ประกอบการพิจารณาการออก certificate ให้แก่ผู้เรียน</p></li>
+</ul>
+</li>
+</ol>
+<p>ผู้เรียนสามารถเรียนรู้เนื้อหาในแพลต์ฟอร์มตอนไหนก็ได้ ก่อนเวลาเริ่ม Office Hour ของแต่ละสัปดาห์ (วันพุธ 19.00 น.) เพื่อให้สามารถเข้าร่วมแลกเปลี่ยนความรู้ใน Office Hour ได้อย่างเต็มที่</p>
+</section>
+<section id="certificate">
+<h2>การได้รับ certificate<a class="headerlink" href="#certificate" title="Permalink to this heading">#</a></h2>
+<p>ผู้เรียนที่เข้าร่วม Office Hour อย่างสม่ำเสมอ (อย่างน้อย 80%) และมีส่วนร่วมในการทำ mini project จะได้รับการพิจารณาการได้รับ certificate</p>
+</section>
+<section id="instructors">
+<h2>Instructors<a class="headerlink" href="#instructors" title="Permalink to this heading">#</a></h2>
+<a class="bg-light mb-1 reference internal image-reference" href="_images/itthi_chatnuntawech.png"><img alt="itthi" class="bg-light mb-1" src="_images/itthi_chatnuntawech.png" style="width: 200px;" /></a>
+<!-- อิทธิ ฉัตรนันทเวช
+Itthi Chatnuntawech
+Ph.D. in EECS -->
+</section>
+<section id="teaching-assistants">
+<h2>Teaching Assistants<a class="headerlink" href="#teaching-assistants" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="sponsor">
+<h2>Sponsor<a class="headerlink" href="#sponsor" title="Permalink to this heading">#</a></h2>
 <p>โครงการนี้ได้รับการสนับสนุนจากหน่วยบริหารและจัดการทุนด้านการพัฒนากำลังคน และทุนด้านการพัฒนาสถาบันอุดมศึกษา การวิจัยและการสร้างนวัตกรรม (บพค.)</p>
-<a class="bg-light mb-1 reference internal image-reference" href="_images/pmub.png"><img alt="PMU-B" class="bg-light mb-1 align-center" src="_images/pmub.png" style="width: 200px;" /></a>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -535,6 +596,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">การเรียนรู้ผ่านแพลตฟอร์ม</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#certificate">การได้รับ certificate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructors">Instructors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">Teaching Assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sponsor">Sponsor</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
