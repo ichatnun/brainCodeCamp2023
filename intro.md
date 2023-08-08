@@ -79,7 +79,7 @@
 </div>
 <div class="col">
     <div class="card h-100">
-        <!-- <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/chaipat_chunharas.jpeg?raw=true" class="card-img-top" alt="thiparat_chotibut"> -->
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/thiparat_chotibut.jpeg?raw=true" class="card-img-top" alt="thiparat_chotibut">
         <div class="card-body">
             <h5 class="card-title m-0">ธิปรัชต์ โชติบุตร (ธิป)</h5>
             <p class="card-text">
