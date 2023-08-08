@@ -43,6 +43,18 @@
 </div>
 <div class="col">
     <div class="card h-100">
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/titipat_achakulvisut.jpeg?raw=true" class="card-img-top" alt="titipat_achakulvisut">
+        <div class="card-body">
+            <h5 class="card-title m-0">ฐิติพัทธ อัชชะกุลวิสุทธิ์ (มาย)</h5>
+            <p class="card-text">
+                Titipat Achakulvisut<br/>
+                Ph.D. in Bioengineering
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card h-100">
         <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/sedthapong_chunamchai.jpeg?raw=true" class="card-img-top" alt="sedthapong_chunamchai">
         <div class="card-body">
             <h5 class="card-title m-0">เสฎฐพงศ์ ชูนามชัย (พีท)</h5>
@@ -67,16 +79,17 @@
 </div>
 <div class="col">
     <div class="card h-100">
-        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/titipat_achakulvisut.jpeg?raw=true" class="card-img-top" alt="titipat_achakulvisut">
+        <!-- <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/chaipat_chunharas.jpeg?raw=true" class="card-img-top" alt="thiparat_chotibut"> -->
         <div class="card-body">
-            <h5 class="card-title m-0">Titipat Achakulvisut (Titipat)</h5>
+            <h5 class="card-title m-0">ธิปรัชต์ โชติบุตร (ธิป)</h5>
             <p class="card-text">
-                Titipat Achakulvisut<br/>
-                Ph.D. in Bioengineering
+                Thiparat Chotibut<br/>
+                Ph.D. in Theoretical Physics
             </p>
         </div>
     </div>
 </div>
+
 </div>
 
 ## Teaching Assistants
@@ -214,6 +227,7 @@
     </div>
 </div>
 </div>
+
 ## Sponsor
 
 โครงการนี้ได้รับการสนับสนุนจากหน่วยบริหารและจัดการทุนด้านการพัฒนากำลังคน และทุนด้านการพัฒนาสถาบันอุดมศึกษา การวิจัยและการสร้างนวัตกรรม (บพค.)
