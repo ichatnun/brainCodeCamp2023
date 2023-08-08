@@ -27,7 +27,7 @@
 ผู้เรียนที่เข้าร่วม Office Hour อย่างสม่ำเสมอ (อย่างน้อย 80%) และมีส่วนร่วมในการทำ mini project จะได้รับการพิจารณาการได้รับ certificate
 
 
-## Instructors
+## Teachers
 <div class="row row-cols-1 row-cols-md-3 g-4">
 <div class="col">
     <div class="card h-100">
@@ -60,7 +60,7 @@
             <h5 class="card-title m-0">เสฎฐพงศ์ ชูนามชัย (พีท)</h5>
             <p class="card-text">
                 Sedthapong Chunamchai<br/>
-                M.D.,MSc. in Medicine
+                M.D., MSc. in Medicine
             </p>
         </div>
     </div>
@@ -72,7 +72,7 @@
             <h5 class="card-title m-0">ชัยภัทร ชุณหรัศมิ์ (กิ๊ก)</h5>
             <p class="card-text">
                 Chaipat Chunharas<br/>
-                M.D. Ph.D. in Neurology, Psychology, Neuroscience
+                M.D., Ph.D. in Neurology, Psychology, Neuroscience
             </p>
         </div>
     </div>
@@ -93,6 +93,18 @@
 </div>
 
 ## Teaching Assistants
+<div class="col">
+    <div class="card h-100">
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/waragon_phusuwan.jpeg?raw=true" class="card-img-top" alt="waragon_phusuwan">
+        <div class="card-body">
+            <h5 class="card-title m-0">วรากร ภู่สุวรรณ (มอส)</h5>
+            <p class="card-text">
+                Waragon  Phusuwan <br/>
+                BSc. in Physics
+            </p>
+        </div>
+    </div>
+</div>
 <div class="row row-cols-1 row-cols-md-3 g-4">
 <div class="col">
     <div class="card h-100">
@@ -162,18 +174,6 @@
             <p class="card-text">
                 Monrudee Liangruksa<br/>
                 Ph.D. in Engineering Mechanics
-            </p>
-        </div>
-    </div>
-</div>
-<div class="col">
-    <div class="card h-100">
-        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/waragon_phusuwan.jpeg?raw=true" class="card-img-top" alt="waragon_phusuwan">
-        <div class="card-body">
-            <h5 class="card-title m-0">วรากร ภู่สุวรรณ (มอส)</h5>
-            <p class="card-text">
-                Waragon  Phusuwan <br/>
-                BSc. in Physics
             </p>
         </div>
     </div>
