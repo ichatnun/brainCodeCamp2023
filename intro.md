@@ -89,10 +89,10 @@
         </div>
     </div>
 </div>
-
 </div>
 
 ## Teaching Assistants
+<div class="row row-cols-1 row-cols-md-3 g-4">
 <div class="col">
     <div class="card h-100">
         <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/waragon_phusuwan.jpeg?raw=true" class="card-img-top" alt="waragon_phusuwan">
@@ -105,7 +105,6 @@
         </div>
     </div>
 </div>
-<div class="row row-cols-1 row-cols-md-3 g-4">
 <div class="col">
     <div class="card h-100">
         <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/maytus_piriyajitakonkij.jpeg?raw=true" class="card-img-top" alt="maytus_piriyajitakonkij">
