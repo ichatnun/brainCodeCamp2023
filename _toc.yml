@@ -60,26 +60,23 @@ parts:
     - file: Fundamentals/BrainBuildingBlocks/Session9/S9_Intro
       sections:
       - file: Fundamentals/BrainBuildingBlocks/Session9/S9L2_BrainComputerInterface
-  - caption: Prerequisites
-    chapters:
-    - file: Fundamentals/Prereqs/00_basic_python
-      title: Python
-    - file: Fundamentals/Prereqs/01_numpy
-      title: Numpy
+
   - caption: Prerequisites
     chapters:
     - file: Fundamentals/Prereqs/BBB2BCC/PrereqBCC
       sections:
-      - file: Fundamentals/Prereqs/BBB2BCC/NonParametricStatistics
-      - file: Fundamentals/Prereqs/BBB2BCC/DimensionalityReduction
       - file: Fundamentals/Prereqs/BBB2BCC/DataVisualization
+      - file: Fundamentals/Prereqs/BBB2BCC/DimensionalityReduction
+      - file: Fundamentals/Prereqs/BBB2BCC/Statistics
+      - file: Fundamentals/Prereqs/BBB2BCC/NeuroScienceData
+      - file: Fundamentals/Prereqs/BBB2BCC/Modeling
+
     - file: Fundamentals/Prereqs/Coding/PrereqCoding
       sections:
       - file: Fundamentals/Prereqs/Coding/00_basic_python
         title: Python
       - file: Fundamentals/Prereqs/Coding/01_numpy
         title: Numpy
-
 
   - caption: Welcome to Brain Code Camp! (Week 1)
     chapters:
@@ -169,4 +166,10 @@ parts:
     #   title: Neural Spiking (Week 10)
     # - file: Applications/fMRI/Intro
     #   title: fMRI (Week 11)
+
+  - caption: Extra Resources
+    chapters:
+    - file: ExtraResources/HandsOnDeepLearningWithPytorch
+    - file: ExtraResources/ReinforcementLearning
+    
 
