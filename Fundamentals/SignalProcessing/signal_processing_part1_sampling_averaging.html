@@ -576,22 +576,22 @@ document.write(`
 <span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">freq_sine</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">f_s</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
 
 <span class="c1"># Plot x(t)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_cont</span><span class="p">,</span> <span class="n">x_cont</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x_c(t)=\sin(2 \pi \times $&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">freq_sine</span><span class="si">}</span><span class="s2"> t)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot x[n]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sampled</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x_c(t)=\sin(2 \pi \times $&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">freq_sine</span><span class="si">}</span><span class="s2"> t) sampled with a sampling rate of </span><span class="si">{</span><span class="n">f_s</span><span class="si">}</span><span class="s2"> Hz&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot ทั้ง x(t) และ x[n] ทับกัน</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_cont</span><span class="p">,</span> <span class="n">x_cont</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x_c(t)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_sampled</span><span class="p">,</span> <span class="n">x_sampled</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x[n]&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
@@ -671,7 +671,7 @@ document.write(`
         <span class="n">x_sampled</span><span class="p">,</span> <span class="n">t_sampled</span> <span class="o">=</span> <span class="n">generate_sine_wave</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">freq_wave</span><span class="p">,</span> <span class="n">f_s</span><span class="o">=</span><span class="n">sampling_rate</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
 
         <span class="c1"># กราฟทั้ง x(t) และ x[n] ทับกัน</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">show_cont_signal</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_cont</span><span class="p">,</span> <span class="n">x_cont</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$x_c(t)$&quot;</span><span class="p">)</span>
@@ -681,7 +681,7 @@ document.write(`
         <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x_c(t)=\sin(2 \pi \times $&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">freq_wave</span><span class="si">}</span><span class="s2"> t) sampled with a sampling rate of </span><span class="si">{</span><span class="n">sampling_rate</span><span class="si">}</span><span class="s2"> Hz&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="p">,</span><span class="mf">1.25</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">plot_interactive_fs_example</span><span class="p">()</span>
@@ -689,7 +689,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b6ccaaff72a84cfb891a92524577d057"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b6ccaaff72a84cfb891a92524577d057", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <section id="signal-averaging">
 <h2>Signal averaging<a class="headerlink" href="#signal-averaging" title="Permalink to this heading">#</a></h2>
@@ -812,13 +812,13 @@ document.write(`
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Averaged signal (</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> times)&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "d56f1a70d0324cc183c0d47f130f6257"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d56f1a70d0324cc183c0d47f130f6257", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>ข้อมูลทาง neuroscience หลายประเภท เช่น สัญญาณที่ได้จากเครื่อง electroencephalogram (EEG) เป็น signal ที่มีสัญญาณรบกวนมาก ดังนั้นการทำ signal averaging เป็นการประมวลผลแบบพื้นฐานของข้อมูลเหล่านี้ จึงได้รับความนิยมเป็นอย่างมาก</p>
 <p><strong>หมายเหตุ</strong> หากเราต้องการวัดคุณภาพของ signal เมื่อเปรียบเทียบกับปริมาณสัญญาณรบกวน ออกมาเป็นตัวเลข (quantitative metric) เราสามารถลอง metric แบบมาตรฐาน เช่น signal-to-noise ratio (SNR) หรือ Contrast-to-noise ratio (CNR) ได้</p>

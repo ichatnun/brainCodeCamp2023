@@ -537,15 +537,15 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
-  <span class="c1"># สร้างสมการเส้นตรงโดยที่จำลองการใส่สัญญาณรบกวนเข้าไป</span>
-  <span class="c1"># เลือก include_noise เป็น True เพื่อกำหนดให้มีค่า noise เพิ่มเข้าไปในสมการ</span>
-  <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
-    <span class="c1"># สร้าง Gaussian noise</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">y</span> <span class="o">=</span> <span class="n">w0</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
-  <span class="k">return</span> <span class="n">y</span>
+    <span class="c1"># สร้างสมการเส้นตรงโดยที่จำลองการใส่สัญญาณรบกวนเข้าไป</span>
+    <span class="c1"># เลือก include_noise เป็น True เพื่อกำหนดให้มีค่า noise เพิ่มเข้าไปในสมการ</span>
+    <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
+      <span class="c1"># สร้าง Gaussian noise</span>
+      <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">noise</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">w0</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
+    <span class="k">return</span> <span class="n">y</span>
 
 <span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_sample_linear</span>
 <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span>
@@ -809,17 +809,17 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_multi_linear</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">w2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
-  <span class="c1"># สร้างสมการเส้นตรงโดยที่จำลองการใส่สัญญาณรบกวนเข้าไป</span>
-  <span class="c1"># เลือก include_noise เป็น True เพื่อกำหนดให้มีค่า noise เพิ่มเข้าไปในสมการ</span>
-  <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
-    <span class="c1"># สร้าง Gaussian noise</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># สร้างสมการเส้นตรงโดยที่จำลองการใส่สัญญาณรบกวนเข้าไป</span>
+    <span class="c1"># เลือก include_noise เป็น True เพื่อกำหนดให้มีค่า noise เพิ่มเข้าไปในสมการ</span>
+    <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
+      <span class="c1"># สร้าง Gaussian noise</span>
+      <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">noise</span> <span class="o">=</span> <span class="mi">0</span>
 
-  <span class="n">y</span> <span class="o">=</span> <span class="n">w0</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">w2</span><span class="o">*</span> <span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">w0</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">w2</span><span class="o">*</span> <span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
 
-  <span class="k">return</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">y</span>
 
 
 <span class="c1"># ทดลองสร้างข้อมูลโดยการเรียกใช้ generate_sample_multi_linear</span>
@@ -830,7 +830,7 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 <span class="n">y_multi</span> <span class="o">=</span> <span class="n">generate_sample_multi_linear</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">w0_true</span><span class="p">,</span> <span class="n">w1_true</span><span class="p">,</span> <span class="n">w2_true</span><span class="p">)</span>
 
 <span class="c1"># แสดงผลภาพ</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y_multi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;contrast [a.u.]&#39;</span><span class="p">)</span>
@@ -869,7 +869,7 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
     <span class="n">y_predicted_whole_plane</span> <span class="o">=</span> <span class="n">w0_hat</span> <span class="o">+</span> <span class="n">w1_hat</span> <span class="o">*</span> <span class="n">x1_whole_plane</span> <span class="o">+</span> <span class="n">w2_hat</span> <span class="o">*</span> <span class="n">x2_whole_plane</span>
 
     <span class="c1"># Plot รูปออกมา</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1_whole_plane</span><span class="p">,</span> <span class="n">x2_whole_plane</span><span class="p">,</span> <span class="n">y_predicted_whole_plane</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y_multi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
@@ -947,7 +947,7 @@ MSE เป็นแค่หนึ่งในวิธีสำหรับว�
 <span class="n">y_predicted_whole_plane</span> <span class="o">=</span> <span class="n">model_multi_linear</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_whole_plane</span><span class="p">)</span>
 
 <span class="c1"># Plot รูปออกมา</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1_whole_plane</span><span class="p">,</span> <span class="n">x2_whole_plane</span><span class="p">,</span> <span class="n">y_predicted_whole_plane</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y_multi</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>

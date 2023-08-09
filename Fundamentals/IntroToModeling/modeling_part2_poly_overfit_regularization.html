@@ -509,7 +509,7 @@ document.write(`
 <p>ข้อมูลจำนวนมากที่พบเจอในการทำงานจริง มักมีความสัมพันธ์ที่ซับซ้อน ซึ่งเมื่อนำมา plot ดูแล้วอาจจะมีหน้าตาที่ไม่สอดคล้องกับโมเดลเชิงเส้น ดังตัวอย่างด้านล่าง ที่ <span class="math notranslate nohighlight">\(y\)</span> ถูกสร้างมาจากสมการ <span class="math notranslate nohighlight">\(y=x^2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pdb</span><span class="o">,</span> <span class="nn">sys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -527,23 +527,23 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sample_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_list</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noise_level</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 
-  <span class="c1"># จำลองการใส่สัญญาณรบกวนเข้าไป</span>
-  <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="n">noise_level</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># จำลองการใส่สัญญาณรบกวนเข้าไป</span>
+    <span class="k">if</span> <span class="n">include_noise</span><span class="p">:</span>
+      <span class="n">noise</span> <span class="o">=</span> <span class="n">noise_level</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">noise</span> <span class="o">=</span> <span class="mi">0</span>
 
-  <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
 
-  <span class="c1"># ค่อย ๆ เติม พจน์ที่มีเลขยกกำลังต่าง ๆ กัน ตาที่กำหนดไว้ใน w_list</span>
-  <span class="k">for</span> <span class="n">curr_order</span><span class="p">,</span> <span class="n">curr_w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">w_list</span><span class="p">):</span>
-    <span class="n">y</span> <span class="o">+=</span> <span class="n">curr_w</span><span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="n">curr_order</span><span class="p">)</span>
+    <span class="c1"># ค่อย ๆ เติม พจน์ที่มีเลขยกกำลังต่าง ๆ กัน ตาที่กำหนดไว้ใน w_list</span>
+    <span class="k">for</span> <span class="n">curr_order</span><span class="p">,</span> <span class="n">curr_w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">w_list</span><span class="p">):</span>
+      <span class="n">y</span> <span class="o">+=</span> <span class="n">curr_w</span><span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="n">curr_order</span><span class="p">)</span>
 
-  <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
+    <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
 
 
 <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -551,7 +551,7 @@ document.write(`
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># สร้างข้อมูลที่ไม่มีสัญญาณรบกวนมาแบบละเอียด เพื่อใช้ในการวาดกราฟ (เส้นประสีดำ)</span>
-<span class="n">x_whole_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">x_whole_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y_true_whole_line</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Plot ข้อมูล x, y ที่มีอยู่</span>
@@ -579,7 +579,6 @@ document.write(`
 <span class="n">w0_hat</span> <span class="o">=</span> <span class="n">model_linear</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">w1_hat</span> <span class="o">=</span> <span class="n">model_linear</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated slope </span><span class="si">{</span><span class="n">w1_hat</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated intercept </span><span class="si">{</span><span class="n">w0_hat</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -590,7 +589,7 @@ document.write(`
 <span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">y_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">mse_val</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="n">y_hat</span><span class="p">)</span>
+<span class="n">mse_val</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
 
 <span class="c1"># แสดงผลการทำนาย</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -647,54 +646,54 @@ Estimated intercept 8.10
                                <span class="n">x_test_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># Python dictionary ที่ใช้เก็บชุดข้อมูลที่เราอยากจะนำมาทดสอบ โดยสามารถเลือกชุดข้อมูลผ่าน key ของ dictionary นี้</span>
                                <span class="n">y_test_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># Python dictionary ที่ใช้เก็บชุดข้อมูลที่ค่า y ที่เป็นเฉลยของข้อมูลที่นำมาทดสอบ โดยสามารถเลือกชุดข้อมูลผ่าน key ของ dictionary นี้</span>
 
-  <span class="c1"># สร้างตัวแปรประเภท Python dictionary สำหรับเก็บค่า output ของฟังก์ชันนี้</span>
-  <span class="n">mse_dict</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า mse</span>
-  <span class="n">out_x</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า x ที่ใช้เป็น input ของโมเดล</span>
-  <span class="n">out_y_hat</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่โมเดลตอบมา</span>
-  <span class="n">out_y</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่เป็นเฉลย</span>
+    <span class="c1"># สร้างตัวแปรประเภท Python dictionary สำหรับเก็บค่า output ของฟังก์ชันนี้</span>
+    <span class="n">mse_dict</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า mse</span>
+    <span class="n">out_x</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า x ที่ใช้เป็น input ของโมเดล</span>
+    <span class="n">out_y_hat</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่โมเดลตอบมา</span>
+    <span class="n">out_y</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่เป็นเฉลย</span>
 
-  <span class="c1"># สร้างโมเดลสำหรับแปลงจาก x เป็น z</span>
-  <span class="n">extract_poly_feat</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="n">poly_order</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># สร้างโมเดลสำหรับแปลงจาก x เป็น z</span>
+    <span class="n">extract_poly_feat</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="n">poly_order</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-  <span class="c1"># แปลงจากค่า x ให้กลายเป็น z</span>
-  <span class="n">z_train</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+    <span class="c1"># แปลงจากค่า x ให้กลายเป็น z</span>
+    <span class="n">z_train</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 
-  <span class="c1"># สร้างโมเดล y = w_0 + w_1*z_1 + w_2 * z_2 + ...</span>
-  <span class="n">model_poly</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="c1"># สร้างโมเดล y = w_0 + w_1*z_1 + w_2 * z_2 + ...</span>
+    <span class="n">model_poly</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 
-  <span class="c1"># สอนโมเดลจาก training data ที่ input ถูก transfrom จาก x มาเป็น z แล้ว</span>
-  <span class="n">model_poly</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="c1"># สอนโมเดลจาก training data ที่ input ถูก transfrom จาก x มาเป็น z แล้ว</span>
+    <span class="n">model_poly</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-  <span class="c1"># ทดสอบโมเดลบน training data</span>
-  <span class="n">y_hat_train</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_train</span><span class="p">)</span>
+    <span class="c1"># ทดสอบโมเดลบน training data</span>
+    <span class="n">y_hat_train</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_train</span><span class="p">)</span>
 
-  <span class="c1"># ถ้าเกิดว่า user ไม่ได้ให้ test data มา จะใช้ training data เป็น test data</span>
-  <span class="k">if</span> <span class="n">x_test_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">x_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">y_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># ถ้าเกิดว่า user ไม่ได้ให้ test data มา จะใช้ training data เป็น test data</span>
+    <span class="k">if</span> <span class="n">x_test_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">x_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">y_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
-  <span class="c1"># เพิ่ม training data เข้าไปใน test_dict เพื่อที่จะใช้เป็นหนึ่งในข้อมูลสำหรับที่จะให้โมเดลลองทำนาย</span>
-  <span class="n">x_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_train</span>
-  <span class="n">y_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>
+    <span class="c1"># เพิ่ม training data เข้าไปใน test_dict เพื่อที่จะใช้เป็นหนึ่งในข้อมูลสำหรับที่จะให้โมเดลลองทำนาย</span>
+    <span class="n">x_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_train</span>
+    <span class="n">y_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>
 
-  <span class="c1"># ทดสอบโมเดลบนข้อมูลแต่ละชุดข้อมูล (แต่ละชุดข้อมูลถูกเลือกจาก key ของ dictionary)</span>
-  <span class="k">for</span> <span class="n">curr_mode</span> <span class="ow">in</span> <span class="n">x_test_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="c1"># ทดสอบโมเดลบนข้อมูลแต่ละชุดข้อมูล (แต่ละชุดข้อมูลถูกเลือกจาก key ของ dictionary)</span>
+    <span class="k">for</span> <span class="n">curr_mode</span> <span class="ow">in</span> <span class="n">x_test_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
 
-    <span class="c1"># แปลงค่า x ให้เป็น z เหมือนขั้นตอนด้านบนที่เรา fit โมเดล</span>
-    <span class="n">z_test</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">])</span>
+        <span class="c1"># แปลงค่า x ให้เป็น z เหมือนขั้นตอนด้านบนที่เรา fit โมเดล</span>
+        <span class="n">z_test</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">])</span>
 
-    <span class="c1"># ทำนายค่า y โดยใช้โมเดล</span>
-    <span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_test</span><span class="p">)</span>
+        <span class="c1"># ทำนายค่า y โดยใช้โมเดล</span>
+        <span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_test</span><span class="p">)</span>
 
-    <span class="c1"># คำนวณค่า mse บน test data</span>
-    <span class="n">mse_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">],</span> <span class="n">y_hat_test</span><span class="p">)</span>
+        <span class="c1"># คำนวณค่า mse บน test data</span>
+        <span class="n">mse_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">],</span> <span class="n">y_hat_test</span><span class="p">)</span>
 
-    <span class="c1"># เตรียมข้อมูลเป็น output ของฟังก์ชันนี้ เผื่อเรียกใช้ภายหลัง เช่น การนำเอาข้อมูลไป plot</span>
-    <span class="n">out_x</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า x ที่นำมาทดสอบ</span>
-    <span class="n">out_y_hat</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hat_test</span> <span class="c1"># เก็บค่า y ที่โมเดลทำนายออกมา</span>
-    <span class="n">out_y</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า y ที่เป็นผลเฉลย</span>
+        <span class="c1"># เตรียมข้อมูลเป็น output ของฟังก์ชันนี้ เผื่อเรียกใช้ภายหลัง เช่น การนำเอาข้อมูลไป plot</span>
+        <span class="n">out_x</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า x ที่นำมาทดสอบ</span>
+        <span class="n">out_y_hat</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hat_test</span> <span class="c1"># เก็บค่า y ที่โมเดลทำนายออกมา</span>
+        <span class="n">out_y</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า y ที่เป็นผลเฉลย</span>
 
-  <span class="k">return</span> <span class="n">out_x</span><span class="p">,</span> <span class="n">out_y_hat</span><span class="p">,</span> <span class="n">out_y</span><span class="p">,</span> <span class="n">mse_dict</span><span class="p">,</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">out_x</span><span class="p">,</span> <span class="n">out_y_hat</span><span class="p">,</span> <span class="n">out_y</span><span class="p">,</span> <span class="n">mse_dict</span><span class="p">,</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <span class="c1"># polynomial order</span>
@@ -734,7 +733,7 @@ Estimated intercept 8.10
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># มีจำนวนข้อมูลแค่ 10 จุด</span>
 <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">x_train</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -747,31 +746,31 @@ Estimated intercept 8.10
                   <span class="n">show_true_line</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Show true data&#39;</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">plot_poly_results</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">show_true_line</span><span class="p">):</span>
 
-  <span class="c1"># fit โมเดล และให้โมเดลทำนายค่า y ออกมา</span>
-  <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="c1"># fit โมเดล และให้โมเดลทำนายค่า y ออกมา</span>
+    <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 
-  <span class="c1"># ดึงเอา output ของฟังก์ชันออกมา</span>
-  <span class="n">out_x</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># ค่า x ที่ถูกใช้ทดสอบโมเดล</span>
-  <span class="n">out_y_hat</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># ค่า y ที่โมเดลทำนายออกมา</span>
-  <span class="n">mse_dict</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># ค่า mse ระหว่างสิ่งที่โมเดลทำนายออกมาและผลเฉลย</span>
+    <span class="c1"># ดึงเอา output ของฟังก์ชันออกมา</span>
+    <span class="n">out_x</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># ค่า x ที่ถูกใช้ทดสอบโมเดล</span>
+    <span class="n">out_y_hat</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># ค่า y ที่โมเดลทำนายออกมา</span>
+    <span class="n">mse_dict</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># ค่า mse ระหว่างสิ่งที่โมเดลทำนายออกมาและผลเฉลย</span>
 
-  <span class="c1"># สร้าง figure</span>
-  <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="c1"># สร้าง figure</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 
-  <span class="c1"># Plot ข้อมูลที่เราใช้ fit โมเดล (สอนโมเดล)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+    <span class="c1"># Plot ข้อมูลที่เราใช้ fit โมเดล (สอนโมเดล)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
 
-  <span class="c1"># Plot ข้อมูลที่โมเดลทำนายค่าออกมา</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_x</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">out_y_hat</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly)&#39;</span><span class="p">)</span>
+    <span class="c1"># Plot ข้อมูลที่โมเดลทำนายค่าออกมา</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_x</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">out_y_hat</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly)&#39;</span><span class="p">)</span>
 
-  <span class="c1"># Plot ข้อมูลที่ไม่มี noise สำหรับเป็น reference ไว้ดู</span>
-  <span class="k">if</span> <span class="n">show_true_line</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+    <span class="c1"># Plot ข้อมูลที่ไม่มี noise สำหรับเป็น reference ไว้ดู</span>
+    <span class="k">if</span> <span class="n">show_true_line</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 
-  <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> with MSE = </span><span class="si">{</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> with MSE = </span><span class="si">{</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -782,45 +781,45 @@ Estimated intercept 8.10
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ลองทดสอบเปลี่ยนค่า polynomial order</span>
-<span class="n">poly_order_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>
+<span class="n">poly_order_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
 <span class="n">mse_list</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># ตัวแปรสำหรับเก็บค่า mse</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">curr_poly_order</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">poly_order_list</span><span class="p">):</span>
 
-  <span class="c1"># fit โมเดล และให้โมเดลทำนายค่า y ออกมา</span>
-  <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">curr_poly_order</span><span class="p">)</span>
+    <span class="c1"># fit โมเดล และให้โมเดลทำนายค่า y ออกมา</span>
+    <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">curr_poly_order</span><span class="p">)</span>
 
-  <span class="c1"># ดึงเอา output ของฟังก์ชันออกมา</span>
-  <span class="n">out_x</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># ค่า x ที่ถูกใช้ทดสอบโมเดล</span>
-  <span class="n">out_y_hat</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># ค่า y ที่โมเดลทำนายออกมา</span>
-  <span class="n">mse_dict</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># ค่า mse ระหว่างสิ่งที่โมเดลทำนายออกมาและผลเฉลย</span>
+    <span class="c1"># ดึงเอา output ของฟังก์ชันออกมา</span>
+    <span class="n">out_x</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># ค่า x ที่ถูกใช้ทดสอบโมเดล</span>
+    <span class="n">out_y_hat</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># ค่า y ที่โมเดลทำนายออกมา</span>
+    <span class="n">mse_dict</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># ค่า mse ระหว่างสิ่งที่โมเดลทำนายออกมาและผลเฉลย</span>
 
-  <span class="c1"># เก็บค่า mse ของแต่ละชุดข้อมูลที่นำมาทดสอบที่มีค่า order ของ polynomial ที่แตกต่างกัน</span>
-  <span class="n">mse_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])</span>
+    <span class="c1"># เก็บค่า mse ของแต่ละชุดข้อมูลที่นำมาทดสอบที่มีค่า order ของ polynomial ที่แตกต่างกัน</span>
+    <span class="n">mse_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])</span>
 
-  <span class="c1"># แสดงผล</span>
-  <span class="k">if</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">fig_row</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># แสดงผล</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig_row</span> <span class="o">+=</span> <span class="mi">1</span>
 
-  <span class="c1"># Plot ข้อมูลที่เราใช้ fit โมเดล (สอนโมเดล)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+    <span class="c1"># Plot ข้อมูลที่เราใช้ fit โมเดล (สอนโมเดล)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
 
-  <span class="c1"># Plot ข้อมูลที่โมเดลทำนายค่าออกมา</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_x</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">out_y_hat</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly)&#39;</span><span class="p">)</span>
+    <span class="c1"># Plot ข้อมูลที่โมเดลทำนายค่าออกมา</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out_x</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">out_y_hat</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly)&#39;</span><span class="p">)</span>
 
-  <span class="c1"># Plot ข้อมูลที่ไม่มี noise สำหรับเป็น reference ไว้ดู</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+    <span class="c1"># Plot ข้อมูลที่ไม่มี noise สำหรับเป็น reference ไว้ดู</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order = </span><span class="si">{</span><span class="n">curr_poly_order</span><span class="si">}</span><span class="s2"> with MSE = </span><span class="si">{</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order = </span><span class="si">{</span><span class="n">curr_poly_order</span><span class="si">}</span><span class="s2"> with MSE = </span><span class="si">{</span><span class="n">mse_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span><span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-  
-  <span class="n">fig_col</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    
+    <span class="n">fig_col</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="c1"># แสดงผล mse vs poly order</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -867,7 +866,7 @@ Estimated intercept 8.10
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># แสดงค่า w ของโมเดล</span>
@@ -893,7 +892,7 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลสำหรับใช้ทดสอบจำนวนมาก</span>
-<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Underfit</span>
@@ -912,14 +911,14 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <span class="n">y_hat_test_overfit</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
 
 <span class="c1"># แสดงผลการทำนาย</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test_underfit</span><span class="p">,</span> <span class="n">y_hat_test_underfit</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Underfitting&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
@@ -927,14 +926,14 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test_overfit</span><span class="p">,</span> <span class="n">y_hat_test_overfit</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Overfitting&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1012,55 +1011,55 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
                                      <span class="n">x_test_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># Python dictionary ที่ใช้เก็บชุดข้อมูลที่เราอยากจะนำมาทดสอบ โดยสามารถเลือกชุดข้อมูลผ่าน key ของ dictionary นี้</span>
                                      <span class="n">y_test_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># Python dictionary ที่ใช้เก็บชุดข้อมูลที่ค่า y ที่เป็นเฉลยของข้อมูลที่นำมาทดสอบ โดยสามารถเลือกชุดข้อมูลผ่าน key ของ dictionary นี้</span>
 
-  <span class="c1"># สร้างตัวแปรประเภท Python dictionary สำหรับเก็บค่า output ของฟังก์ชันนี้</span>
-  <span class="n">mse_dict</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า mse</span>
-  <span class="n">out_x</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า x ที่ใช้เป็น input ของโมเดล</span>
-  <span class="n">out_y_hat</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่โมเดลตอบมา</span>
-  <span class="n">out_y</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่เป็นเฉลย</span>
+    <span class="c1"># สร้างตัวแปรประเภท Python dictionary สำหรับเก็บค่า output ของฟังก์ชันนี้</span>
+    <span class="n">mse_dict</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า mse</span>
+    <span class="n">out_x</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า x ที่ใช้เป็น input ของโมเดล</span>
+    <span class="n">out_y_hat</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่โมเดลตอบมา</span>
+    <span class="n">out_y</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># ค่า y ที่เป็นเฉลย</span>
 
-  <span class="c1"># สร้างโมเดลสำหรับแปลงจาก x เป็น z</span>
-  <span class="n">extract_poly_feat</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="n">poly_order</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># สร้างโมเดลสำหรับแปลงจาก x เป็น z</span>
+    <span class="n">extract_poly_feat</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="n">poly_order</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-  <span class="c1"># แปลงจากค่า x ให้กลายเป็น z</span>
-  <span class="n">z_train</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+    <span class="c1"># แปลงจากค่า x ให้กลายเป็น z</span>
+    <span class="n">z_train</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 
-  <span class="c1">########### เราจะแก้แค่บรรทัดนี้โดยเปลี่ยนจาก LinearRegression มาเป็น Ridge() ###########</span>
-  <span class="c1"># สร้างโมเดล y = w_0 + w_1*z + w_2 * z^2 + ... ที่มี L2 regularization</span>
-  <span class="n">model_poly</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">lambda_val</span><span class="o">*</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1">########### เราจะแก้แค่บรรทัดนี้โดยเปลี่ยนจาก LinearRegression มาเป็น Ridge() ###########</span>
+    <span class="c1"># สร้างโมเดล y = w_0 + w_1*z + w_2 * z^2 + ... ที่มี L2 regularization</span>
+    <span class="n">model_poly</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">lambda_val</span><span class="o">*</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-  <span class="c1"># สอนโมเดลจาก training data ที่ input ถูก transfrom จาก x มาเป็น z แล้ว</span>
-  <span class="n">model_poly</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="c1"># สอนโมเดลจาก training data ที่ input ถูก transfrom จาก x มาเป็น z แล้ว</span>
+    <span class="n">model_poly</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-  <span class="c1"># ทดสอบโมเดลบน training data</span>
-  <span class="n">y_hat_train</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_train</span><span class="p">)</span>
+    <span class="c1"># ทดสอบโมเดลบน training data</span>
+    <span class="n">y_hat_train</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_train</span><span class="p">)</span>
 
-  <span class="c1"># ถ้าเกิดว่า user ไม่ได้ให้ test data มา จะใช้ training data เป็น test data</span>
-  <span class="k">if</span> <span class="n">x_test_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">x_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">y_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># ถ้าเกิดว่า user ไม่ได้ให้ test data มา จะใช้ training data เป็น test data</span>
+    <span class="k">if</span> <span class="n">x_test_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">x_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">y_test_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
-  <span class="c1"># เพิ่ม training data เข้าไปใน test_dict เพื่อที่จะใช้เป็นหนึ่งในข้อมูลสำหรับที่จะให้โมเดลลองทำนาย</span>
-  <span class="n">x_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_train</span>
-  <span class="n">y_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>
+    <span class="c1"># เพิ่ม training data เข้าไปใน test_dict เพื่อที่จะใช้เป็นหนึ่งในข้อมูลสำหรับที่จะให้โมเดลลองทำนาย</span>
+    <span class="n">x_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_train</span>
+    <span class="n">y_test_dict</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>
 
-  <span class="c1"># ทดสอบโมเดลบนข้อมูลแต่ละชุดข้อมูล (แต่ละชุดข้อมูลถูกเลือกจาก key ของ dictionary)</span>
-  <span class="k">for</span> <span class="n">curr_mode</span> <span class="ow">in</span> <span class="n">x_test_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="c1"># ทดสอบโมเดลบนข้อมูลแต่ละชุดข้อมูล (แต่ละชุดข้อมูลถูกเลือกจาก key ของ dictionary)</span>
+    <span class="k">for</span> <span class="n">curr_mode</span> <span class="ow">in</span> <span class="n">x_test_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
 
-    <span class="c1"># แปลงค่า x ให้เป็น z เหมือนขั้นตอนด้านบนที่เรา fit โมเดล</span>
-    <span class="n">z_test</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">])</span>
+        <span class="c1"># แปลงค่า x ให้เป็น z เหมือนขั้นตอนด้านบนที่เรา fit โมเดล</span>
+        <span class="n">z_test</span> <span class="o">=</span> <span class="n">extract_poly_feat</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">])</span>
 
-    <span class="c1"># ทำนายค่า y โดยใช้โมเดล</span>
-    <span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_test</span><span class="p">)</span>
+        <span class="c1"># ทำนายค่า y โดยใช้โมเดล</span>
+        <span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_test</span><span class="p">)</span>
 
-    <span class="c1"># คำนวณค่า mse บน test data</span>
-    <span class="n">mse_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">],</span> <span class="n">y_hat_test</span><span class="p">)</span>
+        <span class="c1"># คำนวณค่า mse บน test data</span>
+        <span class="n">mse_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">],</span> <span class="n">y_hat_test</span><span class="p">)</span>
 
-    <span class="c1"># เตรียมข้อมูลเป็น output ของฟังก์ชันนี้ เผื่อเรียกใช้ภายหลัง เช่น การนำเอาข้อมูลไป plot</span>
-    <span class="n">out_x</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า x ที่นำมาทดสอบ</span>
-    <span class="n">out_y_hat</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hat_test</span> <span class="c1"># เก็บค่า y ที่โมเดลทำนายออกมา</span>
-    <span class="n">out_y</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า y ที่เป็นผลเฉลย</span>
+        <span class="c1"># เตรียมข้อมูลเป็น output ของฟังก์ชันนี้ เผื่อเรียกใช้ภายหลัง เช่น การนำเอาข้อมูลไป plot</span>
+        <span class="n">out_x</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า x ที่นำมาทดสอบ</span>
+        <span class="n">out_y_hat</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_hat_test</span> <span class="c1"># เก็บค่า y ที่โมเดลทำนายออกมา</span>
+        <span class="n">out_y</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_test_dict</span><span class="p">[</span><span class="n">curr_mode</span><span class="p">]</span> <span class="c1"># เก็บค่า y ที่เป็นผลเฉลย</span>
 
-  <span class="k">return</span> <span class="n">out_x</span><span class="p">,</span> <span class="n">out_y_hat</span><span class="p">,</span> <span class="n">out_y</span><span class="p">,</span> <span class="n">mse_dict</span><span class="p">,</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">out_x</span><span class="p">,</span> <span class="n">out_y_hat</span><span class="p">,</span> <span class="n">out_y</span><span class="p">,</span> <span class="n">mse_dict</span><span class="p">,</span> <span class="n">model_poly</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1077,11 +1076,11 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noise_level</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
 <span class="c1"># สร้างข้อมูลที่ไม่มีสัญญาณรบกวนมาเปรียบเทียบ</span>
-<span class="n">x_whole_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">x_whole_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y_true_whole_line</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># สร้างข้อมูลสำหรับใช้ทดสอบ</span>
-<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">generate_sample_poly</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">include_noise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># ทดลองปรับค่า lambda ดู</span>
@@ -1090,48 +1089,49 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <span class="c1"># กำหนดให้ใช้ polynomial ที่มี order = 15</span>
 <span class="n">poly_order</span> <span class="o">=</span> <span class="mi">15</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
-<span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">curr_lambda</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lambda_list</span><span class="p">):</span>
 
-  <span class="c1"># fit โมเดล ที่มี L2 regularization และให้โมเดลทำนายค่า y ออกมา</span>
-  <span class="k">if</span> <span class="n">curr_lambda</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># fit โมเดล ที่มี L2 regularization และให้โมเดลทำนายค่า y ออกมา</span>
+    <span class="k">if</span> <span class="n">curr_lambda</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 
-    <span class="c1"># ถ้าไม่มี regularization จะเรียกใช้ฟังก์ชันเดิม</span>
-    <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span>
-                                              <span class="n">y_train</span><span class="p">,</span>
-                                              <span class="n">poly_order</span><span class="p">,</span>
-                                              <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">},</span>
-                                              <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">})</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="c1"># ถ้ามี regularization จะใช้ฟังก์ชันใหม่</span>
-    <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial_ridge</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span>
-                                                    <span class="n">y_train</span><span class="p">,</span>
-                                                    <span class="n">poly_order</span><span class="p">,</span>
-                                                    <span class="n">curr_lambda</span><span class="p">,</span>
-                                                    <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">},</span>
-                                                    <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">})</span>
+        <span class="c1"># ถ้าไม่มี regularization จะเรียกใช้ฟังก์ชันเดิม</span>
+        <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span>
+                                                  <span class="n">y_train</span><span class="p">,</span>
+                                                  <span class="n">poly_order</span><span class="p">,</span>
+                                                  <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">},</span>
+                                                  <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># ถ้ามี regularization จะใช้ฟังก์ชันใหม่</span>
+        <span class="n">curr_outputs</span> <span class="o">=</span> <span class="n">fit_and_predict_polynomial_ridge</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span>
+                                                        <span class="n">y_train</span><span class="p">,</span>
+                                                        <span class="n">poly_order</span><span class="p">,</span>
+                                                        <span class="n">curr_lambda</span><span class="p">,</span>
+                                                        <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">x_test</span><span class="p">},</span>
+                                                        <span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">})</span>
 
-  <span class="n">x_test</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
-  <span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
-  <span class="n">term2_val</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">curr_outputs</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Compute the squared L2 norm of the model&#39;s coefficients</span>
+    <span class="n">x_test</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
+    <span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">curr_outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;test&#39;</span><span class="p">]</span>
+    <span class="n">term2_val</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">curr_outputs</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Compute the squared L2 norm of the model&#39;s coefficients</span>
 
-  <span class="c1"># แสดงผลการทำนาย</span>
-  <span class="k">if</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">fig_row</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># แสดงผลการทำนาย</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">fig_col</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig_row</span> <span class="o">+=</span> <span class="mi">1</span>
 
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_hat_test</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly order = 15)&#39;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-  <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lambda = </span><span class="si">{</span><span class="n">curr_lambda</span><span class="si">}</span><span class="s2">, the value of the reg term = </span><span class="si">{</span><span class="n">term2_val</span><span class="si">:</span><span class="s2">0.7f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_hat_test</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted (poly order = 15)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_whole_line</span><span class="p">,</span> <span class="n">y_true_whole_line</span><span class="p">,</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">fig_row</span><span class="p">,</span> <span class="n">fig_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lambda = </span><span class="si">{</span><span class="n">curr_lambda</span><span class="si">}</span><span class="s2">, the value of the reg term = </span><span class="si">{</span><span class="n">term2_val</span><span class="si">:</span><span class="s2">0.7f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-  <span class="n">fig_col</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">fig_col</span> <span class="o">+=</span> <span class="mi">1</span>
+    
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
