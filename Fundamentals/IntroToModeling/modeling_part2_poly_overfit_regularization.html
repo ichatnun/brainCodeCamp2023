@@ -504,6 +504,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="polynomial-regression-overfitting-and-regularization">
 <h1>Polynomial Regression, Overfitting, and Regularization<a class="headerlink" href="#polynomial-regression-overfitting-and-regularization" title="Permalink to this heading">#</a></h1>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KnaS7PhiUj8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<p><a class="reference external" href="https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/IntroToModeling/modeling_part2a_polynomial1.pdf">Slides: Polynomial Regression, Overfitting and Regularization 1</a></p>
+<br>
 <p>ข้อมูลจำนวนมากที่พบเจอในการทำงานจริง มักมีความสัมพันธ์ที่ซับซ้อน ซึ่งเมื่อนำมา plot ดูแล้วอาจจะมีหน้าตาที่ไม่สอดคล้องกับโมเดลเชิงเส้น ดังตัวอย่างด้านล่าง ที่ <span class="math notranslate nohighlight">\(y\)</span> ถูกสร้างมาจากสมการ <span class="math notranslate nohighlight">\(y=x^2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -952,6 +954,8 @@ Code ส่วนถัดไปสร้างภาพสรุป concept น
 <section id="regularization">
 <h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u4EPgpzqtb8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<p><a class="reference external" href="https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/IntroToModeling/modeling_part2b_polynomial2.pdf">Slides: Polynomial Regression, Overfitting and Regularization 2</a></p>
+<br>
 <p>ที่ผ่านมา เราหาค่า <span class="math notranslate nohighlight">\(\hat{w}\)</span> ที่เหมาะสมในโมเดล polynomial regression โดยการหาค่าต่ำสุดของ loss function ที่วัดความแตกต่างระหว่างค่าที่โมเดลทำนายออกมา (<span class="math notranslate nohighlight">\(\hat{y_i}\)</span>) และค่าที่เรา observed มา (<span class="math notranslate nohighlight">\(y_i\)</span>) โดยการคำนวณ mean-squared error หรือ</p>
 <div class="math notranslate nohighlight">
 \[L(y, \hat{y})
