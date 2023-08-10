@@ -39,6 +39,7 @@ parts:
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L2_BiologicalNeuron
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L3_NeuralPopulationTuning
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L4_NeuralRepresentation
+        - file: Fundamentals/BrainBuildingBlocks/Session5/S5L5_HowDoesBrainDecide
     - file: Fundamentals/BrainBuildingBlocks/Session6/S6_Intro
       sections:
         - file: Fundamentals/BrainBuildingBlocks/Session6/S6L1_DataHandlingAndExploration
@@ -60,19 +61,16 @@ parts:
     - file: Fundamentals/BrainBuildingBlocks/Session9/S9_Intro
       sections:
       - file: Fundamentals/BrainBuildingBlocks/Session9/S9L2_BrainComputerInterface
-  - caption: Prerequisites
-    chapters:
-    - file: Fundamentals/Prereqs/00_basic_python
-      title: Python
-    - file: Fundamentals/Prereqs/01_numpy
-      title: Numpy
+
   - caption: Prerequisites
     chapters:
     - file: Fundamentals/Prereqs/BBB2BCC/PrereqBCC
       sections:
-      - file: Fundamentals/Prereqs/BBB2BCC/NonParametricStatistics
-      - file: Fundamentals/Prereqs/BBB2BCC/DimensionalityReduction
       - file: Fundamentals/Prereqs/BBB2BCC/DataVisualization
+      - file: Fundamentals/Prereqs/BBB2BCC/DimensionalityReduction
+      - file: Fundamentals/Prereqs/BBB2BCC/NeuroScienceData
+      - file: Fundamentals/Prereqs/BBB2BCC/Modeling
+
     - file: Fundamentals/Prereqs/Coding/PrereqCoding
       sections:
       - file: Fundamentals/Prereqs/Coding/00_basic_python
@@ -166,4 +164,14 @@ parts:
     #   title: Neural Spiking (Week 10)
     # - file: Applications/fMRI/Intro
     #   title: fMRI (Week 11)
+
+  - caption: Extra Resources
+    chapters:
+    - file: ExtraResources/HandsOnDeepLearningWithPytorch
+    - file: ExtraResources/RecurrentNeuralNetwork
+    - file: ExtraResources/AttentionTransformer
+    - file: ExtraResources/GraphNeuralNetwork
+    - file: ExtraResources/ReinforcementLearning
+    - file: ExtraResources/Statistics
+    
 
