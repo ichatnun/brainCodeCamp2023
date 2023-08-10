@@ -68,7 +68,6 @@ parts:
       sections:
       - file: Fundamentals/Prereqs/BBB2BCC/DataVisualization
       - file: Fundamentals/Prereqs/BBB2BCC/DimensionalityReduction
-      - file: Fundamentals/Prereqs/BBB2BCC/Statistics
       - file: Fundamentals/Prereqs/BBB2BCC/NeuroScienceData
       - file: Fundamentals/Prereqs/BBB2BCC/Modeling
 
@@ -175,5 +174,6 @@ parts:
     - file: ExtraResources/AttentionTransformer
     - file: ExtraResources/GraphNeuralNetwork
     - file: ExtraResources/ReinforcementLearning
+    - file: ExtraResources/Statistics
     
 
