@@ -39,6 +39,7 @@ parts:
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L2_BiologicalNeuron
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L3_NeuralPopulationTuning
         - file: Fundamentals/BrainBuildingBlocks/Session5/S5L4_NeuralRepresentation
+        - file: Fundamentals/BrainBuildingBlocks/Session5/S5L5_HowDoesBrainDecide
     - file: Fundamentals/BrainBuildingBlocks/Session6/S6_Intro
       sections:
         - file: Fundamentals/BrainBuildingBlocks/Session6/S6L1_DataHandlingAndExploration
