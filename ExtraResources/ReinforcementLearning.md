@@ -28,4 +28,4 @@ Part 5: RL & Neuroscience
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4Ktt4ZS84f0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-[Slides: ReinforcementLearning](https://drive.google.com/file/d/1oscO8TumPHrjLD0dHJkiX8U_lHyfaKMp/view?usp=sharing)
+[Slides: Reinforcement Learning](https://drive.google.com/file/d/1oscO8TumPHrjLD0dHJkiX8U_lHyfaKMp/view?usp=sharing)
