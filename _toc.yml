@@ -170,9 +170,9 @@ parts:
   - caption: Extra Resources
     chapters:
     - file: ExtraResources/HandsOnDeepLearningWithPytorch
-    - file: ExtraResources/ReinforcementLearning
     - file: ExtraResources/RecurrentNeuralNetwork
     - file: ExtraResources/AttentionTransformer
     - file: ExtraResources/GraphNeuralNetwork
+    - file: ExtraResources/ReinforcementLearning
     
 
