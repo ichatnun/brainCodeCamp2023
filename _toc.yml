@@ -130,6 +130,7 @@ parts:
     - file: Fundamentals/DeepLearning/deep_learning_intro
       title: DL Part 1 (Week 7)
       sections:
+      - file: Fundamentals/DeepLearning/deep_learning_fundamentals
       - file: Fundamentals/DeepLearning/intro_pytorch
         title: Pytorch
       - file: Fundamentals/DeepLearning/intro_to_convolutional_nn
