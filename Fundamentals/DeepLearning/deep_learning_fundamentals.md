@@ -12,6 +12,8 @@ From Traditional Machine Learning to Deep Learning
 Fully Connected Layers, Activation Function, and Loss Function
 ---
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uREh-0Z6PRk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 [Slides: Fully Connected Layers, Activation Function, and Loss Function](https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/DeepLearning/deep_learning_dense_activation_loss.pdf)
 
 <br>
@@ -44,7 +46,7 @@ Convolutional Neural Network
 
 <br>
 
-**หมายเหตุ** โค้ดที่มีเป็นตัวอย่างใน video lectures ด้านบนจะเขียนด้วย `tensorflow.keras` โดยที่ผู้เรียนที่ต้องการเรียนรู้การใช้ `tensorflow.keras` เพิ่มเติมเป็นภาษาไทย สามารถศึกษาได้ต่อในอีกหลายช่องทาง เช่น video lectures ของ https://youtube.com/playlist?list=PLJIJClalm2xOsbu69R_yRG3RPVU3gIQKa ที่มีคำว่า practical ใน title
+**หมายเหตุ** โค้ดที่มีเป็นตัวอย่างใน video lectures ด้านบนจะเขียนด้วย `tensorflow.keras` โดยที่ผู้เรียนที่ต้องการเรียนรู้การใช้ `tensorflow.keras` เพิ่มเติมเป็นภาษาไทย สามารถศึกษาได้ต่อในอีกหลายช่องทาง เช่น video lectures ของ [MTEC Machine Learning Workshop](https://youtube.com/playlist?list=PLJIJClalm2xOsbu69R_yRG3RPVU3gIQKa) ที่มีคำว่า practical ใน title
 
 <br>
 
