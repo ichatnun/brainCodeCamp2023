@@ -46,7 +46,7 @@ Convolutional Neural Network
 
 <br>
 
-**หมายเหตุ** โค้ดที่มีเป็นตัวอย่างใน video lectures ด้านบนจะเขียนด้วย `tensorflow.keras` โดยที่ผู้เรียนที่ต้องการเรียนรู้การใช้ `tensorflow.keras` เพิ่มเติมเป็นภาษาไทย สามารถศึกษาได้ต่อในอีกหลายช่องทาง เช่น video lectures ของ [MTEC Machine Learning Workshop](https://youtube.com/playlist?list=PLJIJClalm2xOsbu69R_yRG3RPVU3gIQKa) ที่มีคำว่า practical ใน title
+**หมายเหตุ** โค้ดที่มีเป็นตัวอย่างใน video lectures ด้านบนจะเขียนด้วย `tensorflow.keras` โดยที่ผู้เรียนที่ต้องการเรียนรู้การใช้ `tensorflow.keras` เพิ่มเติมเป็นภาษาไทย สามารถศึกษาได้ต่อในอีกหลายช่องทาง เช่น video lectures ของ [MTEC Machine Learning Workshop](https://youtube.com/playlist?list=PLJIJClalm2xOsbu69R_yRG3RPVU3gIQKa) โดยเฉพาะอย่างยิ่ง lecture ที่ชื่อว่า [Deep Learning Practical II](https://youtu.be/dVzivZQ1Fv4)
 
 <br>
 
