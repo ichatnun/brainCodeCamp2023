@@ -53,10 +53,75 @@
 
 ## การแบ่งกลุ่มย่อยสำหรับ Office Hours
 
-จะประกาศกลุ่มย่อยในภายหลัง
+**Classroom 1 (ที่ปรึกษา: โบนัส และ ออม)**
+* สิปปณัฐ อาชวนันทกิษฐ์
+* เจริญชาติ แซ่จาง
+* ภิริพันธ์ เดชา
+* Sirawarit Chuethamchan
+* ฆนัท บุญจง
+* ปัณณวิชญ์ หวานแท้
+
+**Classroom 2 (ที่ปรึกษา: ป๊อบ และ พันซ์)**
+* วรสฤษดิ์ แสงสุย
+* กิตติมา แก้วนิล
+* จิรายุ ศุภศิลป์
+* วิษณุ สิมาลัย
+* กนกกฤษฏิ์ กังวาลเกียรติ
+* ธัญ พรหมแสง
+
+**Classroom 3 (ที่ปรึกษา: แพรว และ เอ๋)**
+* อรณัฐ ชัยชนะสิทธิการ
+* เตชินี กุกำจัด
+* กันต์ธีร์ ดวงมณี
+* ปัญจพงศ์​ ภูบาลชื่น
+* ลลิตา ดีเลิศ
+* คมกฤษฑ์ บุญปีติชาติ
+* ไอริณ อินทรทัต
+
+**Classroom 4 (ที่ปรึกษา: โจ และ กิฟท์)**
+* เอมอร สว่างจิตเมตตา
+* Thiti Ponkosonsirilert
+* กนกวรรณวิจิตร วงศ์สุข
+* ปิยะธิดา ทองภู
+* เสกสรร ยอดสนิท
+* ธนพร ป้อมสถิตย์
+* ธีรดณย์ ศักดิ์เพชร
+
+**Classroom 5 (ที่ปรึกษา: แทน และ อ๋อง)**
+* มงกุฎ คลังพรคุณ
+* ธเนศพล อภัยสุเทพพร
+* กฤตภาส ชัยศุจยากร
+* Tananan Anansubying
+* Dai Honda
+* พิตตินันท์ เวทยานนท์
+
+**Classroom 6 (ที่ปรึกษา: ปริน และ โม)**
+* วรดร โภคินอนันต์
+* วัชรชัย กันใจแก้ว
+* เสฐียรพงษ์ พงษ์เสฐียร
+* อภินันท์ สนองสินธุ์
+* ปิติกร คล้ายสำเนียง
+* ธนพิชญ์ สุทธิปัญโญ
+
+**Classroom 7 (ที่ปรึกษา: ปัน และ อู๋)**
+* Pakorn Pasitsuparoad
+* ปองศักดิ์ คณานุรักษ์
+* Jillaphat Jaroenkantasima
+* Peamboon Thomchotpong
+* พุฒิเมธ หิรัณย์อุฬาร
+* พิชชาภา จุณณทัศน์
+
+**Classroom 8 (ที่ปรึกษา: ณัฐ และ มอส)**
+* จตุพงศ์ อบอุ่น
+* กุลกันต์ แก้วกัลยา
+* นราวิชญ์ ประเทืองสุขพงษ์
+* นายชินดนัย ณ ตะกั่วทุ่ง
+* Pattakit Charoensedtakul
+* Jirat Chiaranaipanich
 
 <b> หมายเหตุ </b>
-กลุ่มย่อยนี้จะใช้สำหรับ discuss เนื้อหาบทเรียนและพูดคุยเกี่ยวกับโปรเจคในช่วง office hours ซึ่งจะไม่ใช่กลุ่มสำหรับทำโปรเจคโดยตรง
+* กลุ่มย่อยนี้จะใช้สำหรับ discuss เนื้อหาบทเรียนและพูดคุยเกี่ยวกับโปรเจคในช่วง office hours ซึ่งจะไม่ใช่กลุ่มสำหรับทำโปรเจคโดยตรง
+* อาจมีการเปลี่ยนแปลงรายชื่อในกลุ่มย่อยได้ในภายหลัง
 
 
 ## Teachers
@@ -285,10 +350,28 @@
     <div class="card h-100">
         <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/kanathip_jongmekwamsuk.png?raw=true" class="card-img-top" alt="kanathip_jongmekwamsuk">
         <div class="card-body">
-            <h5 class="card-title m-0">คณาธิป จงมีความสุข (แพรว)</h5>
+            <h5 class="card-title m-0">คณาธิป จงมีความสุข (แทน)</h5>
             <p class="card-text">
                 Kanathip Jongmekwamsuk<br/>
                 M.D. in Medicine
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card h-100">
+        <div class="card-body">
+            <h5 class="card-title m-0">(พันซ์)</h5>
+            <p class="card-text">
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card h-100">
+        <div class="card-body">
+            <h5 class="card-title m-0">(โบนัส)</h5>
+            <p class="card-text">
             </p>
         </div>
     </div>
