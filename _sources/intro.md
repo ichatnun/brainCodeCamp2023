@@ -14,11 +14,13 @@
     * ในแพลตฟอร์มมีเนื้อหาที่เขียนกำกับไว้ว่า **Optional** ซึ่งจะเป็นเนื้อหาภาคเสริม (ไม่บังคับ) ที่มีรายละเอียดทางเทคนิคมากขึ้นกว่าเนื้อหาในส่วนอื่น โดยเนื้อหาในส่วนนี้เหมาะสำหรับผู้ที่มีความคุ้นเคยกับสถิติ calculus และ linear algebra มาพอสมควร
     * ในแพลตฟอร์มนี้มีเนื้อหาส่วนที่เรียกว่า **Extra Resources** ซึ่งเป็นเนื้อหาเพิ่มเติมที่มีความซับซ้อนมากขึ้น สำหรับผู้ที่สนใจศึกษาต่อยอด
 
-2. การเข้าร่วม **Office Hour (OH)** ทุกวันพุธ ผ่าน Discord เริ่มต้น 19.00 น. เป็นระยะเวลาประมาณ 1-1.5 ชั่วโมง
+2. การเข้าร่วม **Office Hour (OH)** ทุกวันพุธ ผ่าน Discord เริ่มต้น 19.00 น. เป็นระยะเวลาประมาณ 1-1.5 ชั่วโมง (เริ่มต้น OH ครั้งแรกในวันที่ 16 ส.ค. 2566)
     * เป้าหมายของ OH คือ 
-        * เปิดโอกาสให้ผู้เรียนได้พูดคุย แลกเปลี่ยนความรู้กับอาจารย์ที่ปรึกษาและผู้เรียนท่านอื่น เกี่ยวกับเนื้อหาที่เกี่ยวข้องกับบทเรียน โดยจะมีการแบ่งกลุ่มย่อย (ผู้เรียนประมาณ 5-7 คน ต่ออาจารย์ที่ปรึกษา 1-2 คน)
+        * เปิดโอกาสให้ผู้เรียนได้พูดคุย แลกเปลี่ยนความรู้กับที่ปรึกษาและผู้เรียนท่านอื่น เกี่ยวกับเนื้อหาที่เกี่ยวข้องกับบทเรียน โดยจะมีการแบ่งกลุ่มย่อย (ผู้เรียนประมาณ 5-7 คน ต่ออาจารย์ที่ปรึกษา 1-2 คน)
         * ติดตามสถานะของการทำ Mini Project
-    * เริ่มต้น OH ครั้งแรกในวันที่ 16 ส.ค. 2566
+    * ลักษณะของการเข้าร่วม OH
+        1. ผู้เรียนเข้าร่วม​ OH พร้อมเพรียงกันเวลา 19.00 น. ผ่านช่องทาง **C-Room ของ voice channels ใน BrainCode2023 Discord** เพื่อเข้าร่วมกิจกรรมรวม
+        2. หลังจากนั้นจะมีการแยกกลุ่มย่อยเพื่อคุยกับที่ปรึกษาละเพื่อนร่วมทีม ผ่าน **Classroom ของ voice channels ที่กำหนดไว้สำหรับแต่ละกลุ่ม** (ยกเว้นสัปดาห์แรกที่จะไม่มีการแยกกลุ่มย่อย) เช่น ผู้เรียนในกลุ่มที่ 1 ให้เข้าไปที่ Classroom 1 หรือ ผู้เรียนในกลุ่มที่ 8 ให้เข้าไปที่ Classroom 8
     * การเข้าร่วม OH และการทำ mini project จะถูกนำมาใช้ประกอบการพิจารณาการออก certificate ให้แก่ผู้เรียน
 
 ผู้เรียนสามารถเรียนรู้เนื้อหาในแพลตฟอร์มตอนไหนก็ได้ ก่อนเวลาเริ่ม Office Hour ของแต่ละสัปดาห์ (วันพุธ 19.00 น.) เพื่อให้สามารถเข้าร่วมแลกเปลี่ยนความรู้ใน Office Hour ได้อย่างเต็มที่
@@ -32,16 +34,16 @@
 |    Week   |   Office Hour  <br> (19.00-20.30 น.)|   กิจกรรม   |   การเตรียมตัว   |
 | :------------: | :-------------: | :-------------: | :------------- |
 | 1 | 16 ส.ค. 2566 | Orientation | ทบทวนเนื้อหา Neuroscience จาก Brain Builing Blocks <br> โดยเฉพาะ session ที่ 6 และ 7 <br> เริ่มศึกษาเนื้อหา Prerequisites (ถ้ามีเวลา)
-| 2 | 23 ส.ค. 2566 | Project Idea Exploration |1. ค้นหาไอเดียสำหรับทำโปรเจค <br> 2. ศึกษาเนื้อหา Prerequisites |
+| 2 | 23 ส.ค. 2566 | Prerequisites <br> & Project Idea Exploration |1. ค้นหาไอเดียสำหรับทำโปรเจค <br> 2. ศึกษาเนื้อหา Prerequisites |
 | 3 | 30 ส.ค. 2566 | Intro to Modeling and Model Selection & Project Progress | 1. ศึกษาบทเรียน Intro to Modeling and Model Selection <br> 2. วางแผนโปรเจคและเตรียมไอเดียมาพูดคุย|
-| 4 | 6 ก.ย. 2566 | Dimensionality Reduction & Project Progress | 1. ศึกษาบทเรียน Dimensionality Reduction <br> 2. ลงมือทำโปรเจคและเตรียมเนื้อหามาอัพเดต|
-| 5 | 13 ก.ย. 2566 | Machine Learning 1 & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 1 ของบทเรียน Machine Learning (ML Part 1) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค|
-| 6 | 20 ก.ย. 2566 | Machine Learning 2 & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 2 ของบทเรียน Machine Learning (ML Part 2) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค|
-| 7 | 27 ก.ย. 2566 | Deep Learning 1 & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 1 ของบทเรียน Deep Learning (DL Part 1) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค
-| 8 | 4 ต.ค. 2566 | Deep Learning 2 & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 2 ของบทเรียน Deep Learning (DL Part 2) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค|
-| 9 | 11 ต.ค. 2566 | Signal Processing & Project Progress | 1. ศึกษาบทเรียน Signal Processing <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจคให้ TA และสมาชิกในกลุ่ม|
-| 10 | 18 ต.ค. 2566 | Project Progress |เตรียมตัวอัพเดตสถานะของการทำโปรเจค |
-| 11 | 25 ต.ค. 2566 | Project Progress |เตรียมตัวอัพเดตสถานะของการทำโปรเจค |
+| 4 | 6 ก.ย. 2566 | Dimensionality Reduction <br> & Project Progress | 1. ศึกษาบทเรียน Dimensionality Reduction <br> 2. ลงมือทำโปรเจคและเตรียมเนื้อหามาอัพเดต|
+| 5 | 13 ก.ย. 2566 | Machine Learning 1 <br> & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 1 ของบทเรียน Machine Learning (ML Part 1) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค|
+| 6 | 20 ก.ย. 2566 | Machine Learning 2 <br> & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 2 ของบทเรียน Machine Learning (ML Part 2) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค|
+| 7 | 27 ก.ย. 2566 | Deep Learning 1 <br> & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 1 ของบทเรียน Deep Learning (DL Part 1) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค
+| 8 | 4 ต.ค. 2566 | Deep Learning 2 <br> & Project Progress | 1. ศึกษาเนื้อหาส่วนที่ 2 ของบทเรียน Deep Learning (DL Part 2) <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจค|
+| 9 | 11 ต.ค. 2566 | Signal Processing <br> & Project Progress | 1. ศึกษาบทเรียน Signal Processing <br> 2. เตรียมตัวอัพเดตสถานะของการทำโปรเจคให้ TA และสมาชิกในกลุ่ม|
+| 10 | 18 ต.ค. 2566 | Inspiration Talk 1 (30 minutes) <br> & Project Progress |เตรียมตัวอัพเดตสถานะของการทำโปรเจค |
+| 11 | 25 ต.ค. 2566 | Inspiration Talk 2 (30 minutes) <br> & Project Progress |เตรียมตัวอัพเดตสถานะของการทำโปรเจค |
 | 12 | 1 พ.ย. 2566 | Project Completion | เตรียมตัวนำเสนอโปรเจค |
 
 <b> หมายเหตุ </b> 
@@ -251,6 +253,42 @@
             <p class="card-text">
                 Anantaporn Sena<br/>
                 B.A. in Psychology
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card h-100">
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/nattapat_yuvasuta.jpg?raw=true" class="card-img-top" alt="nattapat_yuvasuta">
+        <div class="card-body">
+            <h5 class="card-title m-0">ณัฐพัชร์ ยุวะสุต (ณัฐ)</h5>
+            <p class="card-text">
+                Nattapat Yuvasuta<br/>
+                B.A. in Computer Engineering
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card h-100">
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/panchalee_sookprao.jpg?raw=true" class="card-img-top" alt="panchalee_sookprao">
+        <div class="card-body">
+            <h5 class="card-title m-0">ปัญญ์ชลี ปัญญ์ชลี (ป๊อป)</h5>
+            <p class="card-text">
+                Panchalee Sookprao<br/>
+                B.E. in Robotics and Automation Engineering
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card h-100">
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/kanathip_jongmekwamsuk.png?raw=true" class="card-img-top" alt="kanathip_jongmekwamsuk">
+        <div class="card-body">
+            <h5 class="card-title m-0">คณาธิป จงมีความสุข (แพรว)</h5>
+            <p class="card-text">
+                Kanathip Jongmekwamsuk<br/>
+                M.D. in Medicine
             </p>
         </div>
     </div>
