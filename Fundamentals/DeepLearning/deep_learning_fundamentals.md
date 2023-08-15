@@ -22,7 +22,7 @@ Fully Connected Layers, Activation Function, and Loss Function
 (Optional) Optimization and Backpropagation
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gRsG5Vu9fIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qk2dgWUFt_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 [Slides: Optimization and Backpropagation](https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/DeepLearning/deep_learning_opt_backprop_minibatch.pdf)
 
@@ -40,7 +40,7 @@ Regularization
 Convolutional Neural Network
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5ynKHtouORI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Jpw-CYQ0T0g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 [Slides: Convolutional Neural Network (CNN)](https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/DeepLearning/deep_learning_CNN.pdf)
 
