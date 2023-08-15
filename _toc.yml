@@ -82,9 +82,9 @@ parts:
     chapters:
     - file: Fundamentals/WelcomeToBrainCodeCamp/Intro
 
-  - caption: Computational Neuroscience (Week 2)
+  - caption: Prerequisites & Project Idea Exploration (Week 2)
     chapters:
-    - file: Fundamentals/ComputationalNeuroscience/Intro
+    - file: Fundamentals/PrereqAndProjectExploration/Intro
 
   - caption: Intro to Modeling and Model Selection (Week 3)
     chapters:
@@ -158,15 +158,6 @@ parts:
   - caption: Applications (Weeks 10-12)
     chapters:
     - file: Applications/MiniProjects
-    # - file: Applications/EEG/EEG_Intro
-    #   title: EEG (Week 9)
-    #   sections:
-    #   - file: Applications/EEG/motor_imagery_part1
-    #   - file: Applications/EEG/motor_imagery_part2   
-    # - file: Applications/NeuralSpiking/Intro
-    #   title: Neural Spiking (Week 10)
-    # - file: Applications/fMRI/Intro
-    #   title: fMRI (Week 11)
 
   - caption: Extra Resources
     chapters:
