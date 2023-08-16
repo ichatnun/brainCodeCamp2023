@@ -67,6 +67,7 @@
 * วิษณุ สิมาลัย
 * กนกกฤษฏิ์ กังวาลเกียรติ
 * ธัญ พรหมแสง
+* ธรรมณพัฒน์ วงศ์ทนุธรรม
 
 **Classroom 3 (ที่ปรึกษา: แพรว และ เอ๋)**
 * อรณัฐ ชัยชนะสิทธิการ
@@ -292,7 +293,7 @@
             <h5 class="card-title m-0">ฉัตริน พวงทับทิม (ปัน)</h5>
             <p class="card-text">
                 Chattarin  Poungtubtim <br/>
-                M.D. (student) in Medicine 
+                M.D. (Student) in Medicine 
             </p>
         </div>
     </div>
@@ -304,7 +305,7 @@
             <h5 class="card-title m-0">ณปภา ปัญญานิรันดร์ (ปริน)</h5>
             <p class="card-text">
                 Naphapa Panyanirun<br/>
-                M.D. (student) in Medicine
+                M.D. (Student) in Medicine
             </p>
         </div>
     </div>
@@ -337,7 +338,7 @@
     <div class="card h-100">
         <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/panchalee_sookprao.jpg?raw=true" class="card-img-top" alt="panchalee_sookprao">
         <div class="card-body">
-            <h5 class="card-title m-0">ปัญญ์ชลี ปัญญ์ชลี (ป๊อป)</h5>
+            <h5 class="card-title m-0">ปัญญ์ชลี สุขพราว (ป๊อป)</h5>
             <p class="card-text">
                 Panchalee Sookprao<br/>
                 B.E. in Robotics and Automation Engineering
@@ -352,25 +353,31 @@
             <h5 class="card-title m-0">คณาธิป จงมีความสุข (แทน)</h5>
             <p class="card-text">
                 Kanathip Jongmekwamsuk<br/>
-                M.D. in Medicine
+                M.D. (Student) in Medicine
             </p>
         </div>
     </div>
 </div>
 <div class="col">
     <div class="card h-100">
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/prapasiri_sawetsuttipan.jpg?raw=true" class="card-img-top" alt="prapasiri_sawetsuttipan">
         <div class="card-body">
-            <h5 class="card-title m-0">(พันซ์)</h5>
+            <h5 class="card-title m-0">ประภาสิริ เศวตสุทธิพันธ์ (โบนัส)</h5>
             <p class="card-text">
+                Prapasiri Sawetsuttipan<br/>
+                M.Eng. (Student) in Computer Engineering
             </p>
         </div>
     </div>
 </div>
 <div class="col">
     <div class="card h-100">
+        <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/tanagrit_phangwiwat.jpg?raw=true" class="card-img-top" alt="tanagrit_phangwiwat">
         <div class="card-body">
-            <h5 class="card-title m-0">(โบนัส)</h5>
+            <h5 class="card-title m-0">ธนกฤต  ผังวิวัฒน์ (พั้นช์)</h5>
             <p class="card-text">
+                Tanagrit Phangwiwat<br/>
+                M.Eng. (Student) in Computer Engineering
             </p>
         </div>
     </div>
