@@ -5,6 +5,12 @@ format: jb-book
 root: intro
 
 parts:
+  - caption: General Information
+    chapters:
+    - file: GeneralInfo/OH_schedule
+    - file: GeneralInfo/OH_staff
+    - file: GeneralInfo/OH_teams
+    - file: GeneralInfo/datasets
   - caption: Brain Building Blocks
     chapters:
     - file: Fundamentals/BrainBuildingBlocks/Session1/S1_Intro
