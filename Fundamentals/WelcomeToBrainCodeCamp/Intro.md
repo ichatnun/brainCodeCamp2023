@@ -15,3 +15,8 @@
 * แนะนำโครงการ
 * ชี้แจงเรื่องข้อควรปฏิบัติการช่องทางการติดต่อสื่อสารต่าง ๆ ภายในโครงการ
 * ถาม-ตอบประเด็นที่มีข้อสงสัย
+
+**ข้อมูลเพิ่มเติม**
+
+* [Slides: Orientation](https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/GeneralInfo/Orientation.pdf)
+* [Datasets](/GeneralInfo/datasets.md)
