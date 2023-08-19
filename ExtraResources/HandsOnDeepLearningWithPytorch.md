@@ -1,5 +1,9 @@
 # Hands-On Deep Learning with Pytorch
 
+Machine Learning คืออะไร
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4-PHm7-XIjE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 อารัมภบทสู่การการใช้การเรียนรู้เชิงลึกเพื่อวิเคราะห์ภาพ
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qKP84HVuXyQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
