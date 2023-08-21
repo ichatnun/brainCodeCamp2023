@@ -554,6 +554,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="k">as</span> <span class="n">DTC</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="k">as</span> <span class="n">RFC</span>
@@ -663,19 +664,22 @@ document.write(`
 <p>ต่อไปเราจะแสดง decision boundary ของโมเดล decision tree นี้</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the decision boundary</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้าง cmap สำหรับแสดงผลตามสีแต่ละ class</span>
+<span class="n">cmap_2classes</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">])</span>
+
+<span class="c1"># plot the decision boundary</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span>
                                        <span class="n">x</span><span class="p">,</span>
                                        <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
-                                       <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                       <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span>
                                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                        <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span>
                                        <span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Decision Tree Classification: Decision boundary&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -683,7 +687,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/441cde9221ff36ef56f96fdf3da2a6664e71b3dfd4eece6cf6e5f08b86253f7a.png" src="../../_images/441cde9221ff36ef56f96fdf3da2a6664e71b3dfd4eece6cf6e5f08b86253f7a.png" />
+<img alt="../../_images/e31f3de7022a0628e61362f00c4fbbf0accab5e2792eb3c4038875800fcaae95.png" src="../../_images/e31f3de7022a0628e61362f00c4fbbf0accab5e2792eb3c4038875800fcaae95.png" />
 </div>
 </div>
 <p>ภาพแสดง decision boundary ที่มีลักษณะเป็นกล่อง  ซึ่งเกิดจากการตัดกันของเงื่อนไขในการจำแนกข้อมูล 2 เงื่อนไขที่แสดงก่อนหน้านี้  จะสังเกตุได้ว่า decision boundary ของโมเดล decision tree แตกต่างจาก decision boundary ของโมเดล logistic และโมเดล SVM ที่พบก่อนหน้านี้อย่างชัดเจน</p>
@@ -742,13 +746,13 @@ document.write(`
 <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span>
                                        <span class="n">x</span><span class="p">,</span>
                                        <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
-                                       <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                       <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span>
                                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                        <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span>
                                        <span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Decision Tree Classification: Decision boundary&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -757,7 +761,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/2aad1f7a21f8d17e96527204f2aeac39f3ab672cd873e21d90084e5c2bab1566.png" src="../../_images/2aad1f7a21f8d17e96527204f2aeac39f3ab672cd873e21d90084e5c2bab1566.png" />
-<img alt="../../_images/39083a548252e9cf48d6f21bb95b01640065413c8b8862f16335245218a04d5f.png" src="../../_images/39083a548252e9cf48d6f21bb95b01640065413c8b8862f16335245218a04d5f.png" />
+<img alt="../../_images/e7294c431e9bf96564035af2b98323962ef1fbb28f16eef93ba390ae0e03af02.png" src="../../_images/e7294c431e9bf96564035af2b98323962ef1fbb28f16eef93ba390ae0e03af02.png" />
 </div>
 </div>
 <p>เมื่อให้โมเดล decision tree เรียนรู้จากข้อมูลที่มีความซับซ้อน  โมเดลจะสร้างเงื่อนไขจำนวนมากเกิดเป็นต้นไม้ที่มีขนาดใหญ่ เพื่อพยายามจำแนกคลาสให้ได้มากที่สุด  ส่งผลให้โมเดลเกิดปัญหา overfitting ซึ่งสามารถสังเกตได้จาก decision boundary ที่มีความซับซ้อนเกินกว่าสิ่งที่ควรจะเป็น</p>
@@ -825,7 +829,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/18f0163f11966ffb4d44fe87730e554bf1270dffc3d37b663dd85ebd3fd13134.png" src="../../_images/18f0163f11966ffb4d44fe87730e554bf1270dffc3d37b663dd85ebd3fd13134.png" />
+<img alt="../../_images/8ec6bf43b3ea980d8c2d8857280e0ceca5b6cbe3d3b36a309da8e1fcb25574c8.png" src="../../_images/8ec6bf43b3ea980d8c2d8857280e0ceca5b6cbe3d3b36a309da8e1fcb25574c8.png" />
 </div>
 </div>
 <p>ค่า accuracy score ในที่นี้คำนวณจากความแม่นยำของโมเดลในการจำแนก training data โดยเรามีจุดประสงค์เพื่อวัดความสามารถของโมเดลในการเรียนรู้และจำแนกข้อมูลเดิมที่โมเดลได้เรียนรู้มาแล้ว ค่า accuracy score นี้จึงมักมีค่าสูงและสะท้อน varience ของโมเดลว่าเพียงพอต่อการเรียนรู้ชุดข้อมูลมากน้อยเพียงใด ก่อนที่โมเดลจะถูกนำไปใช้จำแนกชุดข้อมูลที่โมเดลไม่เคยได้เรียนรู้มาก่อน</p>
@@ -856,13 +860,13 @@ document.write(`
 <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span>
                                        <span class="n">x</span><span class="p">,</span>
                                        <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
-                                       <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                       <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span>
                                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                        <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span>
                                        <span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Forest Classification: Decision boundary&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -876,7 +880,7 @@ document.write(`
 <img alt="../../_images/5c3965c1a7d2b500ccf1ea42d8b5135a19c43b1c785ff2364854d2c7550fed5a.png" src="../../_images/5c3965c1a7d2b500ccf1ea42d8b5135a19c43b1c785ff2364854d2c7550fed5a.png" />
 <img alt="../../_images/41b11ea2af8cb5ac0fdde17a5f23972b4bfff69132038c2037b1c343921cb3b2.png" src="../../_images/41b11ea2af8cb5ac0fdde17a5f23972b4bfff69132038c2037b1c343921cb3b2.png" />
 <img alt="../../_images/6e95e5f9dbb61f99d1a5ba678a2fb8b124c933baad142dbabe3b885281a7fc3b.png" src="../../_images/6e95e5f9dbb61f99d1a5ba678a2fb8b124c933baad142dbabe3b885281a7fc3b.png" />
-<img alt="../../_images/1ac262dd186dab34206ff8ec43a39cd89fb94ca2ae2e3d4b55cc03f37091cc97.png" src="../../_images/1ac262dd186dab34206ff8ec43a39cd89fb94ca2ae2e3d4b55cc03f37091cc97.png" />
+<img alt="../../_images/acd9b9a98767e066024ac291351808bf63b3e3b6a5e7cd06f6d1cd67928a2f51.png" src="../../_images/acd9b9a98767e066024ac291351808bf63b3e3b6a5e7cd06f6d1cd67928a2f51.png" />
 </div>
 </div>
 <p>จะสังเกตได้ว่า decision boundary ของโมเดล random forest ยังมีลักษณะค่อนข้าง overfitting นั่นเป็นเพราะโมเดล decision tree มี default criteria ให้แตกกิ่งต้นไม้จนกว่า Gini impurity เป็น 0 ต้นไม้จึงมีขนาดใหญ่โดย terminal node มีจำนวนข้อมูลน้อยมาก เช่น decision node ล่างสุดที่โมเดลสร้างเงื่อนไขขึ้นเพียงเพื่อจำแนก 2 จุดข้อมูลออกจากกัน</p>
@@ -941,13 +945,13 @@ document.write(`
     <span class="n">disp</span> <span class="o">=</span> <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span>
                                                   <span class="n">x</span><span class="p">,</span>
                                                   <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
-                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span>
                                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                                   <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                                   <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
                                                   <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -957,7 +961,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5fb8d7d4861c0edb39ec78f8759f902412cc450c3041c62b68ab37520981ee0b.png" src="../../_images/5fb8d7d4861c0edb39ec78f8759f902412cc450c3041c62b68ab37520981ee0b.png" />
+<img alt="../../_images/94c9928ac5369dfc3e2158c091f26426dc6b54fae08e85cf7ceaae16569816e5.png" src="../../_images/94c9928ac5369dfc3e2158c091f26426dc6b54fae08e85cf7ceaae16569816e5.png" />
 </div>
 </div>
 <p>จะเห็นได้ว่า ในขณะที่การใช้ค่า <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> สูงสามารถช่วยลดการเกิด overfitting แต่การใช้ค่า <code class="docutils literal notranslate"><span class="pre">max_depths</span></code> ที่สูงเกินไปจะทำให้เกิด overfitting  ในขณะเดียวกัน การใช้ค่า <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> และ <code class="docutils literal notranslate"><span class="pre">max_depths</span></code> น้อยเกินไป เป็นการจำกัดความสามารถของโมเดล ทำให้ไม่สามารถเรียนรู้ข้อมูลได้ดีพอ (underfitting)  ดังนั้น การปรับค่า <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> และ <code class="docutils literal notranslate"><span class="pre">max_depths</span></code> ควบคู่กันไปจึงมีความสำคัญมาก</p>
@@ -1012,7 +1016,7 @@ R(T) + α|\tilde{T}|
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e7766ee037c7b664b58ca19a390d913a5186c9d58357224605d57212a71baf43.png" src="../../_images/e7766ee037c7b664b58ca19a390d913a5186c9d58357224605d57212a71baf43.png" />
+<img alt="../../_images/d7b5526fafde673b76445e832b15568c9cc7474e2dad6f6f8e09dc23dc4b920e.png" src="../../_images/d7b5526fafde673b76445e832b15568c9cc7474e2dad6f6f8e09dc23dc4b920e.png" />
 </div>
 </div>
 <p>จะสังเกตเห็นว่า เมื่อเราใช้ค่า <code class="docutils literal notranslate"><span class="pre">ccp_alpha</span></code> มากเกินไป ทำให้ต้นไม้ลดขนาดเกินพอดีจนเหลือความลึกของ decision node เพียง 1 ชั้น</p>
@@ -1032,13 +1036,13 @@ R(T) + α|\tilde{T}|
     <span class="n">disp</span> <span class="o">=</span> <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span>
                                                   <span class="n">x</span><span class="p">,</span>
                                                   <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
-                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span>
                                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                                   <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                                   <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
                                                   <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_2classes</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -1048,7 +1052,7 @@ R(T) + α|\tilde{T}|
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/49ef7d2e916485a312853d8d2fbb195e4e87d1ce22257a9e3756933c026d9adf.png" src="../../_images/49ef7d2e916485a312853d8d2fbb195e4e87d1ce22257a9e3756933c026d9adf.png" />
+<img alt="../../_images/a5e1654f704eb94ddb3e267ca2d0f6cb9c7dd9c4907f8a98b8bb7e618b6d305e.png" src="../../_images/a5e1654f704eb94ddb3e267ca2d0f6cb9c7dd9c4907f8a98b8bb7e618b6d305e.png" />
 </div>
 </div>
 <p>ตัวอย่างนี้ แสดงให้เห็นถึงปัญหาเมื่อเรากำหนดค่า <code class="docutils literal notranslate"><span class="pre">ccp_alpha</span></code> มากเกินไป ส่งผลให้โมเดลไร้ความซับซ้อนในการสร้างเงื่อนไขจำแนกชุดข้อมูล decision boundary มีลักษณะ underfitting สอดคล้องกับ decision path ที่เราพบก่อนหน้านี้</p>
@@ -1077,6 +1081,7 @@ R(T) + α|\tilde{T}|
 <span class="c1"># Plot ข้อมูล x, y ที่สร้างขึ้น</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">color_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">]</span>
+<span class="n">cmap_3classes</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">color_list</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="n">label</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="n">label</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">color_list</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Class &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
 
@@ -1331,13 +1336,13 @@ weighted avg       0.92      0.92      0.92       120
     <span class="n">disp</span> <span class="o">=</span> <span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">tuned_clf</span><span class="p">,</span>
                                                   <span class="n">x</span><span class="p">,</span>
                                                   <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
-                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                                                  <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_3classes</span><span class="p">,</span>
                                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                                   <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
                                                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">,</span>
                                                   <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">,</span>
                                                   <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_3classes</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -1347,7 +1352,7 @@ weighted avg       0.92      0.92      0.92       120
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ba76fd01eae7e306bc72364061f082bbc7bced478ca6e390bb3c25d65a5e87ef.png" src="../../_images/ba76fd01eae7e306bc72364061f082bbc7bced478ca6e390bb3c25d65a5e87ef.png" />
+<img alt="../../_images/3d44498e2635c1203bad9234d7ff719b1ef14ffba2a5c8a33c7978f30cae923a.png" src="../../_images/3d44498e2635c1203bad9234d7ff719b1ef14ffba2a5c8a33c7978f30cae923a.png" />
 </div>
 </div>
 <p>แสดง decision boundary ของโมเดล random forest เมื่อ <code class="docutils literal notranslate"><span class="pre">n_estimators</span> <span class="pre">=</span> <span class="pre">100</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth</span> <span class="pre">=</span> <span class="pre">3</span></code> และ <code class="docutils literal notranslate"><span class="pre">ccp_alpha</span> <span class="pre">=</span> <span class="pre">0</span></code> ซึ่งเป็นโมเดลที่ได้รับการปรับจูนให้เหมาะสมกับการเรียนรู้จากชุดข้อมูลนี้</p>
