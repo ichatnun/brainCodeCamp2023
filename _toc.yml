@@ -103,11 +103,11 @@ parts:
   - caption: Dimensionality Reduction (Week 4)
     chapters:
     - file: Fundamentals/DimensionalityReduction/dim_reduct_intro
-    # - file: Fundamentals/DimensionalityReduction/dim_reduct_part1_basics
-    # - file: Fundamentals/DimensionalityReduction/dim_reduct_part2_pca
-    # - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
-    # - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
-    # - file: Fundamentals/DimensionalityReduction/dim_reduct_outro
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part1_basics
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part2_pca
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part3_pca_CDT_images
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_part4_nonlinear_methods
+    - file: Fundamentals/DimensionalityReduction/dim_reduct_outro
 
   - caption: Machine Learning (Weeks 5-6)
     chapters:
