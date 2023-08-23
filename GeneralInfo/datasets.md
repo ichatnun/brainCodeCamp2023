@@ -8,7 +8,7 @@
 
 **Prepared by the BCC team**
 
-[Project Lists (Brain Code Camp)](https://docs.google.com/spreadsheets/d/1ol_3w_4cvQWrok4r1sZ0toKFhudjbRsY3_DKqjtqMpE/edit#gid=661660833)
+* [Project List](https://docs.google.com/spreadsheets/d/1ol_3w_4cvQWrok4r1sZ0toKFhudjbRsY3_DKqjtqMpE/edit#gid=661660833)
 
 **More**
 * [Alzheimer Disease Neuroimaging Initiatives (ADNI)](https://adni.loni.usc.edu/) (Permission needed)
