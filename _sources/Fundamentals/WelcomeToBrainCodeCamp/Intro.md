@@ -2,7 +2,7 @@
 
 **สิ่งที่ต้องเตรียมตัวก่อนการเข้าร่วมกิจกรรม**
 
-1. ทบทวนเนื้อหา Neuroscience จาก Brain Builing Blocks โดยเฉพาะ session ที่ 6 และ 7
+1. ทบทวนเนื้อหา Neuroscience จาก Brain Builing Blocks โดยเฉพาะ session ที่ 6 และ Session ที่ 7
 
 2. เริ่มศึกษาเนื้อหา Prerequisites (ถ้ามีเวลา)
 
