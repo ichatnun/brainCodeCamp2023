@@ -112,16 +112,16 @@ parts:
   - caption: Machine Learning (Weeks 5-6)
     chapters:
     - file: Fundamentals/MachineLearning/ml_part1_intro
-    #   title: ML Part 1 (Week 5)
-    #   sections:
-    #   - file: Fundamentals/MachineLearning/intro_to_machine_learning
-    #     title: Introduction to Machine Learning
-    #   - file: Fundamentals/MachineLearning/logistic_regression
-    #     title: Logistic Regression
-    #   - file: Fundamentals/MachineLearning/svm
-    #     title: Support Vector Machines
-    # - file: Fundamentals/MachineLearning/ml_part2_intro
-    #   title: ML Part 2 (Week 6)
+      title: ML Part 1 (Week 5)
+      sections:
+      - file: Fundamentals/MachineLearning/intro_to_machine_learning
+        title: Introduction to Machine Learning
+      - file: Fundamentals/MachineLearning/logistic_regression
+        title: Logistic Regression
+      - file: Fundamentals/MachineLearning/svm
+        title: Support Vector Machines
+    - file: Fundamentals/MachineLearning/ml_part2_intro
+      title: ML Part 2 (Week 6)
     #   sections: 
     #   - file: Fundamentals/MachineLearning/decision_tree_random_forest
     #     title: Decision Trees and Random Forest
@@ -153,11 +153,11 @@ parts:
   - caption: Signal Processing (Week 9)
     chapters:
     - file: Fundamentals/SignalProcessing/signal_processing_intro
-    # - file: Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging
-    # - file: Fundamentals/SignalProcessing/signal_processing_part2_dft
-    # - file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
-    # - file: Fundamentals/SignalProcessing/signal_processing_part4_application
-    # - file: Fundamentals/SignalProcessing/signal_processing_outro
+    - file: Fundamentals/SignalProcessing/signal_processing_part1_sampling_averaging
+    - file: Fundamentals/SignalProcessing/signal_processing_part2_dft
+    - file: Fundamentals/SignalProcessing/signal_processing_part3_STFT
+    - file: Fundamentals/SignalProcessing/signal_processing_part4_application
+    - file: Fundamentals/SignalProcessing/signal_processing_outro
     
   - caption: Applications (Weeks 10-12)
     chapters:
