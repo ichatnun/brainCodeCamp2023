@@ -141,7 +141,8 @@ parts:
       #   title: Pytorch
       # - file: Fundamentals/DeepLearning/intro_to_convolutional_nn
       #   title: CNN
-      # title: DL Part 2 (Week 8)
+    - file: Fundamentals/DeepLearning/deep_learning_part2_intro
+      title: DL Part 2 (Week 8)
       # - file: Fundamentals/DeepLearning/thai_food_classification_transformers
       #   title: Image Classification
       # - file: Fundamentals/DeepLearning/object_detection_transformer
