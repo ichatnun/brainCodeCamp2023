@@ -2,7 +2,7 @@
 
 ## การแบ่งกลุ่มย่อยสำหรับ Office Hours
 
-**Classroom 1 (ที่ปรึกษา: โบนัส และ ออม)**
+**Classroom A (ที่ปรึกษา: โบนัส และ ออม)**
 
 Main theme: EEG - IEM + Alpha-Band + Flanker
 
@@ -13,7 +13,7 @@ Main theme: EEG - IEM + Alpha-Band + Flanker
 - กนกกฤษฏิ์ กังวาลเกียรติ
 - จิรายุ ศุภศิลป์
 
-**Classroom 2 (ที่ปรึกษา: ป๊อบ และ พันซ์)**
+**Classroom B (ที่ปรึกษา: ป๊อบ และ พันซ์)**
 
 Main theme: EEG - Sleep stage classification
 
@@ -24,7 +24,7 @@ Main theme: EEG - Sleep stage classification
 - คมกฤษฑ์ บุญปีติชาติ
 - พิชชาภา จุณณทัศน์
 
-**Classroom 3 (ที่ปรึกษา: แพรว และ เอ๋)**
+**Classroom C (ที่ปรึกษา: แพรว และ เอ๋)**
 
 Main theme: MoCA
 
@@ -35,7 +35,7 @@ Main theme: MoCA
 - ปองศักดิ์ คณานุรักษ์
 - ธเนศพล อภัยสุเทพพร
 
-**Classroom 4 (ที่ปรึกษา: โจ และ กิฟท์)**
+**Classroom D (ที่ปรึกษา: โจ และ กิฟท์)**
 
 Main theme: fMRI
 
@@ -46,7 +46,7 @@ Main theme: fMRI
 - ธีรดณย์ ศักดิ์เพชร
 - เสกสรร ยอดสนิท
 
-**Classroom 5 (ที่ปรึกษา: แทน และ อ๋อง)**
+**Classroom E (ที่ปรึกษา: แทน และ อ๋อง)**
 
 Main theme: Retinotopy
 
@@ -58,7 +58,7 @@ Main theme: Retinotopy
 - Dai Honda
 - พิตตินันท์ เวทยานนท์
 
-**Classroom 6 (ที่ปรึกษา: ปริน และ โม)**
+**Classroom F (ที่ปรึกษา: ปริน และ โม)**
 
 Main theme: Reinforcement Learning + GNN
 
@@ -69,7 +69,7 @@ Main theme: Reinforcement Learning + GNN
 - ปิติกร คล้ายสำเนียง
 - ธนพิชญ์ สุทธิปัญโญ
 
-**Classroom 7 (ที่ปรึกษา: ปัน และ อู๋)**
+**Classroom G (ที่ปรึกษา: ปัน และ อู๋)**
 
 Main theme: EEG + NLP + GNN
 
@@ -80,7 +80,7 @@ Main theme: EEG + NLP + GNN
 - Jillaphat Jaroenkantasima
 - พุฒิเมธ หิรัณย์อุฬาร
 
-**Classroom 8 (ที่ปรึกษา: ณัฐ และ มอส)**
+**Classroom H (ที่ปรึกษา: ณัฐ และ มอส)**
 
 Main theme: Simulation + BCI
 
