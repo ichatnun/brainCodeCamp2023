@@ -4,7 +4,7 @@
 
 **Classroom 1 (ที่ปรึกษา: โบนัส และ ออม)**
 
-Main theme: EEG - IEM
+Main theme: EEG - IEM + Alpha-Band + Flanker
 
 - กิตติมา แก้วนิล
 - ปิยะธิดา ทองภู
