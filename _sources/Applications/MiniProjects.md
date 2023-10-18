@@ -1,3 +1,3 @@
 # Applying what you have learned to your project
 
-**ทีมผู้สอนจะ upload เนื้อหาเพิ่มเติมในภายหลัง**
+ทำ mini project ให้เสร็จสิ้น
