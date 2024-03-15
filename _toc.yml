@@ -141,6 +141,8 @@ parts:
           - file: Fundamentals/DeepLearning/deep_learning_fundamentals
           - file: Fundamentals/DeepLearning/intro_pytorch
             title: Pytorch
+          - file: Fundamentals/DeepLearning/Concentration_prediction_with_EEG.ipynb
+            title: Neural Network
           - file: Fundamentals/DeepLearning/intro_to_convolutional_nn
             title: CNN
       - file: Fundamentals/DeepLearning/deep_learning_part2_intro
