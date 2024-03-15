@@ -1,6 +1,4 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: intro
 
@@ -11,6 +9,8 @@ parts:
       - file: GeneralInfo/OH_staff
       - file: GeneralInfo/OH_teams
       - file: GeneralInfo/datasets
+      - file: GeneralInfo/graduation_requirements
+      - file: GeneralInfo/projects
   - caption: Brain Building Blocks
     chapters:
       - file: Fundamentals/BrainBuildingBlocks/Session1/S1_Intro
@@ -74,15 +74,13 @@ parts:
         sections:
           - file: Fundamentals/Prereqs/BBB2BCC/DataVisualization
           - file: Fundamentals/Prereqs/BBB2BCC/DimensionalityReduction
-          - file: Fundamentals/Prereqs/BBB2BCC/NeuroScienceData
+          - file: Fundamentals/Prereqs/BBB2BCC/NeuroscienceData
           - file: Fundamentals/Prereqs/BBB2BCC/Modeling
 
       - file: Fundamentals/Prereqs/Coding/PrereqCoding
         sections:
           - file: Fundamentals/Prereqs/Coding/00_basic_python
-            title: Python
           - file: Fundamentals/Prereqs/Coding/01_numpy
-            title: Numpy
 
   - caption: Welcome to Brain Code Camp! (Week 1)
     chapters:
@@ -115,20 +113,14 @@ parts:
         title: ML Part 1 (Week 5)
         sections:
           - file: Fundamentals/MachineLearning/intro_to_machine_learning
-            title: Introduction to Machine Learning
           - file: Fundamentals/MachineLearning/logistic_regression
-            title: Logistic Regression
           - file: Fundamentals/MachineLearning/svm
-            title: Support Vector Machines
       - file: Fundamentals/MachineLearning/ml_part2_intro
         title: ML Part 2 (Week 6)
         sections:
           - file: Fundamentals/MachineLearning/decision_tree_random_forest
-            title: Decision Trees and Random Forest
           - file: Fundamentals/MachineLearning/knn
-            title: K-Nearest Neighbors
           - file: Fundamentals/MachineLearning/eeg_supervised_learning
-            title: EEG Analysis
           - file: Fundamentals/MachineLearning/ml_part2_outro
 
   - caption: Deep Learning (Weeks 7-8)
@@ -138,18 +130,14 @@ parts:
         sections:
           - file: Fundamentals/DeepLearning/deep_learning_fundamentals
           - file: Fundamentals/DeepLearning/intro_pytorch
-            title: Pytorch
-          - file: Fundamentals/DeepLearning/intro_to_convolutional_nn
-            title: CNN
+          - file: Fundamentals/DeepLearning/concentration_prediction_with_EEG.ipynb
+          - file: Fundamentals/DeepLearning/cnn_cdt_pytorch
       - file: Fundamentals/DeepLearning/deep_learning_part2_intro
         title: DL Part 2 (Week 8)
         sections:
-          - file: Fundamentals/DeepLearning/thai_food_classification_transformers
-            title: Image Classification
           - file: Fundamentals/DeepLearning/object_detection_transformer
-            title: Object Detection
           - file: Fundamentals/DeepLearning/breast_cancer_segmentation_transformers
-            title: Image Segmentation
+          - file: Fundamentals/DeepLearning/thai_food_classification_transformers
           - file: Fundamentals/DeepLearning/deep_learning_outro
 
   - caption: Signal Processing (Week 9)
