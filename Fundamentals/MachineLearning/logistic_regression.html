@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Logistic Regression &#8212; Brain Code Camp</title>
   
@@ -19,49 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=97488244" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/MachineLearning/logistic_regression';</script>
@@ -78,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../intro.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/braincode101.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/braincode101.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/bcc-logo.png" class="logo__image only-light" alt="Brain Code Camp - Home"/>
+    <script>document.write(`<img src="../../_static/bcc-logo.png" class="logo__image only-dark" alt="Brain Code Camp - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -175,6 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../GeneralInfo/OH_teams.html">Office Hour Teams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../GeneralInfo/datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../GeneralInfo/graduation_requirements.html">Graduation Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GeneralInfo/projects.html">Projects</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Brain Building Blocks</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +320,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../DeepLearning/deep_learning_intro.html">DL Part 1 (Week 7)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../DeepLearning/deep_learning_fundamentals.html">Fundamentals of Deep Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../DeepLearning/intro_pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeepLearning/Concentration_prediction_with_EEG.html">Install required library and download dataset</a></li>
+
+
+
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="../DeepLearning/intro_to_convolutional_nn.html">Classification with Convolutional Neural Network using PyTorch</a></li>
 
 </ul>
@@ -479,6 +500,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -488,6 +510,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -541,10 +564,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
-<h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
+<h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Link to this heading">#</a></h1>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1eazvcI2_kE?si=qdwzBmy8eoEjab2J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <p><a class="reference external" href="https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/MachineLearning/machine_learning_logistic_regression.pdf">Slides: Logistic Regression</a></p>
 <br>
@@ -680,7 +703,7 @@ w_0+w_1x &amp;≥ 0\\
 <p><br><br>
 ใน tutorial นี้เราจะเรียนรู้การทำงานของ logistic regression ผ่านการเรียกใช้ <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ที่จะแสดงต่อไป.</p>
 <section id="generate-simulated-dataset">
-<h2>Generate Simulated Dataset<a class="headerlink" href="#generate-simulated-dataset" title="Permalink to this heading">#</a></h2>
+<h2>Generate Simulated Dataset<a class="headerlink" href="#generate-simulated-dataset" title="Link to this heading">#</a></h2>
 <p>เพื่อเปรียบเทียบการทำงานของ Linear regression และ Logistic regression เราจะลองสร้างชุดข้อมูลที่ประกอบไปด้วย จำนวน 100 จุด <span class="math notranslate nohighlight">\((x_1,y_1), (x_2,y_2), ..., (x_i,y_i),.., (x_{100},y_{100})\)</span></p>
 <p>โดย <span class="math notranslate nohighlight">\(y\)</span> มีค่า 0 หรือ 1 (2-class dataset for binary classification) และแต่ละคลาสมีจำนวนข้อมูลเท่ากันที่จำนวน 50 จุด</p>
 <div class="cell docutils container">
@@ -849,7 +872,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 </div>
 </section>
 <section id="decision-boundary">
-<h2>Decision Boundary<a class="headerlink" href="#decision-boundary" title="Permalink to this heading">#</a></h2>
+<h2>Decision Boundary<a class="headerlink" href="#decision-boundary" title="Link to this heading">#</a></h2>
 <p>เราสามารถ visualize ลักษณะของ decision boundary (เขตแดนแบ่งแยกคลาส) โดยใช้ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.inspection.DecisionBoundaryDisplay.html">DecisionBoundaryDisplay</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -888,7 +911,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <p>สังเกตได้ว่า decision boundary ของโมเดล logistic มีลักษณะเป็นเส้นตรง จำแนกกลุ่มข้อมูลต่างคลาสออกจากกัน</p>
 </section>
 <section id="logistic-regression-solver">
-<h2>Logistic Regression เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ชนิดต่างๆ<a class="headerlink" href="#logistic-regression-solver" title="Permalink to this heading">#</a></h2>
+<h2>Logistic Regression เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">solver</span></code> ชนิดต่างๆ<a class="headerlink" href="#logistic-regression-solver" title="Link to this heading">#</a></h2>
 <p>เราสามารถ optimize โมเดล logistic โดยการหาค่าโมเดลพารามิเตอร์ <span class="math notranslate nohighlight">\(w\)</span> ที่เหมาะสมด้วย iterative solver ที่ประมาณค่าคำตอบจากการปรับค่าและคำนวณซ้ำๆ เพื่อให้ได้คำตอบที่เข้าใกล้คำตอบที่ถูกต้องมากที่สุด อาทิเช่น</p>
 <p><strong>Newton-CG Solver</strong>:</p>
 <ul class="simple">
@@ -958,15 +981,15 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <p>จะเห็นได้ว่า solvers ต่างๆ สามารถค้นหาค่าพารามิเตอร์ <span class="math notranslate nohighlight">\(w\)</span> ที่เหมาะสม โดยมี decision boundary ที่ใกล้เคียงกัน ทั้งนี้ decision boundary ของโมเดล logistic จะประกอบขึ้นจากเส้นตรง</p>
 </section>
 <section id="regularization">
-<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h2>
+<h2>Regularization<a class="headerlink" href="#regularization" title="Link to this heading">#</a></h2>
 <p>หากพบปัญหา overfitting หรือการเรียนรู้ข้อมูลฝึกสอนมากเกินไปจนโมเดลจดจำคำตอบ เราสามารถใช้ regularization ร่วมกับ logistic regression</p>
 <p>ในไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> เราสามารถปรับค่า regularization strength <span class="math notranslate nohighlight">\(\lambda\)</span> ได้โดยผ่านทางไฮเปอร์พารามิเตอร์ <code class="docutils literal notranslate"><span class="pre">C</span></code> โดย ค่า <code class="docutils literal notranslate"><span class="pre">C</span></code> มีค่าเท่ากับ <span class="math notranslate nohighlight">\(1/\lambda\)</span> (Inverse of Regularization Strength)</p>
 </section>
 <section id="logistic-regression-pipeline">
-<h2>Logistic Regression Pipeline<a class="headerlink" href="#logistic-regression-pipeline" title="Permalink to this heading">#</a></h2>
+<h2>Logistic Regression Pipeline<a class="headerlink" href="#logistic-regression-pipeline" title="Link to this heading">#</a></h2>
 <p>ต่อไปเราจะลองพัฒนาโมเดล logistic อย่างครบกระบวนการ ด้วยชุดข้อมูลที่จะสร้างขึ้น</p>
 <section id="generate-3-class-dataset">
-<h3>Generate 3-class Dataset<a class="headerlink" href="#generate-3-class-dataset" title="Permalink to this heading">#</a></h3>
+<h3>Generate 3-class Dataset<a class="headerlink" href="#generate-3-class-dataset" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># สร้างข้อมูลโดยการเรียกใช้ generate_multi_class_dataset</span>
@@ -1011,7 +1034,7 @@ Logistic regression: probability function P(x) = g(x*2.31 + 1.08)
 <p>เมื่อสังเกตการกระจายตัวของข้อมูล พบว่า class 0 มีการกระจายข้อมูลแบ่งแยกออกมาอย่างเห็นได้ชัด ในขณะที่ class 1 และ class 2 จะกระจายตัวอยู่ร่วมกัน</p>
 </section>
 <section id="training-data-test-data">
-<h3>แบ่งข้อมูลเป็น training data และ test data<a class="headerlink" href="#training-data-test-data" title="Permalink to this heading">#</a></h3>
+<h3>แบ่งข้อมูลเป็น training data และ test data<a class="headerlink" href="#training-data-test-data" title="Link to this heading">#</a></h3>
 <p>โดยใช้ <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train_test_split</a> จากไลบรารี่ <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <p>ในตัวอย่างนี้เราจะใช้ default value ซึ่งจะ shuffle ข้อมูลก่อนแบ่งข้อมูล และ ไม่ stratify (ไม่กำกับสัดส่วนของคลาสใน training data และ test data)</p>
 <p>อย่างไรก็ดี ในกรณีที่ข้อมูลประกอบด้วยคลาสต่างๆ ที่มีสัดส่วนต่างกันอย่างมาก (imbalanced dataset) การทำ stratify มีความจำเป็นอย่างมากเพื่อคงสัดส่วนของแต่ละคลาส ใน training data และ test data</p>
@@ -1046,7 +1069,7 @@ Test set: จำนวนข้อมูล แบ่งกลุ่มตาม
 </div>
 </section>
 <section id="standardize">
-<h3>ทำการ standardize ข้อมูลทั้งหมด<a class="headerlink" href="#standardize" title="Permalink to this heading">#</a></h3>
+<h3>ทำการ standardize ข้อมูลทั้งหมด<a class="headerlink" href="#standardize" title="Link to this heading">#</a></h3>
 <p>ใช้ mean และ standard deviation (SD) จาก training data ในการ standardize test set เพื่อป้องกัน information leak</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1062,7 +1085,7 @@ Test set: จำนวนข้อมูล แบ่งกลุ่มตาม
 </div>
 </section>
 <section id="base-model-default-hyperparameter">
-<h3>เทรนโมเดล ด้วย base model (default hyperparameter)<a class="headerlink" href="#base-model-default-hyperparameter" title="Permalink to this heading">#</a></h3>
+<h3>เทรนโมเดล ด้วย base model (default hyperparameter)<a class="headerlink" href="#base-model-default-hyperparameter" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -1134,7 +1157,7 @@ weighted avg       0.89      0.87      0.86        60
 </div>
 </section>
 <section id="hyperparameter-tuning-gridsearchcv-train">
-<h3>ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV">GridSearchCV</a> และ train โมเดล<a class="headerlink" href="#hyperparameter-tuning-gridsearchcv-train" title="Permalink to this heading">#</a></h3>
+<h3>ปรับแต่งโมเดล (Hyperparameter Tuning) ด้วย <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV">GridSearchCV</a> และ train โมเดล<a class="headerlink" href="#hyperparameter-tuning-gridsearchcv-train" title="Link to this heading">#</a></h3>
 <p>โดยเราจะปรับแต่งโมเดล โดย tune 2 hyperparameters ที่สำคัญของ logistic regression ได้แก่</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">solver</span></code></p></li>
@@ -1231,7 +1254,7 @@ weighted avg       0.90      0.88      0.88        60
 <p>จะสังเกตได้ว่า เมื่อมีการปรับจูน hyperparameters ของโมเดลให้มีความเหมาะสมแล้ว เราได้โมเดลที่เรียนรู้จากข้อมูลชุดเดิม แล้วสามารถทำนาย test data ได้ค่า accuracy ที่สูงขึ้น โดยเมื่อพิจารณา Confusion Matrix จะพบว่า โมเดลสามารถจำแนกข้อมูล class 1 และ class 2 ได้ดีขึ้น</p>
 </section>
 <section id="id1">
-<h3>Decision Boundary<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Decision Boundary<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>เราจะมาลองดู decision boundary ของโมเดลบน training data และ test data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1294,7 +1317,7 @@ weighted avg       0.90      0.88      0.88        60
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="intro_to_machine_learning.html"
@@ -1322,6 +1345,7 @@ weighted avg       0.90      0.88      0.88        60
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1363,9 +1387,10 @@ By Brain Code Camp Community
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1389,8 +1414,8 @@ By Brain Code Camp Community
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
