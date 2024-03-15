@@ -120,7 +120,6 @@ parts:
         sections:
           - file: Fundamentals/MachineLearning/decision_tree_random_forest
           - file: Fundamentals/MachineLearning/knn
-          - file: Fundamentals/MachineLearning/eeg_supervised_learning
           - file: Fundamentals/MachineLearning/ml_part2_outro
 
   - caption: Deep Learning (Weeks 7-8)
