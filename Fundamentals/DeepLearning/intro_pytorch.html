@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Fundamentals/DeepLearning/intro_pytorch';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Install required library and download dataset" href="Concentration_prediction_with_EEG.html" />
+    <link rel="next" title="Classification with Convolutional Neural Network Using PyTorch" href="cnn_cdt_pytorch.html" />
     <link rel="prev" title="Fundamentals of Deep Learning" href="deep_learning_fundamentals.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -263,8 +263,8 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Prereqs/Coding/PrereqCoding.html">Prerequisites: Coding</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Prereqs/Coding/00_basic_python.html">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Prereqs/Coding/01_numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prereqs/Coding/00_basic_python.html">Introduction to Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prereqs/Coding/01_numpy.html">NumPy</a></li>
 </ul>
 </li>
 </ul>
@@ -301,14 +301,14 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="../MachineLearning/logistic_regression.html">Logistic Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../MachineLearning/svm.html">Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MachineLearning/svm.html">Support Vector Machine (SVM)</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../MachineLearning/ml_part2_intro.html">ML Part 2 (Week 6)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../MachineLearning/decision_tree_random_forest.html">Decision Tree and Random Forest</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="../MachineLearning/knn.html">K-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MachineLearning/knn.html">k-Nearest Neighbors (k-NN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../MachineLearning/eeg_supervised_learning.html">EEG Analysis</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../MachineLearning/ml_part2_outro.html">Outro</a></li>
@@ -319,25 +319,15 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="deep_learning_intro.html">DL Part 1 (Week 7)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="deep_learning_fundamentals.html">Fundamentals of Deep Learning</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pytorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Concentration_prediction_with_EEG.html">Install required library and download dataset</a></li>
-
-
-
-
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="intro_to_convolutional_nn.html">Classification with Convolutional Neural Network using PyTorch</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction to Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnn_cdt_pytorch.html">Classification with Convolutional Neural Network Using PyTorch</a></li>
 
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="deep_learning_part2_intro.html">DL Part 2 (Week 8)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="thai_food_classification_transformers.html">Overview of Transformer</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="object_detection_transformer.html">Object Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="breast_cancer_segmentation_transformers.html">Image Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_detection_transformer.html">Object Detection with Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="breast_cancer_segmentation_transformers.html">Breast Cancer Segmentation Using Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thai_food_classification_transformers.html">Image Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deep_learning_outro.html">Outro</a></li>
 </ul>
 </li>
@@ -353,7 +343,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications (Weeks 10-12)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Applications/MiniProjects.html">Applying what you have learned to your project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Applications/MiniProjects.html">Applying What You Have Learned to Your Project</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -544,7 +534,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-torch">Basic torch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd"><strong>Autograd</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd">Autograd</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-layers"><strong>Neural Network Layers</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-it-all-together"><strong>Put it all together</strong></a></li>
 </ul>
@@ -677,7 +667,7 @@ tensor([[ 0.5000,  0.4286],
 </div>
 </section>
 <section id="autograd">
-<h2><strong>Autograd</strong><a class="headerlink" href="#autograd" title="Link to this heading">#</a></h2>
+<h2>Autograd<a class="headerlink" href="#autograd" title="Link to this heading">#</a></h2>
 <p>นอกจากนั้น <code class="docutils literal notranslate"><span class="pre">torch</span></code> ยังมี engine ที่ชื่อว่า Autograd ที่สามารถทำให้เราหา gradient ของฟังก์ชันจากตัวแปรที่กำหนดได้ ยกตัวอย่างเช่นถ้าเรามี <span class="math notranslate nohighlight">\(x = 1\)</span> แล้วต้องการหา <span class="math notranslate nohighlight">\(df / dx\)</span> ของฟังก์ชั่น <span class="math notranslate nohighlight">\(f(x) = x^2 - 10 x + 5\)</span> จะสามารถเขียนด้วย Pytorch ได้ดังนี้:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -825,7 +815,6 @@ Output shape =  torch.Size([4, 1])
 <li><p>การเตรียมชุดข้อมูล เตรียมชุดข้อมูลเพื่อป้อนให้ neural network</p></li>
 <li><p>การเทรนโมเดล ทำการป้อนข้อมูลให้ neural network สำหรับใช้ในการเรียนพารามิเตอร์ของโมเดล</p></li>
 </ul>
-<p>ซึ่งเราจะไปทดลองเขียน Convolutional neural network (CNN) ในบทเรียนถัดไป</p>
 </section>
 </section>
 
@@ -869,11 +858,11 @@ Output shape =  torch.Size([4, 1])
       </div>
     </a>
     <a class="right-next"
-       href="Concentration_prediction_with_EEG.html"
+       href="cnn_cdt_pytorch.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Install required library and download dataset</p>
+        <p class="prev-next-title">Classification with Convolutional Neural Network Using PyTorch</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -895,7 +884,7 @@ Output shape =  torch.Size([4, 1])
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-torch">Basic torch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd"><strong>Autograd</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd">Autograd</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-network-layers"><strong>Neural Network Layers</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#put-it-all-together"><strong>Put it all together</strong></a></li>
 </ul>

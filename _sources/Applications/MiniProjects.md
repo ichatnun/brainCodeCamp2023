@@ -1,3 +1,3 @@
-# Applying what you have learned to your project
+# Applying What You Have Learned to Your Project
 
 ทำ mini project ให้เสร็จสิ้น
