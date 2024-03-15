@@ -10,13 +10,13 @@
 
 งานปฐมนิเทศของกิจกรรม Brain Code Camp ผ่านทาง **C-Room ของ voice channels ใน BrainCode2023 Discord** โดยมี agenda คือ
 
-* แนะนำตัวให้เพื่อน ๆ ได้รู้จัก
-* อาจารย์พาทบทวนเนื้อหาสำคัญใน Brain Building Blocks
-* แนะนำโครงการ
-* ชี้แจงเรื่องข้อควรปฏิบัติการช่องทางการติดต่อสื่อสารต่าง ๆ ภายในโครงการ
-* ถาม-ตอบประเด็นที่มีข้อสงสัย
+- แนะนำตัวให้เพื่อน ๆ ได้รู้จัก
+- อาจารย์พาทบทวนเนื้อหาสำคัญใน Brain Building Blocks
+- แนะนำโครงการ
+- ชี้แจงเรื่องข้อควรปฏิบัติการช่องทางการติดต่อสื่อสารต่าง ๆ ภายในโครงการ
+- ถาม-ตอบประเด็นที่มีข้อสงสัย
 
 **ข้อมูลเพิ่มเติม**
 
-* [Slides: Orientation](https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/GeneralInfo/Orientation.pdf)
-* [Datasets](/GeneralInfo/datasets.md)
+- [Slides: Orientation](https://github.com/ichatnun/brainCodeCamp2023_lectures/blob/main/GeneralInfo/Orientation.pdf)
+- [Datasets](/GeneralInfo/datasets.md)
