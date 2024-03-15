@@ -129,7 +129,7 @@ parts:
         sections:
           - file: Fundamentals/DeepLearning/deep_learning_fundamentals
           - file: Fundamentals/DeepLearning/intro_pytorch
-          - file: Fundamentals/DeepLearning/concentration_prediction_with_EEG.ipynb
+          - file: Fundamentals/DeepLearning/concentration_prediction_with_EEG
           - file: Fundamentals/DeepLearning/cnn_cdt_pytorch
       - file: Fundamentals/DeepLearning/deep_learning_part2_intro
         title: DL Part 2 (Week 8)
