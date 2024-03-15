@@ -320,7 +320,6 @@
 <li class="toctree-l2"><a class="reference internal" href="intro_pytorch.html">Introduction to Pytorch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="concentration_prediction_with_EEG.html">Concentration Prediction with EEG</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Classification with Convolutional Neural Network Using PyTorch</a></li>
-
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="deep_learning_part2_intro.html">DL Part 2 (Week 8)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -531,21 +530,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification with Convolutional Neural Network Using PyTorch</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-data">Download the Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-and-prepare-dataloaders">Split Data and Prepare DataLoaders</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-convolution">Introduction to Convolution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-convolution">Introduction to Convolution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the Model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-data">Test the Data</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -921,9 +914,8 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 </div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-convolution">
-<h1>Introduction to Convolution<a class="headerlink" href="#introduction-to-convolution" title="Link to this heading">#</a></h1>
+<section id="introduction-to-convolution">
+<h2>Introduction to Convolution<a class="headerlink" href="#introduction-to-convolution" title="Link to this heading">#</a></h2>
 <p>convolution เป็นวิธีการนึ่งที่ที่ดูการเปลี่ยนแปลงของฟังก์ชั่นหนึ่ง เมื่อมีอีกฟังก์ชั่นเข้ามา ใน deep-learning convolution ถูกนำมาใช้อย่างแพร่หลายในงานที่เกี่ยวกับรูปภาพเพื่อดึงข้อมูลเชิงพื้นที่ (spatial feature) ออกมาจากรูปภาพ โดย pytorch จะใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code> ในการทำ convolution
 โดย parameters ที่สำคัญจะประกอบไปด้วย</p>
 <ul class="simple">
@@ -968,6 +960,7 @@ labels.pickle       100%[===================&gt;]     630  --.-KB/s    in 0s
 </div>
 </div>
 </div>
+</section>
 <section id="train-the-model">
 <h2>Train the Model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h2>
 <p>สร้าง model โดยใช้ <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> ซึ่งเป็นตัวแบบของ Neural Network model ใน pytorch โดยมี layer ดังนี้</p>
@@ -1289,21 +1282,15 @@ Finished Training
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification with Convolutional Neural Network Using PyTorch</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-data">Download the Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-and-prepare-dataloaders">Split Data and Prepare DataLoaders</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-convolution">Introduction to Convolution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-convolution">Introduction to Convolution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the Model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-data">Test the Data</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
