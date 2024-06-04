@@ -4,7 +4,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-2">
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/itthi_chatnuntawech.jpeg?raw=true" class="card-img-top" alt="itthi_chatnuntawech">
+            <img src="/img-staff/itthi_chatnuntawech.jpeg" class="card-img-top" alt="itthi_chatnuntawech">
             <div class="card-body">
                 <h5 class="card-title m-0">อิทธิ ฉัตรนันทเวช (ขนุน)</h5>
                 <p class="card-text">
@@ -16,7 +16,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/titipat_achakulvisut.jpeg?raw=true" class="card-img-top" alt="titipat_achakulvisut">
+            <img src="/img-staff/Titipat_Achakulvisut.jpeg" class="card-img-top" alt="titipat_achakulvisut">
             <div class="card-body">
                 <h5 class="card-title m-0">ฐิติพัทธ อัชชะกุลวิสุทธิ์ (มาย)</h5>
                 <p class="card-text">
@@ -28,7 +28,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/sedthapong_chunamchai.jpeg?raw=true" class="card-img-top" alt="sedthapong_chunamchai">
+            <img src="/img-staff/Sedthapong_Chunamchai.jpeg" class="card-img-top" alt="sedthapong_chunamchai">
             <div class="card-body">
                 <h5 class="card-title m-0">เสฎฐพงศ์ ชูนามชัย (พีท)</h5>
                 <p class="card-text">
@@ -40,7 +40,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/chaipat_chunharas.jpeg?raw=true" class="card-img-top" alt="chaipat_chunharas">
+            <img src="/img-staff/chaipat_chunharas.jpeg" class="card-img-top" alt="chaipat_chunharas">
             <div class="card-body">
                 <h5 class="card-title m-0">ชัยภัทร ชุณหรัศมิ์ (กิ๊ก)</h5>
                 <p class="card-text">
@@ -52,7 +52,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/thiparat_chotibut.jpeg?raw=true" class="card-img-top" alt="thiparat_chotibut">
+            <img src="/img-staff/thiparat_chotibut.jpeg" class="card-img-top" alt="thiparat_chotibut">
             <div class="card-body">
                 <h5 class="card-title m-0">ธิปรัชต์ โชติบุตร (ธิป)</h5>
                 <p class="card-text">
@@ -69,7 +69,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-2">
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/waragon_phusuwan.jpeg?raw=true" class="card-img-top" alt="waragon_phusuwan">
+            <img src="/img-staff/waragon_phusuwan.jpeg" class="card-img-top" alt="waragon_phusuwan">
             <div class="card-body">
                 <h5 class="card-title m-0">วรากร ภู่สุวรรณ (มอส)</h5>
                 <p class="card-text">
@@ -81,7 +81,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/maytus_piriyajitakonkij.jpeg?raw=true" class="card-img-top" alt="maytus_piriyajitakonkij">
+            <img src="/img-staff/maytus_piriyajitakonkij.jpeg" class="card-img-top" alt="maytus_piriyajitakonkij">
             <div class="card-body">
                 <h5 class="card-title m-0">เมธัส พิริยจิตรกรกิจ (โม)</h5>
                 <p class="card-text">
@@ -93,7 +93,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/surat_teerapittayanon.jpeg?raw=true" class="card-img-top" alt="surat_teerapittayanon">
+            <img src="/img-staff/surat_teerapittayanon.jpeg" class="card-img-top" alt="surat_teerapittayanon">
             <div class="card-body">
                 <h5 class="card-title m-0">สุรัฐ ธีรพิทยานนท์ (อู๋)</h5>
                 <p class="card-text">
@@ -105,7 +105,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/kanokkorn_pimcharoen.jpeg?raw=true" class="card-img-top" alt="kanokkorn_pimcharoen">
+            <img src="/img-staff/kanokkorn_pimcharoen.jpeg" class="card-img-top" alt="kanokkorn_pimcharoen">
             <div class="card-body">
                 <h5 class="card-title m-0">กนกกร พิมพ์เจริญ (กิฟท์)</h5>
                 <p class="card-text">
@@ -117,7 +117,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/chayanon_atthapak.jpeg?raw=true" class="card-img-top" alt="chayanon_atthapak">
+            <img src="/img-staff/chayanon_atthapak.jpeg" class="card-img-top" alt="chayanon_atthapak">
             <div class="card-body">
                 <h5 class="card-title m-0">ชญานนท์ อรรถปักษ์ (ออม)</h5>
                 <p class="card-text">
@@ -129,7 +129,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/korrawiz_chotayapa.jpeg?raw=true" class="card-img-top" alt="korrawiz_chotayapa">
+            <img src="/img-staff/Korrawiz_Chotayapa.jpeg" class="card-img-top" alt="korrawiz_chotayapa">
             <div class="card-body">
                 <h5 class="card-title m-0">กรวิชญ์  โชตยาภา (อ๋อง)</h5>
                 <p class="card-text">
@@ -141,7 +141,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/monrudee_liangruksa.jpeg?raw=true" class="card-img-top" alt="monrudee_liangruksa">
+            <img src="/img-staff/monrudee_liangruksa.jpeg" class="card-img-top" alt="monrudee_liangruksa">
             <div class="card-body">
                 <h5 class="card-title m-0">มนฤดี เลี้ยงรักษา (เอ๋)</h5>
                 <p class="card-text">
@@ -153,7 +153,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/setthanan_jarukasemkit.jpeg?raw=true" class="card-img-top" alt="setthanan_jarukasemkit">
+            <img src="/img-staff/setthanan_jarukasemkit.jpeg" class="card-img-top" alt="setthanan_jarukasemkit">
             <div class="card-body">
                 <h5 class="card-title m-0">เสฏฐนันท์ จารุเกษมกิจ (โจ)</h5>
                 <p class="card-text">
@@ -177,7 +177,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/naphapa_panyanirun.jpeg?raw=true" class="card-img-top" alt="naphapa_panyanirun">
+            <img src="/img-staff/naphapa_panyanirun.jpeg" class="card-img-top" alt="naphapa_panyanirun">
             <div class="card-body">
                 <h5 class="card-title m-0">ณปภา ปัญญานิรันดร์ (ปริน)</h5>
                 <p class="card-text">
@@ -189,7 +189,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/anantaporn_sena.jpeg?raw=true" class="card-img-top" alt="anantaporn_sena">
+            <img src="/img-staff/anantaporn_sena.jpeg" class="card-img-top" alt="anantaporn_sena">
             <div class="card-body">
                 <h5 class="card-title m-0">อนันตพร เสนา (แพรว)</h5>
                 <p class="card-text">
@@ -201,7 +201,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/nattapat_yuvasuta.jpg?raw=true" class="card-img-top" alt="nattapat_yuvasuta">
+            <img src="/img-staff/nattapat_yuvasuta.jpg" class="card-img-top" alt="nattapat_yuvasuta">
             <div class="card-body">
                 <h5 class="card-title m-0">ณัฐพัชร์ ยุวะสุต (ณัฐ)</h5>
                 <p class="card-text">
@@ -213,7 +213,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/panchalee_sookprao.jpg?raw=true" class="card-img-top" alt="panchalee_sookprao">
+            <img src="/img-staff/panchalee_sookprao.jpg" class="card-img-top" alt="panchalee_sookprao">
             <div class="card-body">
                 <h5 class="card-title m-0">ปัญญ์ชลี สุขพราว (ป๊อป)</h5>
                 <p class="card-text">
@@ -225,7 +225,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/kanathip_jongmekwamsuk.png?raw=true" class="card-img-top" alt="kanathip_jongmekwamsuk">
+            <img src="/img-staff/kanathip_jongmekwamsuk.png" class="card-img-top" alt="kanathip_jongmekwamsuk">
             <div class="card-body">
                 <h5 class="card-title m-0">คณาธิป จงมีความสุข (แทน)</h5>
                 <p class="card-text">
@@ -237,7 +237,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/prapasiri_sawetsuttipan.jpg?raw=true" class="card-img-top" alt="prapasiri_sawetsuttipan">
+            <img src="/img-staff/prapasiri_sawetsuttipan.jpg" class="card-img-top" alt="prapasiri_sawetsuttipan">
             <div class="card-body">
                 <h5 class="card-title m-0">ประภาสิริ เศวตสุทธิพันธ์ (โบนัส)</h5>
                 <p class="card-text">
@@ -249,7 +249,7 @@
     </div>
     <div class="col">
         <div class="card staff-image-container">
-            <img src="https://github.com/ichatnun/brainCodeCamp/blob/main/assets/images/team_photos/tanagrit_phangwiwat.jpg?raw=true" class="card-img-top" alt="tanagrit_phangwiwat">
+            <img src="/img-staff/tanagrit_phangwiwat.jpg" class="card-img-top" alt="tanagrit_phangwiwat">
             <div class="card-body">
                 <h5 class="card-title m-0">ธนกฤต  ผังวิวัฒน์ (พั้นช์)</h5>
                 <p class="card-text">
