@@ -1,7 +1,7 @@
 # Initial Development of Brain Code Camp (BCC)
 This is the repository that was used to develop the first version of the Brain Code Camp platform back in 2023. For the most updated version of the Brain Code Camp platform, please visit [the official Brain Code Camp organization](https://github.com/braincodecamp).
 
-Versions
+# Existing versions
 - [BCC2023](https://course2023-braincodecamp.web.app)
 - [BCC2024](https://course2024-braincodecamp.web.app)
 
